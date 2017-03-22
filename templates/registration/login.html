@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body_class %}login{% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+	<div class="small-6 small-centered columns text-centered">
+
+	<form action="{% url 'auth_login' %}" method="post">
+	    {% csrf_token %}
+	    {{ form }}
+	    <input type="submit" value="Submit" />
+	</form>
+
+	<a class="float-right" href="{% url 'registration_register' %}">Register</a>
+
+	</div>
+</div>
+
+
+
+{% endblock %}

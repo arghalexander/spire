@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="row">
+	<div class="small-8 small-centered columns">
+
+		<form action="{% url 'registration_register' %}" method="post">
+		    {% csrf_token %}
+		    {{ form }}
+		    <input type="submit" value="Submit" />
+		</form>
+
+        <a href="{% url "social:begin" "linkedin-oauth2" %}">LinkedIn</a>
+
+        <a href="{% url "social:begin" "facebook" %}">Facebook</a>
+        
+
+	</div>
+</div>
+
+
+{% endblock %}
