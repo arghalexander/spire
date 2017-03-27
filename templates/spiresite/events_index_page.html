@@ -1,0 +1,10 @@
+
+<h1>events page</h1>
+
+
+
+{% for event in events %}
+
+    <a href="{{event.slug}}">{{event.name}}</a>
+
+{% endfor %}

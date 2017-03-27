@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'wagtail.wagtailsearch',
     'wagtail.wagtailadmin',
     'wagtail.wagtailcore',
+    'wagtail.contrib.modeladmin',
 
     'modelcluster',
     'taggit',
@@ -58,11 +59,14 @@ INSTALLED_APPS = [
     'social_django',
 
     #events
-    'schedule',
+    'events',
+    'tinymce',
 
     #local apps
     'members',
 
+    #front end
+    'spiresite'
 ]
 
 MIDDLEWARE = [

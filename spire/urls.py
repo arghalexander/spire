@@ -26,8 +26,11 @@ from wagtail.wagtailcore import urls as wagtail_urls
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
+    url(r'^events/', include('events.urls')),
 
     url(r'^accounts/', include('registration.backends.hmac.urls')),
+
+    url(r'^tinymce/', include('tinymce.urls')),
 
     url('', include('social_django.urls', namespace='social')),
 
