@@ -23,6 +23,14 @@ from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 
+from rest_framework import routers
+
+from members.views import MemberViewSet
+
+router = routers.DefaultRouter()
+router.register(r'members', MemberViewSet)
+
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
@@ -34,8 +42,11 @@ urlpatterns = [
 
     url('', include('social_django.urls', namespace='social')),
 
+    url(r'^api/', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
     url(r'^cms/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'', include(wagtail_urls)),
 
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

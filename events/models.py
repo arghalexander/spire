@@ -1,15 +1,26 @@
 from __future__ import unicode_literals
+from wagtail.wagtailcore.fields import RichTextField
 from tinymce.models import HTMLField
 from django.db import models
 
-# Create your models here.
+
 class Event(models.Model):
-	name = models.CharField(max_length=254)
-	slug = models.SlugField()
-	date = models.DateField()
-	time = models.TimeField()
-	Location = models.TextField()
-	Description = HTMLField(blank=True)
+	name =							 		models.CharField(max_length=254)
+	slug = 									models.SlugField()
+	date = 									models.DateField()
+	time = 									models.TimeField()
+	Location = 								models.TextField()
+	Description = 							RichTextField()
 
 	def __str__(self):
 		return self.name
+
+
+
+class EventPricingLevel(models.Model):
+	event = 								models.ForeignKey(Event, related_name="event")
+	membership_level = 						models.ForeignKey('members.MembershipLevel', related_name="membership_level") #avoid circular dependency
+	price = 								models.DecimalField(max_digits=8, decimal_places=2)
+
+	def __str__(self):
+		return self.event.name
