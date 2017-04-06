@@ -23,9 +23,14 @@ from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 
-from rest_framework import routers
+from registration.backends.hmac.views import RegistrationView
+from members.forms import MemberRegistrationForm
 
 from members.views import MemberViewSet
+
+from rest_framework import routers
+
+
 
 router = routers.DefaultRouter()
 router.register(r'members', MemberViewSet)
@@ -36,8 +41,10 @@ urlpatterns = [
 
     url(r'^events/', include('events.urls')),
 
+    url(r'^accounts/register/$',  RegistrationView.as_view(form_class=MemberRegistrationForm), name='registration_register'),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
-
+    #
+    
     url(r'^tinymce/', include('tinymce.urls')),
 
     url('', include('social_django.urls', namespace='social')),

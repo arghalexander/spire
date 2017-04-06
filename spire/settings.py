@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -57,6 +58,9 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'corsheaders',
+
+    'anymail',
+
 
     #Social Auth
     'social_django',
@@ -208,7 +212,7 @@ STATICFILES_FINDERS = (
 
 # Registration
 ACCOUNT_ACTIVATION_DAYS = 7
-
+REGISTRATION_FORM = 'members.forms.EmailOnlyRegistrationForm'
 
 # WAGTAIL CMS
 

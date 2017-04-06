@@ -125,3 +125,4 @@ class MemberStatusHistory(models.Model):
 	def __str__(self):       
 		return self.member.user.email
 
+

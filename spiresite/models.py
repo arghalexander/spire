@@ -11,7 +11,7 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel
 from wagtail.wagtailcore.models import Page, PageManager, PageQuerySet
 
 
-
+"""
 class EventsIndexPage(Page):
 
     def get_context(self, request):
@@ -28,3 +28,4 @@ class HomePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('body', classname="full"),
     ]
+    """

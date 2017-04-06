@@ -1,0 +1,28 @@
+version: '2'
+services:
+  nginx:
+    restart: always
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - .:/code
+      - ./config/nginx:/etc/nginx/conf.d/default.conf
+      - /static:/static
+      - /media:/media
+    volumes_from:
+      - web
+    depends_on: 
+      - web
+  db:
+     image: postgres
+  web:
+    restart: always
+    build: .
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && gunicorn spire.wsgi -b 0.0.0.0:8000"
+    volumes:
+      - .:/code
+      - /static:/static
+      - /media:/media
+    expose:
+       - "8000"
