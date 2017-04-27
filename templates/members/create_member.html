@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body_class %}members-create-member{% endblock %}
+
+
+{% block content %}
+
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+
+ 
+      <div id="smartwizard">
+        <ul>
+            <li><a href="#step-1">Personal &amp; Contact Information</a></li>
+            <li><a href="#step-2">Address</a></li>
+            <li><a href="#step-3">University Information</a></li>
+            <li><a href="#step-4">Employment</a></li>
+        </ul>
+       
+        <div>
+            <div id="step-1" class="">
+                <!-- contact form -->
+                <form  id="contact-form" method="post">
+                    
+                    <div class="col-12">
+                      <h4>Image</h4>
+                      <div class="input-group">
+                          <label class="input-group-btn">
+                              <span class="btn btn-primary">
+                                  Browse&hellip; <input type="file" style="display: none;" multiple>
+                              </span>
+                          </label>
+                          <input type="text" class="form-control" readonly>
+                      </div>
+                      <span class="help-block">
+                          Your virtual face or picture. Pictures larger than 1024x1024 pixels will be scaled down. Profile pictures displayed on the site are automatically cropped to a square. For best results, please upload your image already cropped as a square to prevent image cutoffs.
+                      </span>
+                  </div>
+                 
+                    <input type="hidden" hidden required class="form-control" id="membership_level" value="1" name="membership_level" />
+                    
+                    <div class="form-group">
+                      <label for="phone">Phone</label>
+                      <input type="tel" required class="form-control" id="phone" name="phone" />
+                    </div>
+                    <div class="form-group">
+                      <label for="LinkedIn">LinkedIn</label>
+                      <input type="tel" required class="form-control" id="linkedin" name="linkedin" />
+                    </div>
+                     <div class="form-group">
+                      <label for="LinkedIn">Facebook</label>
+                      <input type="tel" required class="form-control" id="linkedin" name="linkedin" />
+                    </div>
+                     <div class="form-group">
+                      <label for="LinkedIn">LinkedIn</label>
+                      <input type="tel" required class="form-control" id="linkedin" name="linkedin" />
+                    </div>
+                    <div class="form-group">
+                      <label for="LinkedIn">Twitter</label>
+                      <input type="tel" required class="form-control" id="linkedin" name="linkedin" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Next</button>
+                </form>
+                <!-- end contact form -->
+               
+
+            </div>
+            <div id="step-2" class="">
+                <!-- Address form -->
+                <form id="address-form" >
+                    <div class="form-group">
+                      <label for="address">Address</label>
+                      <input type="text" class="form-control" id="address1" />
+                    </div>
+                    <div class="form-group">
+                      <label for="address2">Address 2</label>
+                      <input type="text" class="form-control" id="address2" />
+                    </div>
+
+                  <div class="field-wrapper">
+                    <div class="field-wrapper form-group">
+                      <label for="country">Country</label>
+                      <select id="country" class="form-control" data-country-selected="US"></select>
+                    </div>
+                  </div>
+                  <div id="locality-fields">
+                    <div class="form-group">
+                      <label for="city">City</label>
+                      <input type="text" class="form-control" id="city" />
+                    </div>
+                    <div class="form-group">
+                      <label for="state">Administrative Area</label>
+                      <input type="text" class="form-control" id="state" />
+                    </div>
+                    <div class="form-group">
+                      <label for="zip">Postal Code</label>
+                      <input type="text" class="form-control" id="zip" />
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Next</button>
+                </form>
+                <!-- end address form -->
+            </div>
+            <div id="step-3" class="">
+                Step Content
+            </div>
+            <div id="step-4" class="">
+                Step Content
+            </div>
+        </div>
+        
+      </div>
+    </div>
+  
+  </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#smartwizard').smartWizard();
+
+    $(document).on('change', ':file', function() {
+      var input = $(this),
+          numFiles = input.get(0).files ? input.get(0).files.length : 1,
+          label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+      input.trigger('fileselect', [numFiles, label]);
+    });
+
+    // We can watch for our custom `fileselect` event like this
+    $(':file').on('fileselect', function(event, numFiles, label) {
+        var input = $(this).parents('.input-group').find(':text'),
+            log = numFiles > 1 ? numFiles + ' files selected' : label;
+        if( input.length ) {
+            input.val(log);
+        } else {
+            if( log ) alert(log);
+        }
+
+    });
+
+
+
+
+        // this is the id of the form
+        $("#contact-form").submit(function(event) {
+
+            event.preventDefault();
+
+            var url = "/api/members/"; // the script where you handle the form input.
+         
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: $("#contact-form").serialize(), // serializes the form's elements.
+                success: function(data)
+                {
+                    alert(data); // show response from the php script.
+                }
+                });
+                
+            return false;
+        });  
+
+
+
+    $("#smartwizard").on("leaveStep", function(e, anchorObject, stepNumber, stepDirection) {
+
+        console.log(e)
+        console.log(anchorObject)
+        /*
+        $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        success: success,
+        dataType: dataType
+        });*/
+
+
+        console.log(stepNumber)
+
+
+         return true;
+      });
+
+
+});
+</script>
+
+
+{% endblock %}
