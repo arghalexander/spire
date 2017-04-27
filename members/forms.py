@@ -1,17 +1,35 @@
 from django import forms
-from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm
-from django.core.exceptions import ValidationError
-from django.utils.translation import ugettext_lazy as _
+from django.forms import ModelForm
+from .models import Member, MemberAddress, MemberDegree
 
-from registration.forms import RegistrationForm
+class MemberForm(ModelForm):
+	class Meta:
+		model = Member
+		fields = [
+			'image',
+			'bio',
+			'region',
+			]
+		widgets = {
+			'region': forms.CheckboxSelectMultiple()
+		}
 
-User = get_user_model()
+class MemberAddressForm(ModelForm):
+	class Meta:
+		model = MemberAddress
+		fields = [
+			'address_line1',
+			'address_line2',
+			'city',
+			'state',
+			'zip_code',
+		]
 
-
-class MemberRegistrationForm(RegistrationForm):
-    username = forms.EmailField()
-
-    class Meta:
-        model = User
-        fields = ('username','email', 'password1')
+class MemberDegreeForm(ModelForm):
+	class Meta:
+		model = MemberDegree
+		fields = [
+			'degree',
+			'program',
+			'grad_year',
+		]

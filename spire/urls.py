@@ -23,23 +23,38 @@ from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 
-from registration.backends.hmac.views import RegistrationView
-from members.forms import MemberRegistrationForm
+#from registration.backends.hmac.views import RegistrationView
+from spire.registration.forms import MemberRegistrationForm
+from spire.registration.views import RegistrationView
 
-from members.views import MemberViewSet
+from members.views import MemberViewSet, MembershipLevelViewSet, MemberAddressViewSet
+from events.views import EventViewSet
+
+from .views import UserViewSet
+
 
 from rest_framework import routers
 
-
-
 router = routers.DefaultRouter()
+
+#Member endpoints
 router.register(r'members', MemberViewSet)
+router.register(r'member-address', MemberAddressViewSet)
+router.register(r'membership-levels', MembershipLevelViewSet)
+
+#Event endpoints
+router.register(r'events', EventViewSet)
+
+#Event endpoints
+router.register(r'users', UserViewSet)
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^events/', include('events.urls')),
+
+    url(r'^members/', include('members.urls')),    
 
     url(r'^accounts/register/$',  RegistrationView.as_view(form_class=MemberRegistrationForm), name='registration_register'),
     url(r'^accounts/', include('registration.backends.hmac.urls')),

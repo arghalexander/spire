@@ -9,7 +9,7 @@ from events.models import Event
 
 
 class MembershipLevel(models.Model):
-	level = 							models.CharField(max_length=254) 
+	level = 							models.CharField(max_length=254, primary_key=True) 
 	price = 							models.DecimalField(max_digits=8, decimal_places=2)
 
 	def __str__(self):            
@@ -24,24 +24,14 @@ class MemberRegion(models.Model):
 
 class Member(models.Model):
 	user = 								models.OneToOneField(User, on_delete=models.CASCADE)
-	preferred_name =  					models.CharField(max_length=254, blank=True)
-	phone_home = 						models.CharField(max_length=254, blank=True)
-	phone_prefered = 					models.CharField(max_length=254, blank=True)
-	membership_level =					models.ForeignKey(MembershipLevel, related_name="membership_levels")
-	membership_expiration =				models.DateTimeField()
 	
-	image =								models.ImageField(upload_to='members', default=os.path.join(settings.MEDIA_ROOT,'defaults/headshot.png'))					
-
-	professional_address = 				models.TextField(blank=True)
-	professional_phone = 				models.CharField(max_length=254, blank=True)
-	professional_email =				models.EmailField(max_length=254, blank=True)
-
-	company = 							models.CharField(max_length=254, blank=True)
-	company_type = 						models.CharField(max_length=254, blank=True)
-
-	assistant_name = 					models.CharField(max_length=254, blank=True)
-	assistant_email = 					models.EmailField(max_length=254, blank=True)
-	assistant_phone = 					models.CharField(max_length=254, blank=True)
+	membership_level =					models.ForeignKey(MembershipLevel, related_name="membership_levels", blank=True, default="guest")
+	membership_expiration =				models.DateTimeField(blank=True, null=True)
+	
+	image =								models.ImageField(upload_to='members', default=os.path.join(settings.MEDIA_ROOT,'defaults/headshot.png'))	
+	
+	cell_phone =						models.CharField(max_length=254, blank=True)
+	work_phone = 						models.CharField(max_length=254, blank=True)
 
 	bio = 								models.TextField(blank=True)
 	skills_specialties = 				models.TextField(blank=True)
@@ -51,6 +41,28 @@ class Member(models.Model):
 	linkedIn = 							models.CharField(max_length=254, blank=True)
 	facebook = 							models.CharField(max_length=254, blank=True)
 	twitter = 							models.CharField(max_length=254, blank=True)
+
+	company = 							models.CharField(max_length=254, blank=True)
+	
+	
+	#preferred_name =  					models.CharField(max_length=254, blank=True)
+	#phone_home = 						models.CharField(max_length=254, blank=True)
+	#phone_preferred = 					models.CharField(max_length=254, blank=True)
+	
+					
+
+	#professional_address = 				models.TextField(blank=True)
+	#professional_phone = 				models.CharField(max_length=254, blank=True)
+	#professional_email =				models.EmailField(max_length=254, blank=True)
+
+	#company = 							models.CharField(max_length=254, blank=True)
+	#company_type = 						models.CharField(max_length=254, blank=True)
+
+	#assistant_name = 					models.CharField(max_length=254, blank=True)
+	#assistant_email = 					models.EmailField(max_length=254, blank=True)
+	#assistant_phone = 					models.CharField(max_length=254, blank=True)
+
+	
 
 	def __str__(self):             
 		return self.user.email
@@ -72,6 +84,11 @@ class MemberAddress(models.Model):
 	)
 	address_type = 						models.CharField(max_length=50,choices=ADDRESS_TYPES)
 	address = 							models.TextField()
+	address_line1 = 					models.CharField(max_length=255)
+	address_line2 = 					models.CharField(max_length=255, blank=True)
+	city = 								models.CharField(max_length=255)
+	state = 							models.CharField(max_length=255)
+	zip_code =							models.CharField(max_length=255)
 
 	def __str__(self):       
 		return self.member.user.email

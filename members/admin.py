@@ -1,6 +1,7 @@
+from import_export.admin import ImportExportModelAdmin
 from django.contrib import admin
 from .models import *
-
+from resources import MemberResource
 
 class MemberDegreeInline(admin.TabularInline):
 	model = MemberDegree
@@ -13,7 +14,8 @@ class AddressInline(admin.TabularInline):
 
 
 @admin.register(Member)
-class MemberAdmin(admin.ModelAdmin):
+class MemberAdmin(ImportExportModelAdmin):
+	resource_class = MemberResource
 	inlines = [
 		MemberDegreeInline,
 		AddressInline,

@@ -5,15 +5,16 @@ from django.db import models
 
 
 class Event(models.Model):
-	name =							 		models.CharField(max_length=254)
+	title =							 		models.CharField(max_length=254)
 	slug = 									models.SlugField()
-	date = 									models.DateField()
-	time = 									models.TimeField()
+	all_day = 								models.BooleanField()
+	start = 								models.DateTimeField()
+	end =									models.DateTimeField()
 	Location = 								models.TextField()
 	Description = 							RichTextField()
 
 	def __str__(self):
-		return self.name
+		return self.title
 
 
 
@@ -23,4 +24,4 @@ class EventPricingLevel(models.Model):
 	price = 								models.DecimalField(max_digits=8, decimal_places=2)
 
 	def __str__(self):
-		return self.event.name
+		return self.event.title

@@ -61,6 +61,8 @@ INSTALLED_APPS = [
 
     'anymail',
 
+    'csvimport.app.CSVImportConf',
+    'import_export',
 
     #Social Auth
     'social_django',
@@ -94,10 +96,12 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'spire.urls'
 
 ANYMAIL = {
-    "MANDRILL_API_KEY": os.environ.get('MANDRILL_API_KEY'),
+    "MAILGUN_API_KEY": "key-348c125a94567968ca34a1d933e2ac04",
+    "MAILGUN_SENDER_DOMAIN": 'mg.spirestanford.org',  
 }
 
-EMAIL_BACKEND = "anymail.backends.mandrill.EmailBackend"
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend" 
+DEFAULT_FROM_EMAIL = "no-reply@mg.spirestanford.org"
 
 
 REST_FRAMEWORK = {
@@ -105,7 +109,10 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
+    'DEFAULT_FILTER_BACKENDS': (
+        'rest_framework_filters.backends.DjangoFilterBackend',
+    ),
 }
 
 
@@ -198,10 +205,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'public/static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+# URL prefix for static files.
+# https://docs.djangoproject.com/en/1.8/ref/settings/#static-url
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'spire/static'),
+)
 
 
 STATICFILES_FINDERS = (
@@ -212,7 +229,10 @@ STATICFILES_FINDERS = (
 
 # Registration
 ACCOUNT_ACTIVATION_DAYS = 7
-REGISTRATION_FORM = 'members.forms.EmailOnlyRegistrationForm'
+
+#login
+LOGIN_REDIRECT_URL = '/members/'
+
 
 # WAGTAIL CMS
 
@@ -220,9 +240,13 @@ WAGTAIL_SITE_NAME = 'SPIRE'
 
 
 
-# Socail Authentication
+# Social Authentication
 
-
-SOCIAL_AUTH_FACEBOOK_KEY = ''
-SOCIAL_AUTH_FACEBOOK_SECRET = ''
+SOCIAL_AUTH_FACEBOOK_KEY = '1880382195542856'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'c203a4edaf5e3896d55ddeb7eab911cb'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_API_VERSION = '2.9'
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+  'locale': 'ru_RU',
+  'fields': 'id, name, email'
+}
