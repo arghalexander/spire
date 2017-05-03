@@ -53,6 +53,9 @@ INSTALLED_APPS = [
     'wagtail.wagtailcore',
     'wagtail.contrib.modeladmin',
 
+
+    'django_extensions',
+
     'modelcluster',
     'taggit',
 
@@ -120,6 +123,11 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
     'localhost:8000',
 )
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
 
 
 TEMPLATES = [
