@@ -5,7 +5,12 @@ from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
 
+from .validators import validate_redacted
+
+
 from events.models import Event
+
+
 
 
 class MembershipLevel(models.Model):
@@ -28,9 +33,9 @@ class Member(models.Model):
 	membership_level =					models.ForeignKey(MembershipLevel, related_name="membership_levels", blank=True, default="guest")
 	membership_expiration =				models.DateTimeField(blank=True, null=True)
 	
-	image =								models.ImageField(upload_to='members', default=os.path.join(settings.MEDIA_ROOT,'defaults/headshot.png'))	
+	image =								models.ImageField(upload_to='members', default=os.path.join(settings.MEDIA_URL,'defaults/headshot.png'))	
 	
-	cell_phone =						models.CharField(max_length=254, blank=True)
+	mobile_phone =						models.CharField(max_length=254, blank=True)
 	work_phone = 						models.CharField(max_length=254, blank=True)
 
 	bio = 								models.TextField(blank=True)
@@ -45,27 +50,13 @@ class Member(models.Model):
 	company = 							models.CharField(max_length=254, blank=True)
 	
 	
-	#preferred_name =  					models.CharField(max_length=254, blank=True)
-	#phone_home = 						models.CharField(max_length=254, blank=True)
-	#phone_preferred = 					models.CharField(max_length=254, blank=True)
-	
-					
-
-	#professional_address = 				models.TextField(blank=True)
-	#professional_phone = 				models.CharField(max_length=254, blank=True)
-	#professional_email =				models.EmailField(max_length=254, blank=True)
-
-	#company = 							models.CharField(max_length=254, blank=True)
-	#company_type = 						models.CharField(max_length=254, blank=True)
-
-	#assistant_name = 					models.CharField(max_length=254, blank=True)
-	#assistant_email = 					models.EmailField(max_length=254, blank=True)
-	#assistant_phone = 					models.CharField(max_length=254, blank=True)
-
-	
 
 	def __str__(self):             
 		return self.user.email
+
+
+	def full_name(self):
+		return self.user.first_name + ' ' + self.user.last_name
 
 	def is_expiring(self):
 		pass
@@ -75,7 +66,7 @@ class Member(models.Model):
 
 
 class MemberAddress(models.Model):
-	member = 							models.ForeignKey(Member)
+	member = 							models.OneToOneField(Member, related_name="address")
 	ADDRESS_TYPES = (
 		('HOME', 'Home'),
 		('SEASONAL', 'Seasonal'),
@@ -83,9 +74,9 @@ class MemberAddress(models.Model):
 		('PREFERRED', 'Preferred'),
 	)
 	address_type = 						models.CharField(max_length=50,choices=ADDRESS_TYPES)
-	address = 							models.TextField()
-	address_line1 = 					models.CharField(max_length=255)
-	address_line2 = 					models.CharField(max_length=255, blank=True)
+
+	address_line_one = 					models.CharField(max_length=255)
+	address_line_two = 					models.CharField(max_length=255, blank=True)
 	city = 								models.CharField(max_length=255)
 	state = 							models.CharField(max_length=255)
 	zip_code =							models.CharField(max_length=255)
@@ -96,8 +87,8 @@ class MemberAddress(models.Model):
 
 
 
-class MemberDegree(models.Model):
-	member = 							models.ForeignKey(Member)
+class MemberEducation(models.Model):
+	member = 							models.ForeignKey(Member, related_name="education")
 	DEGREE_TYPES = (
 		('UNDERGRAD', 'Undergraduate'),
 		('MA', 'MA'),
@@ -116,16 +107,32 @@ class MemberDegree(models.Model):
 
 
 
-class MemberEventPurchase(models.Model):
+class MemberNote(models.Model):
 	member = 							models.ForeignKey(Member)
-	event = 					  		models.ForeignKey(Event)
-	purchase_date = 					models.DateTimeField(auto_now=True)
-	purchase_price = 					models.DecimalField(max_digits=8, decimal_places=2)
-	note = 								models.TextField(blank=True)
+	user = 								models.ForeignKey(User)
+	note = 								models.TextField(blank=False)
+	date =  							models.DateTimeField(auto_now=True)
 
 	def __str__(self):       
 		return self.member.user.email
 
+
+
+
+
+
+class MemberPurchaseHistory(models.Model):
+	member = 							models.ForeignKey(Member)
+	item = 					  			models.CharField(max_length=255)
+	purchase_date = 					models.DateTimeField(auto_now=True)
+	purchase_price = 					models.DecimalField(max_digits=8, decimal_places=2)
+	note = 								models.TextField(blank=True)
+	cc_num_redacted = 					models.CharField(max_length=32,validators=[validate_redacted])
+
+	def __str__(self):       
+		return self.member.user.email
+
+	
 
 
 

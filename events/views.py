@@ -3,8 +3,8 @@ from rest_framework import viewsets
 from django.shortcuts import render
 from django.http import HttpResponse,Http404
 
-from .models import Event
-from .serializers import EventSerializer
+from .models import Event, EventAttendance
+from .serializers import EventSerializer, EventAttendanceSerializer
 
 
 def index(request):
@@ -30,3 +30,11 @@ class EventViewSet(viewsets.ModelViewSet):
     """
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+
+
+class EventAttendanceViewSet(viewsets.ModelViewSet):
+    """
+        Event Attendance Viewset for api
+    """
+    queryset = EventAttendance.objects.all()
+    serializer_class = EventAttendanceSerializer

@@ -3,8 +3,8 @@ from django.contrib import admin
 from .models import *
 from resources import MemberResource
 
-class MemberDegreeInline(admin.TabularInline):
-	model = MemberDegree
+class MemberEducationInline(admin.TabularInline):
+	model = MemberEducation
 	extra = 0
 
 
@@ -13,12 +13,18 @@ class AddressInline(admin.TabularInline):
 	extra = 0
 
 
+class NoteInline(admin.TabularInline):
+	model = MemberNote
+	extra = 0
+
+
 @admin.register(Member)
 class MemberAdmin(ImportExportModelAdmin):
 	resource_class = MemberResource
 	inlines = [
-		MemberDegreeInline,
+		MemberEducationInline,
 		AddressInline,
+		NoteInline
 	]
 
 
@@ -33,6 +39,6 @@ class MemberRegionAdmin(admin.ModelAdmin):
 
 
 
-@admin.register(MemberEventPurchase)
+@admin.register(MemberPurchaseHistory)
 class MemberEventPurchaseAdmin(admin.ModelAdmin):
 	pass

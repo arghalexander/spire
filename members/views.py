@@ -1,4 +1,11 @@
+import django_filters
+
 from rest_framework import viewsets
+from rest_framework import filters
+from rest_framework.decorators import detail_route, list_route
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 from django.conf import settings
 from django.shortcuts import render, redirect
@@ -7,23 +14,93 @@ from django.views.generic.edit import FormView, CreateView
 
 from registration import signals
 
-from .forms import MemberForm, MemberAddressForm, MemberDegreeForm
-from .models import Member, MemberAddress, MembershipLevel
-from .serializers import MembershipLevelSerializer, MemberAddressSerializer,  MemberSerializer
-
+from .forms import MemberForm, MemberAddressForm, MemberEducationForm
+from .models import Member, MemberAddress, MembershipLevel, MemberPurchaseHistory, MemberNote
+from .serializers import MembershipLevelSerializer, MemberAddressSerializer,  MemberSerializer, MemberPurchaseHistorySerializer, MemberNoteSerializer
+from .pagination import StandardResultsSetPagination
 
 
 from django.views.generic.edit import FormView
 
 
+from events.models import EventAttendance
+from events.serializers import EventAttendanceSerializer
+
 class MemberViewSet(viewsets.ModelViewSet):
     queryset = Member.objects.all()
     serializer_class = MemberSerializer
+    pagination_class = StandardResultsSetPagination
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('user__username', 'user__first_name', 'user__last_name', 'company')
+
+    @detail_route(methods=['get'])
+    def get_event_attendance(self, request, pk):
+        try:
+            member = Member.objects.get(pk=pk)
+        except Member.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        events = EventAttendance.objects.filter(member=member)
+        serializer = EventAttendanceSerializer(events, many=True)
+        return Response(serializer.data)
+
+    @detail_route(methods=['get', 'post'])
+    def member_notes(self, request, pk):
+        try:
+            member = Member.objects.get(pk=pk)
+        except Member.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+        if request.method == 'GET':
+            notes = MemberNote.objects.filter(member=member)
+            serializer = MemberNoteSerializer(notes, many=True)
+            return Response(serializer.data)
+
+        elif request.method == 'POST':
+            serializer = MemberNoteSerializer(data=request.data)
+            if serializer.is_valid():
+
+                #TODO change user back to request user, set to this becuase anonymous users are not allowed
+                serializer.save(member=member, user_id=1)
+
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+    @detail_route(methods=['get'])
+    def get_purchase_history(self, request, pk):
+        try:
+            member = Member.objects.get(pk=pk)
+        except Member.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+            
+        purchases = MemberPurchaseHistory.objects.filter(member=member)
+        serializer = MemberPurchaseHistorySerializer(purchases, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET'])
+def member_event_attendance(request, pk):
+    try:
+        member = Memebrs.objects.get(pk=pk)
+    except Member.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    events = Events.objects.filter(member=member)
+    serializer = EventAttendanceSerializer(events)
+
+    return Response(serializer)
 
 
 class MembershipLevelViewSet(viewsets.ModelViewSet):
     queryset = MembershipLevel.objects.all()
     serializer_class = MembershipLevelSerializer
+
+
+class MemberNoteViewSet(viewsets.ModelViewSet):
+    queryset = MemberNote.objects.all()
+    serializer_class = MemberNoteSerializer
 
 
 class MemberAddressViewSet(viewsets.ModelViewSet):

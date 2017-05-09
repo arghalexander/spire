@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Member, MemberAddress, MemberDegree
+from .models import Member, MemberAddress, MemberEducation
 
 class MemberForm(ModelForm):
 	class Meta:
@@ -18,16 +18,16 @@ class MemberAddressForm(ModelForm):
 	class Meta:
 		model = MemberAddress
 		fields = [
-			'address_line1',
-			'address_line2',
+			'address_line_one',
+			'address_line_two',
 			'city',
 			'state',
 			'zip_code',
 		]
 
-class MemberDegreeForm(ModelForm):
+class MemberEducationForm(ModelForm):
 	class Meta:
-		model = MemberDegree
+		model = MemberEducation
 		fields = [
 			'degree',
 			'program',
