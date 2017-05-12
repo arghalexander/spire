@@ -6,19 +6,22 @@ from rest_framework.decorators import detail_route, list_route
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django_filters.rest_framework import DjangoFilterBackend
 
 from django.conf import settings
 from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView, CreateView
+from django.db.models import Count, Value, F
+from django.db.models.functions import TruncMonth
 
 from registration import signals
 
 from .forms import MemberForm, MemberAddressForm, MemberEducationForm
-from .models import Member, MemberAddress, MembershipLevel, MemberPurchaseHistory, MemberNote
-from .serializers import MembershipLevelSerializer, MemberAddressSerializer,  MemberSerializer, MemberPurchaseHistorySerializer, MemberNoteSerializer
+from .models import *
+from .serializers import *
 from .pagination import StandardResultsSetPagination
-
+from filters import MemberFilter
 
 from django.views.generic.edit import FormView
 
@@ -30,7 +33,8 @@ class MemberViewSet(viewsets.ModelViewSet):
     queryset = Member.objects.all()
     serializer_class = MemberSerializer
     pagination_class = StandardResultsSetPagination
-    filter_backends = (filters.SearchFilter,)
+    filter_backends = (filters.SearchFilter,DjangoFilterBackend)
+    filter_class = MemberFilter
     search_fields = ('user__username', 'user__first_name', 'user__last_name', 'company')
 
     @detail_route(methods=['get'])
@@ -41,6 +45,39 @@ class MemberViewSet(viewsets.ModelViewSet):
             return Response(status=status.HTTP_404_NOT_FOUND)
         events = EventAttendance.objects.filter(member=member)
         serializer = EventAttendanceSerializer(events, many=True)
+        return Response(serializer.data)
+
+    @list_route()
+    def get_signups_by_month_count(self, request):
+        members = Member.objects.annotate(month=TruncMonth('user__date_joined')) \
+            .values('month')  \
+            .annotate(count=Count('id'))  \
+            .values('month', 'count') 
+
+
+        serializer = MemberSignupsByMonthSerilizer(members, many=True)
+        return Response(serializer.data)
+
+    @list_route()
+    def get_member_levels_count(self, request):
+        members = Member.objects.annotate(name=F('membership_level__level')) \
+            .values('name')  \
+            .annotate(value=Count('id'))  \
+            .values('name', 'value') 
+
+
+        serializer = MemberTypesCountSerilizer(members, many=True)
+        return Response(serializer.data)
+
+
+    @detail_route(methods=['get'])
+    def get_education(self, request, pk):
+        try:
+            member = Member.objects.get(pk=pk)
+        except Member.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        events = MemberEducation.objects.filter(member=member)
+        serializer = MemberEducationSerializer(events, many=True)
         return Response(serializer.data)
 
     @detail_route(methods=['get', 'post'])
@@ -96,6 +133,14 @@ def member_event_attendance(request, pk):
 class MembershipLevelViewSet(viewsets.ModelViewSet):
     queryset = MembershipLevel.objects.all()
     serializer_class = MembershipLevelSerializer
+
+class MemberRegionViewSet(viewsets.ModelViewSet):
+    queryset = MemberRegion.objects.all()
+    serializer_class = MemberRegionSerializer
+
+class MemberIndustryViewSet(viewsets.ModelViewSet):
+    queryset = MemberIndustry.objects.all()
+    serializer_class = MemberIndustrySerializer
 
 
 class MemberNoteViewSet(viewsets.ModelViewSet):

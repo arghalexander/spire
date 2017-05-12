@@ -1,7 +1,15 @@
 from rest_framework import serializers
-from .models import Member, MembershipLevel, MemberAddress, MemberPurchaseHistory, MemberNote, MemberEducation
+from .models import *
 from spire.serializers import UserSerializer
 
+
+class MemberSignupsByMonthSerilizer(serializers.Serializer):
+    count = serializers.IntegerField()
+    month = serializers.CharField(max_length=255)
+
+class MemberTypesCountSerilizer(serializers.Serializer):
+    value = serializers.IntegerField()
+    name = serializers.CharField(max_length=255)
 
 class MembershipLevelSerializer(serializers.ModelSerializer):
    
@@ -40,6 +48,15 @@ class MemberNoteSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class MemberRegionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MemberRegion
+        fields = '__all__'
+
+class MemberIndustrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MemberIndustry
+        fields = '__all__'
 
 
 
@@ -49,13 +66,16 @@ class MemberSerializer(serializers.ModelSerializer):
     last_name = serializers.CharField(source='user.last_name', read_only=True, allow_blank=True)
     date_joined = serializers.CharField(source='user.date_joined', read_only=True, allow_blank=True)
     membership_level = serializers.CharField(source='membership_level.level', read_only=True, allow_blank=True)
+    industry = serializers.CharField(source='industry.industry', read_only=True, allow_blank=True)
 
     address = MemberAddressSerializer(many=False)
     education = MemberEducationSerializer(many=True)
+    #industry = MemberIndustrySerializer(many=False)
+    region = MemberRegionSerializer(many=True)
 
     class Meta:
         model = Member
-        fields = ('id','email','full_name','first_name','last_name','company','image','date_joined','membership_level','mobile_phone', 'work_phone', 'address', 'education')
+        fields = ('id','email','full_name','first_name','last_name','company','industry','region','image','date_joined','membership_level','mobile_phone', 'work_phone', 'address', 'education', 'bio')
 
 
 

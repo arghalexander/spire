@@ -10,8 +10,8 @@ class Event(models.Model):
 	all_day = 								models.BooleanField()
 	start = 								models.DateTimeField()
 	end =									models.DateTimeField()
-	Location = 								models.TextField()
-	Description = 							RichTextField()
+	location = 								models.TextField()
+	description = 							RichTextField()
 
 
 	def __str__(self):
@@ -19,8 +19,8 @@ class Event(models.Model):
 
 
 class EventAttendance(models.Model):
-	event = 								models.ForeignKey(Event, related_name="events")
-	member = 								models.ForeignKey('members.Member', related_name="member")
+	event = 								models.ForeignKey(Event, related_name="event_instance")
+	member = 								models.ForeignKey('members.Member', related_name="member_attendance")
 
 
 class EventPricingLevel(models.Model):

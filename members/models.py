@@ -20,8 +20,17 @@ class MembershipLevel(models.Model):
 	def __str__(self):            
 		return self.level
 
+
+class MemberIndustry(models.Model):
+	industry = 							models.CharField(max_length=254) 
+
+	def __str__(self):            
+		return self.industry
+
+
+
 class MemberRegion(models.Model):
-	region = 							models.CharField(max_length=254) 
+	region =	 						models.CharField(max_length=254) 
 
 	def __str__(self):            
 		return self.region
@@ -48,7 +57,7 @@ class Member(models.Model):
 	twitter = 							models.CharField(max_length=254, blank=True)
 
 	company = 							models.CharField(max_length=254, blank=True)
-	
+	industry =							models.OneToOneField(MemberIndustry, related_name="member_industry", blank=True, null=True)
 	
 
 	def __str__(self):             

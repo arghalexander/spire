@@ -3,12 +3,24 @@ from .models import Event, EventAttendance
 
 
 
+class AggregateSerilizer(serializers.Serializer):
+    value = serializers.IntegerField()
+    name = serializers.CharField(max_length=255)
+
 
 class EventSerializer(serializers.ModelSerializer):
   
     class Meta:
         model = Event
         fields = '__all__'
+
+
+
+class EventMemberListSerializer(serializers.ModelSerializer):
+   
+    class Meta:
+        model = EventAttendance
+        fields = ('id',) 
 
 
 

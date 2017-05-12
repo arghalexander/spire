@@ -27,7 +27,7 @@ from wagtail.wagtailcore import urls as wagtail_urls
 from spire.registration.forms import MemberRegistrationForm
 from spire.registration.views import RegistrationView
 
-from members.views import MemberViewSet, MembershipLevelViewSet, MemberAddressViewSet, MemberNoteViewSet
+from members.views import MemberViewSet, MembershipLevelViewSet, MemberAddressViewSet, MemberNoteViewSet, MemberRegionViewSet, MemberIndustryViewSet
 from events.views import EventViewSet, EventAttendanceViewSet
 
 from .views import UserViewSet
@@ -42,6 +42,8 @@ router.register(r'members', MemberViewSet)
 router.register(r'member-address', MemberAddressViewSet)
 router.register(r'membership-levels', MembershipLevelViewSet)
 router.register(r'member-notes', MemberNoteViewSet)
+router.register(r'member-regions', MemberRegionViewSet)
+router.register(r'member-industry', MemberIndustryViewSet)
 
 #Event endpoints
 router.register(r'events', EventViewSet)
@@ -56,7 +58,7 @@ urlpatterns = [
 
     url(r'^events/', include('events.urls')),
 
-    url(r'^api/members/', include('members.urls')),    
+    #url(r'^api/members/', include('members.urls')),    
 
     url(r'^accounts/register/$',  RegistrationView.as_view(form_class=MemberRegistrationForm), name='registration_register'),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
