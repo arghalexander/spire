@@ -1,10 +1,10 @@
 from django.contrib import admin
 from tinymce.widgets import TinyMCE
 from tinymce.models import HTMLField
-from .models import Event, EventPricingLevel, EventAttendance
+from .models import Event, EventPricing, EventAttendance
 
 class EventPricingInline(admin.TabularInline):
-	model = EventPricingLevel
+	model = EventPricing
 	extra = 0
 
 

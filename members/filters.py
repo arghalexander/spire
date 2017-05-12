@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 class MemberIndustryFilter(filters.FilterSet):
     class Meta:
         model = MemberIndustry
+        fields = {'industry': ['exact', 'in',]}
 
 
 class MemberRegionFilter(filters.FilterSet):
@@ -25,7 +26,7 @@ class MembershipLevelFilter(filters.FilterSet):
 class MemberFilter(filters.FilterSet):
     industry = filters.RelatedFilter(MemberIndustryFilter, name='industry', queryset=MemberIndustry.objects.all())
     #region = filters.RelatedFilter(MemberRegionFilter, name='region', queryset=MemberRegion.objects.all().distinct(), distinct=True)
-    region__in = django_filters.filters.BaseInFilter(name='region__region',lookup_type='in',distinct=True)
+    region__in = django_filters.filters.BaseInFilter(name='region__region',distinct=True)
     membership_level = filters.RelatedFilter(MembershipLevelFilter, name='membership_level', queryset=MembershipLevel.objects.all())
 
     user = filters.RelatedFilter('spire.filters.UserFilter', name='user', queryset=User.objects.all())
