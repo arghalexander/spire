@@ -22,7 +22,7 @@ class MembershipLevel(models.Model):
 
 
 class MemberIndustry(models.Model):
-	industry = 							models.CharField(max_length=254) 
+	industry = 							models.CharField(max_length=254, ) 
 
 	def __str__(self):            
 		return self.industry

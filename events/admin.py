@@ -15,10 +15,11 @@ class EventAdmin(admin.ModelAdmin):
 		HTMLField: {'widget': TinyMCE(attrs={'cols': 80, 'rows': 30})},
 	}
 	inlines = [
-		EventPricingInline
+		#EventPricingInline
 	]
 
 
 @admin.register(EventAttendance)
 class EventAdmin(admin.ModelAdmin):
 	pass
+

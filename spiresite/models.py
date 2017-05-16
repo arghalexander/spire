@@ -35,4 +35,4 @@ class HomePage(Page):
 
 class EventPricing(Orderable, EventPricing):
 	event = ParentalKey(Event,related_name='event_pricings',on_delete=models.CASCADE,blank=False)
-	free = models.BooleanField(default=False)
+	ticket_quantity = models.IntegerField()
