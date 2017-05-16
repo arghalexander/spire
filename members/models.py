@@ -42,7 +42,7 @@ class Member(models.Model):
 	membership_level =					models.ForeignKey(MembershipLevel, related_name="membership_levels", blank=True, default="guest")
 	membership_expiration =				models.DateTimeField(blank=True, null=True)
 	
-	image =								models.ImageField(upload_to='members', default=os.path.join(settings.MEDIA_URL,'defaults/headshot.png'))	
+	image =								models.ImageField(upload_to='members', default='defaults/headshot.png')	
 	
 	mobile_phone =						models.CharField(max_length=254, blank=True)
 	work_phone = 						models.CharField(max_length=254, blank=True)
