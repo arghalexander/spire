@@ -57,7 +57,7 @@ class Member(models.Model):
 	twitter = 							models.CharField(max_length=254, blank=True)
 
 	company = 							models.CharField(max_length=254, blank=True)
-	industry =							models.OneToOneField(MemberIndustry, related_name="member_industry", blank=True, null=True)
+	industry =							models.ForeignKey(MemberIndustry, related_name="member_industry", blank=True, null=True)
 	
 
 	def __str__(self):             
