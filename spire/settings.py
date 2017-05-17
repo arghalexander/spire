@@ -25,7 +25,12 @@ SECRET_KEY = 'x(y!ov&%thr^*^b(@upoc8@t$p4qapf^h#)lw6+n*@%_9qh7rg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "localhost:3000",
+    "localhost:8000",
+    "spire.ideahack.com",
+    ".spire.ideahack.com"
+    ]
 
 
 
@@ -130,7 +135,11 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
     'localhost:8000',
+    'spire.ideahack.com'
 )
+
+
+CORS_ALLOW_CREDENTIALS = True
 
 GRAPH_MODELS = {
   'all_applications': True,
