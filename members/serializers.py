@@ -4,8 +4,9 @@ from spire.serializers import UserSerializer
 
 
 class MemberSignupsByMonthSerilizer(serializers.Serializer):
-    count = serializers.IntegerField()
-    month = serializers.CharField(max_length=255)
+    value = serializers.IntegerField()
+    name = serializers.CharField(max_length=255)
+
 
 class MemberTypesCountSerilizer(serializers.Serializer):
     value = serializers.IntegerField()
