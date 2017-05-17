@@ -49,7 +49,7 @@ class MemberViewSet(viewsets.ModelViewSet):
 
     @list_route()
     def get_signups_by_month_count(self, request):
-        members = Member.objects.annotate(month=TruncMonth('user__date_joined')) \
+        members = Member.objects.annotate(name=TruncMonth('user__date_joined')) \
             .values('name')  \
             .annotate(value=Count('id'))  \
             .values('name', 'value') 
