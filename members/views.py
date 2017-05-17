@@ -24,7 +24,7 @@ from .pagination import StandardResultsSetPagination
 from filters import MemberFilter
 
 from django.views.generic.edit import FormView
-
+from django.views.decorators.csrf import csrf_exempt
 
 from events.models import EventAttendance
 from events.serializers import EventAttendanceSerializer
@@ -50,9 +50,9 @@ class MemberViewSet(viewsets.ModelViewSet):
     @list_route()
     def get_signups_by_month_count(self, request):
         members = Member.objects.annotate(month=TruncMonth('user__date_joined')) \
-            .values('month')  \
-            .annotate(count=Count('id'))  \
-            .values('month', 'count') 
+            .values('name')  \
+            .annotate(value=Count('id'))  \
+            .values('name', 'value') 
 
 
         serializer = MemberSignupsByMonthSerilizer(members, many=True)
@@ -146,7 +146,6 @@ class MemberIndustryViewSet(viewsets.ModelViewSet):
 class MemberNoteViewSet(viewsets.ModelViewSet):
     queryset = MemberNote.objects.all()
     serializer_class = MemberNoteSerializer
-
 
 class MemberAddressViewSet(viewsets.ModelViewSet):
     queryset = MemberAddress.objects.all()
