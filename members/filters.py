@@ -35,8 +35,8 @@ class MemberFilter(filters.FilterSet):
     date_joined__gte = django_filters.DateTimeFilter(name='user__date_joined', lookup_type='gte')
     date_joined__lte = django_filters.DateTimeFilter(name='user__date_joined', lookup_type='lte')
 
-    grad_year__gte = django_filters.NumberFilter(name='education__grad_year', lookup_type='gte')
-    grad_year__lte = django_filters.NumberFilter(name='education__grad_year', lookup_type='lte')
+    grad_year__gte = django_filters.NumberFilter(name='education__grad_year', lookup_expr='gte')
+    grad_year__lte = django_filters.NumberFilter(name='education__grad_year', lookup_expr='lte')
 
     class Meta:
         model = Member
