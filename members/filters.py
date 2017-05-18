@@ -32,8 +32,8 @@ class MemberFilter(filters.FilterSet):
     user = filters.RelatedFilter('spire.filters.UserFilter', name='user', queryset=User.objects.all())
     
     #date_joined = django_filters.IsoDateTimeFilter()
-    date_joined__gte = django_filters.DateTimeFilter(name='user__date_joined', lookup_type='gte')
-    date_joined__lte = django_filters.DateTimeFilter(name='user__date_joined', lookup_type='lte')
+    date_joined__gte = django_filters.DateTimeFilter(name='user__date_joined', lookup_expr='gte')
+    date_joined__lte = django_filters.DateTimeFilter(name='user__date_joined', lookup_expr='lte')
 
     grad_year__gte = django_filters.NumberFilter(name='education__grad_year', lookup_expr='gte')
     grad_year__lte = django_filters.NumberFilter(name='education__grad_year', lookup_expr='lte')
