@@ -55,8 +55,10 @@ class MemberEventPurchaseAdmin(admin.ModelAdmin):
 
 
 
-class myUserAdmin(ImportExportMixin, admin.ModelAdmin):
+class myUserAdmin(ImportExportMixin, UserAdmin):
 	resource_class = UserResource
+
+	
 
 
 admin.site.unregister(User)
