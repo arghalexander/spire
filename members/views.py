@@ -48,8 +48,32 @@ class MemberViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     @list_route()
-    def get_signups_by_year_count(self, request):
+    def get_signups_by_range_month_count(self, request):
+        last_year = datetime.datetime.now() - datetime.timedelta(days=1*30)
+        members = Member.objects.filter(user__date_joined__gte=last_year) \
+            .annotate(name=TruncMonth('user__date_joined')) \
+            .values('name')  \
+            .annotate(value=Count('id'))  \
+            .values('name', 'value') 
+
+        serializer = MemberSignupsByMonthSerilizer(members, many=True)
+        return Response(serializer.data)
+
+    @list_route()
+    def get_signups_by_range_year_count(self, request):
         last_year = datetime.datetime.now() - datetime.timedelta(days=1*365)
+        members = Member.objects.filter(user__date_joined__gte=last_year) \
+            .annotate(name=TruncMonth('user__date_joined')) \
+            .values('name')  \
+            .annotate(value=Count('id'))  \
+            .values('name', 'value') 
+
+        serializer = MemberSignupsByMonthSerilizer(members, many=True)
+        return Response(serializer.data)
+
+    @list_route()
+    def get_signups_by_range_5years_count(self, request):
+        last_year = datetime.datetime.now() - datetime.timedelta(days=5*365)
         members = Member.objects.filter(user__date_joined__gte=last_year) \
             .annotate(name=TruncMonth('user__date_joined')) \
             .values('name')  \
