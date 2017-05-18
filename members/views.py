@@ -58,6 +58,19 @@ class MemberViewSet(viewsets.ModelViewSet):
 
         serializer = MemberSignupsByMonthSerilizer(members, many=True)
         return Response(serializer.data)
+    
+    @list_route()
+    def get_signups_by_range_3months_count(self, request):
+        last_year = datetime.datetime.now() - datetime.timedelta(days=1*90)
+        members = Member.objects.filter(user__date_joined__gte=last_year) \
+            .annotate(name=TruncMonth('user__date_joined')) \
+            .values('name')  \
+            .annotate(value=Count('id'))  \
+            .values('name', 'value') 
+
+        serializer = MemberSignupsByMonthSerilizer(members, many=True)
+        return Response(serializer.data)
+
 
     @list_route()
     def get_signups_by_range_year_count(self, request):
