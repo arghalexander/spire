@@ -89,6 +89,7 @@ class MemberAddress(models.Model):
 	city = 								models.CharField(max_length=255)
 	state = 							models.CharField(max_length=255)
 	zip_code =							models.CharField(max_length=255)
+	country = 							models.CharField(max_length=255)
 
 	def __str__(self):       
 		return self.member.user.email
