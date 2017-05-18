@@ -12,4 +12,4 @@ class MemberResource(resources.ModelResource):
 
     class Meta:
         model = Member
-        fields = ('id','user','work_phone','cell_phone','company', 'membership_level')
+        fields = ('id','user','work_phone','mobile_phone','company', 'membership_level','company')
