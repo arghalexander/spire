@@ -25,6 +25,7 @@ class NoteInline(admin.TabularInline):
 @admin.register(Member)
 class MemberAdmin(ImportExportModelAdmin):
 	resource_class = MemberResource
+	search_fields = ['user__username']
 	inlines = [
 		MemberEducationInline,
 		AddressInline,
