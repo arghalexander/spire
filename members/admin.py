@@ -1,7 +1,11 @@
-from import_export.admin import ImportExportModelAdmin
+from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from django.contrib import admin
 from .models import *
 from resources import MemberResource
+
+from spire.resources import UserResource
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin
 
 class MemberEducationInline(admin.TabularInline):
 	model = MemberEducation
@@ -47,3 +51,13 @@ class MemberRegionAdmin(admin.ModelAdmin):
 @admin.register(MemberPurchaseHistory)
 class MemberEventPurchaseAdmin(admin.ModelAdmin):
 	pass
+
+
+
+
+class myUserAdmin(ImportExportMixin, admin.ModelAdmin):
+	resource_class = UserResource
+
+
+admin.site.unregister(User)
+admin.site.register(User, myUserAdmin)
