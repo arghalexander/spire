@@ -1,5 +1,5 @@
 import django_filters
-
+import datetime 
 from rest_framework import viewsets
 from rest_framework import filters
 from rest_framework.decorators import detail_route, list_route
@@ -48,12 +48,13 @@ class MemberViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     @list_route()
-    def get_signups_by_month_count(self, request):
-        members = Member.objects.annotate(name=TruncMonth('user__date_joined')) \
+    def get_signups_by_year_count(self, request):
+        last_year = datetime.datetime.now() - datetime.timedelta(days=1*365)
+        members = Member.objects.filter(user__date_joined__gte=last_year) \
+            .annotate(name=TruncMonth('user__date_joined')) \
             .values('name')  \
             .annotate(value=Count('id'))  \
             .values('name', 'value') 
-
 
         serializer = MemberSignupsByMonthSerilizer(members, many=True)
         return Response(serializer.data)
