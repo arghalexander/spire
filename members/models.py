@@ -38,7 +38,8 @@ class MemberRegion(models.Model):
 
 class Member(models.Model):
 	user = 								models.OneToOneField(User, on_delete=models.CASCADE)
-	
+	preferred_name =					models.CharField(max_length=255, blank=True)
+
 	membership_level =					models.ForeignKey(MembershipLevel, related_name="membership_levels", blank=True, default="guest")
 	membership_expiration =				models.DateTimeField(blank=True, null=True)
 	
@@ -55,10 +56,8 @@ class Member(models.Model):
 	linkedIn = 							models.CharField(max_length=254, blank=True)
 	facebook = 							models.CharField(max_length=254, blank=True)
 	twitter = 							models.CharField(max_length=254, blank=True)
-
-	company = 							models.CharField(max_length=254, blank=True)
-	industry =							models.ForeignKey(MemberIndustry, related_name="member_industry", blank=True, null=True)
 	
+
 
 	def __str__(self):             
 		return self.user.email
@@ -107,13 +106,29 @@ class MemberEducation(models.Model):
 		('JD', 'JD'),
 		('PHD', 'PHD'),
 	)
-	degree = 						models.CharField(max_length=50,choices=DEGREE_TYPES)
-	program = 						models.CharField(max_length=255, blank=True)
-	grad_year = 					models.IntegerField()
+	degree = 							models.CharField(max_length=50,choices=DEGREE_TYPES)
+	program = 							models.CharField(max_length=255, blank=True)
+	grad_year = 						models.IntegerField()
 
 	def __str__(self):       
 		return self.member.user.email
 
+
+class MemberProffesionalInformation(models.Model):
+	member = 							models.OneToOneField(Member, related_name="professional_information")
+	address_line_one = 					models.CharField(max_length=255)
+	address_line_two = 					models.CharField(max_length=255, blank=True)
+	city = 								models.CharField(max_length=255)
+	state = 							models.CharField(max_length=255)
+	zip_code =							models.CharField(max_length=255)
+	country = 							models.CharField(max_length=255)
+
+	assistant_name = 					models.CharField(max_length=255, blank=True)
+	assistant_email = 					models.EmailField(max_length=255,blank=True)
+	assistant_phone = 					models.CharField(max_length=255, blank=True)
+
+	company = 							models.CharField(max_length=254, blank=True)
+	industry =							models.ForeignKey(MemberIndustry, related_name="member_industry", blank=True, null=True)		
 
 
 
