@@ -35,7 +35,7 @@ class MemberViewSet(viewsets.ModelViewSet):
     pagination_class = StandardResultsSetPagination
     filter_backends = (filters.SearchFilter,DjangoFilterBackend)
     filter_class = MemberFilter
-    search_fields = ('user__username', 'user__first_name', 'user__last_name', 'company')
+    search_fields = ('user__username', 'user__first_name', 'user__last_name', 'professional_information__company')
 
     @detail_route(methods=['get'])
     def get_event_attendance(self, request, pk):
