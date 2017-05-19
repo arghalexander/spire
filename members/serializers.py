@@ -61,6 +61,8 @@ class MemberIndustrySerializer(serializers.ModelSerializer):
 
 
 class MemberProffesionalInformationSerializer(serializers.ModelSerializer):
+    industry = serializers.CharField(source='industry.industry', read_only=True, allow_blank=True)
+
     class Meta:
         model = MemberProffesionalInformation
         fields = '__all__'
