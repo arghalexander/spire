@@ -33,9 +33,10 @@ class MemberViewSet(viewsets.ModelViewSet):
     queryset = Member.objects.all()
     serializer_class = MemberSerializer
     pagination_class = StandardResultsSetPagination
-    filter_backends = (filters.SearchFilter,DjangoFilterBackend)
+    filter_backends = (filters.SearchFilter,DjangoFilterBackend,filters.OrderingFilter)
     filter_class = MemberFilter
     search_fields = ('user__username', 'user__first_name', 'user__last_name', 'professional_information__company')
+    ordering_fields = '__all__'
 
     @detail_route(methods=['get'])
     def get_event_attendance(self, request, pk):
