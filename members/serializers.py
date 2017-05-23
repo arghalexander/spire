@@ -60,11 +60,11 @@ class MemberIndustrySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class MemberProffesionalInformationSerializer(serializers.ModelSerializer):
+class MemberProfesionalInformationSerializer(serializers.ModelSerializer):
     industry = serializers.CharField(source='industry.industry', read_only=True, allow_blank=True)
 
     class Meta:
-        model = MemberProffesionalInformation
+        model = MemberProfesionalInformation
         fields = '__all__'
 
 
@@ -75,7 +75,7 @@ class MemberSerializer(serializers.ModelSerializer):
     date_joined = serializers.CharField(source='user.date_joined', read_only=True, allow_blank=True)
     membership_level = serializers.CharField(source='membership_level.level', read_only=True, allow_blank=True)
     #industry = serializers.CharField(source='industry.industry', read_only=True, allow_blank=True)
-    professional_information = MemberProffesionalInformationSerializer(many=False)
+    professional_information = MemberProfesionalInformationSerializer(many=False)
 
     address = MemberAddressSerializer(many=False)
     education = MemberEducationSerializer(many=True)

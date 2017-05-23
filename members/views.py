@@ -36,7 +36,7 @@ class MemberViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.SearchFilter,DjangoFilterBackend,filters.OrderingFilter)
     filter_class = MemberFilter
     search_fields = ('user__username', 'user__first_name', 'user__last_name', 'professional_information__company')
-    ordering_fields = '__all__'
+    ordering_fields = ('user__email','user__first_name','user__last_name')
 
     @detail_route(methods=['get'])
     def get_event_attendance(self, request, pk):

@@ -22,7 +22,7 @@ class MembershipLevel(models.Model):
 
 
 class MemberIndustry(models.Model):
-	industry = 							models.CharField(max_length=254, ) 
+	industry = 							models.CharField(max_length=254) 
 
 	def __str__(self):            
 		return self.industry
@@ -114,7 +114,7 @@ class MemberEducation(models.Model):
 		return self.member.user.email
 
 
-class MemberProffesionalInformation(models.Model):
+class MemberProfesionalInformation(models.Model):
 	member = 							models.OneToOneField(Member, related_name="professional_information")
 	address_line_one = 					models.CharField(max_length=255)
 	address_line_two = 					models.CharField(max_length=255, blank=True)

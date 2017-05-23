@@ -16,8 +16,8 @@ class AddressInline(admin.TabularInline):
 	model = MemberAddress
 	extra = 0
 
-class ProffesionalInfoInline(admin.StackedInline):
-	model = MemberProffesionalInformation
+class ProfesionalInfoInline(admin.StackedInline):
+	model = MemberProfesionalInformation
 	extra = 0
 
 class NoteInline(admin.TabularInline):
@@ -33,7 +33,7 @@ class MemberAdmin(ImportExportModelAdmin):
 		MemberEducationInline,
 		AddressInline,
 		NoteInline,
-		ProffesionalInfoInline
+		ProfesionalInfoInline
 	]
 
 
