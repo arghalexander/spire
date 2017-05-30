@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-srec-overview{% endblock %}
+
+{% block content %}
+
+<section class="srec-header">
+	<div class="row">
+		<div class="small-1 columns">
+			<img src="{% static 'images/logos/SREC-LOGO.png' %}">
+		</div>
+		<div class="small-11 columns">
+			<h2 id="page-heading" class="bold red-line">{{page.heading}}</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+			<ul class="menu expanded srec-menu">
+			  <li class="active"><a href="#">Overview</a></li>
+			  <li><a href="#">Members</a></li>
+			  <li><a href="#">Conference</a></li>
+			  <li><a href="#">Other Events</a></li>
+			</ul>
+		</div>
+	</div>
+</section>
+	
+
+<section class="page-content">
+	<div class="row">
+		<div class="small-8 columns">
+			{{page.page_content|richtext}}
+		</div>
+		<div class="small-4 columns upcoming-event">
+			<div class="upcoming-event__content">
+				<h4 class="white-line">SREC Upcoming Event</h4>
+				<h6>{{page.event.start|date:'D d M Y g:i a'}}</h6>
+				<h4>{{page.event.title}}</h4>
+				<p>{{page.event.description|truncatewords:25|richtext}}</p>
+				<hr>
+				<a href="/contact" class="button button-white expanded">Contact Us</a>
+			</div>	
+		</div>
+	</div>
+</section>
+
+
+<section class="gallery">
+	<div class="row">
+		<div class="small-12 columns">
+			<h3 class="red-line">Gallery</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+
+			<div id="srec-slider" class="slider" >
+				 {% for slide in page.srec_gallery.all %}
+
+			     <div >
+			     	{% image slide.image fill-400x260 class="orbit-image" %}
+			    </div>
+			    {% endfor %}
+
+			</div>
+
+		</div>
+	</div>
+</section>
+
+	
+
+{% endblock %}

@@ -1,0 +1,30 @@
+.sponsors{
+	padding-top: 118px;
+	padding-bottom: 125px;
+	color: $white;
+
+	#sponsors-title{
+		padding-bottom:90px;
+	}
+
+	.sponsor{
+		position: relative;
+		height: 550px;
+		padding: 25px;
+
+
+
+		//padding-right: 20px;
+
+		.button{
+			position: absolute;
+			padding-left: inherit;
+	        padding-right: inherit;
+	        bottom: 0px;
+	        left: 0;
+	        right: 0;
+	        width: 100%;
+		}
+	}
+
+}

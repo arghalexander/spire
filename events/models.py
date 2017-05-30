@@ -3,6 +3,8 @@ from wagtail.wagtailcore.fields import RichTextField
 from tinymce.models import HTMLField
 from django.db import models
 
+from wagtail.wagtailsnippets.models import register_snippet
+from wagtail.wagtailsearch import index
 
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from modelcluster.models import ClusterableModel
@@ -10,9 +12,12 @@ from wagtail.wagtailcore.models import Orderable
 from wagtail.wagtailcore.models import Orderable, Page
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel, FieldRowPanel, InlinePanel
 
-class Event(ClusterableModel):
+
+@register_snippet
+class Event(index.Indexed,ClusterableModel):
 	title =							 		models.CharField(max_length=254)
-	slug = 									models.SlugField(verbose_name="Event URL")
+	slug = 									models.SlugField(verbose_name="Event URL",unique=True)
+	featured = 								models.BooleanField(default=False)
 	image = 								models.ForeignKey(
 												'wagtailimages.Image',
 												null=True,
@@ -59,8 +64,12 @@ class Event(ClusterableModel):
 	
 		FieldPanel('location', classname='fn'),
 		FieldPanel('description', classname='full'),
-    	InlinePanel('event_pricings', label="Pricing"),
-  	]
+		InlinePanel('event_pricings', label="Pricing"),
+	]
+
+	search_fields = [
+		index.SearchField('title', partial_match=True),
+	]
 
 
 class EventAttendance(models.Model):

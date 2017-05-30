@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% load nav_tags static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-srec-overview{% endblock %}
+
+{% block content %}
+
+
+
+{% get_site_root as site_root %}
+{% srec_menu parent=site_root calling_page=self %}
+
+
+
+
+<section class="gallery">
+	<div class="row">
+		<div class="small-12 columns">
+			<h3 class="red-line">Gallery</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+
+			<div id="srec-slider" class="slider" >
+				 {% for slide in page.srec_gallery.all %}
+
+			     <div >
+			     	{% image slide.image fill-400x260 class="orbit-image" %}
+			    </div>
+			    {% endfor %}
+
+			</div>
+
+		</div>
+	</div>
+</section>
+
+	
+
+{% endblock %}

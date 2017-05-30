@@ -1,0 +1,49 @@
+
+.button-white{
+	background-color: #FFF;
+	color: $red;
+	font-weight: bold;
+	&:active,&:hover,&:focus{
+		color: $red;
+		background-color: $light-brown;
+	}
+}
+
+
+.button-white-outline{
+	background: transparent;
+	border: 2px solid $white;
+	color: $white;
+	font-weight: bold;
+	&:active,&:hover,&:focus{
+		color: $white;
+		background-color: $light-brown;
+	}
+}
+
+
+.button-red{
+	background-color: $red;
+	color: $white;
+	font-weight: bold;
+	&:active,&:hover,&:focus{
+		color: $white;
+		background-color: $light-brown;
+	}
+}
+
+
+.button-red-outline{
+	background: transparent;
+	color: $red;
+	border: 2px solid $red;
+	font-weight: bold;
+	&:active,&:hover,&:focus{
+		color: $white;
+		background-color: $light-brown;
+	}
+}
+
+
+
+

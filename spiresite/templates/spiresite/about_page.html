@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-about{% endblock %}
+
+{% block content %}
+
+<section class="about-header">
+	<div class="row">
+		<div class="small-12 columns">
+			<h2 id="page-heading" class="bold red-line">{{page.heading}}</h2>
+		</div>
+	</div>
+</section>
+	
+
+<section class="pillars">
+	<div class="row">
+		<div class="small-12 columns">
+			<h3 id="pillar-title">SPIRE Stanford's 3 Pillars</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-4 columns full-height border-right">
+			<div class="pillar">
+				{{page.pillar_one|richtext}}
+			</div>
+		</div>
+		<div class="small-4 full-height columns">
+			<div class="pillar">
+				{{page.pillar_two|richtext}}
+			</div>
+		</div>
+		<div class="small-4 full-height columns border-left">
+			<div class="pillar">
+				{{page.pillar_three|richtext}}
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="page-content">
+	<div class="row">
+		<div class="small-12 columns">
+			{{page.page_content|richtext}}
+		</div>
+	</div>
+</section>
+
+	
+
+{% endblock %}

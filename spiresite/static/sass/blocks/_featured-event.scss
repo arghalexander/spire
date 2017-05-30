@@ -1,0 +1,18 @@
+.featured-event {
+    background-color: $white;
+    margin-bottom: 30px;
+    position: relative;
+    height: 100%;
+    .featured-event__content {
+        padding: 25px;
+    }
+    .button-purchase {
+        position: absolute;
+        padding-left: inherit;
+        padding-right: inherit;
+        bottom: 0px;
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+}

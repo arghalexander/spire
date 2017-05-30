@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block content %}
+
+<section class="home-header">
+
+	<div class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit>
+	  <ul class="orbit-container">
+	    
+	    
+	    {% for panel in page.home_gallery.all %}
+	    <li class="is-active orbit-slide">
+	      {% image panel.background original class="orbit-image" %}
+	     	<figcaption class="orbit-caption">
+			     <div class="content">
+			    	 <h3 class="white-line">{{panel.title}}</h3>
+			    	 <p>{{panel.description}}</p>
+
+
+			    	 <a class="button button-white learn-more" href="{{panel.slug}}">Learn More</a>
+
+			     </div>
+
+	    	</figcaption>
+	    </li>  
+		{% endfor %}
+	    
+	  </ul>
+	  <nav class="orbit-bullets">
+
+	  	{% for panel in page.home_gallery.all %}
+	    	
+	  		{% if forloop.counter == 1 %}
+	  			<button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span><span class="show-for-sr">Current Slide</span></button>
+	  		{% else %}
+	  			<button data-slide="1"><span class="show-for-sr">Second slide details.</span></button>
+	  		{% endif %}
+		    
+
+		{% endfor %}
+
+	  </nav>
+	</div>
+	
+</section>
+
+
+<section class="events">
+	<div class="row">
+		<div class="small-12 columns">
+		<h3 class="red-line">Events</h3>
+		</div>
+	</div>
+
+	<div class="row" data-equalizer >
+		<div class="small-8 columns" data-equalizer-watch>
+
+			<div class="row small-up-2">
+
+				{% for event in upcoming_events.all %}
+					<div class=" column column-block">
+						<div class="event-block">
+							<a href="{{event.slug}}">
+							<div class="event-block__image">
+								{% image event.image fill-500x250 %}
+							</div>
+							<div class="event-block__text">
+								<h4>{{event.title}}</h4>
+								{{event.description|truncatewords:20|richtext}}
+							</div>
+							</a>
+						</div>
+					</div>
+			  	{% endfor %}
+			</div>
+		</div>
+		<div class="small-4 columns column-block"  data-equalizer-watch>
+			<div class="featured-event">
+
+				<div class="featured-event__content">
+					<h4 class="red-line">Featured Event</h4>
+					{% image featured_event.0.image fill-600x300 %}
+
+
+					{{featured_event.0.start|date:'M d,Y'}}
+
+					{{featured_event.0.description|truncatewords:20|richtext}}
+
+					<hr>
+
+
+					<a class="button button-red button-purchase" href="{{featured_event.0.slug}}">Purchase Tickets</a>
+				</div>
+
+			
+			</div>
+		</div>
+		<div class="small-12 columns">
+		<a href="/events" class="button button-red expanded">See All Events</a>
+		</div>
+	</div>
+
+
+</section>
+	
+
+<section class="sponsors">
+	<div class="row">
+		<div class="small-12 columns">
+			<h3 id="sponsors-title">Major Programs of Stanford Professionals In Real Estate</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-4 columns full-height border-right">
+			<div class="sponsor">
+				{{page.sponsor_one|richtext}}
+				<a href="{{page.sponsor_one_link}}" class="button button-white-outline expanded">Learn More</a>
+			</div>
+		</div>
+		<div class="small-4 full-height columns">
+			<div class="sponsor">
+				{{page.sponsor_two|richtext}}
+				<a href="{{page.sponsor_two_link}}" class="button button-white-outline expanded">Learn More</a>
+			</div>
+		</div>
+		<div class="small-4 full-height columns border-left">
+			<div class="sponsor">
+				{{page.sponsor_one|richtext}}
+				<a href="{{page.sponsor_three_link}}" class="button button-white-outline expanded">Learn More</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="join-spire">
+	<div class="row">
+		<div class="small-12 columns">
+			<h3 class="red-line header-title">Join SPIRE Standford</h3>
+		</div>
+		<div class="small-6 columns">
+			{% image page.join_image height-420 %}
+		</div>
+		<div class="small-6 columns">
+			<div class="join-spire__content">
+				{{page.join_content|richtext}}
+				<a href="{{page.join_link}}" class="button button-red-outline">Join SPIRE</a>
+			</div>
+		</div>
+		
+
+	</div>
+</section>
+
+
+<section class="contact-us">
+	<div class="row">
+		<div class="small-6 columns">
+			<h3 class="red-line header-title">Contact Us</h3>
+		</div>
+		<div class="small-6 columns">
+			<div class="join-spire__content">
+				{{page.contact_content|richtext}}
+				<a href="{{page.contact_link}}" class="button button-red-outline">Contact Us</a>
+			</div>
+		</div>
+		
+
+	</div>
+</section>
+
+
+	
+
+{% endblock %}

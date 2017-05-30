@@ -1,0 +1,39 @@
+.template-homepage {
+    section.home-header {
+        .orbit, .orbit-container {
+            min-height: 700px;
+        }
+        .orbit-caption {
+            position: absolute;
+            top: 25px;
+            left: 40px;
+            height: 540px;
+            width: 590px;
+            background-color: $red;
+            .content {
+            	position: relative;
+                padding: 60px;
+                height: 100%;
+                p {
+                    color: #FFFFFF;
+                    font-size: 18px;
+                    line-height: 24px;
+                }
+                .learn-more{
+                	position: absolute;
+                	bottom: 0px;
+                	width: 440px;
+            	}
+            }
+            
+        }
+    }
+    section.events{
+    	padding-top: 60px;
+    	background-color: $lighter-brown;
+
+    }
+    section.sponsors{
+    	background-color: $red;
+    }
+}

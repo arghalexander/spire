@@ -66,6 +66,8 @@ urlpatterns = [
     
     url(r'^tinymce/', include('tinymce.urls')),
 
+
+
     url('', include('social_django.urls', namespace='social')),
 
     url(r'^api/', include(router.urls)),

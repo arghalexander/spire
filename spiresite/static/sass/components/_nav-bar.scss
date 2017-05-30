@@ -1,0 +1,25 @@
+.top-bar {
+  height: 100px;
+  .top-bar-left {
+    .menu-text {
+      padding: 0px;
+   }
+   
+   .navbar-brand {
+     padding-left: 0px;
+     padding-right: 0px;
+     padding-top: 0px;
+     padding-bottom: 0px;
+     width: 120px;
+  }
+}
+
+.nav-item {
+  a {
+    font-weight: bold;
+    font-size: 18px;
+    color: $red;
+ }
+}
+}
+
