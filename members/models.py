@@ -93,7 +93,7 @@ class Member(models.Model):
 			if degree.degree == "UNDERGRAD":
 				degree_string.insert(0, '\'' + str(degree.grad_year)[-2:])
 			else:
-				degree_string.insert(0, str(degree.degree) + ' \'' + str(degree.grad_year)[-2:])
+				degree_string.append(str(degree.degree) + ' \'' + str(degree.grad_year)[-2:])
 
 		return '(' + ' , '.join(degree_string) + ')'
 

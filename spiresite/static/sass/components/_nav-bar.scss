@@ -43,13 +43,29 @@
         color: $white;
     }
 
-    .is-dropdown-submenu-parent{
 
+  .dropdown.menu > li.is-dropdown-submenu-parent > a::after {
+    display: none;
+   
+  }
+   .menu.submenu {
+    background-color:$red;
 
-      .sub-nav::after{
-        display: none;
+    li{
+      color: $white;
+
+      a {
+            font-weight: normal;
+            font-size: 18px;
+            color: $white;
+            padding-left: 20px;
+      padding-right: 20px;
+        }
+
+      &:hover{
+        background-color: $dark-red;
       }
     }
-
-
+   }
 }
+

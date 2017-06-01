@@ -1,7 +1,10 @@
 .template-homepage {
+    padding-top: 0px !important;
     section.home-header {
         .orbit, .orbit-container {
             min-height: 700px;
+            max-height: 700px;
+            width: 100%;
         }
         .orbit-caption {
             position: absolute;
@@ -35,5 +38,7 @@
     }
     section.sponsors{
     	background-color: $red;
+        color: $white;
+
     }
 }

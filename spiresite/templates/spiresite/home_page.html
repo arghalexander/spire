@@ -58,8 +58,8 @@
 		</div>
 	</div>
 
-	<div class="row" data-equalizer >
-		<div class="small-8 columns" data-equalizer-watch>
+	<div class="row"  >
+		<div class="small-8 columns" >
 
 			<div class="row small-up-2">
 
@@ -80,22 +80,24 @@
 			  	{% endfor %}
 			</div>
 		</div>
-		<div class="small-4 columns column-block"  data-equalizer-watch>
+		<div class="small-4 columns column-block"  >
 			<div class="featured-event">
 
 				<div class="featured-event__content">
-					<h4 class="red-line">Featured Event</h4>
+					<h3 class="red-line">Featured Event</h3>
 					{% image featured_event.0.image fill-600x300 %}
 
-
+					<div class="featured-event__text">
 					{{featured_event.0.start|date:'M d,Y'}}
 
 					{{featured_event.0.description|truncatewords:20|richtext}}
 
+					</div>
+
 					<hr>
 
 
-					<a class="button button-red button-purchase" href="{{featured_event.0.slug}}">Purchase Tickets</a>
+					<a class="button button-red button-purchase expanded" href="{{featured_event.0.slug}}">Purchase Tickets</a>
 				</div>
 
 			
