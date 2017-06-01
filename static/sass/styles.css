@@ -130,7 +130,10 @@ sup {
 .top-bar {
   height: 88px;
   padding-top: 0px;
-  padding-bottom: 0px; }
+  padding-bottom: 0px;
+  background-color: #FFF; }
+  .top-bar .top-bar-left, .top-bar .top-bar-right, .top-bar ul {
+    background-color: #FFF; }
   .top-bar .top-bar-left .menu-text {
     padding: 0px; }
   .top-bar .top-bar-left .navbar-brand {

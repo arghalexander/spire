@@ -3,6 +3,11 @@
     padding-top: 0px;
     padding-bottom: 0px;
     background-color: $white;
+
+    .top-bar-left,.top-bar-right, ul{
+        background-color: $white;
+    }
+
     .top-bar-left {
       
         .menu-text {
