@@ -392,15 +392,27 @@ footer {
   .template-srec-overview .gallery .title {
     margin-bottom: 70px; }
 
-.template-membership .product-block .full-membership-pricing {
+.template-membership .title {
+  padding-top: 50px;
+  margin-bottom: 70px; }
+
+.template-membership .product-block .membership-pricing {
   margin-bottom: 35px; }
-  .template-membership .product-block .full-membership-pricing h3 {
+  .template-membership .product-block .membership-pricing h3 {
     display: inline; }
-    .template-membership .product-block .full-membership-pricing h3:first-of-type {
+    .template-membership .product-block .membership-pricing h3:first-of-type {
       padding-right: 10px; }
-    .template-membership .product-block .full-membership-pricing h3:last-of-type {
-      padding-left: 10px;
-      border-left: 1px solid #979797; }
+    .template-membership .product-block .membership-pricing h3:last-of-type {
+      padding-left: 10px; }
+
+.template-membership .product-block .product__content .text {
+  height: 250px; }
+
+.template-membership .product-block .product__content .short-text {
+  height: 150px; }
+
+.template-membership .product-block .divider {
+  border-left: 1px solid #979797; }
 
 .template-membership .member-benefits {
   padding-top: 60px; }
@@ -408,25 +420,29 @@ footer {
     color: #333333;
     display: table-row;
     margin-bottom: 25px;
-    margin-top: 80px; }
+    margin-top: 30px; }
     .template-membership .member-benefits .benefit .icon, .template-membership .member-benefits .benefit .text {
       display: table-cell; }
     .template-membership .member-benefits .benefit .icon {
       width: 75px;
       height: 100%; }
 
-.template-membership .member-people .title {
-  padding-top: 40px;
-  margin-bottom: 40px; }
+.template-membership .member-people {
+  padding-top: 50px; }
+  .template-membership .member-people .title {
+    padding-top: 40px;
+    margin-bottom: 40px; }
+  .template-membership .member-people h5 {
+    color: #891B0D;
+    padding-bottom: 25px; }
+  .template-membership .member-people p {
+    margin-bottom: 5px; }
+  .template-membership .member-people .closing {
+    padding-top: 50px; }
 
-.template-membership .member-people h5 {
-  color: #891B0D;
-  padding-bottom: 25px; }
-
-.template-membership .member-people p {
-  margin-bottom: 5px; }
-
-.template-membership .member-people .closing {
-  padding-top: 40px; }
+.template-member-directory section.members-directory {
+  padding-top: 50px; }
+  .template-member-directory section.members-directory .page-link {
+    background-color: #891B0D; }
 
 /*# sourceMappingURL=../../../../../../../../../static/sass/styles.css.map */

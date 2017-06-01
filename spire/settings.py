@@ -30,7 +30,8 @@ ALLOWED_HOSTS = [
     "localhost:8888",
     "localhost",
     "spire.ideahack.com",
-    ".spire.ideahack.com"
+    ".spire.ideahack.com",
+    "127.0.0.1"
     ]
 
 
@@ -277,7 +278,7 @@ MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'spire/static'),
+    #os.path.join(BASE_DIR, 'spire/static'),
 )
 
 
