@@ -13,10 +13,18 @@
             padding-top: 0px;
             padding-bottom: 0px;
             width: 120px;
+            height: 88px;
         }
     }
     .top-bar-left {
         width: 80%;
+        height: 100%;
+        .menu{
+            height: 100%;
+        }
+        .nav-item{
+          //padding-top: 24px;
+        }
     }
     .top-bar-right {
         width: 10%;
@@ -24,13 +32,29 @@
 
         .nav-item{
           padding-top: 24px;
+
+          &:hover{
+                background-color: transparent;
+                a{
+                    color: $dark-red;
+                    text-decoration: none;
+                }
+            }
         }
+
+
     }
     .nav-item {
         a {
             font-weight: bold;
             font-size: 18px;
             color: $red;
+        }
+        &:hover{
+            background-color: $red;
+            a{
+                color: $white;
+            }
         }
     }
 
@@ -50,7 +74,8 @@
   }
    .menu.submenu {
     background-color:$red;
-
+    border-top: none;
+    height: auto;
     li{
       color: $white;
 
@@ -67,5 +92,9 @@
       }
     }
    }
+
+   .dropdown.menu > li.opens-right > .is-dropdown-submenu {
+        width: 120%;
+    }
 }
 

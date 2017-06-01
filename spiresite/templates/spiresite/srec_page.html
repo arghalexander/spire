@@ -35,10 +35,10 @@
 		</div>
 		<div class="small-4 columns upcoming-event">
 			<div class="upcoming-event__content">
-				<h4 class="white-line">SREC Upcoming Event</h4>
-				<h6>{{page.event.start|date:'D d M Y g:i a'}}</h6>
+				<h4 class="white-line bold">SREC Upcoming Event</h4>
+				<h6 style="padding-top: 25px;">{{page.event.start|date:'D d M Y g:i a'}}</h6>
 				<h4>{{page.event.title}}</h4>
-				<p>{{page.event.description|truncatewords:25|richtext}}</p>
+				<p>{{page.event.description|truncatewords:30|richtext}}</p>
 				<hr>
 				<a href="/contact" class="button button-white expanded">Contact Us</a>
 			</div>	
@@ -50,7 +50,7 @@
 <section class="gallery">
 	<div class="row">
 		<div class="small-12 columns">
-			<h3 class="red-line">Gallery</h3>
+			<h3 class="red-line bold title">Gallery</h3>
 		</div>
 	</div>
 	<div class="row">

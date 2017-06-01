@@ -6,6 +6,19 @@
 		.upcoming-event__content{
 			padding: 70px 30px 30px 30px; 
 		}
+		p{
+			color: $white;
+		}
+		.button-white{
+			color: $black;
+		}
+	}
+	.gallery{
+		padding-top: 100px;
+
+		.title{
+			margin-bottom: 70px;
+		}
 	}
 	
 }
