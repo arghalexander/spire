@@ -10,6 +10,7 @@
 @import './sections/join-spire';
 @import './sections/contact-us';
 @import './sections/pillars';
+@import './sections/srec-members';
 
 
 //Components
@@ -18,11 +19,14 @@
 @import './components/footer';
 @import './components/srec-menu';
 @import './components/slider';
+@import './components/modal';
+@import './components/body-content';
 
 
 //blocks
 @import './blocks/event-block';
 @import './blocks/featured-event';
+@import './blocks/product-block';
 
 
 
@@ -30,7 +34,7 @@
 @import './templates/template-home';
 @import './templates/template-about';
 @import './templates/template-srec-overview';
-
+@import './templates/template-membership';
 
 
 

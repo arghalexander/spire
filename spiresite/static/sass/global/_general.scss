@@ -2,6 +2,21 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+#main{
+    padding-top: 50px;
+}
+
+
+/* text */
+p{
+    color: $black;
+}
+
+sup{
+    top: -0.6em;
+    font-size: 15px;
+}
+
 
 /* text helpers */
 
@@ -75,4 +90,11 @@ body {
 /** text helpers */
 .bold{
     font-weight: bold;
+}
+
+
+
+/**  Colors */
+.red{
+    color: $red;
 }

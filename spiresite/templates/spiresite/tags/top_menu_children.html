@@ -1,7 +1,7 @@
 {% load nav_tags wagtailcore_tags %}
 
-<a href="{% pageurl parent %}">{{ parent.title }}</a>
-<ul class="menu vertical">
+<a class="sub-nav" href="{% pageurl parent %}">{{ parent.title }}</a>
+<ul class="menu">
   {% for child in menuitems_children %}
         <li><a href="{% pageurl child %}">{{ child.title }}</a></li>
     {% endfor %}

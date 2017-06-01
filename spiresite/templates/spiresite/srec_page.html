@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load static %}
+{% load nav_tags static %}
 {% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
 
@@ -19,12 +19,10 @@
 	</div>
 	<div class="row">
 		<div class="small-12 columns">
-			<ul class="menu expanded srec-menu">
-			  <li class="active"><a href="#">Overview</a></li>
-			  <li><a href="#">Members</a></li>
-			  <li><a href="#">Conference</a></li>
-			  <li><a href="#">Other Events</a></li>
-			</ul>
+			
+			{% get_site_root as site_root %}
+			{% srec_menu parent=site_root calling_page=self %}
+
 		</div>
 	</div>
 </section>

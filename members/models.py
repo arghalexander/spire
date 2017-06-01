@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from django.utils.encoding import python_2_unicode_compatible
 import os
 import datetime
 from django.conf import settings
@@ -7,15 +8,21 @@ from django.contrib.auth.models import User
 
 from .validators import validate_redacted
 
+from wagtail.wagtailadmin.edit_handlers import FieldPanel
+from wagtail.wagtailsnippets.models import register_snippet
 
 from events.models import Event
 
 
-
-
+@register_snippet
+@python_2_unicode_compatible
 class MembershipLevel(models.Model):
 	level = 							models.CharField(max_length=254, primary_key=True) 
-	price = 							models.DecimalField(max_digits=8, decimal_places=2)
+	slug = 								models.SlugField(unique=True)
+	
+	panels = [
+        FieldPanel('level'),
+    ]
 
 	def __str__(self):            
 		return self.level
@@ -62,7 +69,7 @@ class Member(models.Model):
 	def __str__(self):             
 		return self.user.email
 
-
+	@property
 	def full_name(self):
 		return self.user.first_name + ' ' + self.user.last_name
 
@@ -71,6 +78,25 @@ class Member(models.Model):
 
 	def upgrade_membership(self):
 		pass
+
+
+
+	@property
+	def degree_string(self):
+		
+		degrees = MemberEducation.objects.filter(member=self)
+		
+		degree_string = []
+
+		# loop over degress, if undergrade insert into first item
+		for degree in degrees:
+			if degree.degree == "UNDERGRAD":
+				degree_string.insert(0, '\'' + str(degree.grad_year)[-2:])
+			else:
+				degree_string.insert(0, str(degree.degree) + ' \'' + str(degree.grad_year)[-2:])
+
+		return '(' + ' , '.join(degree_string) + ')'
+
 
 
 class MemberAddress(models.Model):
@@ -116,6 +142,13 @@ class MemberEducation(models.Model):
 
 class MemberProfesionalInformation(models.Model):
 	member = 							models.OneToOneField(Member, related_name="professional_information")
+	
+
+	title = 							models.CharField(max_length=254, blank=True)
+	company = 							models.CharField(max_length=254, blank=True)
+	industry =							models.ForeignKey(MemberIndustry, related_name="member_industry", blank=True, null=True)		
+
+
 	address_line_one = 					models.CharField(max_length=255)
 	address_line_two = 					models.CharField(max_length=255, blank=True)
 	city = 								models.CharField(max_length=255)
@@ -127,8 +160,6 @@ class MemberProfesionalInformation(models.Model):
 	assistant_email = 					models.EmailField(max_length=255,blank=True)
 	assistant_phone = 					models.CharField(max_length=255, blank=True)
 
-	company = 							models.CharField(max_length=254, blank=True)
-	industry =							models.ForeignKey(MemberIndustry, related_name="member_industry", blank=True, null=True)		
 
 
 

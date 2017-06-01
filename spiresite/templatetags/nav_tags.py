@@ -2,6 +2,9 @@ from datetime import date
 from django import template
 from django.conf import settings
 
+from wagtail.wagtailcore.models import Site
+from wagtail.wagtailcore.query import PageQuerySet
+
 from spiresite.models import HomePage
 
 register = template.Library()
@@ -23,8 +26,10 @@ def has_menu_children(page):
 # The has_menu_children method is necessary because the bootstrap menu requires
 # a dropdown class to be applied to a parent
 @register.inclusion_tag('spiresite/tags/top_menu.html', takes_context=True)
-def top_menu(context, parent, calling_page=None):
-    menuitems = parent.get_children().live().in_menu()
+def top_menu(context, calling_page=None):
+
+    root= context['request'].site.root_page
+    menuitems = root.get_children().live().in_menu()
     for menuitem in menuitems:
         menuitem.show_dropdown = has_menu_children(menuitem)
         # We don't directly check if calling_page is None since the template

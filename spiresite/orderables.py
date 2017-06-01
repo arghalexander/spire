@@ -5,11 +5,9 @@ from modelcluster.fields import ParentalKey
 from wagtail.wagtailadmin.edit_handlers import PageChooserPanel
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel, InlinePanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel, InlinePanel,FieldRowPanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
-
-
 
 
 class HomePageGallery(Orderable):
@@ -52,4 +50,18 @@ class SCRECPageGallery(Orderable):
 
     panels = [
         ImageChooserPanel('image'),
+    ]
+
+
+
+class MembershipBenefits(Orderable):
+    page = ParentalKey('spiresite.MembershipPage', related_name='membership_benefits')
+    icon_class = models.CharField(max_length=255, help_text="Icon CSS class")
+    text = models.CharField(max_length=255)
+
+    panels = [
+        FieldRowPanel([
+            FieldPanel('icon_class'),
+            FieldPanel('text'),
+        ])
     ]

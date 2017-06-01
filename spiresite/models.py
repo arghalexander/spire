@@ -5,6 +5,8 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 
 from events.models import Event, EventPricing
+from members.models import Member 
+from products.models import MembershipProduct
 
 # Create your models here.
 from wagtail.wagtailcore.models import Page
@@ -23,7 +25,7 @@ from wagtail.wagtailcore import blocks
 
 from wagtail.wagtailsearch import index
 
-from .blocks import MenuItemBlock
+from .blocks import MenuItemBlock, ImageTextBlock
 from orderables import *
 
 
@@ -131,12 +133,12 @@ class ProfessionalsPage(Page):
 class SRECPage(Page):
 	heading = 						models.CharField(blank=True, max_length=255)
 	event = 						models.ForeignKey(
-								        'events.Event',
-								        null=True,
-								        blank=True,
-								        on_delete=models.SET_NULL,
-								        related_name='srec_event'
-								    )
+										'events.Event',
+										null=True,
+										blank=True,
+										on_delete=models.SET_NULL,
+										related_name='srec_event'
+									)
 	page_content =				 	RichTextField(blank=True)
 	
 
@@ -151,18 +153,34 @@ class SRECPage(Page):
 
 class SrecMembersPage(Page):
 	page_content =				 	RichTextField(blank=True)
-	
+	heading = 						models.CharField(blank=True, max_length=255)
 
 	content_panels = Page.content_panels + [
-		FieldPanel('page_content'),		
+		FieldPanel('heading'),
+		FieldPanel('page_content'),
+		
 	]
 
 	def get_context(self, request):
-		context = super(HomePage, self).get_context(request)
+		context = super(SrecMembersPage, self).get_context(request)
 
-		# Add extra variables and return the updated context
-		context['srec_members'] = Member.objects.filter(membership_level="SREC")
+		context['srec_members'] = Member.objects.filter(membership_level__slug="srec")
 		return context
+
+
+
+
+class SrecConferencePage(Page):
+	heading = 						models.CharField(blank=True, max_length=255)
+
+	body =							 StreamField([
+										('text_image', ImageTextBlock()),
+									])
+
+	content_panels = Page.content_panels + [
+		FieldPanel('heading'),
+		StreamFieldPanel('body')
+	]
 
 
 
@@ -171,11 +189,152 @@ class OnCampusPage(Page):
 
 
 class MembershipPage(Page):
-	pass
+	heading = 						models.CharField(blank=True, max_length=255)
+	description = 					models.TextField(blank=True)
+	
+	full_membership = 				models.TextField(blank=True)
+	
+	full_membership_yearly =    	models.ForeignKey(
+										'products.MembershipProduct',
+										null=True,
+										blank=True,
+										on_delete=models.SET_NULL,
+										related_name='product_full_year'
+									)
+	full_membership_5_years =    	models.ForeignKey(
+										'products.MembershipProduct',
+										null=True,
+										blank=True,
+										on_delete=models.SET_NULL,
+										related_name='product_full_5_years'
+									)
+	
+	full_young_membership = 		models.TextField(blank=True)
+	full_young_yearly = 			models.ForeignKey(
+										'products.MembershipProduct',
+										null=True,
+										blank=True,
+										on_delete=models.SET_NULL,
+										related_name='product_full_young'
+									)
+
+
+	full_friends_membership = 		models.TextField(blank=True)
+	full_friends_yearly = 			models.ForeignKey(
+										'products.MembershipProduct',
+										null=True,
+										blank=True,
+										on_delete=models.SET_NULL,
+										related_name='product_full_friends'
+									)
+
+
+	guest_membership = 				models.TextField(blank=True)
+	guest_yearly = 					models.ForeignKey(
+										'products.MembershipProduct',
+										null=True,
+										blank=True,
+										on_delete=models.SET_NULL,
+										related_name='product_guest'
+									)
+	student_membership = 			models.TextField(blank=True)
+	student_yearly = 				models.ForeignKey(
+										'products.MembershipProduct',
+										null=True,
+										blank=True,
+										on_delete=models.SET_NULL,
+										related_name='product_student'
+									)			
+
+	people_image = 					models.ForeignKey(
+										'wagtailimages.Image',
+										null=True,
+										blank=True,
+										on_delete=models.SET_NULL,
+										related_name='people_image'
+									)
+
+	people_review_one = 			RichTextField(blank=True)
+	people_review_two = 			RichTextField(blank=True)
+
+
+	member_closing = 				RichTextField(blank=True)
+
+	content_panels = Page.content_panels + [
+		FieldPanel('heading'),
+		FieldPanel('description'),
+		MultiFieldPanel([
+			FieldPanel('full_membership'),
+			SnippetChooserPanel('full_membership_yearly'),
+			SnippetChooserPanel('full_membership_5_years'),
+		],
+		heading="Full Membership",
+		classname="collapsible"
+		),
+		MultiFieldPanel([
+
+			FieldPanel('full_young_membership'),
+			SnippetChooserPanel('full_young_yearly'),
+		],
+		heading="Full Young Membership",
+		classname="collapsible"
+		),
+		MultiFieldPanel([
+
+			FieldPanel('full_friends_membership'),
+			SnippetChooserPanel('full_friends_yearly'),
+		],
+		heading="Full Friend Membership",
+		classname="collapsible"
+		),
+		MultiFieldPanel([
+
+			FieldPanel('guest_membership'),
+			SnippetChooserPanel('guest_yearly'),
+		],
+		heading="Guest Membership",
+		classname="collapsible"
+		),
+		MultiFieldPanel([
+
+			FieldPanel('student_membership'),
+			SnippetChooserPanel('student_yearly'),
+		],
+		heading="Student Membership",
+		classname="collapsible"
+		),
+
+		InlinePanel('membership_benefits', label="Membership Benefits"),
+		ImageChooserPanel('people_image'),
+		FieldPanel('people_review_one'),
+		FieldPanel('people_review_two'),
+		FieldPanel('member_closing'),
+	]
+	
+
+
+
+
+
+class MemberDirectoryPage(Page):
+	
+	heading = 						models.CharField(blank=True, max_length=255)
+	
+	
+
+	content_panels = Page.content_panels + [
+		FieldPanel('heading'),
+	]
+
+
+
+
+
 
 
 
 class EventPricing(Orderable, EventPricing):
 	event = ParentalKey(Event,related_name='event_pricings',on_delete=models.CASCADE,blank=False)
 	ticket_quantity = models.IntegerField()
+
 

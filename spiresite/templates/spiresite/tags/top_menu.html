@@ -4,14 +4,14 @@
 
 <div class="top-bar">
   <div class="top-bar-left">
-    <ul class="dropdown menu" data-dropdown-menu>
+    <ul class="dropdown menu expanded" data-dropdown-menu>
       <li class="menu-text">
             <a class="navbar-brand" href="{% pageurl site_root %}">
                 <img src="{% static 'images/logo.png' %}" width="170">
             </a>
       </li>
       {% for menuitem in menuitems %}
-            <li class="nav-item {% if menuitem.show_dropdown %}dropdown{% endif %}{% if menuitem.active %} active{% endif %}">
+            <li class="nav-item {% if menuitem.show_dropdown %}{% endif %}{% if menuitem.active %} active{% endif %}">
                 {% if menuitem.show_dropdown %}
                    
                     {% top_menu_children parent=menuitem %}

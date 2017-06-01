@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load nav_tags static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-member-directory{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+	<div class="row">
+		<div class="small-12 columns">
+			<h2 class="red-line">{{page.heading}}</h2>
+		</div>
+	</div>
+
+</section>
+
+<section class="members-directory">
+<div class="row">
+	<div class="small-12 columns">
+		{% include "spiresite/includes/member-directory/index.html" %}
+	</div>
+</section>
+
+{% endblock %}

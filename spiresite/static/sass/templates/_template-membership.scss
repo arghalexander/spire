@@ -1,0 +1,60 @@
+.template-membership{
+
+	.product-block{
+		.full-membership-pricing{
+			margin-bottom: 35px;
+			h3{
+				display: inline;
+				
+				&:first-of-type{
+					padding-right: 10px;
+				}
+
+				&:last-of-type{
+					padding-left: 10px;
+					border-left: 1px solid $gray;
+				}
+			}
+		}
+	}
+
+	.member-benefits{
+		padding-top: 60px;
+		.title{
+			
+		}
+		.benefit{
+			color: $black;
+			display: table-row;
+			margin-bottom: 25px;
+			margin-top: 80px;
+			.icon, .text{
+				display: table-cell;
+			}
+			.icon{
+				width: 75px;
+				height: 100%;
+			}
+			.text{
+				
+			}
+		}
+	}
+	.member-people{
+		.title{
+			padding-top: 40px;
+			margin-bottom: 40px;
+		}
+		h5{
+			color: $red;
+			padding-bottom: 25px;
+		}
+		p{
+			margin-bottom: 5px;
+		}
+		.closing{
+			padding-top: 40px;
+		}
+	}
+
+}

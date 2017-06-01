@@ -1,22 +1,8 @@
 
-<section class="srec-header">
-	<div class="row">
-		<div class="small-1 columns">
-			<img src="{% static 'images/logos/SREC-LOGO.png' %}">
-		</div>
-		<div class="small-11 columns">
-			<h2 id="page-heading" class="bold red-line">{{page.heading}}</h2>
-		</div>
-	</div>
-	<div class="row">
-		<div class="small-12 columns">
-			<ul class="menu expanded srec-menu">
-			  <li class="active"><a href="#">Overview</a></li>
-			  <li><a href="#">Members</a></li>
-			  <li><a href="#">Conference</a></li>
-			  <li><a href="#">Other Events</a></li>
-			</ul>
-		</div>
-	</div>
-</section>
+<ul class="menu expanded srec-menu">
+  <li class="{% if calling_page.url == '/srec/' %}active{% endif %}"><a href="/srec">Overview</a></li>
+  <li class="{% if calling_page.url == '/srec/members/' %}active{% endif %}"><a href="/srec/members">Members</a></li>
+  <li class="{% if calling_page.url == '/srec/conference/' %}active{% endif %}"><a href="/srec/conference/">Conference</a></li>
+  <li class="{% if calling_page.url == '/srec/other-events/' %}active{% endif %}"><a href="/srec/other-events">Other Events</a></li>
+</ul>
 	

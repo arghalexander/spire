@@ -1,25 +1,55 @@
 .top-bar {
-  height: 100px;
-  .top-bar-left {
-    .menu-text {
-      padding: 0px;
-   }
-   
-   .navbar-brand {
-     padding-left: 0px;
-     padding-right: 0px;
-     padding-top: 0px;
-     padding-bottom: 0px;
-     width: 120px;
-  }
-}
+    height: 88px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    .top-bar-left {
+      
+        .menu-text {
+            padding: 0px;
+        }
+        .navbar-brand {
+            padding-left: 0px;
+            padding-right: 0px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            width: 120px;
+        }
+    }
+    .top-bar-left {
+        width: 80%;
+    }
+    .top-bar-right {
+        width: 10%;
+        height: 88px;
 
-.nav-item {
-  a {
-    font-weight: bold;
-    font-size: 18px;
-    color: $red;
- }
-}
-}
+        .nav-item{
+          padding-top: 24px;
+        }
+    }
+    .nav-item {
+        a {
+            font-weight: bold;
+            font-size: 18px;
+            color: $red;
+        }
+    }
 
+    .menu li{
+      text-align: center;
+    }
+
+    .menu .active > a,.menu .active {
+        background: $red;
+        color: $white;
+    }
+
+    .is-dropdown-submenu-parent{
+
+
+      .sub-nav::after{
+        display: none;
+      }
+    }
+
+
+}

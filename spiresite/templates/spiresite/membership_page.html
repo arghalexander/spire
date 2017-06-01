@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% load nav_tags static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-membership{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+	<div class="row">
+		<div class="small-12 columns">
+			<h2 class="red-line">{{page.heading}}</h2>
+			<p>{{page.description}}</p>
+		</div>
+	</div>
+
+</section>
+
+
+
+<section class="spire-member-products">
+	<div class="row">
+		<div class="small-12 columns">
+			<h3 class="red-line">Become a SPIRE Stanford Member</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-4 columns">
+			<div class="full-member product-block">
+				<div class="product__title">
+					<h5 class="bold">Full Membership</h5>
+				</div>
+				<div class="product__content">
+					<p>{{page.full_membership}}</p>
+
+					<div class="full-membership-pricing">
+						<h3><sup>$</sup>75<sup class="sub">/ year</sup></h3>
+
+						<h3><sup>$</sup>299<sup class="sub">/ year</sup></h3>
+					</div>
+					
+					
+					<a class="button button-green expanded"  href="/cart/add-membership/?product_id={{page.full_membership_yearly.id}}">Choose {{page.full_membership_yearly.name}}</a>
+
+					<a class="button button-green expanded" href="/cart/add-membership/?product_id={{page.full_membership_5_years.id}}">Choose {{page.full_membership_5_years.name}}</a>
+
+				</div>
+			</div>
+		</div>
+		<div class="small-4 columns">
+			<div class="full-member product-block">
+				<div class="product__title">
+					<h5 class="bold">Full Young Alumni Membership</h5>
+				</div>
+				<div class="product__content">
+					<p>{{page.full_young_membership}}</p>
+
+
+
+					<a class="button button-green expanded"  href="/cart/add-membership/?product_id={{page.full_young_yearly.id}}">Choose {{page.full_young_yearly.name}}</a>
+
+				</div>
+			</div>
+		</div>
+		<div class="small-4 columns">
+			<div class="full-member product-block">
+				<div class="product__title">
+					<h5 class="bold">Full Friends of SPIRE Membership</h5>
+				</div>
+				<div class="product__content">
+					<p>{{page.full_friends_membership}}</p>
+
+					<a class="button button-green expanded"  href="/cart/add-membership/?product_id={{page.full_friends_yearly.id}}">Choose {{page.full_friends_yearly.name}}</a>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-6 columns">
+			<h3 class="red-line">Not ready to join as a Full Member? Become a Guest member</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-6 columns">
+			<div class="full-member product-block">
+				<div class="product__title">
+					<h5 class="bold">Guest Membership</h5>
+				</div>
+				<div class="product__content">
+					<p>{{page.full_young_membership}}</p>
+
+
+
+					<a class="button button-green expanded"  href="/cart/add-membership/?product_id={{page.full_young_yearly.id}}">Choose this Membership</a>
+
+				</div>
+			</div>
+		</div>
+		<div class="small-6 columns">
+			<div class="full-member product-block">
+				<div class="product__title">
+					<h5 class="bold">Student Membership</h5>
+				</div>
+				<div class="product__content">
+					<p>{{page.full_friends_membership}}</p>
+
+					<a class="button button-green expanded"  href="/cart/add-membership/?product_id={{page.full_friends_yearly.id}}">Choose this Membership</a>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>
+
+
+<section class="member-benefits">
+	<div class="row">
+		<div class="small-12 columns">
+			<h3 class="red-line title">Benefits of Full Membership</h3>
+		</div>
+	</div>
+	<div class="row">
+
+		{% for benefit in page.membership_benefits.all %}
+			<div class="small-6 columns benefit">
+				<h4 class="icon"><span class="fa {{benefit.icon_class}}"></span></h4>
+				<h4 class="text">{{benefit.text}}</h4>			
+			</div>
+		{% endfor %}
+	
+	</div>
+</section>
+
+
+<section class="member-people">
+	<div class="row">
+		<div class="small-12 columns">
+			{% image page.people_image original %}
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+			<h3 class="red-line title">What People Are Saying</h3>
+		</div>
+	</div>
+	<div class="row ">
+		<div class="small-6 columns">
+			{{page.people_review_one|richtext}}
+		</div>
+		<div class="small-6 columns">
+			{{page.people_review_two|richtext}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-10 small-offset-1 columns closing">
+			{{ page.member_closing|richtext }}
+		</div>
+	</div>
+</section>
+	
+
+{% endblock %}

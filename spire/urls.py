@@ -57,6 +57,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^events/', include('events.urls')),
+    url(r'^cart/', include('products.urls', namespace='products')),
 
     #url(r'^api/members/', include('members.urls')),    
 

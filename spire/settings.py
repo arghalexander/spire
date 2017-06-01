@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "localhost:3000",
+    "localhost:8888",
     "localhost",
     "spire.ideahack.com",
     ".spire.ideahack.com"
@@ -84,9 +85,13 @@ INSTALLED_APPS = [
 
     #local apps
     'members',
+    'products',
 
     #front end
-    'spiresite'
+    'spiresite',
+
+    'cart'
+
 ]
 
 MIDDLEWARE = [
