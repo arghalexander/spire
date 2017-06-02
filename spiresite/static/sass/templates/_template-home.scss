@@ -65,7 +65,9 @@
         background-image: url('../images/home-sponsors.jpg');
         background-size: cover;
         color: $white;
-
+        .title{
+            padding-bottom: 50px;
+        }
         h5{
             text-align: center;
         }
