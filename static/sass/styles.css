@@ -543,16 +543,16 @@ footer {
   .template-member-directory section.members-directory .page-link {
     background-color: #891B0D; }
 
-.template-404 {
+.template-not-found {
   height: 90vh;
   background-color: #333333;
   background-image: url("../images/bg404.jpg");
   background-size: cover;
   color: #FFF;
   padding-top: 20% !important; }
-  .template-404 h3 {
+  .template-not-found h3 {
     width: 50%; }
-  .template-404 .button-white {
+  .template-not-found .button-white {
     width: 225px;
     font-weight: bold;
     margin-top: 25px; }
