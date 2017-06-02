@@ -105,8 +105,8 @@ h4 {
   padding-bottom: 120px; }
 
 .contact-us {
-  padding-top: 120px;
-  padding-bottom: 120px;
+  padding-top: 100px;
+  padding-bottom: 100px;
   background-color: #F3F3F3; }
 
 .pillars {
@@ -358,6 +358,24 @@ footer {
         left: 0;
         right: 0;
         width: 100%;*/ }
+  .featured-event .featured_image {
+    position: relative; }
+    .featured-event .featured_image .event-block__date {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100px;
+      height: 100px;
+      color: #FFF;
+      text-align: center;
+      font-weight: bold; }
+      .featured-event .featured_image .event-block__date .date, .featured-event .featured_image .event-block__date .month {
+        padding-top: 10px;
+        padding-bottom: 10px; }
+      .featured-event .featured_image .event-block__date .month {
+        background-color: #891B0D; }
+      .featured-event .featured_image .event-block__date .date {
+        background-color: #DFC9A0; }
 
 .product-block {
   background-color: #F3F3F3;

@@ -93,7 +93,18 @@
 
 				<div class="featured-event__content">
 					<h3 class="red-line">Featured Event</h3>
-					{% image page.featured_event.image fill-600x300 %}
+
+					<div class="featured_image">
+						{% image page.featured_event.image fill-600x300 %}
+						<div class="event-block__date">
+							<div class="month">
+								{{page.featured_event.start|date:'M'}}
+							</div>
+							<div class="date">
+								{{page.featured_event.start|date:'d'}}
+							</div>
+						</div>
+					</div>
 
 					<div class="featured-event__text">
 						{{page.featured_event.start|date:'M d,Y'}}
@@ -121,7 +132,7 @@
 <section class="sponsors">
 	<div class="row">
 		<div class="small-12 columns">
-			<h3 id="sponsors-title">Major Programs of Stanford Professionals In Real Estate</h3>
+			<h3 id="sponsors-title bold">Major Programs of Stanford Professionals In Real Estate</h3>
 		</div>
 	</div>
 	<div class="row">
@@ -150,7 +161,7 @@
 <section class="join-spire">
 	<div class="row">
 		<div class="small-12 columns">
-			<h3 class="red-line header-title">Join SPIRE Standford</h3>
+			<h3 class="red-line header-title bold">Join SPIRE Standford</h3>
 		</div>
 		<div class="small-6 columns">
 			{% image page.join_image height-420 %}
@@ -170,7 +181,7 @@
 <section class="contact-us">
 	<div class="row">
 		<div class="small-6 columns">
-			<h3 class="red-line header-title">Contact Us</h3>
+			<h3 class="red-line header-title bold">Contact Us</h3>
 		</div>
 		<div class="small-6 columns">
 			<div class="join-spire__content">

@@ -18,4 +18,31 @@
         right: 0;
         width: 100%;*/
     }
+    .featured_image{
+        position: relative;
+        .event-block__date{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100px;
+            height: 100px;
+            color: $white;
+            text-align: center;
+            font-weight: bold;
+            .date ,.month{
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            .month{
+
+                background-color: $red;
+            }
+            .date{
+                background-color: $light-brown;
+            }
+
+
+        }
+    }
+    
 }
