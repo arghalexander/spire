@@ -101,6 +101,10 @@
 
    .dropdown.menu > li.opens-right > .is-dropdown-submenu {
         width: 120%;
+
+        ul{
+            border: none;
+        }
     }
 }
 
