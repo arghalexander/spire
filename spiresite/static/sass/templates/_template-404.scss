@@ -1,0 +1,19 @@
+.template-404{
+	height: 90vh;
+	background-color: $black;
+	background-image: url('../images/bg404.jpg');
+	background-size: cover;
+	color: $white;
+
+	padding-top: 20% !important;
+	//padding-bottom: 50%;
+
+	h3{
+		width: 50%;
+	}
+	.button-white{
+		width: 225px;
+		font-weight: bold; 
+		margin-top: 25px;
+	}
+}
