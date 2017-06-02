@@ -36,10 +36,10 @@
 
 		  	{% for panel in page.home_gallery.all %}
 		    	
-		  		{% if forloop.counter == 1 %}
+		  		{% if forloop.counter0 == 0 %}
 		  			<button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span><span class="show-for-sr">Current Slide</span></button>
 		  		{% else %}
-		  			<button data-slide="{{forloop.counter}}"><span class="show-for-sr">Second slide details.</span></button>
+		  			<button data-slide="{{forloop.counter0}}"><span class="show-for-sr">Second slide details.</span></button>
 		  		{% endif %}
 			    
 
