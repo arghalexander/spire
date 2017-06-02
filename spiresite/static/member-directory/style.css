@@ -3255,6 +3255,14 @@ body {
   color: #999999;
 }
 
+#app table thead {
+  border: none;
+}
+
+#app tbody {
+  border: none;
+}
+
 .redBg {
   background-color: red;
   border-radius: 51px;
