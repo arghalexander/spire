@@ -96,9 +96,9 @@
 					{% image page.featured_event.image fill-600x300 %}
 
 					<div class="featured-event__text">
-						{{featured_event.0.start|date:'M d,Y'}}
+						{{page.featured_event.start|date:'M d,Y'}}
 
-						{{featured_event.0.description|truncatewords:20|richtext}}
+						{{page.featured_event.description|truncatewords:20|richtext}}
 					</div>
 
 					<hr>
