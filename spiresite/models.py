@@ -33,6 +33,14 @@ from theme_settings import *
 
 class HomePage(Page):
 
+	featured_event = 				models.ForeignKey(
+										'events.Event',
+										null=True,
+										blank=True,
+										on_delete=models.SET_NULL,
+										related_name='featured_event'
+									)
+
 	sponsor_one =				 	RichTextField(blank=True)
 	sponsor_one_link = 				models.URLField(blank=True)
 	sponsor_two = 					RichTextField(blank=True)
@@ -58,6 +66,7 @@ class HomePage(Page):
 	
 	content_panels = Page.content_panels + [
 		InlinePanel('home_gallery', label="Gallery"),
+		SnippetChooserPanel('featured_event'),
 		MultiFieldPanel([
 			FieldRowPanel([
 				FieldPanel('sponsor_one'),
