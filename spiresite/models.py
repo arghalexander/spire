@@ -150,12 +150,13 @@ class SRECPage(Page):
 										related_name='srec_event'
 									)
 	page_content =				 	RichTextField(blank=True)
-	
+	gallery_caption = 				models.CharField(blank=True, max_length=255)
 
 	content_panels = Page.content_panels + [
 		FieldPanel('heading'),
 		SnippetChooserPanel('event'),
 		FieldPanel('page_content'),
+		FieldPanel('gallery_caption'),
 		InlinePanel('srec_gallery', label="Gallery"),
 		
 	]
