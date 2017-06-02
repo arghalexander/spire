@@ -27,6 +27,7 @@ from wagtail.wagtailsearch import index
 
 from .blocks import MenuItemBlock, ImageTextBlock
 from orderables import *
+from theme_settings import *
 
 
 

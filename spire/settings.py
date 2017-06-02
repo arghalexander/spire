@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'wagtail.wagtailsearch',
     'wagtail.wagtailadmin',
     'wagtail.wagtailcore',
+    'wagtail.contrib.settings',
     'wagtail.contrib.modeladmin',
 
 
@@ -186,6 +187,8 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
                 
+                'wagtail.contrib.settings.context_processors.settings',
+
                 #social auth
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
