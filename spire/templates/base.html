@@ -30,6 +30,7 @@
 
         <!-- plugin styles -->
         <link rel="stylesheet" href="{% static "css/smart_wizard.min.css" %}">
+        <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
 
         <link href="{% sass_src 'sass/styles.scss' %}" rel="stylesheet" type="text/css" />
 
@@ -93,11 +94,13 @@
         <script>
         $( document ).ready(function() {
             $(document).foundation();
+            AOS.init();
         });
           
         </script>
 
         <script src="{% static "js/jquery.smartWizard.min.js" %}"></script>
+        <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
         <script src="{% static "js/jquery.addressfield.js" %}"></script>
         <script src="{% static "js/main.js" %}"></script>
 

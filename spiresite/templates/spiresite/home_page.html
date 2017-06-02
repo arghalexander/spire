@@ -17,7 +17,7 @@
 		    {% for panel in page.home_gallery.all %}
 		    <li class="is-active orbit-slide">
 		      {% image panel.background original class="orbit-image" %}
-		     	<figcaption class="orbit-caption">
+		     	<figcaption class="orbit-caption" >
 				     <div class="content">
 				    	 <h3 class="white-line bold">{{panel.title}}</h3>
 				    	 <p>{{panel.description}}</p>
@@ -65,7 +65,7 @@
 
 				{% for event in upcoming_events.all %}
 					<div class=" column column-block">
-						<div class="event-block">
+						<div class="event-block" data-aos="zoom-in-up">
 							<a href="{{event.slug}}">
 							<div class="event-block__date">
 								<div class="month">

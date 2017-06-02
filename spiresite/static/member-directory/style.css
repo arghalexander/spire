@@ -3205,11 +3205,15 @@ body {
 }
 
 #app .search-row {
-  padding-bottom: 100px;
+  padding-bottom: 50px;
 }
 
 #app .filter-row {
   padding-bottom: 100px;
+}
+
+#app .border-bottom {
+  border-bottom: 1px solid #DDDDDD;
 }
 
 #app .btn-primary {
@@ -3237,6 +3241,17 @@ body {
   line-height: 1.42857143;
   vertical-align: middle;
   border-top: 1px solid #ddd;
+}
+
+#app .table > tbody > tr > td, #app #app .table > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: middle;
+  border-bottom: 1px solid #ddd;
+}
+
+#app label {
+  color: #999999;
 }
 
 .redBg {
