@@ -9,45 +9,45 @@
 {% block content %}
 
 <section class="home-header">
-
-	<div class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit>
-	  <ul class="orbit-container">
-	    
-	    
-	    {% for panel in page.home_gallery.all %}
-	    <li class="is-active orbit-slide">
-	      {% image panel.background original class="orbit-image" %}
-	     	<figcaption class="orbit-caption">
-			     <div class="content">
-			    	 <h3 class="white-line">{{panel.title}}</h3>
-			    	 <p>{{panel.description}}</p>
-
-
-			    	 <a class="button button-white learn-more" href="{{panel.slug}}">Learn More</a>
-
-			     </div>
-
-	    	</figcaption>
-	    </li>  
-		{% endfor %}
-	    
-	  </ul>
-	  <nav class="orbit-bullets">
-
-	  	{% for panel in page.home_gallery.all %}
-	    	
-	  		{% if forloop.counter == 1 %}
-	  			<button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span><span class="show-for-sr">Current Slide</span></button>
-	  		{% else %}
-	  			<button data-slide="1"><span class="show-for-sr">Second slide details.</span></button>
-	  		{% endif %}
+	<div class="row">
+		<div class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit>
+		  <ul class="orbit-container">
 		    
+		    
+		    {% for panel in page.home_gallery.all %}
+		    <li class="is-active orbit-slide">
+		      {% image panel.background original class="orbit-image" %}
+		     	<figcaption class="orbit-caption">
+				     <div class="content">
+				    	 <h3 class="white-line bold">{{panel.title}}</h3>
+				    	 <p>{{panel.description}}</p>
 
-		{% endfor %}
 
-	  </nav>
+				    	 <a class="button button-white learn-more" href="{{panel.slug}}">Learn More</a>
+
+				     </div>
+
+		    	</figcaption>
+		    </li>  
+			{% endfor %}
+		    
+		  </ul>
+		  <nav class="orbit-bullets">
+
+		  	{% for panel in page.home_gallery.all %}
+		    	
+		  		{% if forloop.counter == 1 %}
+		  			<button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span><span class="show-for-sr">Current Slide</span></button>
+		  		{% else %}
+		  			<button data-slide="{{forloop.counter}}"><span class="show-for-sr">Second slide details.</span></button>
+		  		{% endif %}
+			    
+
+			{% endfor %}
+
+		  </nav>
+		</div>
 	</div>
-	
 </section>
 
 
