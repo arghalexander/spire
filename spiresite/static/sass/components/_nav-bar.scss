@@ -82,6 +82,10 @@
     background-color:$red;
     border-top: none;
     height: auto;
+     ul{
+            border: none;
+
+    }
     li{
       color: $white;
 
@@ -100,11 +104,9 @@
    }
 
    .dropdown.menu > li.opens-right > .is-dropdown-submenu {
-        width: 120%;
-
-        ul{
-            border: none;
-        }
+        width: 300px;;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 }
 
