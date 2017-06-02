@@ -55,10 +55,10 @@ sup {
   border: 1px solid #979797; }
 
 .border-right {
-  border-right: 1px solid #FFF; }
+  border-right: 1px solid rgba(255, 255, 255, 0.5); }
 
 .border-left {
-  border-left: 1px solid #FFF; }
+  border-left: 1px solid rgba(255, 255, 255, 0.5); }
 
 .full-height {
   height: 100%; }
@@ -110,8 +110,8 @@ h4 {
   background-color: #F3F3F3; }
 
 .pillars {
-  padding-top: 118px;
-  padding-bottom: 125px;
+  padding-top: 90px;
+  padding-bottom: 90px;
   color: #FFF;
   background-color: #891B0D;
   background-color: #891B0D;
@@ -122,8 +122,13 @@ h4 {
     margin-left: 25px; }
   .pillars .pillar {
     position: relative;
-    height: 550px;
+    height: 450px;
     padding: 25px; }
+  .pillars h5 {
+    text-align: center; }
+    .pillars h5 img {
+      width: 110px;
+      height: 112px; }
   .pillars p {
     color: #FFF; }
 
@@ -404,7 +409,8 @@ footer {
     .template-homepage section.home-header .orbit, .template-homepage section.home-header .orbit-container {
       min-height: 600px;
       max-height: 600px;
-      width: 100%; }
+      width: 100%;
+      z-index: -1; }
       .template-homepage section.home-header .orbit img, .template-homepage section.home-header .orbit-container img {
         height: 600px;
         object-fit: cover; }
@@ -457,10 +463,13 @@ footer {
   .template-about section.about-header {
     padding-bottom: 25px;
     padding-top: 25px;
-    padding-bottom: 70px; }
+    padding-bottom: 40px; }
   .template-about section.page-content {
     padding-top: 50px;
     padding-bottom: 50px; }
+  .template-about section.page-content p {
+    width: 100%;
+    margin: auto; }
 
 .template-srec-overview .upcoming-event {
   background-color: #434750;
