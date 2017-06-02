@@ -326,7 +326,13 @@ footer {
     top: 0px;
     left: 0px;
     width: 100px;
-    height: 100px; }
+    height: 100px;
+    color: #FFF;
+    text-align: center;
+    font-weight: bold; }
+    .event-block .event-block__date .date, .event-block .event-block__date .month {
+      padding-top: 10px;
+      padding-bottom: 10px; }
     .event-block .event-block__date .month {
       background-color: #891B0D; }
     .event-block .event-block__date .date {
