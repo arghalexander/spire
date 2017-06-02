@@ -107,7 +107,7 @@ class HomePage(Page):
 
 		# Add extra variables and return the updated context
 		context['upcoming_events'] = Event.objects.filter(start__gte=datetime.datetime.now())
-		context['featured_event'] = Event.objects.filter(featured=True)[0:1] #get first in list
+		#context['featured_event'] = Event.objects.filter(featured=True)[0:1] #get first in list
 		return context
 
 

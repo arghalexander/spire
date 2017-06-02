@@ -93,13 +93,12 @@
 
 				<div class="featured-event__content">
 					<h3 class="red-line">Featured Event</h3>
-					{% image featured_event.0.image fill-600x300 %}
+					{% image page.featured_event.image fill-600x300 %}
 
 					<div class="featured-event__text">
-					{{featured_event.0.start|date:'M d,Y'}}
+						{{featured_event.0.start|date:'M d,Y'}}
 
-					{{featured_event.0.description|truncatewords:20|richtext}}
-
+						{{featured_event.0.description|truncatewords:20|richtext}}
 					</div>
 
 					<hr>
