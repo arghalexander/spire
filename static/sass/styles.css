@@ -16,7 +16,7 @@ sup {
 /* text helpers */
 .white-line {
   position: relative;
-  margin-bottom: 25px; }
+  margin-bottom: 35px; }
   .white-line:after {
     content: "";
     position: absolute;
@@ -30,7 +30,7 @@ sup {
 
 .red-line, .body-content h1, .body-content h2, .body-content h3, .body-content h4, .body-content h5, .body-content h6 {
   position: relative;
-  margin-bottom: 25px; }
+  margin-bottom: 35px; }
   .red-line:after, .body-content h1:after, .body-content h2:after, .body-content h3:after, .body-content h4:after, .body-content h5:after, .body-content h6:after {
     content: "";
     position: absolute;
@@ -76,7 +76,7 @@ sup {
     padding-bottom: 90px; }
   .sponsors .sponsor {
     position: relative;
-    height: 550px;
+    height: 600px;
     padding: 25px; }
     .sponsors .sponsor p {
       color: #FFF; }
@@ -341,15 +341,21 @@ footer {
 
 .template-homepage {
   padding-top: 0px !important; }
+  .template-homepage section.home-header .row-fluid {
+    max-width: 1440px;
+    margin: auto; }
   .template-homepage section.home-header .orbit, .template-homepage section.home-header .orbit-container {
-    min-height: 700px;
-    max-height: 700px;
+    min-height: 600px;
+    max-height: 600px;
     width: 100%; }
+    .template-homepage section.home-header .orbit img, .template-homepage section.home-header .orbit-container img {
+      height: 600px;
+      object-fit: cover; }
   .template-homepage section.home-header .orbit-caption {
     position: absolute;
-    top: 25px;
+    top: 50px;
     left: 40px;
-    height: 540px;
+    height: 450px;
     width: 590px;
     background-color: #891B0D; }
     .template-homepage section.home-header .orbit-caption .content {
