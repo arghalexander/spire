@@ -9,6 +9,7 @@ $(document).ready(function(){
       arrows: true,
       autoplay: true,
       autoplaySpeed: 3000,
+      infinite: true;
     });
     
 
