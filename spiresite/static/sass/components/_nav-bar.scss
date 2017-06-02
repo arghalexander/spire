@@ -78,6 +78,7 @@
             color: $white;
             padding-top: 10px;
              padding-bottom: 10px;
+             text-align: left;
             a {
                 font-weight: normal;
                 font-size: 16px;
@@ -93,7 +94,6 @@
     }
     .dropdown.menu>li.opens-right>.is-dropdown-submenu {
         width: 300px;
-       
-       
+    
     }
 }
