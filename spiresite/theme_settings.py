@@ -10,5 +10,5 @@ class SocialMediaSettings(BaseSetting):
         max_length=255, help_text='Your Instagram username, without the @')
     twitter = models.URLField(
         help_text='Your twitter page URL')
-    youtube = models.URLField(
-        help_text='Your YouTube channel or user account URL')
+    linkedin = models.URLField(
+        help_text='Your Linkedin Profile URL')

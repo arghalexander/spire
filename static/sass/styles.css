@@ -315,11 +315,22 @@ footer {
   margin: -100px auto 100px auto; }
 
 .event-block {
+  position: relative;
   background-color: #FFF; }
   .event-block a {
     color: #333333; }
   .event-block .event-block__text {
     padding: 20px; }
+  .event-block .event-block__date {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100px;
+    height: 100px; }
+    .event-block .event-block__date .month {
+      background-color: #891B0D; }
+    .event-block .event-block__date .date {
+      background-color: #DFC9A0; }
 
 .featured-event {
   background-color: #FFF;

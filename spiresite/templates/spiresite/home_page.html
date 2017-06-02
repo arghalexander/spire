@@ -67,6 +67,14 @@
 					<div class=" column column-block">
 						<div class="event-block">
 							<a href="{{event.slug}}">
+							<div class="evnet-block__date">
+								<div class="month">
+									{{event.start_date|date:'M'}}
+								</div>
+								<div class="date">
+									{{event.start_date|date:'D'}}
+								</div>
+							</div>
 							<div class="event-block__image">
 								{% image event.image fill-500x250 %}
 							</div>

@@ -1,10 +1,25 @@
 .event-block{
-
+	position: relative;
 	background-color: $white;
 	a{
 		color: $black;
 	}
 	.event-block__text{
 		padding: 20px;
+	}
+	.event-block__date{
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100px;
+		height: 100px;
+
+		.month{
+			background-color: $red;
+		}
+		.date{
+			background-color: $light-brown;
+		}
+
 	}
 }
