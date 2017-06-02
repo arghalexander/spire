@@ -113,9 +113,13 @@ h4 {
   padding-top: 118px;
   padding-bottom: 125px;
   color: #FFF;
-  background-color: #891B0D; }
+  background-color: #891B0D;
+  background-color: #891B0D;
+  background-image: url("../images/home-sponsors.jpg");
+  background-size: cover; }
   .pillars #pillars-title {
-    padding-bottom: 90px; }
+    padding-bottom: 90px;
+    margin-left: 25px; }
   .pillars .pillar {
     position: relative;
     height: 550px;
@@ -441,6 +445,12 @@ footer {
     background-image: url("../images/home-sponsors.jpg");
     background-size: cover;
     color: #FFF; }
+    .template-homepage section.sponsors .title {
+      padding-bottom: 50px; }
+    .template-homepage section.sponsors h5 {
+      text-align: center; }
+    .template-homepage section.sponsors .button {
+      margin-left: 25px; }
 
 .template-about {
   padding-top: 50px; }

@@ -3,9 +3,13 @@
 	padding-bottom: 125px;
 	color: $white;
 	background-color: $red;
+	background-color: $red;
+    background-image: url('../images/home-sponsors.jpg');
+    background-size: cover;
 
 	#pillars-title{
 		padding-bottom:90px;
+		margin-left: 25px;
 	}
 
 	.pillar{
@@ -14,6 +18,7 @@
 		padding: 25px;
 
 	}
+
 
 	p{
 		color: $white;
