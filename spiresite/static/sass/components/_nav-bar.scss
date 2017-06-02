@@ -68,15 +68,17 @@
     }
     .menu.submenu {
         background-color: $red;
-        border-top: none;
+        border: none;
         height: auto;
+
         ul {
             border: none;
         }
         li {
             color: $white;
             padding-top: 10px;
-         padding-bottom: 10px;
+             padding-bottom: 10px;
+             text-align: left;
             a {
                 font-weight: normal;
                 font-size: 16px;
