@@ -3205,7 +3205,7 @@ body {
 }
 
 #app .search-row {
-  padding-bottom: 50px;
+  padding-bottom: 20px;
 }
 
 #app .filter-row {
@@ -3248,6 +3248,7 @@ body {
   line-height: 1.42857143;
   vertical-align: middle;
   border-bottom: 1px solid #ddd;
+  border-top: none;
 }
 
 #app label {
