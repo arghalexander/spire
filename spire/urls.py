@@ -22,6 +22,8 @@ from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 
+from django.views.defaults import server_error, page_not_found, permission_denied
+
 #from registration.backends.hmac.views import RegistrationView
 from spire.registration.forms import MemberRegistrationForm
 from spire.registration.views import RegistrationView
@@ -53,6 +55,11 @@ router.register(r'users', UserViewSet)
 
 
 urlpatterns = [
+    
+
+    url(r'^404/$', page_not_found, kwargs={'exception': Exception("Page not Found")}),
+     url(r'^500/$', server_error),
+
     url(r'^admin/', admin.site.urls),
 
     url(r'^events/', include('events.urls')),
@@ -74,5 +81,7 @@ urlpatterns = [
     url(r'^cms/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'', include(wagtail_urls)),
+
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

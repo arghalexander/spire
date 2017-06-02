@@ -152,7 +152,8 @@ h4 {
   height: 88px;
   padding-top: 0px;
   padding-bottom: 0px;
-  background-color: #FFF; }
+  background-color: #FFF;
+  z-index: 99999; }
   .top-bar .top-bar-left, .top-bar .top-bar-right, .top-bar ul {
     background-color: #FFF; }
   .top-bar .top-bar-left .menu-text {
@@ -468,8 +469,11 @@ footer {
     padding-top: 50px;
     padding-bottom: 50px; }
   .template-about section.page-content p {
-    width: 100%;
+    width: 90%;
     margin: auto; }
+  .template-about section.page-content h5 {
+    margin-left: -5%;
+    width: 110%; }
 
 .template-srec-overview .upcoming-event {
   background-color: #434750;
@@ -538,5 +542,33 @@ footer {
   padding-top: 50px; }
   .template-member-directory section.members-directory .page-link {
     background-color: #891B0D; }
+
+.template-404 {
+  height: 90vh;
+  background-color: #333333;
+  background-image: url("../images/bg404.jpg");
+  background-size: cover;
+  color: #FFF;
+  padding-top: 20% !important; }
+  .template-404 h3 {
+    width: 50%; }
+  .template-404 .button-white {
+    width: 225px;
+    font-weight: bold;
+    margin-top: 25px; }
+
+.template-500 {
+  height: 90vh;
+  background-color: #333333;
+  background-image: url("../images/bg404.jpg");
+  background-size: cover;
+  color: #FFF;
+  padding-top: 20% !important; }
+  .template-500 h3 {
+    width: 50%; }
+  .template-500 .button-white {
+    width: 225px;
+    font-weight: bold;
+    margin-top: 25px; }
 
 /*# sourceMappingURL=../../../../../../../../../static/sass/styles.css.map */

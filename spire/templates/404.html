@@ -4,19 +4,22 @@
 {% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
 
-{% block body_class %}template-not-found{% endblock %}
+{% block body_class %}template-404{% endblock %}
 
 {% block content%}
     
     <div class="row">
         <div class="small-12 columns">
 
-            <h1 class="bold white-line">Page Not Found</h1>
-            <p>Looks like the page you were looking for cant't be found</p>
-
+            <h2 class="bold white-line">Page Not Found</h2>
+            <h3>Looks like the page you were looking for cant't be found</h3>
+            <a href="/" class="button button-white">Back to Home</a>
+            <a href="/contact-us" class="button button-white">Contact Us</a>
         </div>
     </div>
 
 {% endblock %}
  
 
+{% block footer %}
+{% endblock %}    
