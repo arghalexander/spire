@@ -1,11 +1,14 @@
 .template-homepage {
     padding-top: 0px !important;
     section.home-header {
+        .row-fluid {
+            max-width: 1440px;
+        }
         .orbit, .orbit-container {
             min-height: 600px;
             max-height: 600px;
             width: 100%;
-            img{
+            img {
                 height: 600px;
                 object-fit: cover
             }
@@ -18,7 +21,7 @@
             width: 590px;
             background-color: $red;
             .content {
-            	position: relative;
+                position: relative;
                 padding: 60px;
                 height: 100%;
                 p {
@@ -26,23 +29,20 @@
                     font-size: 18px;
                     line-height: 24px;
                 }
-                .learn-more{
-                	position: absolute;
-                	bottom: 0px;
-                	width: 440px;
-            	}
+                .learn-more {
+                    position: absolute;
+                    bottom: 0px;
+                    width: 440px;
+                }
             }
-            
         }
     }
-    section.events{
-    	padding-top: 60px;
-    	background-color: $lighter-brown;
-
+    section.events {
+        padding-top: 60px;
+        background-color: $lighter-brown;
     }
-    section.sponsors{
-    	background-color: $red;
+    section.sponsors {
+        background-color: $red;
         color: $white;
-
     }
 }
