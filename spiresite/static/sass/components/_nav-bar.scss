@@ -3,13 +3,10 @@
     padding-top: 0px;
     padding-bottom: 0px;
     background-color: $white;
-
-    .top-bar-left,.top-bar-right, ul{
+    .top-bar-left, .top-bar-right, ul {
         background-color: $white;
     }
-
     .top-bar-left {
-      
         .menu-text {
             padding: 0px;
         }
@@ -25,30 +22,26 @@
     .top-bar-left {
         width: 80%;
         height: 100%;
-        .menu{
+        .menu {
             height: 100%;
         }
-        .nav-item{
-          //padding-top: 24px;
+        .nav-item {
+            //padding-top: 24px;
         }
     }
     .top-bar-right {
         width: 10%;
         height: 88px;
-
-        .nav-item{
-          padding-top: 24px;
-
-          &:hover{
+        .nav-item {
+            padding-top: 24px;
+            &:hover {
                 background-color: transparent;
-                a{
+                a {
                     color: $dark-red;
                     text-decoration: none;
                 }
             }
         }
-
-
     }
     .nav-item {
         a {
@@ -56,57 +49,49 @@
             font-size: 16px;
             color: $red;
         }
-        &:hover{
+        &:hover {
             background-color: $red;
-            a{
+            a {
                 color: $white;
             }
         }
     }
-
-    .menu li{
-      text-align: center;
+    .menu li {
+        text-align: center;
     }
-
-    .menu .active > a,.menu .active {
+    .menu .active>a, .menu .active {
         background: $red;
         color: $white;
     }
-
-
-  .dropdown.menu > li.is-dropdown-submenu-parent > a::after {
-    display: none;
-   
-  }
-   .menu.submenu {
-    background-color:$red;
-    border-top: none;
-    height: auto;
-     ul{
+    .dropdown.menu>li.is-dropdown-submenu-parent>a::after {
+        display: none;
+    }
+    .menu.submenu {
+        background-color: $red;
+        border-top: none;
+        height: auto;
+        ul {
             border: none;
-
-    }
-    li{
-      color: $white;
-
-      a {
-            font-weight: normal;
-            font-size: 16px;
-            color: $white;
-            padding-left: 20px;
-      padding-right: 20px;
         }
-
-      &:hover{
-        background-color: $dark-red;
-      }
-    }
-   }
-
-   .dropdown.menu > li.opens-right > .is-dropdown-submenu {
-        width: 300px;;
-        padding-top: 10px;
+        li {
+            color: $white;
+            a {
+                font-weight: normal;
+                font-size: 16px;
+                color: $white;
+                padding-left: 20px;
+                padding-right: 20px;
+                 padding-top: 10px;
         padding-bottom: 10px;
+            }
+            &:hover {
+                background-color: $dark-red;
+            }
+        }
+    }
+    .dropdown.menu>li.opens-right>.is-dropdown-submenu {
+        width: 300px;
+       
+       
     }
 }
-
