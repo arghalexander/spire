@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'x(y!ov&%thr^*^b(@upoc8@t$p4qapf^h#)lw6+n*@%_9qh7rg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 ALLOWED_HOSTS = [
@@ -78,6 +78,7 @@ INSTALLED_APPS = [
 
     'csvimport.app.CSVImportConf',
     'import_export',
+    
 
     #Social Auth
     'social_django',
@@ -92,6 +93,7 @@ INSTALLED_APPS = [
 
     #front end
     'spiresite',
+    #'wagtailtinymce',
 
     'cart'
 
@@ -299,7 +301,13 @@ LOGIN_REDIRECT_URL = '/members/'
 
 WAGTAIL_SITE_NAME = 'SPIRE'
 
-
+"""
+WAGTAILADMIN_RICH_TEXT_EDITORS = {
+    'default': {
+        'WIDGET': 'wagtailtinymce.rich_text.TinyMCERichTextArea'
+    },
+}
+"""
 
 # Social Authentication
 

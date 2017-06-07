@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% load nav_tags static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-leadership-standard{% endblock %}
+
+{% block content %}
+
+
+<section class="srec-header">
+	<div class="row">
+		<div class="small-12  columns">
+			<h2 id="page-heading" class="bold red-line">Leadership</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+			
+			{% get_site_root as site_root %}
+			{% leadership_menu parent=site_root calling_page=self %}
+						
+		</div>
+	</div>
+</section>
+
+
+<div class="row">
+	<div class="small-12 columns">
+		<h3 class="bold red-line">{{page.heading}}</h3>
+	</div>
+</div>
+
+
+
+<section class="body">
+	<div class="row">
+		<div class="small-12 columns">
+			{% include_block page.body %}
+		</div>
+	</div>
+</section>
+
+
+	
+
+{% endblock %}

@@ -21,6 +21,7 @@
 @import './components/slider';
 @import './components/modal';
 @import './components/body-content';
+@import './components/gallery-list';
 
 
 
@@ -28,7 +29,8 @@
 @import './blocks/event-block';
 @import './blocks/featured-event';
 @import './blocks/product-block';
-
+@import './blocks/block-region';
+@import './blocks/block-leader';
 
 //Templates
 @import './templates/template-home';

@@ -23,3 +23,14 @@ class ImageTextBlock(blocks.StreamBlock):
    
 	class Meta:
 		icon='doc-full-inverse'
+
+
+
+
+class LeaderBlock(blocks.StructBlock):
+    name = blocks.CharBlock(required=True)
+    company = blocks.CharBlock(required=True)
+
+    class Meta:
+        template = 'spiresite/blocks/leader.html'
+        icon = 'user'

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load nav_tags static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-leadership-overview{% endblock %}
+
+{% block content %}
+
+<section class="srec-header">
+	<div class="row">
+		<div class="small-12 columns">
+			<h2 id="page-heading" class="bold red-line">{{page.heading}}</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+			
+			{% get_site_root as site_root %}
+			{% leadership_menu parent=site_root calling_page=self %}
+
+		</div>
+	</div>
+</section>
+	
+
+<section class="page-content">
+	<div class="row">
+		<div class="small-12 columns">
+			<div class="body-content">
+				{{page.body|richtext}}
+			</div>
+		</div>
+		
+	</div>
+</section>
+	
+
+{% endblock %}

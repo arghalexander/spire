@@ -6,6 +6,15 @@ from django.contrib import admin
 from events.models import Event, EventPricing
 from modelcluster.models import ClusterableModel
 
+import json
+
+from django.templatetags.static import static
+from django.utils import translation
+from django.utils.html import format_html
+from django.utils.safestring import mark_safe
+
+
+
 from wagtail.contrib.modeladmin.helpers import AdminURLHelper
 from wagtail.contrib.modeladmin.helpers import PageButtonHelper
 from wagtail.contrib.modeladmin.helpers import ButtonHelper
@@ -40,3 +49,7 @@ modeladmin_register(EventModelAdmin)
 @hooks.register('insert_global_admin_css')
 def global_admin_css():
     return format_html('<link rel="stylesheet" href="{}">', static('css/wagtail/theme.css'))
+
+
+
+

@@ -25,7 +25,7 @@ from wagtail.wagtailcore import blocks
 
 from wagtail.wagtailsearch import index
 
-from .blocks import MenuItemBlock, ImageTextBlock
+from .blocks import *
 from orderables import *
 from theme_settings import *
 
@@ -195,10 +195,6 @@ class SrecConferencePage(Page):
 
 
 
-class OnCampusPage(Page):
-	pass
-
-
 class MembershipPage(Page):
 	heading = 						models.CharField(blank=True, max_length=255)
 	description = 					models.TextField(blank=True)
@@ -337,6 +333,80 @@ class MemberDirectoryPage(Page):
 		FieldPanel('heading'),
 	]
 
+
+
+
+
+
+
+class LeadershipOverviewPage(Page):
+	
+	heading = 						models.CharField(blank=True, max_length=255)
+	body = 							RichTextField(blank=True)
+
+	content_panels = Page.content_panels + [
+		FieldPanel('heading'),
+		FieldPanel('body')
+	]
+
+
+
+
+class LeadershipStaffPage(Page):
+	heading = 						models.CharField(blank=True, max_length=255)
+
+	#body =							 StreamField([
+									#	('text_image', ImageTextBlock()),
+								#	])
+
+	content_panels = Page.content_panels + [
+		FieldPanel('heading'),
+		InlinePanel('leadership_gallery', label="Staff"),
+	]
+
+
+class LeadershipRegionalLeadersPage(Page):
+	heading = 						models.CharField(blank=True, max_length=255)
+
+	body =							 StreamField([
+										('region', blocks.CharBlock(required=True)),
+										('leader', blocks.ListBlock(LeaderBlock()))
+									])
+
+	content_panels = Page.content_panels + [
+		FieldPanel('heading'),
+		StreamFieldPanel('body')
+	]
+
+
+
+
+
+class StandardLeadershipPage(Page):
+	heading = 						models.CharField(blank=True, max_length=255)
+
+	body =							 StreamField([
+										('text', blocks.RichTextBlock()),
+									])
+
+	content_panels = Page.content_panels + [
+		FieldPanel('heading'),
+		StreamFieldPanel('body')
+	]
+
+
+
+class StandardPage(Page):
+	heading = 						models.CharField(blank=True, max_length=255)
+
+	body =							 StreamField([
+										('text', blocks.RichTextBlock()),
+									])
+
+	content_panels = Page.content_panels + [
+		FieldPanel('heading'),
+		StreamFieldPanel('body')
+	]
 
 
 

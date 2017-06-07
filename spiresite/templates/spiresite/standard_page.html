@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load nav_tags static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-standard{% endblock %}
+
+{% block content %}
+
+
+<section class="srec-header">
+	<div class="row">
+		<div class="small-12  columns">
+			<h2 id="page-heading" class="bold red-line">{{page.heading}}</h2>
+		</div>
+	</div>
+</section>
+
+
+<section class="body">
+	<div class="row">
+		<div class="small-12 columns">
+			{% include_block page.body %}
+		</div>
+	</div>
+</section>
+
+
+	
+
+{% endblock %}

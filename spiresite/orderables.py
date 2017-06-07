@@ -54,6 +54,29 @@ class SCRECPageGallery(Orderable):
 
 
 
+
+class LeadershipStaffGallery(Orderable):
+    page = ParentalKey('spiresite.LeadershipStaffPage', related_name='leadership_gallery')
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='staff_gallery_image'
+    )
+    name = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
+    company = models.CharField(max_length=255)
+
+    panels = [
+        ImageChooserPanel('image'),
+        FieldPanel('name'),
+        FieldPanel('title'),
+        FieldPanel('company'),
+    ]
+
+
+
 class MembershipBenefits(Orderable):
     page = ParentalKey('spiresite.MembershipPage', related_name='membership_benefits')
     icon_class = models.CharField(max_length=255, help_text="Icon CSS class")
