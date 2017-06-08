@@ -2,6 +2,7 @@ from django.db import models
 
 
 from modelcluster.fields import ParentalKey
+from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
 from wagtail.wagtailadmin.edit_handlers import PageChooserPanel
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField
@@ -87,4 +88,20 @@ class MembershipBenefits(Orderable):
             FieldPanel('icon_class'),
             FieldPanel('text'),
         ])
+    ]
+
+
+
+class AnnualReports(Orderable):
+    page = ParentalKey('spiresite.AnnualReportsPage', related_name='annual_reports')
+    document = models.ForeignKey(
+            'wagtaildocs.Document',
+            null=True,
+            blank=True,
+            on_delete=models.SET_NULL,
+            related_name='annual_report'
+        )
+
+    panels = [
+        DocumentChooserPanel('document'),
     ]

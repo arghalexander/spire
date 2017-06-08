@@ -411,6 +411,13 @@ class StandardPage(Page):
 
 
 
+class AnnualReportsPage(Page):
+	heading = 						models.CharField(blank=True, max_length=255)
+
+	content_panels = Page.content_panels + [
+		FieldPanel('heading'),
+		InlinePanel('annual_reports', label="Reports"),
+	]
 
 
 
