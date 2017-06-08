@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load nav_tags static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-annual-reports{% endblock %}
+
+{% block content %}
+
+
+<section class="header">
+	<div class="row">
+		<div class="small-11 columns">
+			<h2 id="page-heading" class="bold red-line">{{page.heading}}</h2>
+		</div>
+	</div>
+</section>
+
+
+
+<section class="gallery-list">
+	<div id="gallery-row">
+		<div  class="row small-up-2 medium-up-4" >
+			 {% for item in items.all %}
+			  <div class="column column-block">
+			  	<a >
+			     <div class="gallery-item">
+			     	<div class="item__image">
+			     		<img src="{{item.image.url}}" width=350 >
+			     	</div>
+			     	<div class="item__info">
+			     		<p class="red bold">{{item.name}} </p>
+			     	
+			     	</div>
+			    </div>
+			    </a>
+		    </div>
+		    {% endfor %}
+		</div>
+	</div>
+</section>
+
+	
+
+{% endblock %}

@@ -2,7 +2,7 @@
 	height: 100%;
 	margin-top: 100px;
 	
-	#members-row{
+	#gallery-row{
 		background-color: $light-gray;
 	}
 	
@@ -10,20 +10,21 @@
 		margin-top: -50px;
 	}
 	
-	.member{
+	.gallery-item{
 		text-align: center;
 		background-color: $white;
 		padding-bottom: 10px;
-		.member__image{
+		.item__image{
 			
 		}
 
-		.member__info{
+		.info__info{
 			padding: 20px;
 			p{
 				margin-bottom: 0px;
 			}
 		}
 	}
+
 
 }

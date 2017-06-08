@@ -1,0 +1,54 @@
+
+
+{% extends "base.html" %}
+
+{% load nav_tags static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+
+{% block title %}Checkout{% endblock %}
+
+
+{% block body_class %}template-payment{% endblock %}
+
+
+{% block content %}
+
+<section class="page-header">
+	<div class="row">
+		<div class="small-12 columns">
+			<h2 class="red-line">Checkout</h2>
+		</div>
+	</div>
+
+</section>
+
+
+
+<section class="cart">
+
+	<div class="row">
+		<div class="small-10 small-offset-1 columns">
+
+		<form action="{{ form.action }}" method="{{ form.method }}">
+		    {{ form.as_p }}
+		    <p><input type="submit" value="Proceed" /></p>
+		</form>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-10 small-offset-1 columns">
+			<a href="" class="button button-primary">Place Order</a>
+		</div>
+	</div>
+	
+</section>
+
+
+<script src="https://js.stripe.com/v3/"></script>
+
+{% endblock %}
+
+

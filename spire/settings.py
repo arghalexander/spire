@@ -71,6 +71,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
+
     'corsheaders',
     'django_filters',
 
@@ -78,7 +79,7 @@ INSTALLED_APPS = [
 
     'csvimport.app.CSVImportConf',
     'import_export',
-    
+
 
     #Social Auth
     'social_django',
@@ -90,6 +91,7 @@ INSTALLED_APPS = [
     #local apps
     'members',
     'products',
+    'checkout',
 
     #front end
     'spiresite',
@@ -130,7 +132,7 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
-        #'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': [
@@ -294,7 +296,7 @@ STATICFILES_DIRS = (
 ACCOUNT_ACTIVATION_DAYS = 7
 
 #login
-LOGIN_REDIRECT_URL = '/members/'
+#LOGIN_REDIRECT_URL = '/members/'
 
 
 # WAGTAIL CMS
@@ -319,3 +321,13 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
   'locale': 'ru_RU',
   'fields': 'id, name, email'
 }
+
+
+
+
+#payments
+PAYMENT_HOST = 'localhost:8000'
+PAYMENT_USES_SSL = False
+PAYMENT_MODEL = 'checkout.Payment'
+PAYMENT_VARIANTS = {
+    'default': ('payments.dummy.DummyProvider', {})}

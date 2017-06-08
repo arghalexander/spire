@@ -12,6 +12,7 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel
 from wagtail.wagtailsnippets.models import register_snippet
 
 
+
 @register_snippet
 class MembershipProduct(models.Model):
 	membership_level = models.ForeignKey(MembershipLevel, related_name="membership_product")

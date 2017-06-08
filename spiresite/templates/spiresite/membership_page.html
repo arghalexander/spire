@@ -43,7 +43,7 @@
 						<h3><sup>$</sup>75<sup class="sub">/ year</sup></h3>
 						<h3 class="divider"><sup>$</sup>299<sup class="sub">/ year</sup></h3>
 					</div>
-					<a class="button button-green expanded"  href="/cart/add-membership/?product_id={{page.full_membership_yearly.id}}">Choose 1 year - $75</a>
+					<a class="button button-green expanded"  href="{% url 'checkout:membership-add' %}?product_id={{page.full_membership_yearly.id}}">Choose 1 year - $75</a>
 
 					<a class="button button-green expanded" href="/cart/add-membership/?product_id={{page.full_membership_5_years.id}}">Choose 5 years -$299</a>
 
