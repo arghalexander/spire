@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load nav_tags static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-annual-events{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+	<div class="row">
+		<div class="small-12 columns">
+			<h2 id="page-heading" class="bold red-line">{{page.heading}}</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+		
+			{% sub_page_nav parent=self.get_parent calling_page=self %}
+
+		</div>
+	</div>
+</section>
+	
+
+<section class="current-inductees">
+	<div class="background"></div>
+	<div class="row">
+		<div class="small-12 columns">
+			<h3  class="title bold red-line">Annual Events</h3>
+		</div>
+	</div>
+	<div class="row">
+
+		{% for event in page.annual_events.all %}
+		<div class="small-6 columns">
+			<div class="image-text-block body-content">
+				<div class="image-text-block__image">
+					{% image event.event.image fill-700x500 %}
+				</div>
+				<div class="image-text-block__text">
+					{{event.event.description|richtext}}
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+
+
+	
+
+{% endblock %}

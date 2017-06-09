@@ -68,3 +68,5 @@ class EventAttendanceViewSet(viewsets.ModelViewSet):
     """
     queryset = EventAttendance.objects.all()
     serializer_class = EventAttendanceSerializer
+
+

@@ -1,0 +1,24 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+<section class="gallery">
+	<div class="row">
+		<div class="small-12 columns">
+
+			<div id="slider" class="slider" >
+				 {% for slide in value.images %}
+
+			     <div >
+			     	{% image slide.image fill-400x260 class="orbit-image" %}
+			    </div>
+			    {% endfor %}
+
+			</div>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns text-center">
+		<h5 class="bold caption">{{value.caption}}</h5>
+		</div>
+	</div>
+</section>

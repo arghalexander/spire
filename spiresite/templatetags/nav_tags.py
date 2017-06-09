@@ -4,7 +4,7 @@ from django.conf import settings
 
 from wagtail.wagtailcore.models import Site
 from wagtail.wagtailcore.query import PageQuerySet
-
+from itertools import chain
 from spiresite.models import HomePage
 
 register = template.Library()
@@ -49,18 +49,41 @@ def top_menu(context, calling_page=None):
 
 @register.inclusion_tag('spiresite/tags/srec_menu.html', takes_context=True)
 def srec_menu(context, parent, calling_page=None):
-    menuitems = parent.get_children().live().in_menu()
+    menuitems = parent.get_children().live()
+    
+
     for menuitem in menuitems:
-        menuitem.show_dropdown = has_menu_children(menuitem)    
         menuitem.active = (calling_page.url.startswith(menuitem.url)
                            if calling_page else False)
-  
+ 
     return {
         'calling_page': calling_page,
         'menuitems': menuitems,
         # required by the pageurl tag that we want to use within this template
         'request': context['request'],
     }
+
+
+
+@register.inclusion_tag('spiresite/tags/sub_page_nav.html', takes_context=True)
+def sub_page_nav(context, parent, calling_page=None, overview_name="Overview"):
+    menuitems = parent.get_children().live()
+
+    for menuitem in menuitems:
+        menuitem.active = (calling_page.url.startswith(menuitem.url)
+                           if calling_page else False)
+  
+
+    parent.active = (calling_page.url == parent.url if calling_page else False)
+    parent.title = overview_name
+
+    return {
+        'calling_page': calling_page,
+        'menuitems': menuitems,
+        'parent': parent,
+        'request': context['request'],
+    }
+
 
 @register.inclusion_tag('spiresite/tags/leadership_menu.html', takes_context=True)
 def leadership_menu(context, parent, calling_page=None):

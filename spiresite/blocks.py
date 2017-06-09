@@ -28,9 +28,33 @@ class ImageTextBlock(blocks.StreamBlock):
 
 
 class LeaderBlock(blocks.StructBlock):
-    name = blocks.CharBlock(required=True)
-    company = blocks.CharBlock(required=True)
+	name = blocks.CharBlock(required=True)
+	company = blocks.CharBlock(required=True)
 
-    class Meta:
-        template = 'spiresite/blocks/leader.html'
-        icon = 'user'
+	class Meta:
+		template = 'spiresite/blocks/leader.html'
+		icon = 'user'
+
+
+
+
+class GalleryBlock(blocks.StructBlock):
+	caption = blocks.CharBlock(required=True)
+	images = blocks.ListBlock(blocks.StructBlock([		
+		('image', ImageChooserBlock(null=True)),
+	]))
+
+
+	class Meta:
+		template = 'spiresite/blocks/gallery.html'
+		icon = 'image'
+
+
+class TwoImageBlock(blocks.StructBlock):
+	image_one = ImageChooserBlock(null=True)
+	image_two = ImageChooserBlock(null=True)
+
+	class Meta:
+		template = 'spiresite/blocks/2_images.html'
+		icon = 'image'
+

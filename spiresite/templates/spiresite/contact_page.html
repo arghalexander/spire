@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block title %}{{page.title}}{% endblock %}
+
+{% block body_class %}template-contact{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+	<div class="row">
+		<div class="small-12 columns">
+			<h2 id="page-heading" class="bold red-line">Contact Us</h2>
+		</div>
+	</div>
+</section>
+	
+
+<section class="map-section">
+	<div class="row"> 
+		<div class="medium-5 medium-offset-1 columns">
+			<div class="contact-us-box">
+				{{page.contact_box}}
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="contact-form">
+	<div class="row">
+		<div class="small-12 columns">
+			<h3 class="white-line white bold title">Contact Us</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-4 columns">
+			{{page.questions|richtext}}
+		</div>
+		<div class="small-8 columns">
+
+			{% if form %}
+			<form action="{{page.url}}" method="post">
+				{% csrf_token %}
+				<div class="row">
+					<div class="small-6 medium-6 columns">
+
+						<label class="sr-only">First Name</label>
+						<input type="text" id="first_name" name="first_name" required placeholder="First Name">
+						{{ form.first_name.errors }}
+					</div>
+					<div class="medium-6 columns">
+						<label class="sr-only">Last Name</label>
+						<input type="text" required name="last_name" id="last_name" placeholder="Last Name">
+						{{ form.last_name.errors }}
+					</div>
+					<div class="medium-6 columns">
+						<label class="sr-only">Email</label>
+						<input type="text" name="email" required placeholder="Email">
+						{{ form.email.errors }}
+					</div>
+					<div class="medium-6 columns">
+						<label class="sr-only">Phone</label>
+						<input type="text" required name="phone" placeholder="Phone">
+						{{ form.phone.errors }}
+					</div>
+					<div class="medium-12 columns">
+						<label class="sr-only">Message</label>
+						{{ form.message.errors }}
+						<textarea type="text" rows="10" required name="message" placeholder="Message"></textarea>
+
+					</div>
+				</div>
+				<button type="submit" class="button button-white">Submit</button>
+			</form>
+			{% else %}
+				<h2 class="white bold">{{settings.spiresite.ThemeSettings.contact_form_message}}</h2>
+			{% endif %}
+		</div>
+	</div>
+</section>
+
+	
+
+{% endblock %}

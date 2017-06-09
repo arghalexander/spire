@@ -1,0 +1,13 @@
+{% load nav_tags wagtailcore_tags %}
+{% load static %}
+
+<ul class="menu expanded sub-page-nav">
+	<li class="nav-item{% if parent.active %} active{% endif %}">
+        <a href="{% pageurl parent %}">{{parent.title}}</a>
+    </li>
+	{% for menuitem in menuitems %}
+          <li class="nav-item{% if menuitem.active %} active{% endif %}">
+                 <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+          </li>
+      {% endfor %}
+</ul>

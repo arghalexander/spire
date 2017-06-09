@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% load nav_tags static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-hall-of-fame{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+	<div class="row">
+		<div class="small-12 columns">
+			<h2 id="page-heading" class="bold red-line">{{page.heading}}</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+				
+
+			{% sub_page_nav parent=self calling_page=self %}
+
+		</div>
+	</div>
+</section>
+	
+
+<section class="page-content">
+	<div class="row">
+		<div class="small-7 columns">
+			{{page.page_content|richtext}}
+		</div>
+		<div class="small-5 columns ">
+			<div class="event-side-block">
+				<div class="event-side-block__content">
+					<h3 class="white-line bold">{{page.event_heading}}</h3>
+					<h6 style="padding-top: 25px;">{{page.event.start|date:'D d M Y g:i a'}}</h6>
+					<h6 class="bold">{{page.event.title}}</h6>
+					<p>{{page.event.description|truncatewords:30|richtext}}</p>
+					<hr>
+					<a href="/events/{{page.event.slug}}" class="button button-white expanded">Buy Tickets</a>
+				</div>
+			</div>	
+		</div>
+	</div>
+</section>
+
+
+<section class="gallery">
+	<div class="row">
+		<div class="small-12 columns">
+			<h3 class="red-line bold title">Gallery</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+
+			<div id="fame-slider" class="slider" >
+				 {% for slide in page.fame_gallery.all %}
+
+			     <div >
+			     	{% image slide.image fill-400x260 class="orbit-image" %}
+			    </div>
+			    {% endfor %}
+
+			</div>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns text-center">
+		<h5 class="bold">{{page.gallery_caption}}</h5>
+		</div>
+	</div>
+</section>
+
+
+
+
+<section class="sponsors">
+	<div class="row">
+		<div class="small-12 columns">
+			<h3 class="red-line bold black title">{{page.sponsors_caption}}</h3>
+		</div>
+	</div>
+	<div class="row small-up-6">		
+
+		 {% for slide in page.fame_sponsors.all %}
+
+	     <div class="column column-block">
+	     	{% image slide.image fill-150x150 %}
+	    </div>
+	    {% endfor %}
+
+
+	</div>
+	<div class="row">
+		<div class="small-12 columns text-center">
+		<h5 class="bold">{{page.gallery_caption}}</h5>
+		</div>
+	</div>
+</section>
+	
+
+{% endblock %}

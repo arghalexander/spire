@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% load nav_tags static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-hall-of-fame-inductees{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+	<div class="row">
+		<div class="small-12 columns">
+			<h2 id="page-heading" class="bold red-line">{{page.heading}}</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+		
+			{% sub_page_nav parent=self.get_parent calling_page=self %}
+
+		</div>
+	</div>
+</section>
+	
+
+<section class="current-inductees">
+	<div class="background"></div>
+	<div class="row">
+		<div class="small-12 columns">
+			<h3  class="title bold red-line">Current Inductees</h3>
+		</div>
+	</div>
+	<div class="row">
+
+		{% for inductee in page.current_inductees.all %}
+		<div class="small-6 columns">
+			<div class="image-text-block body-content">
+				<div class="image-text-block__image">
+					{% image inductee.image height-500 %}
+				</div>
+				<div class="image-text-block__text">
+					{{inductee.text|richtext}}
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+
+
+<section class="previous-inductees gallery-list">
+	<div class="row">
+		<div class="small-12 columns">
+			<h3 class="title bold red-line">Previous Inductees</h3>
+		</div>
+	</div>
+	<div class="background"></div>
+	
+	<div  class="row small-up-4 medium-up-4" >
+		 {% for member in  page.previous_inductees.all %}
+			  <div class="column column-block">
+			  	<a data-open="member-{{forloop.counter}}">
+			     <div class="gallery-item">
+			     	<div class="item__image">
+			     		{% image member.image width-350 %}
+			     	</div>
+			     	<div class="item__info">
+			     		<p class="red bold">{{member.name}}</p>
+			     		<p>{{member.title}}</p>
+			     		<p>{{member.company}}</p>
+			     	</div>
+			    </div>
+			  	</a>
+		    </div>
+		      <div class="large reveal" id="member-{{forloop.counter}}" data-reveal>
+				    <button class="close-button" data-close aria-label="Close modal" type="button">
+					    <span aria-hidden="true">&times;</span>
+					 </button>
+				    <div class="row">
+					    <div class="small-6 columns">
+					    <img src="{{member.image.url}}" width=450 >
+					    </div>
+					    <div class="small-6 columns">
+					    	<h3 class="red-line bold">{{member.name}}</h3>
+				     		<p class="bold">{{member.professional_information.title}}</p>
+				     		<p>{{member.company}}</p>
+				     		<div class="bio">
+				     		{{member.bio}}
+				     		</div>
+					    </div>
+				    </div>
+				</div>
+	    {% endfor %}
+	</div>
+</section>
+
+
+
+
+	
+
+
+	
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+<div class="row">
+	<div class="small-6 columns">
+		{% image value.image_one original %}
+	</div>
+	<div class="small-6 columns">
+		{% image value.image_two original %}
+	</div>
+</div>

@@ -4,6 +4,8 @@ import datetime
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 
+from django.shortcuts import render
+
 from events.models import Event, EventPricing
 from members.models import Member 
 from products.models import MembershipProduct
@@ -19,6 +21,8 @@ from wagtail.wagtailadmin.edit_handlers import InlinePanel, FieldPanel, StreamFi
 from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 from modelcluster.fields import ParentalKey
 
+from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
 
 from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore import blocks
@@ -29,6 +33,7 @@ from .blocks import *
 from orderables import *
 from theme_settings import *
 
+from django.conf import settings
 
 
 class HomePage(Page):
@@ -426,3 +431,175 @@ class EventPricing(Orderable, EventPricing):
 	ticket_quantity = models.IntegerField()
 
 
+
+
+class HallOfFameStandardPage(Page):
+	heading = 						models.CharField(blank=True, max_length=255)
+
+	body =							 StreamField([
+										('text', blocks.RichTextBlock()),
+									])
+
+	content_panels = Page.content_panels + [
+		FieldPanel('heading'),
+		StreamFieldPanel('body')
+	]
+
+
+
+
+
+class HallOfFameOverviewPage(Page):
+	heading = 						models.CharField(blank=True, max_length=255)
+	event_heading =					models.CharField(blank=True, max_length=255)
+	event = 						models.ForeignKey(
+										'events.Event',
+										null=True,
+										blank=True,
+										on_delete=models.SET_NULL,
+										related_name='fame_event'
+									)
+	page_content =				 	RichTextField(blank=True)
+	gallery_caption = 				models.CharField(blank=True, max_length=255)
+	sponsors_caption = 				models.CharField(blank=True, max_length=255)
+	
+
+	content_panels = Page.content_panels + [
+		FieldPanel('heading'),
+		FieldPanel('event_heading'),
+		SnippetChooserPanel('event'),
+		FieldPanel('page_content'),
+		FieldPanel('gallery_caption'),
+		InlinePanel('fame_gallery', label="Gallery"),
+		FieldPanel('sponsors_caption'),
+		InlinePanel('fame_sponsors', label="Sponsors"),
+	]
+
+
+class HallOfFameInducteesPage(Page):
+	heading = 						models.CharField(blank=True, max_length=255)
+	
+
+	content_panels = Page.content_panels + [
+		FieldPanel('heading'),
+		InlinePanel('current_inductees', label="Current Inductees"),
+		InlinePanel('previous_inductees', label="Previous Inductees"),
+	]
+
+
+class HallOfFameBanquetsPage(Page):
+	heading = 						models.CharField(blank=True, max_length=255)
+	
+	body =							 StreamField([
+										('text', blocks.RichTextBlock()),
+										('image_block',TwoImageBlock()),
+										('gallery_block',GalleryBlock()),
+									], null=True)
+
+	content_panels = Page.content_panels + [
+		FieldPanel('heading'),
+		StreamFieldPanel('body')
+	]
+
+
+
+
+class ContactPage(Page):
+	heading = 						models.CharField(blank=True, max_length=255)
+	contact_box =					RichTextField()
+
+	questions = 					RichTextField()
+
+	content_panels = Page.content_panels + [
+		FieldPanel('heading'),
+		FieldPanel('contact_box'),
+		FieldPanel('questions')
+	]
+
+
+	def serve(self, request):
+		from .forms import ContactForm
+		if request.method == 'POST':
+			form = ContactForm(request.POST)
+			
+			if form.is_valid():
+			
+				print(request.site)
+				theme_settings = ThemeSettings.for_site(request.site)
+
+				print(theme_settings)
+
+				msg = EmailMultiAlternatives(
+				    subject="Contact Form Submission",
+				    body= "First Name: " + form.cleaned_data['first_name'] + '\nLast Name: ' + form.cleaned_data['last_name'] + '\nPhone: '+ form.cleaned_data['phone'] + '\nmessage: ' + form.cleaned_data['message'],
+				    from_email="Contact Form <Contact-us@mg.spirestandford.org>",
+				    to=[theme_settings.contact_form_email,],
+				    reply_to=[form.cleaned_data['email']])
+
+				msg.send()
+
+				return render(request, 'spiresite/contact_page.html', {
+					'page': self,
+				})
+			else:
+				return render(request, self.template, {
+		            'page': self,
+		            'form': form
+		        })
+				
+		form = ContactForm()
+	
+		return render(request, self.template, {
+            'page': self,
+            'form': form
+        })
+
+
+
+
+class EventsPage(Page):
+	page_content =				 	RichTextField(blank=True)
+	heading = 						models.CharField(blank=True, max_length=255)
+
+	content_panels = Page.content_panels + [
+		FieldPanel('heading'),
+		FieldPanel('page_content'),
+		
+	]
+
+	def get_context(self, request):
+		context = super(EventsPage, self).get_context(request)
+
+		context['upcoming_events'] = Event.objects.filter(start__gte=datetime.datetime.now())
+		return context
+
+
+
+class PastEventsPage(Page):
+	page_content =				 	RichTextField(blank=True)
+	heading = 						models.CharField(blank=True, max_length=255)
+
+	content_panels = Page.content_panels + [
+		FieldPanel('heading'),
+		FieldPanel('page_content'),
+		
+	]
+
+	def get_context(self, request):
+		context = super(PastEventsPage, self).get_context(request)
+
+		context['past_events'] = Event.objects.filter(start__lt=datetime.datetime.now())[:50]
+		return context
+
+
+
+class AnnualEventsPage(Page):
+	page_content =				 	RichTextField(blank=True)
+	heading = 						models.CharField(blank=True, max_length=255)
+
+
+	content_panels = Page.content_panels + [
+		FieldPanel('heading'),
+		FieldPanel('page_content'),
+		InlinePanel('annual_events', label="Annual Events"),
+	]

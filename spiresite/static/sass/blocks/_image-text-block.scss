@@ -1,0 +1,20 @@
+.image-text-block{
+	position: relative;
+
+	.image-text-block__image{
+		width: 100%;
+		img{
+			width: 100%;
+		}
+	}
+
+	.image-text-block__text{
+		margin: auto;
+		margin-top: -50px;
+		width: 90%;
+		position: relative;
+		background-color: $white;
+		padding: 25px;
+	}
+}
+

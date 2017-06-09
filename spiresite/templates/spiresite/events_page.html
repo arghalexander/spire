@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% load nav_tags static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-events-overview{% endblock %}
+
+{% block content %}
+
+
+<section class="page-header">
+	<div class="row">
+		<div class="small-12 medium-10 medium-offest-1 columns">
+			<h2 id="page-heading" class="bold red-line">{{page.heading}}</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 medium-10 medium-offest-1 columns">
+			{{page.page_content|richtext}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+			{% sub_page_nav parent=self calling_page=self overview_name="All Events" %}
+		</div>
+	</div>
+</section>
+
+
+
+<section class="events">
+	<div class="row">
+		<div class="small-12 columns">
+		<h3 class="red-line">Events</h3>
+		</div>
+	</div>
+
+	<div class="row"  >
+		<div class="small-12 columns" >
+
+			<div class="row small-up-2 medium-up-4">
+
+				{% for event in upcoming_events.all %}
+					<div class=" column column-block">
+						<div class="event-block" data-aos="zoom-in-up">
+							<a href="{{event.slug}}">
+							<div class="event-block__date">
+								<div class="month">
+									{{event.start|date:'M'}}
+								</div>
+								<div class="date">
+									{{event.start|date:'d'}}
+								</div>
+							</div>
+							<div class="event-block__image">
+								{% image event.image fill-500x250 %}
+							</div>
+							<div class="event-block__text">
+								<h4 class="bold">{{event.title}}</h4>
+								{{event.description|truncatewords:20|richtext}}
+							</div>
+							</a>
+						</div>
+					</div>
+			  	{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+
+
+{% endblock %}

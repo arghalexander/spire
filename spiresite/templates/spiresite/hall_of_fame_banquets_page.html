@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% load nav_tags static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-hall-of-fame-banquet{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+	<div class="row">
+		<div class="small-12 columns">
+			<h2 id="page-heading" class="bold red-line">{{page.heading}}</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+		
+			{% sub_page_nav parent=self.get_parent calling_page=self %}
+
+		</div>
+	</div>
+</section>
+	
+
+<section class="body-content">
+	<div class="row">
+		<div class="small-12 columns">
+			{{page.body}}
+		</div>
+	</div>
+</section>
+
+{% endblock %}

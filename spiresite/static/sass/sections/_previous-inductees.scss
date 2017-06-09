@@ -1,0 +1,14 @@
+.previous-inductees{
+	position: relative;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	overflow: hidden;
+	.background{
+		position: absolute;
+		background-color: $lighter-brown;
+		top: 250px;
+		left: 0;
+		height: 100%;
+		width: 100%;
+	}
+}

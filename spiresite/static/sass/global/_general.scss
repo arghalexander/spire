@@ -11,6 +11,8 @@ h3{
     line-height: 1.2;
 }
 
+
+
 #main{
     padding-top: 50px;
 }
@@ -102,9 +104,15 @@ sup{
     font-weight: bold;
 }
 
-
-
 /**  Colors */
 .red{
     color: $red;
+}
+
+.black{
+    color: $black;
+}
+
+.title{
+    margin-bottom: 75px;
 }

@@ -11,7 +11,28 @@ $(document).ready(function(){
       autoplaySpeed: 3000,
       //infinite: true;
     });
+
+    $("#fame-slider").slick({
+      infinite: true,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      dots: true,
+      arrows: true,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      //infinite: true;
+    });
     
+    $(".slider").slick({
+      infinite: true,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      dots: true,
+      arrows: true,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      //infinite: true;
+    });
 
 
     //address field

@@ -1,0 +1,33 @@
+.template-contact{
+
+
+	section.map-section{
+		padding-bottom: 200px;
+		padding-top: 200px;
+		background-color: $lighter-brown;
+		.contact-us-box{
+			height: 300px;
+			padding: 30px;
+			color: $white;
+			background-color: $red;
+		}
+	}
+
+	section.contact-form{
+		padding-top: 100px;
+		padding-bottom: 100px;
+		background-color: $black;
+		color:$white;
+
+		.rich-text{
+			color: $white;
+			p{
+				color: inherit;
+				margin-bottom: 0px;
+			}
+		}
+		button{
+			width: 250px;
+		}
+	}
+}

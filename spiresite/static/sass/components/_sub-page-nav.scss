@@ -1,0 +1,26 @@
+.sub-page-nav{
+	border-bottom: 1px solid $light-gray;
+	padding-bottom: 8px;
+	padding-top: 25px;
+	margin-bottom : 40px;
+	li{
+		text-align: center;
+	}
+	li a{
+		color: $black;
+
+		&:hover{
+			color: $red;
+			font-weight: bold;
+		}
+	}
+	.active{
+		color: $red;
+		font-weight: bold;
+		
+		a{	
+			color: $red;
+			background: transparent;
+		}
+	}
+}

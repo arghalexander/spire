@@ -65,7 +65,6 @@ urlpatterns = [
 
     url(r'^events/', include('events.urls')),
     
-
     url(r'^accounts/register/$',  RegistrationView.as_view(form_class=MemberRegistrationForm), name='registration_register'),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     

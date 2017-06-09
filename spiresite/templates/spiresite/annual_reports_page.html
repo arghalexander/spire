@@ -22,16 +22,16 @@
 <section class="gallery-list">
 	<div id="gallery-row">
 		<div  class="row small-up-2 medium-up-4" >
-			 {% for item in items.all %}
+			 {% for item in page.annual_reports.all %}
 			  <div class="column column-block">
-			  	<a >
+			  	<a href="{{item.document.url}}">
 			     <div class="gallery-item">
 			     	<div class="item__image">
-			     		<img src="{{item.image.url}}" width=350 >
+			     		<span class="fa fa-file fa-4x black"></span>
 			     	</div>
 			     	<div class="item__info">
-			     		<p class="red bold">{{item.name}} </p>
-			     	
+			     		<p class="red bold">{{item.document.title}} </p>
+			     
 			     	</div>
 			    </div>
 			    </a>

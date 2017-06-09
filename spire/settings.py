@@ -80,7 +80,6 @@ INSTALLED_APPS = [
     'csvimport.app.CSVImportConf',
     'import_export',
 
-
     #Social Auth
     'social_django',
 
