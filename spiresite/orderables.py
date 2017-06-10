@@ -238,3 +238,4 @@ class AnnualEvent(Orderable):
 	panels = [
 		SnippetChooserPanel('event'),
 	]
+

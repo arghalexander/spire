@@ -4,11 +4,13 @@ import datetime
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 from events.models import Event, EventPricing
 from members.models import Member 
 from products.models import MembershipProduct
+from wagtail.wagtailcore.models import Page
 
 # Create your models here.
 from wagtail.wagtailcore.models import Page
@@ -530,11 +532,11 @@ class ContactPage(Page):
 				print(theme_settings)
 
 				msg = EmailMultiAlternatives(
-				    subject="Contact Form Submission",
-				    body= "First Name: " + form.cleaned_data['first_name'] + '\nLast Name: ' + form.cleaned_data['last_name'] + '\nPhone: '+ form.cleaned_data['phone'] + '\nmessage: ' + form.cleaned_data['message'],
-				    from_email="Contact Form <Contact-us@mg.spirestandford.org>",
-				    to=[theme_settings.contact_form_email,],
-				    reply_to=[form.cleaned_data['email']])
+					subject="Contact Form Submission",
+					body= "First Name: " + form.cleaned_data['first_name'] + '\nLast Name: ' + form.cleaned_data['last_name'] + '\nPhone: '+ form.cleaned_data['phone'] + '\nmessage: ' + form.cleaned_data['message'],
+					from_email="Contact Form <Contact-us@mg.spirestandford.org>",
+					to=[theme_settings.contact_form_email,],
+					reply_to=[form.cleaned_data['email']])
 
 				msg.send()
 
@@ -543,16 +545,16 @@ class ContactPage(Page):
 				})
 			else:
 				return render(request, self.template, {
-		            'page': self,
-		            'form': form
-		        })
+					'page': self,
+					'form': form
+				})
 				
 		form = ContactForm()
 	
 		return render(request, self.template, {
-            'page': self,
-            'form': form
-        })
+			'page': self,
+			'form': form
+		})
 
 
 
@@ -603,3 +605,59 @@ class AnnualEventsPage(Page):
 		FieldPanel('page_content'),
 		InlinePanel('annual_events', label="Annual Events"),
 	]
+
+
+
+
+class JobBoardPage(Page):
+	heading = 						models.CharField(blank=True, max_length=255)
+	page_content =				 	RichTextField(blank=True)
+
+	content_panels = Page.content_panels + [
+		FieldPanel('heading'),
+		FieldPanel('page_content'),
+	]
+
+
+	def get_context(self, request):
+		context = super(JobBoardPage, self).get_context(request)
+		context['jobs'] = self.get_children().live()
+		return context
+
+
+	def serve(self, request):
+		if not request.user.is_authenticated:
+			return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+		return super(JobBoardPage, self).serve(request)
+
+
+
+class JobPage(Page):
+	heading = 						models.CharField(blank=True, max_length=255)
+	job_type = 						models.CharField(blank=True, max_length=255)
+	location = 						models.CharField(blank=True, max_length=255)
+	organization =					models.CharField(blank=True, max_length=255)
+	page_content =				 	RichTextField(blank=True)
+	date = 							models.DateField("Post date")
+
+	content_panels = Page.content_panels + [
+		FieldPanel('heading'),
+
+		MultiFieldPanel(
+        [
+        	FieldPanel('date'),
+            FieldPanel('job_type'),
+            FieldPanel('location'),
+            FieldPanel('organization'),
+        ],
+        heading="Job Info",
+        classname="collapsible"
+    	),
+
+		FieldPanel('page_content'),
+	]
+
+	def serve(self, request):
+		if not request.user.is_authenticated:
+			return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+		return super(JobPage, self).serve(request)

@@ -116,3 +116,16 @@ sup{
 .title{
     margin-bottom: 75px;
 }
+
+
+
+/** tables */
+
+table{
+    a{
+        color: $red
+        &:hover{
+            color: $dark-red;
+        }
+    }
+}
