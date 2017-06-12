@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load nav_tags static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+
+{% block title %}Checkout{% endblock %}
+
+
+{% block body_class %}template-membership-success{% endblock %}
+
+
+{% block content %}
+
+<section class="page-header">
+	<div class="row">
+		<div class="small-12 columns">
+			<h2 class="red-line">Checkout</h2>
+		</div>
+	</div>
+
+</section>
+
+
+<section class="cart">
+
+	<div class="row">
+		<div class="small-5 small-offset-1 columns">
+			<h3>Success your card has been charged</h3>
+			<a href='/'>Back to Home</a>
+		</div>
+	</div>
+
+</section>
+
+
+{% endblock %}

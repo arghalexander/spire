@@ -4,4 +4,35 @@ form{
 		border-radius: 6px !important; 
 	}
 	
+
+
+}
+
+
+#payment-form{
+
+	.field{
+		display: block;
+	    box-sizing: border-box;
+	    width: 100%;
+	    height: 2.4375rem;
+	    margin: 0 0 1rem;
+	    padding: 0.5rem;
+	    border: 1px solid #cacaca;
+	    border-radius: 6px;
+	    background-color: #fefefe;
+	    box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+	    font-family: inherit;
+	    font-size: 1rem;
+	    font-weight: normal;
+	    color: #0a0a0a;
+	    transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
+	    -webkit-appearance: none;
+	    -moz-appearance: none;
+	    appearance: none;
+	    input{
+	    	padding-top: 4px;
+	    }
+	}
+
 }

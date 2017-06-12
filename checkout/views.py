@@ -7,10 +7,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from cart.cart import Cart
+import stripe
 from products.models import MembershipProduct, EventProduct
 
-#from .forms import PaymentForm
+from .forms import PaymentForm
 
+from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
@@ -51,15 +53,50 @@ def membership_cart(request):
 
 @login_required
 def membership_checkout(request):
+	
+	#get cart total
+	cart = Cart(request)
+	
+
+	if cart.count() == 0:
+		return redirect('checkout:membership-cart')
+
+	total = cart.summary()
+	description = cart[0].product_name
+
 	if request.method == 'POST':
-		form = PaymentForm(request.POST)
-		if form.is_valid():
-			return HttpResponseRedirect('/thanks/')
-	else:
-		form = PaymentForm()
+		
+		stripe.api_key = settings.STRIPE_SECRET_KEY
 
-	return render(request, 'name.html', {'form': form})
+		# Get the credit card details submitted by the form
+		token = request.POST['stripeToken']
 
+		
+
+		# Create a charge: this will charge the user's card
+		try:
+		  charge = stripe.Charge.create(
+			  amount=int(total*100),
+			  currency="usd",
+			  source=token,
+			  description=""
+		  )
+		  return redirect('checkout:membership-success')
+		except stripe.error.CardError as e:
+			print(e)
+			return render(request, 'checkout/membership_checkout.html', {'error': e})
+
+
+	return render(request, 'checkout/membership_checkout.html',{'settings': settings, 'cart': Cart(request)})
+
+
+
+@login_required
+def membership_success(request):
+	#empty cart
+	cart = Cart(request)
+	cart.clear()
+	return render(request, 'checkout/membership_checkout_success.html')
 
 
 
@@ -67,6 +104,17 @@ def remove_from_cart(request, product_id):
 	product = Product.objects.get(id=product_id)
 	cart = Cart(request)
 	cart.remove(product)
+
+
+
+
+
+def event_cart(request):
+	pass
+
+
+def event_checkout(request):
+	pass
 
 
 

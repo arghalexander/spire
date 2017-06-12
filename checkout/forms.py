@@ -1,9 +1,8 @@
 from django import forms
 
 
-"""
 class PaymentForm(forms.Form):
-	class Meta:
-		model = Payment
-		field= ['billing_first_name', 'billing_last_name']
-"""
+	cardholder_name = forms.CharField(label='Name that Appears on the card', max_length=100)
+	
+
+

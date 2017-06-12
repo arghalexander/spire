@@ -45,7 +45,7 @@
 					</div>
 					<a class="button button-green expanded"  href="{% url 'checkout:membership-add' %}?product_id={{page.full_membership_yearly.id}}">Choose 1 year - $75</a>
 
-					<a class="button button-green expanded" href="/cart/add-membership/?product_id={{page.full_membership_5_years.id}}">Choose 5 years -$299</a>
+					<a class="button button-green expanded" href="{% url 'checkout:membership-add' %}?product_id={{page.full_membership_5_years.id}}">Choose 5 years -$299</a>
 
 				</div>
 			</div>
@@ -65,7 +65,7 @@
 					<div class="membership-pricing">
 							<h3><sup>$</sup>50<sup class="sub">/ year</sup></h3>
 						</div>
-					<a class="button button-green expanded"  href="/cart/add-membership/?product_id={{page.full_young_yearly.id}}">Choose this membership</a>
+					<a class="button button-green expanded"  href="{% url 'checkout:membership-add' %}?product_id={{page.full_young_yearly.id}}">Choose this membership</a>
 
 				</div>
 			</div>
@@ -83,7 +83,7 @@
 					<div class="membership-pricing">
 							<h3><sup>$</sup>95<sup class="sub">/ year</sup></h3>
 						</div>
-					<a class="button button-green expanded"  href="/cart/add-membership/?product_id={{page.full_friends_yearly.id}}">Choose this membership</a>
+					<a class="button button-green expanded"  href="{% url 'checkout:membership-add' %}?product_id={{page.full_friends_yearly.id}}">Choose this membership</a>
 
 				</div>
 			</div>
@@ -106,7 +106,7 @@
 
 					</div>
 
-					<a class="button button-green expanded"  href="/cart/add-membership/?product_id={{page.full_young_yearly.id}}">Choose this Membership</a>
+					<a class="button button-green expanded"  href="{% url 'checkout:membership-add' %}?product_id={{page.full_young_yearly.id}}">Choose this Membership</a>
 
 				</div>
 			</div>
@@ -120,7 +120,7 @@
 					<div class="short-text">
 						<p>{{page.full_friends_membership}}</p>
 					</div>
-					<a class="button button-green expanded"  href="/cart/add-membership/?product_id={{page.full_friends_yearly.id}}">Choose this Membership</a>
+					<a class="button button-green expanded"  href="{% url 'checkout:membership-add' %}?product_id={{page.full_friends_yearly.id}}">Choose this Membership</a>
 
 				</div>
 			</div>

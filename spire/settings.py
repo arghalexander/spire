@@ -324,9 +324,5 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
 
 
 
-#payments
-PAYMENT_HOST = 'localhost:8000'
-PAYMENT_USES_SSL = False
-PAYMENT_MODEL = 'checkout.Payment'
-PAYMENT_VARIANTS = {
-    'default': ('payments.dummy.DummyProvider', {})}
+STRIPE_API_KEY = "pk_test_flWrZUy1TeB0z9msSMz67lPY"
+STRIPE_SECRET_KEY = "sk_test_es7mrA52AFoENwUyFzOP8SAI"
