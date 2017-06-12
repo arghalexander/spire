@@ -288,15 +288,12 @@ STATICFILES_DIRS = (
     #os.path.join(BASE_DIR, 'spire/static'),
 )
 
-
-
-
 # Registration
 ACCOUNT_ACTIVATION_DAYS = 7
 
 #login
 #LOGIN_REDIRECT_URL = '/members/'
-
+LOGOUT_REDIRECT_URL = '/'
 
 # WAGTAIL CMS
 
