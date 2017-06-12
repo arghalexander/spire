@@ -33,6 +33,7 @@
                   {% if request.user.is_authenticated %}
                     <a href="/accounts/logout/">Logout</a>
                   {% else %}
+                    <a href="/accounts/register/">Join</a>
                     <a href="/accounts/login/">Login</a>
                   {% endif %}
               </li>
