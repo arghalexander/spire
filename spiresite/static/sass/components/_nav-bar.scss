@@ -31,7 +31,7 @@
         }
     }
     .top-bar-right {
-        width: 12%;
+        width: 20%;
         height: 88px;
         .nav-item {
             padding-top: 24px;
@@ -41,6 +41,13 @@
                 a {
                     color: $dark-red;
                     text-decoration: none;
+                }
+            }
+            &.join{
+                background-color: $red;
+                padding-bottom: 24px;
+                a{
+                    color: $white;
                 }
             }
         }
