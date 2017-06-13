@@ -12,6 +12,19 @@ from wagtail.wagtailcore.models import Orderable
 from wagtail.wagtailcore.models import Orderable, Page
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel, FieldRowPanel, InlinePanel
 
+from django.utils.translation import ugettext as _
+from wagtailgeowidget.edit_handlers import GeoPanel
+from django.utils.functional import cached_property
+from wagtailgeowidget.helpers import geosgeometry_str_to_struct
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+
+
+
+
+
 
 @register_snippet
 class Event(index.Indexed,ClusterableModel):
@@ -29,7 +42,8 @@ class Event(index.Indexed,ClusterableModel):
 	all_day = 								models.BooleanField()
 	start = 								models.DateTimeField()
 	end =									models.DateTimeField()
-	location = 								models.TextField()
+	address = 								models.CharField(max_length=250, blank=True, null=True)
+	location = 								models.CharField(max_length=255, blank=True, null=True)
 	description = 							RichTextField()
 
 
@@ -49,6 +63,8 @@ class Event(index.Indexed,ClusterableModel):
 
 		ImageChooserPanel('image'),
 		
+
+
 		MultiFieldPanel([
 			FieldPanel('all_day', classname='fn'),
 			FieldRowPanel([
@@ -61,8 +77,11 @@ class Event(index.Indexed,ClusterableModel):
 		heading="Date",
 		),
 		
-	
-		FieldPanel('location', classname='fn'),
+		MultiFieldPanel([
+			FieldPanel('address'),
+			GeoPanel('location', address_field='address'),
+		], _('Location details')),
+
 		FieldPanel('description', classname='full'),
 		InlinePanel('event_pricings', label="Pricing"),
 	]
@@ -70,6 +89,36 @@ class Event(index.Indexed,ClusterableModel):
 	search_fields = [
 		index.SearchField('title', partial_match=True),
 	]
+
+	@cached_property
+	def point(self):
+		return geosgeometry_str_to_struct(self.location)
+
+	@property
+	def lat(self):
+		return self.point['y']
+
+	@property
+	def lng(self):
+		return self.point['x']
+
+
+	def save(self, *args, **kwargs):
+		
+
+		super(Event, self).save()
+
+# method for updating
+@receiver(post_save, sender=Event)
+def update_stock(sender, instance, created, **kwargs):
+	from spiresite.models import EventPricing
+	from members.models import MembershipLevel
+
+	if created:
+		for level in MembershipLevel.objects.all():
+			pricing_level = EventPricing(event=instance,price=0.00,level=level)
+			pricing_level.save()
+
 
 
 class EventAttendance(models.Model):

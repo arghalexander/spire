@@ -62,7 +62,11 @@ def membership_checkout(request):
 		return redirect('checkout:membership-cart')
 
 	total = cart.summary()
-	description = cart[0].product_name
+	
+
+	for item in cart:
+		description = item.product.name
+	
 
 	if request.method == 'POST':
 		
@@ -71,15 +75,13 @@ def membership_checkout(request):
 		# Get the credit card details submitted by the form
 		token = request.POST['stripeToken']
 
-		
-
 		# Create a charge: this will charge the user's card
 		try:
 		  charge = stripe.Charge.create(
 			  amount=int(total*100),
 			  currency="usd",
 			  source=token,
-			  description=""
+			  description=description
 		  )
 		  return redirect('checkout:membership-success')
 		except stripe.error.CardError as e:
@@ -108,9 +110,14 @@ def remove_from_cart(request, product_id):
 
 
 
-
 def event_cart(request):
-	pass
+
+	cart = Cart(request)
+
+	if cart.count() == 0:
+		messages.warning(request, 'Cart is Empy') 
+
+	return render(request, 'checkout/event_cart.html', dict(cart=Cart(request)))
 
 
 def event_checkout(request):

@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'wagtail.contrib.settings',
     'wagtail.contrib.modeladmin',
 
+    'wagtailgeowidget',
 
     'django_extensions',
     'sass_processor',
@@ -323,3 +324,9 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
 
 STRIPE_API_KEY = "pk_test_flWrZUy1TeB0z9msSMz67lPY"
 STRIPE_SECRET_KEY = "sk_test_es7mrA52AFoENwUyFzOP8SAI"
+
+
+
+
+GOOGLE_MAPS_V3_APIKEY = "AIzaSyAuAQVs-4VRFdR1-9s94H_CxmMr2QLiYpM"
+GEO_WIDGET_DEFAULT_LOCATION = { 'lat': '37.4554996','lng': '-122.1996202,11.96' }

@@ -38,6 +38,15 @@ from theme_settings import *
 from django.conf import settings
 
 
+
+
+class EventPricing(Orderable, EventPricing):
+	event = ParentalKey(Event,related_name='event_pricings',on_delete=models.CASCADE,blank=False)
+	can_attend = models.BooleanField(default=False)
+
+
+
+
 class HomePage(Page):
 
 	featured_event = 				models.ForeignKey(
@@ -425,13 +434,6 @@ class AnnualReportsPage(Page):
 		FieldPanel('heading'),
 		InlinePanel('annual_reports', label="Reports"),
 	]
-
-
-
-class EventPricing(Orderable, EventPricing):
-	event = ParentalKey(Event,related_name='event_pricings',on_delete=models.CASCADE,blank=False)
-	ticket_quantity = models.IntegerField()
-
 
 
 

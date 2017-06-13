@@ -4,11 +4,79 @@
 {% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
 
-{% block body_class %}template-events-overview{% endblock %}
+{% block body_class %}template-event-detail{% endblock %}
+
+{% block title %}{{event.title}}{% endblock %}
 
 {% block content %}
 
-{{event}}
+
+<section class="page-header">
+	<div class="row">
+		<div class="small-12 columns">
+			<h2 class="red-line">{{event}}</h2>
+		</div>
+	</div>
+
+</section>
+
+
+
+
+<section class="event-details">
+	<div class="background"></div>
+	<div class="row">
+		<div class="small-12 columns">
+			{% image event.image height-600 class="event-image" %}
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 medium-6 columns">
+			
+
+			<div class="event-details__location">
+				<div id="map"></div>
+				<div class="text">
+					<h5 class="bold">Location</h5>
+					<p>{{event.address}}</p>
+					<h5 class="bold">Date and Time</h5>
+					<p>{{event.start|date:'l, F j Y - f A'}}</p>
+				</div>
+			</div>
+		</div>
+		<div class="small-12 medium-6 columns">
+			<div class="event-details__text">
+				<h3 class="red-line bold">Event Details</h3>
+				{{event.description|richtext}}
+			</div>
+		</div>
+	</div>
+
+</section>
+
+<script>
+
+      function initMap() {
+       
+      	var lat = {{event.lat}}
+      	var lng = {{event.lng}}
+
+        var uluru = {lat: lat, lng: lng};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuAQVs-4VRFdR1-9s94H_CxmMr2QLiYpM&callback=initMap">
+    </script>
+
+
 
 
 {% endblock %}

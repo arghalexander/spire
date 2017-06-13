@@ -21,12 +21,21 @@ def index(request):
     return render(request, 'events/event_detail.html', {'events': events})
 
 
-def detail(request,slug):
+def event_detail(request,slug):
     try:
         event = Event.objects.get(slug=slug)
     except Event.DoesNotExist:
         raise Http404("Event does not exist")
     return render(request, 'events/event_detail.html', {'event': event})
+
+
+def event_register(request,slug):
+    try:
+        event = Event.objects.get(slug=slug)
+    except Event.DoesNotExist:
+        raise Http404("Event does not exist")
+    return render(request, 'events/event_detail.html', {'event': event})
+
 
 
 

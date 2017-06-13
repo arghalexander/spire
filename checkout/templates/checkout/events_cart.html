@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% load nav_tags static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+
+{% block title %}New Membership{% endblock %}
+
+
+{% block body_class %}template-event-cart{% endblock %}
+
+
+{% block content %}
+
+<section class="page-header">
+	<div class="row">
+		<div class="small-12 columns">
+			<h2 class="red-line">New Membership</h2>
+		</div>
+	</div>
+
+</section>
+
+
+
+<section class="cart">
+
+	<div class="row">
+		<div class="small-10 small-offset-1 columns">
+
+		<div class="">
+		{% for message in messages %}
+				{{message.message}}
+		{% endfor %}
+		</div>
+
+		<table class="table">
+			{% for item in cart %}
+	        <tr>
+	        	<td>{{ item.quantity }}</td>
+	            <td>{{ item.product.name }}</td>
+	            <td>{{ item.total_price }}</td>
+	        </tr>
+	        {% endfor %}
+	     </table>
+
+		</div>
+	</div>
+	{% if cart.count > 0 %}
+	<div class="row">
+		<div class="small-10 small-offset-1 columns">
+			<a href="{% url 'checkout:membership-checkout'  %}" class="button button-primary">Proceed</a>
+		</div>
+	</div>
+	{% endif %}
+	
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,45 @@
+.template-event-detail{
+
+	.event-details{
+		position: relative;
+		margin-bottom: 250px;
+		.event-image{
+			width: 100%;
+			max-height: 500px;
+			object-fit: 'cover';
+		}
+		.background{
+			position: absolute;
+			background-color: $lighter-brown;
+			top: 250px;
+			left: 0;
+			height: 100%;
+			width: 100%;
+			z-index: -1;
+		}
+		#map{
+			width: 100%;
+			height: 400px;
+		}
+		.event-details__location{
+			background-color: $black;
+			
+			margin-top: 30px;
+			color: $white;
+			.text{
+				padding: 35px;
+				p{
+					color: $white;
+				}
+			}
+			
+		}
+		.event-details__text{
+			margin-top: -150px;
+			padding: 50px;
+			background-color: $white;
+	
+		}
+	}
+
+}
