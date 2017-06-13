@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load nav_tags static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-link{% endblock %}
+
+{% block content %}
+
+	<script>
+	window.location.href = '{{page.page.url}}';
+	</script>
+
+{% endblock %}
