@@ -67,7 +67,7 @@ def srec_menu(context, parent, calling_page=None):
 
 @register.inclusion_tag('spiresite/tags/sub_page_nav.html', takes_context=True)
 def sub_page_nav(context, parent, calling_page=None, overview_name="Overview"):
-    menuitems = parent.get_children().live()
+    menuitems = parent.get_children().live().not_in_menu()
 
     for menuitem in menuitems:
         menuitem.active = (calling_page.url.startswith(menuitem.url)

@@ -663,3 +663,22 @@ class JobPage(Page):
 		if not request.user.is_authenticated:
 			return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
 		return super(JobPage, self).serve(request)
+
+
+
+
+
+
+class LinkPage(Page):
+	page =				 			models.ForeignKey(
+							        'wagtailcore.Page',
+							        null=True,
+							        blank=True,
+							        on_delete=models.SET_NULL,
+							        related_name='link_page_link',
+							    )
+
+	content_panels = Page.content_panels + [
+		PageChooserPanel('page'),
+	]
+
