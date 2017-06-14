@@ -1,6 +1,6 @@
 from django.db import models
 
-
+from events.models import Event
 from modelcluster.fields import ParentalKey
 from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
 from wagtail.wagtailadmin.edit_handlers import PageChooserPanel
@@ -10,6 +10,8 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel, Inli
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
+
+
 
 
 class HomePageGallery(Orderable):
@@ -69,13 +71,13 @@ class LeadershipStaffGallery(Orderable):
 	)
 	name = models.CharField(max_length=255)
 	title = models.CharField(max_length=255)
-	company = models.CharField(max_length=255)
+	description = RichTextField(blank=True)
 
 	panels = [
 		ImageChooserPanel('image'),
 		FieldPanel('name'),
 		FieldPanel('title'),
-		FieldPanel('company'),
+		FieldPanel('description')
 	]
 
 

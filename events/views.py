@@ -4,14 +4,18 @@ from rest_framework.response import Response
 from django.shortcuts import render
 from django.http import HttpResponse,Http404
 from rest_framework.decorators import detail_route, list_route
+from django.contrib import messages
 
-from .models import Event, EventAttendance
+from .models import Event, EventAttendance,EventPricing
 from .serializers import *
 from members.serializers import MemberSerializer  
-from members.models import Member  
+from members.models import Member
+
 
 from django.db.models import Count, Value, F
 from django.db.models.functions import TruncMonth
+
+from django.contrib.auth import authenticate, login
 
 def index(request):
     """
@@ -26,7 +30,20 @@ def event_detail(request,slug):
         event = Event.objects.get(slug=slug)
     except Event.DoesNotExist:
         raise Http404("Event does not exist")
-    return render(request, 'events/event_detail.html', {'event': event})
+    
+    try:
+    #get
+        member = Member.objects.get(user=request.user)
+    except Member.DoesNotExist:
+        messages.error(request, 'Membership not found')
+        logout(request)
+
+
+    membership_level = member.membership_level
+    #make sure it only returns 1 object
+    event_price = EventPricing.objects.filter(event=event,level=membership_level).order_by('event_price').first()
+
+    return render(request, 'events/event_detail.html', {'event': event, 'price': event_price})
 
 
 def event_register(request,slug):

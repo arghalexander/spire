@@ -3,7 +3,9 @@ from wagtail.contrib.modeladmin.options import (
 	ModelAdmin, ModelAdminGroup, modeladmin_register)
 from modelcluster.fields import ParentalKey
 from django.contrib import admin
-from events.models import Event, EventPricing
+
+from events.models import Event
+
 from modelcluster.models import ClusterableModel
 
 import json

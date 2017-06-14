@@ -8,7 +8,7 @@ from wagtail.wagtailsearch import index
 
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from modelcluster.models import ClusterableModel
-from wagtail.wagtailcore.models import Orderable
+from modelcluster.fields import ParentalKey
 from wagtail.wagtailcore.models import Orderable, Page
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel, FieldRowPanel, InlinePanel
 
@@ -20,7 +20,7 @@ from wagtailgeowidget.helpers import geosgeometry_str_to_struct
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-
+#from spiresite.orderables import EventPricing
 
 
 
@@ -127,12 +127,8 @@ class EventAttendance(models.Model):
 
 
 class EventPricing(models.Model):
-	event = 								models.ForeignKey(Event, related_name="event_pricing")
-	level = 								models.ForeignKey('members.MembershipLevel', related_name="membership_level") #avoid circular dependency
-	price = 								models.DecimalField(max_digits=8, decimal_places=2)
+	event = 						ParentalKey(Event, related_name="event_pricings")
+	level = 						models.ForeignKey('members.MembershipLevel', related_name="membership_level") #avoid circular dependency	
+	can_attend = 					models.BooleanField(default=False)
+	event_price = 					models.DecimalField(max_digits=8, decimal_places=2)
 
-	def __str__(self):
-		return self.event.title
-	
-	class Meta:
-		abstract = True

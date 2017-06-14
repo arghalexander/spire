@@ -40,12 +40,6 @@ from django.conf import settings
 
 
 
-class EventPricing(Orderable, EventPricing):
-	event = ParentalKey(Event,related_name='event_pricings',on_delete=models.CASCADE,blank=False)
-	can_attend = models.BooleanField(default=False)
-
-
-
 
 class HomePage(Page):
 

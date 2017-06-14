@@ -21,6 +21,50 @@
 </section>
 
 
+<section class="pricing">
+	<div class="row">
+		<div class="small-12 columns">
+		
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+			<table class="table">
+					{% if price %}
+						<thead>
+							<tr>
+								<th>Event Registration</th>
+								<th>Price</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>{{price.level}}</td>
+							<td width="250">{{price.event_price}}</td>
+							<td width=250><a class="button button-red expanded">Register for Event</a></td>
+						</tr>
+					{% else %}
+						<thead>
+							<tr>
+								<th>Event Registration</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>You do not have access to register for this event, Please upgrade your membership if you would like to attend</td>
+								<td width="250"></td>
+								<td width=250><a href="/members-directory/membership/" class="button button-red expanded">Upgrade Membership</a></td>
+							</tr>
+					{% endif %}
+				</tbody>
+			</table>
+			
+		</div>
+	</div>
+</section> 
 
 
 <section class="event-details">

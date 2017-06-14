@@ -4,7 +4,7 @@ import os
 import datetime
 from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 from .validators import validate_redacted
 
@@ -18,8 +18,10 @@ from events.models import Event
 @python_2_unicode_compatible
 class MembershipLevel(models.Model):
 	level = 							models.CharField(max_length=254, primary_key=True) 
-	slug = 								models.SlugField(unique=True)
-	
+
+	#anything above a 0 considered a memebr, for future use if want to seperate the membership levels more
+	access_level = 						models.IntegerField(default=0, help_text="0: guest ( No Access to member areas), Above a 0 is considered a full member")
+
 	panels = [
         FieldPanel('level'),
     ]
