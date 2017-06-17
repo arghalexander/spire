@@ -8,7 +8,7 @@
 				 {% for slide in value.images %}
 
 			     <div >
-			     {% image slide.image fill-400x260 as photo %}
+			     {% image slide.image original as photo %}
 
 			     	<a href="{{photo.url}}" data-fancybox data-caption="My caption">
 						<img src="{{photo.url}}" alt="{{photo.alt}}" class="orbit-image">
