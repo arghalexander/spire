@@ -59,14 +59,14 @@
 					 </button>
 				    <div class="row">
 					    <div class="small-6 columns">
-					    <img src="{{member.image.url}}" width=450 >
+					    {% image member.image width-450 %}
 					    </div>
 					    <div class="small-6 columns">
 					    	<h3 class="red-line bold">{{member.name}}</h3>
 				     		<p class="bold">{{member.title}}</p>
 				     
 				     		<div class="bio">
-				     		{{member.description}}
+				     		{{member.description|richtext}}
 				     		</div>
 					    </div>
 				    </div>
