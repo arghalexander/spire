@@ -4,12 +4,14 @@
 	<div class="row">
 		<div class="small-12 columns">
 
-			<div id="slider" class="" >
+			<div id="slider" class="slider" >
 				 {% for slide in value.images %}
 
 			     <div >
-			     	<a href="image.jpg" data-fancybox data-caption="My caption">
-						{% image slide.image fill-400x260 class="orbit-image" %}
+			     {% image slide.image fill-400x260 as photo %}
+
+			     	<a href="{{photo.url}}" data-fancybox data-caption="My caption">
+						<img src="{{photo.url}}" alt="{{photo.alt}}" class="orbit-image">
 					</a>
 			    </div>
 			    {% endfor %}
