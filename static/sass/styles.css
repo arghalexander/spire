@@ -729,12 +729,21 @@ form input, form textarea {
 .template-contact section.map-section {
   padding-bottom: 200px;
   padding-top: 200px;
-  background-color: #F3F3F3; }
+  background-color: #F3F3F3;
+  position: relative; }
+  .template-contact section.map-section #map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 700px;
+    width: 100%; }
   .template-contact section.map-section .contact-us-box {
     height: 300px;
     padding: 30px;
     color: #FFF;
-    background-color: #891B0D; }
+    background-color: #891B0D;
+    position: relative;
+    z-index: 99999; }
     .template-contact section.map-section .contact-us-box p {
       color: #FFF; }
 
