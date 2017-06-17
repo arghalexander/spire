@@ -8,7 +8,9 @@
 				 {% for slide in value.images %}
 
 			     <div >
-			     	{% image slide.image fill-400x260 class="orbit-image" %}
+			     	<a href="image.jpg" data-fancybox">
+						{% image slide.image fill-400x260 class="orbit-image" %}
+					</a>
 			    </div>
 			    {% endfor %}
 
