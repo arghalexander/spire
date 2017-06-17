@@ -3,14 +3,18 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect,render_to_response
 from django.contrib.auth.decorators import login_required
-
+from django.shortcuts import get_object_or_404
 from django.contrib import messages
 
 from cart.cart import Cart
 import stripe
+
 from products.models import MembershipProduct, EventProduct
+from events.models import EventPricing, Event, EventAttendance
+from members.models import Member
 
 from .forms import PaymentForm
+from django.utils import formats
 
 from django.conf import settings
 from django.contrib import messages
@@ -66,28 +70,35 @@ def membership_checkout(request):
 
 	for item in cart:
 		description = item.product.name
-	
+
 
 	if request.method == 'POST':
 		
-		stripe.api_key = settings.STRIPE_SECRET_KEY
-
-		# Get the credit card details submitted by the form
-		token = request.POST['stripeToken']
-
-		# Create a charge: this will charge the user's card
 		try:
-		  charge = stripe.Charge.create(
-			  amount=int(total*100),
-			  currency="usd",
-			  source=token,
-			  description=description
-		  )
-		  return redirect('checkout:membership-success')
-		except stripe.error.CardError as e:
-			print(e)
-			return render(request, 'checkout/membership_checkout.html', {'error': e})
+			stripe.api_key = settings.STRIPE_SECRET_KEY
 
+			# Get the credit card details submitted by the form
+			token = request.POST['stripeToken']
+
+			# Create a charge: this will charge the user's card
+			try:
+				charge = stripe.Charge.create(
+					  amount=int(total*100),
+					  currency="usd",
+					  source=token,
+					  description=description
+				 )
+
+				cart.clear()
+				
+	
+			  	return redirect('checkout:membership-success')
+
+			except stripe.error.CardError as e:
+				print(e)
+				return render(request, 'checkout/membership_checkout.html', {'error': e})
+		except stripe.InvalidRequestError as e:
+			return render(request, 'checkout/membership_checkout.html', {'error': e})
 
 	return render(request, 'checkout/membership_checkout.html',{'settings': settings, 'cart': Cart(request)})
 
@@ -109,8 +120,32 @@ def remove_from_cart(request, product_id):
 
 
 
+def event_add_to_cart(request):
+	"""
+	Add a event pricing object to cart
+	"""
+	event_id = request.GET.get('event', '')
+
+	try:
+		event = Event.objects.get(id=event_id)
+	except Event.DoesNotExist:
+		messages.add_message(request, messages.ERROR, "Event does not exist")
+		
+
+	member = Member.objects.get(user=request.user)
+
+	event_price = EventPricing.objects.get(event=event, level=member.membership_level)
+
+	cart = Cart(request)
+
+	cart.add(event, event_price.event_price, 1)
+
+	return redirect('checkout:event-cart')
+
+
 
 def event_cart(request):
+
 
 	cart = Cart(request)
 
@@ -121,7 +156,61 @@ def event_cart(request):
 
 
 def event_checkout(request):
-	pass
+
+	#get cart total
+	cart = Cart(request)
+	
+
+	if cart.count() == 0:
+		return redirect('checkout:event-cart')
+
+	total = cart.summary()
+	
+
+	for item in cart:
+		description = item.product.title + ' ' + formats.date_format(item.product.start, "SHORT_DATETIME_FORMAT") 
+		event = item.product.id
+	
+	event = get_object_or_404(Event,id=event)
+
+	if request.method == 'POST':
+		
+		stripe.api_key = settings.STRIPE_SECRET_KEY
+
+		# Get the credit card details submitted by the form
+		token = request.POST['stripeToken']
+
+		# Create a charge: this will charge the user's card
+		try:
+		  charge = stripe.Charge.create(
+			  amount=int(total*100),
+			  currency="usd",
+			  source=token,
+			  description=description
+		  )
+		  cart.clear()
+
+		  member = Member.objects.get(user=request.user)
+		  attendance = EventAttendance.objects.create(member=member, event=event)
+
+		  return redirect('checkout:event-success')
+		except stripe.error.CardError as e:
+			return render(request, 'checkout/event_checkout.html', {'error': e})
+		except Member.DoesNotExist:
+			messages.error(request, 'Membership Not Found, Please login or register') 
+			return redirect('/accounts/login/')
 
 
+	return render(request, 'checkout/event_checkout.html',{'settings': settings, 'cart': Cart(request)})
+
+
+
+
+
+@login_required
+def event_success(request):
+	#empty cart
+	cart = Cart(request)
+	cart.clear()
+	return render(request, 'checkout/event_checkout_success.html')
 

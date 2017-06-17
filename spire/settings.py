@@ -111,6 +111,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
+    'spire.middleware.CreateMembershipMiddleware',
+
     #wagtail CMS    
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
@@ -293,11 +295,11 @@ STATICFILES_DIRS = (
 ACCOUNT_ACTIVATION_DAYS = 7
 
 #login
-#LOGIN_REDIRECT_URL = '/members/'
+#LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/members/profile/'
 LOGOUT_REDIRECT_URL = '/'
 
 # WAGTAIL CMS
-
 WAGTAIL_SITE_NAME = 'SPIRE'
 
 """
@@ -310,8 +312,21 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
 
 # Social Authentication
 
-SOCIAL_AUTH_FACEBOOK_KEY = '1880382195542856'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'c203a4edaf5e3896d55ddeb7eab911cb'
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+    'social_core.pipeline.social_auth.associate_by_email',
+)
+
+
+SOCIAL_AUTH_FACEBOOK_KEY = '705930582941910'
+SOCIAL_AUTH_FACEBOOK_SECRET = '594ee0dbd5353a8984639fa8bb05503c'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 SOCIAL_AUTH_FACEBOOK_API_VERSION = '2.9'
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
@@ -320,6 +335,8 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
 }
 
 
+SOCIAL_AUTH_LINKEDIN_KEY = ''
+SOCIAL_AUTH_LINKEDIN_SECRET = ''
 
 
 STRIPE_API_KEY = "pk_test_flWrZUy1TeB0z9msSMz67lPY"
@@ -331,13 +348,3 @@ STRIPE_SECRET_KEY = "sk_test_es7mrA52AFoENwUyFzOP8SAI"
 GOOGLE_MAPS_V3_APIKEY = "AIzaSyAuAQVs-4VRFdR1-9s94H_CxmMr2QLiYpM"
 GEO_WIDGET_DEFAULT_LOCATION = { 'lat': '37.4554996','lng': '-122.1996202,11.96' }
 
-
-# 2.5MB - 2621440
-# 5MB - 5242880
-# 10MB - 10485760
-# 20MB - 20971520
-# 50MB - 5242880
-# 100MB 104857600
-# 250MB - 214958080
-# 500MB - 429916160
-MAX_UPLOAD_SIZE = "5242880"

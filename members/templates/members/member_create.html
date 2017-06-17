@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body_class %}members-create-member{% endblock %}
+
+{% block title %}New Member{% endblock %}
+
+{% block content %}
+
+
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+    {% for message in messages %}
+      <div class="callout alert">
+        <h5>{{message}}</h5>
+      </div>
+    {% endfor %}
+
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="small-12 medium-8 medium-offset-2 columns">
+
+    	<form action={{form.action}}> 
+ 		
+
+    	{{user_form}}
+
+    	{{member_form}}
+
+    	{{address_form}}
+
+
+			{{ education_formset.management_form }}
+	    	{% for form in education_formset %}
+	    		<div class='table'>
+    				<table class='no_error'>
+	    				{{form}}
+	    			</table>
+	    		</div>
+	    	{% endfor %}
+	    	<input type="button" value="Add More" id="add_more">
+  
+
+    		<input type="submit" class="button button-red">
+ 		</form>
+
+    </div>
+  </div>
+
+  <script type="text/javascript">
+  $('#add_more').click(function() {
+  	 console.log('add more');
+        cloneMore('div.table:last', 'service');
+    });
+ function cloneMore(selector, type) {
+    var newElement = $(selector).clone(true);
+    var total = $('#id_' + type + '-TOTAL_FORMS').val();
+    newElement.find(':input').each(function() {
+        var name = $(this).attr('name').replace('-' + (total-1) + '-','-' + total + '-');
+        var id = 'id_' + name;
+        $(this).attr({'name': name, 'id': id}).val('').removeAttr('checked');
+    });
+    newElement.find('label').each(function() {
+        var newFor = $(this).attr('for').replace('-' + (total-1) + '-','-' + total + '-');
+        $(this).attr('for', newFor);
+    });
+    total++;
+    $('#id_' + type + '-TOTAL_FORMS').val(total);
+    $(selector).after(newElement);
+}
+</script>
+{% endblock %}

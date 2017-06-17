@@ -42,7 +42,7 @@
 						<tr>
 							<td>{{price.level}}</td>
 							<td width="250">{{price.event_price}}</td>
-							<td width=250><a class="button button-red expanded">Register for Event</a></td>
+							<td width=250><a href="{% url 'checkout:event-add'%}?event={{event.id}}" class="button button-red expanded">Register for Event</a></td>
 						</tr>
 					{% else %}
 						<thead>

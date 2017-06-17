@@ -1,13 +1,22 @@
 from django import forms
 from django.forms import ModelForm
 from .models import Member, MemberAddress, MemberEducation
+from django.contrib.auth.models import User
+
+
+class MemberUserForm(ModelForm):
+	class Meta:
+		model = User
+		fields = [
+			'first_name',
+			'last_name'
+		]
+
 
 class MemberForm(ModelForm):
 	class Meta:
 		model = Member
 		fields = [
-			'image',
-			'bio',
 			'region',
 			]
 		widgets = {
@@ -33,3 +42,4 @@ class MemberEducationForm(ModelForm):
 			'program',
 			'grad_year',
 		]
+

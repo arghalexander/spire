@@ -11,6 +11,7 @@ from .serializers import *
 from members.serializers import MemberSerializer  
 from members.models import Member
 
+from spire.decorators import member_access
 
 from django.db.models import Count, Value, F
 from django.db.models.functions import TruncMonth
@@ -32,7 +33,6 @@ def event_detail(request,slug):
         raise Http404("Event does not exist")
     
     try:
-    #get
         member = Member.objects.get(user=request.user)
     except Member.DoesNotExist:
         messages.error(request, 'Membership not found')
@@ -52,7 +52,6 @@ def event_register(request,slug):
     except Event.DoesNotExist:
         raise Http404("Event does not exist")
     return render(request, 'events/event_detail.html', {'event': event})
-
 
 
 

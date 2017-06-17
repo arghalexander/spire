@@ -20,6 +20,5 @@ class EventAdmin(admin.ModelAdmin):
 
 
 @admin.register(EventAttendance)
-class EventAdmin(admin.ModelAdmin):
-	pass
-
+class EventAttendaceAdmin(admin.ModelAdmin):
+	list_display = ['event','member']

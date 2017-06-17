@@ -7,4 +7,9 @@ urlpatterns = [
 	url(r'membership/cart/$', views.membership_cart, name='membership-cart'),
     url(r'membership/add/$', views.membership_add_to_cart, name='membership-add'),
     url(r'membership/success/$', views.membership_success, name='membership-success'),
+
+    url(r'event/add/$', views.event_add_to_cart, name='event-add'),
+    url(r'event/cart/$', views.event_cart, name='event-cart'),
+    url(r'event/order/$', views.event_checkout, name='event-checkout'),  
+    url(r'event/success/$', views.event_success, name='event-success'),
 ]

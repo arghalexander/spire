@@ -17,7 +17,7 @@ from django.db.models.functions import TruncMonth
 
 from registration import signals
 
-from .forms import MemberForm, MemberAddressForm, MemberEducationForm
+from .forms import MemberForm, MemberAddressForm, MemberEducationForm, MemberUserForm
 from .models import *
 from .serializers import *
 from .pagination import StandardResultsSetPagination
@@ -28,6 +28,10 @@ from django.views.decorators.csrf import csrf_exempt
 
 from events.models import EventAttendance
 from events.serializers import EventAttendanceSerializer
+from django.forms import formset_factory
+
+
+
 
 class MemberViewSet(viewsets.ModelViewSet):
     queryset = Member.objects.all()
@@ -203,26 +207,42 @@ def index(request):
 
 
 
-def create_member(request):
+def member_create(request):
+
 
     #if member already created go to member edit
     if(Member.objects.filter(user=request.user).count() > 0):
-        return redirect('members:edit-member-view')
+        return redirect('members:member-profile-edit')
+
+
+
+
 
     if request.method == 'POST':
       
         post_text = request.POST.get('the_post')
 
         if(address_form.is_valid()):
-            return HttpResponseRedirect('/thanks/')
+            redirect('members:member-profile')
     else:
         address_form =  MemberAddressForm()
 
-    return render(request, 'members/create_member.html', {
+        user_form = MemberUserForm()
+        member_form = MemberForm()
+        address_form = MemberAddressForm()
+        
+        education_formset = formset_factory(MemberEducationForm)
+
+
+    return render(request, 'members/member_create.html', {
+        'user_form': user_form,
+        'member_form': member_form,
         'address_form': address_form,
+        'education_formset': education_formset
         })
 
 
+""""
 def create_member_address(request):
 
     #if member already created go to member edit
@@ -258,13 +278,14 @@ def create_member_info(request):
     return render(request, 'members/create_info_form.html', {
         'info_form': info_form,
         })
+"""
+
+def member_profile(request):
+    return render(request, 'members/member_profile.html')
 
 
-def edit_member(request):
-
-  
-    return render(request, 'members/edit-member.html')
-
+def member_profile_edit(request):
+    return render(request, 'members/member_profile_edit.html')
 
 
 class CreateMemberView(CreateView):

@@ -37,6 +37,9 @@
         <link href="{% sass_src 'sass/styles.scss' %}" rel="stylesheet" type="text/css" />
 
          <script src="https://js.stripe.com/v3/"></script>
+           <!-- jquery -->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
     </head>
     <body class="">
 
@@ -88,12 +91,12 @@
         </footer>
         {% endblock %}
 
-         <!-- jquery -->
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-        
+
+        <script src="{% static "js/jquery.smartWizard.min.js" %}"></script>
         <script src="{% static "js/what-input.js" %}"></script>
         <script src="{% static "js/foundation.min.js" %}"></script>
-        
+        <script src="{% static "js/main.js" %}"></script>
+
         <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
 
 

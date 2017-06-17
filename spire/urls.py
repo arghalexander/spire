@@ -28,7 +28,7 @@ from django.views.defaults import server_error, page_not_found, permission_denie
 from spire.registration.forms import MemberRegistrationForm
 from spire.registration.views import RegistrationView
 
-from members.views import MemberViewSet, MembershipLevelViewSet, MemberAddressViewSet, MemberNoteViewSet, MemberRegionViewSet, MemberIndustryViewSet
+from members.views import MemberViewSet, MembershipLevelViewSet, MemberAddressViewSet, MemberNoteViewSet, MemberRegionViewSet, MemberIndustryViewSet, member_profile
 from events.views import EventViewSet, EventAttendanceViewSet
 
 from .views import UserViewSet
@@ -55,21 +55,22 @@ router.register(r'users', UserViewSet)
 
 
 urlpatterns = [
-    
+
     url(r'^404/$', page_not_found, kwargs={'exception': Exception("Page not Found")}),
     url(r'^500/$', server_error),
 
     url(r'^admin/', admin.site.urls),
 
     url(r'^checkout/', include('checkout.urls', namespace='checkout')),
-
+    url(r'^members/', include('members.urls', namespace='members')),
     url(r'^events/', include('events.urls', namespace='events')),
     
     url(r'^accounts/register/$',  RegistrationView.as_view(form_class=MemberRegistrationForm), name='registration_register'),
-    url(r'^accounts/', include('registration.backends.hmac.urls')),
-    
-    url(r'^tinymce/', include('tinymce.urls')),
 
+    url(r'^accounts/', include('registration.backends.hmac.urls')),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
+
+    url(r'^tinymce/', include('tinymce.urls')),
     url('', include('social_django.urls', namespace='social')),
 
     url(r'^api/', include(router.urls)),
