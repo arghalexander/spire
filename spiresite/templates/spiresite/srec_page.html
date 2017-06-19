@@ -20,8 +20,7 @@
 	<div class="row">
 		<div class="small-12 columns">
 			
-			{% get_site_root as site_root %}
-			{% srec_menu parent=site_root calling_page=self %}
+			{% sub_page_nav parent=self calling_page=self %}
 
 		</div>
 	</div>
