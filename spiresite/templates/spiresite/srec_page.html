@@ -58,9 +58,11 @@
 			<div id="srec-slider" class="slider" >
 				 {% for slide in page.srec_gallery.all %}
 
-			     <div >
-			     	{% image slide.image fill-400x260 class="orbit-image" %}
-			    </div>
+			      	{% image slide.image original as photo %}
+
+			     	<a href="{{photo.url}}" data-fancybox data-caption="{{photo.alt}}">
+						<img src="{{photo.url}}" alt="{{photo.alt}}" class="orbit-image">
+					</a>
 			    {% endfor %}
 
 			</div>
