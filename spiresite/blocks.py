@@ -34,6 +34,20 @@ class ButtonBlock(blocks.StructBlock):
 		icon = 'link'
 
 
+
+
+class ThreeColumnBlock(blocks.StructBlock):
+	one = blocks.RichTextBlock()
+	two = blocks.RichTextBlock()
+	three = blocks.RichTextBlock()
+
+	class Meta:
+		template = 'spiresite/blocks/three_columns.html'
+		icon = 'placeholder'
+
+
+
+
 class LeaderBlock(blocks.StructBlock):
 	name = blocks.CharBlock(required=True)
 	company = blocks.CharBlock(required=True)

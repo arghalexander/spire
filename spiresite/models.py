@@ -398,7 +398,8 @@ class StandardLeadershipPage(Page):
 
 	body =							 StreamField([
 										('text', blocks.RichTextBlock()),
-										('table', TableBlock())
+										('table', TableBlock()),
+										('three_columnn_block', ThreeColumnBlock())
 									])
 
 	content_panels = Page.content_panels + [
