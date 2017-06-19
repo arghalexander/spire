@@ -47,6 +47,17 @@ class ThreeColumnBlock(blocks.StructBlock):
 
 
 
+class TwoColumnBlock(blocks.StructBlock):
+	one = blocks.RichTextBlock()
+	two = blocks.RichTextBlock()
+	
+	class Meta:
+		template = 'spiresite/blocks/two_columns.html'
+		icon = 'placeholder'
+
+
+
+
 
 class LeaderBlock(blocks.StructBlock):
 	name = blocks.CharBlock(required=True)
