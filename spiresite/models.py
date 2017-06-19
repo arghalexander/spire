@@ -27,6 +27,7 @@ from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
 
 from wagtail.wagtailcore.fields import StreamField
+from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.wagtailcore import blocks
 
 from wagtail.wagtailsearch import index
@@ -437,6 +438,7 @@ class HallOfFameStandardPage(Page):
 
 	body =							 StreamField([
 										('text', blocks.RichTextBlock()),
+										('table', TableBlock())
 									])
 
 	content_panels = Page.content_panels + [

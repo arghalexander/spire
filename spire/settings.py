@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'wagtail.wagtailcore',
     'wagtail.contrib.settings',
     'wagtail.contrib.modeladmin',
+    "wagtail.contrib.table_block",
 
     'wagtailgeowidget',
 
