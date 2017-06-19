@@ -2,4 +2,13 @@
 	h1,h2,h3,h4{
 		@extend .red-line;
 	}
+
+	a{
+		color: $red;
+		&:hover, &:focus {
+    		color: $dark-red;
+		}
+
+	}
+	
 }

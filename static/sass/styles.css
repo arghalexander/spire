@@ -92,6 +92,11 @@ table a {
 h4 {
   line-height: 30px; }
 
+.body-content a {
+  color: #891B0D; }
+  .body-content a:hover, .body-content a:focus {
+    color: #571511; }
+
 .sponsors {
   padding-top: 50px;
   padding-bottom: 50px;
