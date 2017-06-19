@@ -98,6 +98,13 @@ class MembershipBenefits(Orderable):
 
 class AnnualReports(Orderable):
 	page = ParentalKey('spiresite.AnnualReportsPage', related_name='annual_reports')
+	image = models.ForeignKey(
+		'wagtailimages.Image',
+		null=True,
+		blank=True,
+		on_delete=models.SET_NULL,
+		related_name='report_image'
+	)
 	document = models.ForeignKey(
 			'wagtaildocs.Document',
 			null=True,
@@ -107,6 +114,7 @@ class AnnualReports(Orderable):
 		)
 
 	panels = [
+		ImageChooserPanel('image'),
 		DocumentChooserPanel('document'),
 	]
 
