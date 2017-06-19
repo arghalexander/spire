@@ -25,6 +25,13 @@ class ImageTextBlock(blocks.StreamBlock):
 		icon='doc-full-inverse'
 
 
+class ButtonBlock(blocks.StructBlock):
+	link = blocks.URLBlock()
+	label = blocks.CharBlock()
+
+	class Meta:
+		template = 'spiresite/blocks/button.html'
+		icon = 'link'
 
 
 class LeaderBlock(blocks.StructBlock):

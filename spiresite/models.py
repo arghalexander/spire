@@ -411,6 +411,7 @@ class StandardPage(Page):
 
 	body =							 StreamField([
 										('text', blocks.RichTextBlock()),
+										('button', ButtonBlock()),
 									])
 
 	content_panels = Page.content_panels + [
