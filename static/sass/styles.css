@@ -581,6 +581,10 @@ form input, form textarea {
 .order-details {
   background-color: #891B0D; }
 
+.block-table table tbody tr:nth-child(even) {
+  border-bottom: 0;
+  background-color: #fff; }
+
 .template-homepage {
   padding-top: 0px !important; }
   .template-homepage section.home-header {
