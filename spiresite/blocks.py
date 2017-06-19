@@ -16,6 +16,25 @@ class MenuItemBlock(blocks.StreamBlock):
 
 
 
+class PersonBlock(blocks.StructBlock):
+	image = ImageChooserBlock(null=True)
+	name =  blocks.CharBlock(required=False)
+	title = blocks.CharBlock(required=False)
+	description = blocks.RichTextBlock()
+   
+	class Meta:
+		icon='user'
+
+
+
+class PeopleListBlock(blocks.StreamBlock):
+	person = blocks.ListBlock(PersonBlock())
+
+	class Meta:
+		template = 'spiresite/blocks/people_list.html'
+		icon = 'group'
+
+
 
 class ImageTextBlock(blocks.StreamBlock):
 	image = ImageChooserBlock()
@@ -50,7 +69,7 @@ class ThreeColumnBlock(blocks.StructBlock):
 class TwoColumnBlock(blocks.StructBlock):
 	one = blocks.RichTextBlock()
 	two = blocks.RichTextBlock()
-	
+
 	class Meta:
 		template = 'spiresite/blocks/two_columns.html'
 		icon = 'placeholder'

@@ -415,6 +415,7 @@ class StandardPage(Page):
 	body =							 StreamField([
 										('text', blocks.RichTextBlock()),
 										('button', ButtonBlock()),
+										('people_list', blocks.ListBlock(PersonBlock(), template='spiresite/blocks/people_list.html', icon="group"))
 									])
 
 	content_panels = Page.content_panels + [

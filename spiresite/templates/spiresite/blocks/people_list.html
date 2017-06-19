@@ -1,0 +1,48 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+<section class="gallery-list staff-members ">
+
+
+	<div id="members-row">
+		<div  class="row small-up-2 medium-up-4" >
+
+	
+
+			 {% for member in self %}
+			  <div class="column column-block">
+			  	<a data-open="member-{{forloop.counter}}">
+			     <div class="member">
+			     	<div class="member__image">
+			     		{% image member.image width-350 %}
+			     	</div>
+			     	<div class="member__info">
+			     		<p class="red bold">{{member.name}}</p>
+			     		<p>{{member.title}}</p>
+			     		{{member.description|richtext}}
+			     	</div>
+			    </div>
+			    </a>
+		    </div>
+		    
+			    <div class="large reveal" id="member-{{forloop.counter}}" data-reveal>
+				    <button class="close-button" data-close aria-label="Close modal" type="button">
+					    <span aria-hidden="true">&times;</span>
+					 </button>
+				    <div class="row">
+					    <div class="small-6 columns">
+					    {% image member.image width-450 %}
+					    </div>
+					    <div class="small-6 columns">
+					    	<h3 class="red-line bold">{{member.name}}</h3>
+				     		<p class="bold">{{member.title}}</p>
+				     
+				     		<div class="bio">
+				     		{{member.description|richtext}}
+				     		</div>
+					    </div>
+				    </div>
+				</div>
+		    {% endfor %}
+		</div>
+	</div>
+</section>
