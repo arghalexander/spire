@@ -239,7 +239,13 @@ def member_create(request):
             address.save()
 
 
-            education_formset.save(member=member)
+            education_formset.save()
+
+            for form in education_formset:
+                if form.is_valid():
+                    form = form.save(commit=False)
+                    form.member = member
+                    form.save()
 
         else:
             return render(request, 'members/member_create.html', {
