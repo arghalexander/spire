@@ -239,8 +239,6 @@ def member_create(request):
             address.save()
 
 
-            education_formset.save()
-
             for form in education_formset:
                 if form.is_valid():
                     form = form.save(commit=False)
