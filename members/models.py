@@ -109,7 +109,7 @@ class MemberAddress(models.Model):
 		('ONE_TIME', '1-time'),
 		('PREFERRED', 'Preferred'),
 	)
-	address_type = 						models.CharField(max_length=50,choices=ADDRESS_TYPES, blank=True)
+	address_type = 						models.CharField(max_length=50,choices=ADDRESS_TYPES, blank=True, null=True)
 
 	address_line_one = 					models.CharField(max_length=255)
 	address_line_two = 					models.CharField(max_length=255, blank=True)
