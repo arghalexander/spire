@@ -32,6 +32,7 @@ class MemberAddressForm(ModelForm):
 			'city',
 			'state',
 			'zip_code',
+			'country',
 		]
 
 class MemberEducationForm(ModelForm):

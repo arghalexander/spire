@@ -30,7 +30,7 @@
 
 			<ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge="500" data-tabs id="deeplinked-tabs">
 			  <li class="tabs-title is-active"><a href="#contact" aria-selected="true">Contact Information</a></li>
-			  <li class="tabs-title"><a href="#employment">Employemnet Info</a></li>
+			  <li class="tabs-title"><a href="#employment">Employment Info</a></li>
 			  <li class="tabs-title"><a href="#education">Education</a></li>
 			  <li class="tabs-title"><a href="#bio">Bio</a></li>
 			</ul>
@@ -113,6 +113,10 @@
 
 					<div class="row">
 						<div class="small-12 medium-12 columns">
+							<label>Title</label>
+							<input readonly type="text" name="address_line_one"value="{{member.address.address_line_one}}">
+						</div>
+						<div class="small-12 medium-12 columns">
 							<label>Address</label>
 							<input readonly type="text" name="address_line_one"value="{{member.address.address_line_one}}">
 						</div>
@@ -137,7 +141,7 @@
 							<input readonly type="text" name="state"value="{{member.address.country}}">
 						</div>
 					</div>
-					
+
 
 			  </div>
 			  <!-- / Employment Info -->
