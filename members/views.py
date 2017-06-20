@@ -236,7 +236,7 @@ def member_create(request):
 
 
             address_form.save(commit=False)
-            address_form.member = member
+            address_form.member = member.id
             address_form.save()
 
             education_formset.save(member=member)
