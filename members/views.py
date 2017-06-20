@@ -234,9 +234,6 @@ def member_create(request):
             member.user = request.user
             member.save()
 
-
-            member = Member.objects.get(user=request.user)
-
             addres = address_form.save(commit=False)
             address.member = member
             address.save()
