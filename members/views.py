@@ -238,10 +238,11 @@ def member_create(request):
 			address.member = member
 			address.save()
 
-
+			"""
 			instances = education_formset.save(commit=False)
 			for instance in instances:
 				instance.save(member=member)
+			"""
 
 
 		else:
