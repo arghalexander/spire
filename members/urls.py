@@ -10,7 +10,8 @@ urlpatterns = [
    
  	url(r'^create/$', views.member_create, name='member-create'),
    
-    url(r'^profile/$', views.member_profile, name='member-profile'),
+    url(r'^profile/$', views.my_profile, name='member-profile'),
+
    	url(r'^profile/edit/$', views.member_profile_edit, name='member-profile-edit'),
 
 

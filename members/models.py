@@ -49,10 +49,10 @@ class Member(models.Model):
 	user = 								models.OneToOneField(User, on_delete=models.CASCADE)
 	preferred_name =					models.CharField(max_length=255, blank=True)
 
-	membership_level =					models.ForeignKey(MembershipLevel, related_name="membership_levels", blank=True, default="guest")
+	membership_level =					models.ForeignKey(MembershipLevel, related_name="membership_levels", blank=True, default="Guest")
 	membership_expiration =				models.DateTimeField(blank=True, null=True)
 	
-	image =								models.ImageField(upload_to='members', default='defaults/headshot.png')	
+	image =								models.ImageField(upload_to='members', default='defaults/headshot.png', null=True, blank=True)	
 	
 	mobile_phone =						models.CharField(max_length=254, blank=True)
 	work_phone = 						models.CharField(max_length=254, blank=True)

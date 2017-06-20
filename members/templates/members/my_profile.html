@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% load nav_tags static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-member-profile{% endblock %}
+
+{% block title %}{{member.user.first_name}}{% endblock %}
+
+{% block content %}
+
+
+<section class="page-header">
+	<div class="row">
+		<div class="small-12 columns">
+			<h2 class="red-line bold">{{member.full_name}}</h2>
+		</div>
+	</div>
+
+</section>
+
+
+
+
+<section class="member-info">
+
+	<div class="row">
+		<div class="small-12 columns">
+
+			<ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge="500" data-tabs id="deeplinked-tabs">
+			  <li class="tabs-title is-active"><a href="#contact" aria-selected="true">Contact Information</a></li>
+			  <li class="tabs-title"><a href="#employment">Employemnet Info</a></li>
+			  <li class="tabs-title"><a href="#education">Education</a></li>
+			  <li class="tabs-title"><a href="#bio">Bio</a></li>
+			</ul>
+
+
+			<form>
+			<div class="tabs-content" data-tabs-content="deeplinked-tabs">
+			  
+
+				<!-- Contact Info -->
+			  <div class="tabs-panel is-active" id="contact">
+			  	
+					<div class="row">
+						<div class="small-12 medium-6 columns">
+							<img src="{{member.image.url}}" alt="Member Image"> 
+						</div>
+						<div class="small-12 medium-6 columns">
+								
+							
+							<div class="row">
+								<div class="small-6 columns">
+									<label>First Name</label>
+									<input readonly type="text" name="first_name" value="{{member.user.first_name}}">
+								</div>
+								<div class="small-6 columns">
+									<label>Last Name</label>
+									<input readonly type="text" name="last_name"value="{{member.user.last_name}}">
+								</div>
+								<div class="small-12 columns">
+									<label>Email</label>
+									<input readonly type="email" name="email"value="{{member.user.email}}">
+								</div>
+								<div class="small-12 medium-6 columns">
+									<label>Mobile Phone</label>
+									<input readonly type="tel" name="mobile_phone"value="{{member.mobile_phone}}">
+								</div>
+								<div class="small-12 medium-6 columns">
+									<label>Work Phone</label>
+									<input readonly type="tel" name="work_phone"value="{{member.work_phone}}">
+								</div>
+								<div class="small-12 medium-12 columns">
+									<label>Address</label>
+									<input readonly type="text" name="address_line_one"value="{{member.address.address_line_one}}">
+								</div>
+								<div class="small-12 medium-12 columns">
+									<label class="sr-only">Address 2</label>
+									<input readonly type="text" name="address_line_two"value="{{member.address.address_line_two}}">
+								</div>
+								<div class="small-6 columns">
+									<label>City</label>
+									<input readonly type="text" name="city"value="{{member.address.city}}">
+								</div>
+								<div class="small-6 columns">
+									<label>State</label>
+									<input readonly type="text" name="state"value="{{member.address.state}}">
+								</div>
+								<div class="small-6 columns">
+									<label>zip</label>
+									<input readonly type="text" name="state"value="{{member.address.zip_code}}">
+								</div>
+								<div class="small-6 columns">
+									<label>Country</label>
+									<input readonly type="text" name="state"value="{{member.address.country}}">
+								</div>
+							</div>
+
+							
+
+						</div>
+					</div>
+
+			  </div>
+			  <!-- / Contact Info -->
+
+
+
+				<!-- Employment Info -->
+			  <div class="tabs-panel" id="employment">
+			  
+
+					<div class="row">
+						<div class="small-12 medium-12 columns">
+							<label>Address</label>
+							<input readonly type="text" name="address_line_one"value="{{member.address.address_line_one}}">
+						</div>
+						<div class="small-12 medium-12 columns">
+							<label class="sr-only">Address 2</label>
+							<input readonly type="text" name="address_line_two"value="{{member.address.address_line_two}}">
+						</div>
+						<div class="small-6 columns">
+							<label>City</label>
+							<input readonly type="text" name="city"value="{{member.address.city}}">
+						</div>
+						<div class="small-6 columns">
+							<label>State</label>
+							<input readonly type="text" name="state"value="{{member.address.state}}">
+						</div>
+						<div class="small-6 columns">
+							<label>zip</label>
+							<input readonly type="text" name="state"value="{{member.address.zip_code}}">
+						</div>
+						<div class="small-6 columns">
+							<label>Country</label>
+							<input readonly type="text" name="state"value="{{member.address.country}}">
+						</div>
+					</div>
+					
+
+			  </div>
+			  <!-- / Employment Info -->
+
+
+				<!-- Education -->
+			  <div class="tabs-panel" id="education">
+			  
+
+
+
+			  </div>
+			  <!-- / Education Info -->
+
+
+
+
+				<!-- Bio -->
+			  <div class="tabs-panel" id="bio">
+			  
+
+
+
+			  </div>
+			  <!-- / Bio Info -->
+
+			</form>
+	  	</div>
+	</div>
+
+</section> 
+
+
+{% endblock %}
+

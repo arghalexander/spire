@@ -1,1 +1,33 @@
-profile page
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block title %}{{member}}{% endblock %}
+
+{% block body_class %}template-member-profile{% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+	<div class="small-6 columns text-centered">
+
+		<form action="{% url 'auth_login'  %}?next={{next}}" method="post">
+		    {% csrf_token %}
+		 
+
+
+		</form>
+
+	</div>
+
+	<div class="small-6 columns text-centered">
+		
+
+
+	</div>
+</div>
+
+
+
+{% endblock %}

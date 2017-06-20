@@ -10,6 +10,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from django.conf import settings
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView, CreateView
 from django.db.models import Count, Value, F
@@ -29,8 +31,6 @@ from django.views.decorators.csrf import csrf_exempt
 from events.models import EventAttendance
 from events.serializers import EventAttendanceSerializer
 from django.forms import formset_factory
-
-
 
 
 class MemberViewSet(viewsets.ModelViewSet):
@@ -206,32 +206,55 @@ def index(request):
     return render(request, 'members/index.html')
 
 
-
+@login_required
 def member_create(request):
 
 
     #if member already created go to member edit
     if(Member.objects.filter(user=request.user).count() > 0):
-        return redirect('members:member-profile-edit')
+        return redirect('members:member-profile')
 
-
-
-
+    education_formset = formset_factory(MemberEducationForm)
 
     if request.method == 'POST':
       
-        post_text = request.POST.get('the_post')
+        user_form = MemberUserForm(request.POST, instance=request.user)
 
-        if(address_form.is_valid()):
-            redirect('members:member-profile')
+        member_form = MemberForm(request.POST)
+        address_form = MemberAddressForm(request.POST)
+
+        formset = education_formset(request.POST)
+
+
+        if(address_form.is_valid() and user_form.is_valid() and member_form.is_valid() and formset.is_valid()):
+            #redirect('members:member-profile')
+
+            user_form.save()
+            member = member_form.save(commit=False)
+            member.user = request.user
+            member.save()
+
+
+            address_form.save(commit=False)
+            address_form.member = member.id
+            address_form.save()
+
+            education_formset.save(member=member)
+
+        else:
+            return render(request, 'members/member_create.html', {
+                'user_form': user_form,
+                'member_form': member_form,
+                'address_form': address_form,
+                'education_formset': education_formset
+                })  
+
     else:
-        address_form =  MemberAddressForm()
 
+        address_form =  MemberAddressForm()
         user_form = MemberUserForm()
         member_form = MemberForm()
         address_form = MemberAddressForm()
-        
-        education_formset = formset_factory(MemberEducationForm)
 
 
     return render(request, 'members/member_create.html', {
@@ -242,45 +265,9 @@ def member_create(request):
         })
 
 
-""""
-def create_member_address(request):
-
-    #if member already created go to member edit
-    if(Member.objects.filter(user=request.user).count() > 0):
-        return redirect('members:edit-member-view')
-
-    if request.method == 'POST':
-
-        post_text = request.POST.get('the_post')
-
-        if(address_form.is_valid()):
-            return HttpResponseRedirect('/thanks/')
-    else:
-        address_form =  MemberAddressForm()
-
-    return render(request, 'members/create_address_form.html', {
-        'address_form': address_form,
-        })
-
-def create_member_info(request):
-
-    #if member already created go to member edit
-    if(Member.objects.filter(user=request.user).count() > 0):
-        return redirect('members:edit-member-view')
-    
-    if request.method == 'POST':
-        info_form = MemberForm(request.POST)
-        if(address_form.is_valid()):
-            return HttpResponseRedirect('/thanks/')
-    else:
-        info_form = MemberForm()  
-
-    return render(request, 'members/create_info_form.html', {
-        'info_form': info_form,
-        })
-"""
-
+@login_required
 def member_profile(request):
+
     return render(request, 'members/member_profile.html')
 
 
@@ -288,12 +275,16 @@ def member_profile_edit(request):
     return render(request, 'members/member_profile_edit.html')
 
 
-class CreateMemberView(CreateView):
-    model = Member
-    template_name = 'members/member_create_form.html'
-    fields = [
-        'preferred_name',
-        'phone_preferred',
-        'image',
-        'bio',
-        ]
+
+
+@login_required
+def my_profile(request):
+
+    try:
+        member = Member.objects.get(user=request.user)
+    except Member.DoesNotExist:
+        return redirect('members:create-member')
+
+    return render(request, 'members/my_profile.html', {
+        'member' : member
+        })

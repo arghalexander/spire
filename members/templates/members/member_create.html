@@ -23,14 +23,15 @@
   <div class="row">
     <div class="small-12 medium-8 medium-offset-2 columns">
 
-    	<form action={{form.action}}> 
- 		
+    	<form action="{% url 'members:member-create'%}" method="post"> 
+	 		
+	    	{% csrf_token %}
 
-    	{{user_form}}
+	    	{{user_form}}
 
-    	{{member_form}}
+	    	{{member_form}}
 
-    	{{address_form}}
+	    	{{address_form}}
 
 
 			{{ education_formset.management_form }}
