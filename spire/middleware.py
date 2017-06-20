@@ -7,7 +7,7 @@ def CreateMembershipMiddleware(get_response):
 
 	def middleware(request):
 
-		"""
+		
 		#if user logged in and has not created a profile, direct them to profile create view
 		if not resolve(request.path).view_name == 'members:member-create' and not request.path == '/accounts/logout/' : 
 			if request.user.is_authenticated:
@@ -17,7 +17,7 @@ def CreateMembershipMiddleware(get_response):
 					messages.warning(request, 'Please complete your member profile')
 					return redirect('members:member-create')
 	
-		"""
+		
 		response = get_response(request)
 
 
