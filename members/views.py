@@ -238,12 +238,12 @@ def member_create(request):
 			address.member = member
 			address.save()
 
-			"""
-			instances = education_formset.save(commit=False)
-			for instance in instances:
-				instance.save(member=member)
-			"""
-
+		 
+			for form in education_formset:
+				form = form.save(commit=False)
+				form.member = member
+				form.save()
+		
 
 		else:
 			return render(request, 'members/member_create.html', {
