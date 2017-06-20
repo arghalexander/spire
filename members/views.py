@@ -235,7 +235,7 @@ def member_create(request):
             member.save()
 
 
-            print(member)
+            member = Member.objects.get(user=request.user)
 
             address_form.save(commit=False)
             address_form.member = member
