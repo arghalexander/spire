@@ -283,7 +283,7 @@ def my_profile(request):
     try:
         member = Member.objects.get(user=request.user)
     except Member.DoesNotExist:
-        return redirect('members:create-member')
+        return redirect('members:member-create')
 
     return render(request, 'members/my_profile.html', {
         'member' : member
