@@ -1,7 +1,6 @@
 from rest_framework import viewsets
 import django_filters.rest_framework
 
-
 from .serializers import UserSerializer
 
 from django.contrib.auth.models import User

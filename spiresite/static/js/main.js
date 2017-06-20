@@ -56,6 +56,19 @@ $(document).ready(function(){
         $(selector).after(newElement);
     }
 
-    
 
+    $("form#profile-form:input").change(function(){
+       console.log('changed')
+    });
+
+
+
+    /** Member profile edit */
+    $( "#edit-profile" ).click(function(e) {
+
+      e.preventDefault();
+
+      $(this).hide();
+
+    });
 });

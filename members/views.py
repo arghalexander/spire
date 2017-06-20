@@ -223,10 +223,10 @@ def member_create(request):
 		member_form = MemberForm(request.POST)
 		address_form = MemberAddressForm(request.POST)
 
-		formset = education_formset(request.POST)
+		education_formset = education_formset(request.POST)
 
 
-		if(address_form.is_valid() and user_form.is_valid() and member_form.is_valid() and formset.is_valid()):
+		if(address_form.is_valid() and user_form.is_valid() and member_form.is_valid() and education_formset.is_valid()):
 			#redirect('members:member-profile')
 
 			user_form.save()
@@ -240,10 +240,12 @@ def member_create(request):
 
 		 
 			for form in education_formset:
+				print(form)
 				form = form.save(commit=False)
 				form.member = member
 				form.save()
 		
+			return redirect('members:member-profile')
 
 		else:
 			return render(request, 'members/member_create.html', {
@@ -284,10 +286,18 @@ def member_profile_edit(request):
 @login_required
 def my_profile(request):
 
+
 	try:
 		member = Member.objects.get(user=request.user)
 	except Member.DoesNotExist:
 		return redirect('members:member-create')
+
+
+	#memeber_education = MemberEducation.objects.filter(member=member)
+
+	#address_form =  MemberAddressForm(instance_member=member)
+	#user_form = MemberUserForm(instance=request.user)
+	#member_form = MemberForm(instance=member)
 
 	return render(request, 'members/my_profile.html', {
 		'member' : member

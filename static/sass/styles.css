@@ -800,6 +800,13 @@ form input, form textarea {
     padding: 50px;
     background-color: #FFF; }
 
+.template-member-profile .tabs-title > button {
+  display: block;
+  padding: 1.25rem 1.5rem;
+  font-size: 0.75rem;
+  line-height: 1;
+  color: #1779ba; }
+
 .template-leadership-standard {
   background-color: #891B0D; }
   .template-leadership-standard .rich-text ul {

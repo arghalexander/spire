@@ -58,7 +58,7 @@
 			<div id="fame-slider" class="slider" >
 				 {% for slide in page.fame_gallery.all %}
 
-			      {% image slide.image original as photo %}
+			      	{% image slide.image original as photo %}
 
 			     	<a href="{{photo.url}}" data-fancybox data-caption="{{photo.alt}}">
 						<img src="{{photo.url}}" alt="{{photo.alt}}" class="orbit-image">
