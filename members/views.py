@@ -237,10 +237,9 @@ def member_create(request):
 
             member = Member.objects.get(user=request.user)
 
-            address_form.save(commit=False)
-            address_form.member = member
-            address_form.save()
-
+            addres = address_form.save(commit=False)
+            address.member = member
+            address.save()
 
 
             education_formset.save(member=member)
