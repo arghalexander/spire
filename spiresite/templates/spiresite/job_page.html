@@ -4,16 +4,16 @@
 {% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
 
-{% block title %}{{page.title}}{% endblock %}
+{% block title %}{{job.title}}{% endblock %}
 
-{% block body_class %}template-contact{% endblock %}
+{% block body_class %}template-job-detail{% endblock %}
 
 {% block content %}
 
 <section class="page-header">
 	<div class="row">
 		<div class="small-12 columns">
-			<h2 id="page-heading" class="bold red-line">{{page.heading}}</h2>
+			<h2 id="page-heading" class="bold red-line">{{job.title}}</h2>
 		</div>
 	</div>
 </section>
@@ -21,7 +21,7 @@
 <section class="body-content">
 	<div class="row">
 		<div class="small-12 columns">
-			{{page.page_content|richtext}}
+			{{job.description|richtext}}
 		</div>
 	</div>
 </section>

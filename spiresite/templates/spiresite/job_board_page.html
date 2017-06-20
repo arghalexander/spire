@@ -33,15 +33,15 @@
 			  </thead>
 			  <tbody>
 			  	{% for job in jobs.all %}
-			  		{% with job=job.specific %}
-					    <tr>
-					      <td>{{job.date|date:'d/m/Y'}}</td>
-					      <td><a href="{{job.url}}">{{job.title}}</a></td>
-					      <td>{{job.job_type}}</td>
-					      <td>{{job.location}}</td>
-					      <td>{{job.organization}}</td>
-					    </tr>
-			    	{% endwith %}
+		  		
+				    <tr>
+				      <td>{{job.posted_date|date:'d/m/Y'}}</td>
+				      <td><a href="{% url 'spiresite:job-detail' job.slug %}">{{job.title}}</a></td>
+				      <td>{{job.job_type}}</td>
+				      <td>{{job.location}}</td>
+				      <td>{{job.organization}}</td>
+				    </tr>
+			  
 			    {% endfor %}
 			  
 			  </tbody>

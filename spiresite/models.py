@@ -35,6 +35,7 @@ from wagtail.wagtailsearch import index
 from .blocks import *
 from orderables import *
 from theme_settings import *
+from .model_admin import *
 
 from django.conf import settings
 
@@ -625,13 +626,15 @@ class JobBoardPage(Page):
 
 	def get_context(self, request):
 		context = super(JobBoardPage, self).get_context(request)
-		context['jobs'] = self.get_children().live()
+		#context['jobs'] = self.get_children().live()
+		context['jobs'] = Job.objects.all()
 		return context
 
 
 	def serve(self, request):
 		if not request.user.is_authenticated:
 			return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+
 		return super(JobBoardPage, self).serve(request)
 
 
@@ -683,4 +686,7 @@ class LinkPage(Page):
 	content_panels = Page.content_panels + [
 		PageChooserPanel('page'),
 	]
+
+
+
 
