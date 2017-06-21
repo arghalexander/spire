@@ -322,7 +322,7 @@ def member_profile_edit(request):
 	if request.method == 'POST':
 	  
 		user_form = MemberUserForm(request.POST, instance=request.user)
-		member_form = MemberForm(request.POST,request.FILES, instance=member)
+		member_form = MemberForm(request.POST,request.FILES or None, instance=member)
 		address_form = MemberAddressForm(request.POST, instance=address, prefix="personal",)
 		work_form = MemberProfesionalInformationForm(request.POST, prefix="professional", instance=work_info)
 		
