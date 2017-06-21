@@ -23,9 +23,7 @@ def job_create(request):
 			instance = form.save(commit=False)
 			instance.user = request.user
 			instance.save()
-
 			return redirect('/members-directory/job-board/')
-
 	else:
 		form = JobForm()
 
