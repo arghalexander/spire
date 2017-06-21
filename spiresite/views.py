@@ -24,9 +24,10 @@ def job_create(request):
 			instance.user = request.user
 			instance.save()
 
-			return redirect('/professionals/job-board/')
+			return redirect('/members-directory/job-board/')
 
 	else:
 		form = JobForm()
 
 	return render(request, 'spiresite/job_form.html', {'form': form})
+
