@@ -307,7 +307,7 @@ def my_profile(request):
 def member_profile_edit(request):
 	try:
 		member = Member.objects.get(user=request.user)
-		address = MemberAddress.objects.get_or_create(member=member)
+		address = MemberAddress.objects.get(member=member)
 		work_info, created = MemberProfesionalInformation.objects.get_or_create(member=member)
 	
 	except Member.DoesNotExist:
