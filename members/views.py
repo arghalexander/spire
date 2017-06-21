@@ -336,6 +336,9 @@ def member_profile_edit(request):
 			member_info.user = request.user
 			member_info.save()
 			member_form.user = request.user
+
+			print(member_form)
+
 			member_form.save() 
 			member_form.save_m2m()
 	
