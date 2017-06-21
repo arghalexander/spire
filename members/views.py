@@ -308,7 +308,7 @@ def member_profile_edit(request):
 	try:
 		member = Member.objects.get(user=request.user)
 		address = MemberAddress.objects.get(member=member)
-		work_info = MemberProfesionalInformation.objects.get_or_create(member=member)
+		work_info, created = MemberProfesionalInformation.objects.get_or_create(member=member)
 	
 	except Member.DoesNotExist:
 		return redirect('members:member-create')
