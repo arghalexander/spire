@@ -334,7 +334,10 @@ def member_profile_edit(request):
 			user_form.save()
 			member_info = member_form.save(commit=False)
 			member_info.user = request.user
-			member_info.image = request.FILES['image']
+
+			print(request.FILES)
+
+			#member_info.image = 
 
 			member_info.save()
 			member_form.user = request.user
