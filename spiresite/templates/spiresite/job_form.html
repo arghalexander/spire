@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block title %}New Job{% endblock %}
+
+{% block body_class %}template-job-create{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+	<div class="row">
+		<div class="small-12 medium-10 medium-offset-1 columns">
+			<h2 id="page-heading" class="bold red-line">New Job</h2>
+		</div>
+	</div>
+</section>
+	
+
+
+<section class="body-content">
+	<div class="row">
+		<div class="small-12 medium-10 medium-offset-1 columns">
+			<form method="post"> 
+				{% csrf_token%}
+				{{form.as_p}}
+				<input type="submit" class="button button-red expanded" value="post">
+			</form>
+		</div>
+	</div>
+</section>
+
+{% endblock %}
