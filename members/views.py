@@ -307,21 +307,22 @@ def my_profile(request):
 def member_profile_edit(request):
 	try:
 		member = Member.objects.get(user=request.user)
-		address = MemberAddress.objects.get(member=member)
+		address = MemberAddress.objects.get_or_create(member=member)
 		work_info, created = MemberProfesionalInformation.objects.get_or_create(member=member)
 	
 	except Member.DoesNotExist:
 		return redirect('members:member-create')
-
-
-
+	except MemberAddress.DoesNotExist:
+		return redirect('members:member-create')
+	except MemberProfesionalInformation:
+		return redirect('members:member-create')
 
 	education_formset = modelformset_factory(MemberEducation,fields=('degree', 'program','grad_year'))
 
 	if request.method == 'POST':
 	  
 		user_form = MemberUserForm(request.POST, instance=request.user)
-		member_form = MemberForm(request.POST, instance=member)
+		member_form = MemberForm(request.POST,request.FILES, instance=member)
 		address_form = MemberAddressForm(request.POST, instance=address, prefix="personal",)
 		work_form = MemberProfesionalInformationForm(request.POST, prefix="professional", instance=work_info)
 		
