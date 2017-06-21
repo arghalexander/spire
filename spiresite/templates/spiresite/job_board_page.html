@@ -17,7 +17,15 @@
 		</div>
 	</div>
 </section>
-	
+
+<!---
+<div class="row">
+	<div class="small-12 columns">
+		<a href="">Post A new job</a>
+	</div>
+</div>
+-->
+
 <section class="jobs">
 	<div class="row">
 		<div class="small-12 columns">
@@ -36,7 +44,7 @@
 		  		
 				    <tr>
 				      <td>{{job.posted_date|date:'d/m/Y'}}</td>
-				      <td><a href="{% url 'spiresite:job-detail' job.slug %}">{{job.title}}</a></td>
+				      <td><a href="{% url 'spiresite:job-detail' job.id %}">{{job.title}}</a></td>
 				      <td>{{job.job_type}}</td>
 				      <td>{{job.location}}</td>
 				      <td>{{job.organization}}</td>

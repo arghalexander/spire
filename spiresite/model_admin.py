@@ -1,19 +1,18 @@
 from wagtail.contrib.modeladmin.options import (
     ModelAdmin, modeladmin_register)
-
+from django.contrib.auth.models import User
 from django.db import models
 from wagtail.wagtailcore.fields import RichTextField
 
 
 class Job(models.Model):
-	title = 						models.CharField(blank=True, max_length=255)
-	slug = 							models.SlugField(verbose_name="Job URL",unique=True)
-	job_type = 						models.CharField(blank=True, max_length=255)
-	location = 						models.CharField(blank=True, max_length=255)
-	organization =					models.CharField(blank=True, max_length=255)
-	description =				 	RichTextField(blank=True)
+	title = 						models.CharField(blank=False, max_length=255)
+	job_type = 						models.CharField(blank=False, max_length=255)
+	location = 						models.CharField(blank=False, max_length=255)
+	organization =					models.CharField(blank=False, max_length=255)
+	description =				 	models.TextField(blank=False)
 	posted_date = 					models.DateField(auto_now=True)
-
+	user = 							models.ForeignKey(User)
 
 class JobPageModelAdmin(ModelAdmin):
     model = Job

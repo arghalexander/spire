@@ -105,4 +105,12 @@
         width: 300px;
     
     }
+    .is-dropdown-submenu{
+        a{
+            color: $white; 
+        }
+        .white{
+            color: $white !important;
+        }
+    }
 }

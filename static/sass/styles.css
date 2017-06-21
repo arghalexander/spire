@@ -89,6 +89,15 @@ table a {
   table a :hover {
     color: #571511; }
 
+/** add remove rows for formsets */
+.delete-row {
+  color: #891B0D;
+  padding-left: 20px; }
+
+.add-row {
+  color: #891B0D;
+  padding-left: 5px; }
+
 h4 {
   line-height: 30px; }
 
@@ -260,6 +269,10 @@ h4 {
         background-color: #571511; }
   .top-bar .dropdown.menu > li.opens-right > .is-dropdown-submenu {
     width: 300px; }
+  .top-bar .is-dropdown-submenu a {
+    color: #FFF; }
+  .top-bar .is-dropdown-submenu .white {
+    color: #FFF !important; }
 
 .button-white {
   background-color: #FFF;
@@ -448,6 +461,12 @@ footer {
 
 form input, form textarea {
   border-radius: 6px !important; }
+
+form .errorlist {
+  margin-left: 0px; }
+  form .errorlist li {
+    list-style-type: none;
+    color: #891B0D; }
 
 #payment-form .field {
   display: block;
@@ -811,6 +830,14 @@ form input, form textarea {
   background-color: #891B0D; }
   .template-leadership-standard .rich-text ul {
     columns: 3; }
+
+.template-member-profile-edit .delete-row {
+  color: #891B0D;
+  padding-left: 20px; }
+
+.template-member-profile-edit .add-row {
+  color: #891B0D;
+  padding-left: 5px; }
 
 .template-404 {
   height: 90vh;

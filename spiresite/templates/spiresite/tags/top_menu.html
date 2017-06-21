@@ -27,20 +27,27 @@
           </ul>
         </div>
         <div class="top-bar-right">
-          <ul class="menu">
-              {% if request.user.is_authenticated %}
+            {% if request.user.is_authenticated %}
+              <ul class="dropdown menu" data-dropdown-menu>
                 <li class="nav-item">
-                    <a href="/accounts/logout/">Logout</a>
+                  <a class="bold" href="#">{{ request.user.first_name }}<span class="fa fa-chevron-down" style="padding-left:10px;"></span></a>
+                  <ul class="menu">
+                    <li><a class="white" href="{% url 'members:member-profile' %}">Profile</a>
+                    <li><a class="white" href="/accounts/logout/">Logout</a></li>
+                  </ul>
                 </li>
-               {% else %}
+              </ul> 
+            {% else %}
+              <ul class="menu">
                 <li class="nav-item">
-                    <a href="/accounts/login/">Login</a>
+                  <a href="/accounts/login/">Login</a>
                 </li> 
-                 <li class="nav-item join">
-                    <a href="/accounts/register/">Join</a>
-                </li>    
-              {% endif %}
-          </ul>
+                <li class="nav-item join">
+                  <a href="/accounts/register/">Join</a>
+              </li>   
+               </ul> 
+          {% endif %}
+         
         </div>
       </div>
     </div>

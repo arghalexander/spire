@@ -19,7 +19,7 @@ from django.db.models.functions import TruncMonth
 
 from registration import signals
 
-from .forms import MemberForm, MemberAddressForm, MemberEducationForm, MemberUserForm
+from .forms import MemberForm, MemberAddressForm, MemberEducationForm, MemberUserForm, MemberProfesionalInformationForm, MemberCreateForm
 from .models import *
 from .serializers import *
 from .pagination import StandardResultsSetPagination
@@ -30,7 +30,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from events.models import EventAttendance
 from events.serializers import EventAttendanceSerializer
-from django.forms import formset_factory
+from django.forms import formset_factory,modelformset_factory
 
 
 class MemberViewSet(viewsets.ModelViewSet):
@@ -220,7 +220,7 @@ def member_create(request):
 	  
 		user_form = MemberUserForm(request.POST, instance=request.user)
 
-		member_form = MemberForm(request.POST)
+		member_form = MemberCreateForm(request.POST)
 		address_form = MemberAddressForm(request.POST)
 
 		education_formset = education_formset(request.POST)
@@ -259,7 +259,7 @@ def member_create(request):
 
 		address_form =  MemberAddressForm()
 		user_form = MemberUserForm()
-		member_form = MemberForm()
+		member_form = MemberCreateForm()
 		address_form = MemberAddressForm()
 
 
@@ -285,8 +285,6 @@ def member_profile_edit(request):
 
 @login_required
 def my_profile(request):
-
-
 	try:
 		member = Member.objects.get(user=request.user)
 	except Member.DoesNotExist:
@@ -301,4 +299,90 @@ def my_profile(request):
 
 	return render(request, 'members/my_profile.html', {
 		'member' : member
+		})
+
+
+
+@login_required
+def member_profile_edit(request):
+	try:
+		member = Member.objects.get(user=request.user)
+		address = MemberAddress.objects.get(member=member)
+		work_info = MemberProfesionalInformation.objects.get(member=member)
+	except Member.DoesNotExist:
+		return redirect('members:member-create')
+
+
+
+
+	education_formset = modelformset_factory(MemberEducation,fields=('degree', 'program','grad_year'))
+
+	if request.method == 'POST':
+	  
+		user_form = MemberUserForm(request.POST, instance=request.user)
+		member_form = MemberForm(request.POST, instance=member)
+		address_form = MemberAddressForm(request.POST, instance=address, prefix="personal",)
+		work_form = MemberProfesionalInformationForm(request.POST, prefix="professional", instance=work_info)
+		
+		education_formset = education_formset(request.POST)
+
+		if(address_form.is_valid() and user_form.is_valid() and member_form.is_valid() and education_formset.is_valid()) and work_form.is_valid():
+	
+
+			user_form.save()
+			member_info = member_form.save(commit=False)
+			member_info.user = request.user
+			member_info.save()
+
+	
+			address = address_form.save(commit=False)
+			address.member = member
+
+			address.save()
+
+
+			work = work_form.save(commit=False)
+			work.member = member
+			work.save()
+
+
+			for form in education_formset:
+				if form.is_valid() and not form.empty_permitted:
+					form = form.save(commit=False)
+					form.member = member
+					form.save()
+		
+
+			return redirect('members:member-profile')
+
+		else:
+
+			return render(request, 'members/my_profile_edit.html', {
+				'user_form': user_form,
+				'member_form': member_form,
+				'address_form': address_form,
+				'education_formset': education_formset,
+				'work_form': work_form,
+				'member': member
+				})  
+
+	else:
+
+		
+		education_formset = education_formset(queryset=MemberEducation.objects.filter(member=member))
+
+		user_form = MemberUserForm(instance=request.user)
+		member_form = MemberForm(instance=member)
+		address_form = MemberAddressForm(prefix="personal", instance=address)
+
+		work_form = MemberProfesionalInformationForm(prefix="professional", instance=work_info)
+
+
+	return render(request, 'members/my_profile_edit.html', {
+		'member' : member,
+		'user_form': user_form,
+		'member_form': member_form,
+		'address_form': address_form,
+		'work_form': work_form,
+		'education_formset': education_formset,
 		})

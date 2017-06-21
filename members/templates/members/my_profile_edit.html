@@ -4,7 +4,7 @@
 {% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
 
-{% block body_class %}template-member-profile-editl{% endblock %}
+{% block body_class %}template-member-profile-edit{% endblock %}
 
 {% block title %}{{member.user.first_name}}{% endblock %}
 
@@ -13,29 +13,220 @@
 
 <section class="page-header">
 	<div class="row">
-		<div class="small-12 columns">
-			<h2 class="red-line">Edit Member Profile</h2>
+		<div class="small-10 columns">
+			<h2 class="red-line bold">{{member.full_name}}  {{member.degree_string}}</h2>
 		</div>
 	</div>
-
 </section>
 
 
-<section class="pricing">
+<section class="member-info">
+
 	<div class="row">
 		<div class="small-12 columns">
-		
-		</div>
+
+			<form id="profile-form" method="post">
+			  	{% csrf_token %}
+				<div class="row">
+					<div class="small-12 medium-6 columns">
+						<div class="callout">
+							<img src="{{member.image.url}}" alt="Member Image"> 
+							{{member_form.image.errors}}
+							{{member_form.image.label_tag}}
+							{{member_form.image}}
+						</div>
+					</div>
+
+
+					<div class="small-12 medium-6 columns">
+
+						<div class="callout">
+							<h4>Contact Information</h4>
+							{{ user_form.non_field_errors }}
+							{{ member_form.non_field_errors }}
+							{{ address_form.non_field_errors }}
+							<div class="row">
+								<div class="small-6 columns">
+									{{user_form.first_name.errors}}
+								    {{user_form.first_name.label_tag}}
+								    {{user_form.first_name}}
+								</div>
+								<div class="small-6 columns">
+									{{user_form.last_name.errors}}
+								    {{user_form.last_name.label_tag}}
+								    {{user_form.last_name}}
+								</div>
+								<div class="small-12 medium-6 columns">
+									{{member_form.mobile_phone.errors}}
+								    {{member_form.mobile_phone.label_tag}}
+								    {{member_form.mobile_phone}}
+								</div>
+								<div class="small-12 medium-6 columns">
+									{{member_form.work_phone.errors}}
+								    {{member_form.work_phone.label_tag}}
+								    {{member_form.work_phone}}
+								</div>
+								<div class="small-12 medium-12 columns">
+									{{address_form.address_line_one.errors}}
+								    {{address_form.address_line_one.label_tag}}
+								    {{address_form.address_line_one}}
+								</div>
+								<div class="small-12 medium-12 columns">
+									{{address_form.address_line_two.errors}}
+								    {{address_form.address_line_two.label_tag}}
+								    {{address_form.address_line_two}}
+								</div>
+								<div class="small-12 columns">
+									{{member_form.region.errors}}
+								    {{member_form.region.label_tag}}
+								    {{member_form.region}}
+								</div>
+								<div class="small-6 columns">
+									{{address_form.city.errors}}
+								    {{address_form.city.label_tag}}
+								    {{address_form.city}}
+								</div>
+								<div class="small-6 columns">
+									{{address_form.state.errors}}
+								    {{address_form.state.label_tag}}
+								    {{address_form.state}}
+								</div>
+								<div class="small-6 columns">
+									{{address_form.zip_code.errors}}
+								    {{address_form.zip_code.label_tag}}
+								    {{address_form.zip_code}}
+								</div>
+								<div class="small-6 columns">
+									{{address_form.country.errors}}
+								    {{address_form.country.label_tag}}
+								    {{address_form.country}}
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="small-12 medium-6 columns">
+			  
+						<div class="callout">
+							<h4>Professional Information</h4>
+							{{ work_form.non_field_errors }}
+							<div class="row">
+								<div class="small-12 medium-12 columns">	
+									{{work_form.title.errors}}
+								    {{work_form.title.label_tag}}
+								    {{work_form.title}}
+								</div>
+								<div class="small-12 medium-12 columns">
+									{{work_form.company.errors}}
+								    {{work_form.company.label_tag}}
+								    {{work_form.company}}
+								</div>
+								<div class="small-12 medium-12 columns">
+									{{work_form.industry.errors}}
+								    {{work_form.industry.label_tag}}
+								    {{work_form.industry}}
+								</div>
+								<div class="small-12 columns">
+									{{work_form.address_line_one.errors}}
+								    {{work_form.address_line_one.label_tag}}
+								    {{work_form.address_line_one}}
+								</div>
+								<div class="small-12 columns">
+									{{work_form.address_line_two.errors}}
+								    {{work_form.address_line_two.label_tag}}
+								    {{work_form.address_line_two}}
+								</div>
+								<div class="small-6 columns">
+									{{work_form.city.errors}}
+								    {{work_form.city.label_tag}}
+								    {{work_form.city}}
+								</div>
+								<div class="small-6 columns">
+									{{work_form.state.errors}}
+								    {{work_form.state.label_tag}}
+								    {{work_form.state}}
+								</div>
+								<div class="small-6 columns">
+									{{work_form.zip_code.errors}}
+								    {{work_form.zip_code.label_tag}}
+								    {{work_form.zip_code}}
+								</div>
+								<div class="small-6 columns">
+									{{work_form.country.errors}}
+								    {{work_form.country.label_tag}}
+								    {{work_form.country}}
+								</div>
+							
+							</div>
+						</div>
+					</div>
+					<div class="small-12 medium-6 columns">
+						<div class="callout">
+							<h4>Education Information</h4>
+						  	
+							{% for dict in formset.errors %}
+							    {% for error in dict.values %}
+							        {{ error }}
+							    {% endfor %}
+							{% endfor %}
+						  	{{ education_formset.management_form }}
+					    	{% for form in education_formset %}
+
+					    		{% for hidden in 	form.hidden_fields %}
+						        	{{ hidden }}
+						    	{% endfor %}   
+					    		<div class="row formset-row">
+						    		<div class="small-4 medium-4 columns">
+							  			{{form.degree.errors}}
+									    {{form.degree.label_tag}}
+									    {{form.degree}}
+							  		</div>
+							  		<div class="small-4 medium-4 columns">
+							  			{{form.program.errors}}
+									    {{form.program.label_tag}}
+									    {{form.program}}
+							  		</div>
+							  		<div class="small-4 medium-4 columns">
+							  			{{form.grad_year.errors}}
+									    {{form.grad_year.label_tag}}
+									    {{form.grad_year}}
+							  		</div>
+						  		</div>
+					    	{% endfor %}
+					    	
+					    	<script type="text/javascript">
+							    $(function() {
+							        $('.formset-row').formset({
+							            prefix: '{{ education_formset.prefix }}'
+							        });
+							    })
+							</script>
+						
+					  	</div>
+					 </div>
+				</div>
+				<div class="row">
+					<div class="small-12 columns">
+						<div class="callout">
+					  		<h4>Bio</h4>
+					  		{{member_form.bio.errors}}
+					  		{{member_form.bio}}
+				  		</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="small-12 columns">
+						<input type="submit" class="button button-red expanded" value="save">
+					</div>
+				</div>
+			 
+			</form>
+
+	  	</div>
 	</div>
-	<div class="row">
-		<div class="small-12 columns">
-			<table class="table">
-					
-				</tbody>
-			</table>
-			
-		</div>
-	</div>
+
 </section> 
 
 

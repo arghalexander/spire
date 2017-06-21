@@ -35,12 +35,14 @@ $(document).ready(function(){
     });
 
 
+
    
      $('#add_more').click(function() {
-        cloneMore('div.table:last', 'service');
+        cloneMore('#form-row', 'service');
     });
      function cloneMore(selector, type) {
         var newElement = $(selector).clone(true);
+        
         var total = $('#id_' + type + '-TOTAL_FORMS').val();
         newElement.find(':input').each(function() {
             var name = $(this).attr('name').replace('-' + (total-1) + '-','-' + total + '-');

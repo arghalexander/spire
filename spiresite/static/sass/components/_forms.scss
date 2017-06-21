@@ -6,6 +6,14 @@ form{
 	
 
 
+	.errorlist{
+		margin-left: 0px;
+		li{
+			list-style-type: none;
+			color: $red;
+		}
+	}
+
 }
 
 
