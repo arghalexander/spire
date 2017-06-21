@@ -1,5 +1,5 @@
 from django import forms
-
+from .models import Job
 
 
 class ContactForm(forms.Form):
@@ -12,10 +12,7 @@ class ContactForm(forms.Form):
 
 
 
-
-class JobForm(forms.Form):
-    title = forms.CharField(max_length=255)
-    job_type = forms.CharField(max_length=255)
-    location = forms.CharField(max_length=255)
-    organization = forms.CharField(max_length=255)
-    description = forms.CharField(widget=forms.Textarea,label='Description')
+class JobForm(forms.ModelForm):
+    class Meta:
+        model = Job
+        fields = ['title', 'job_type','location','organization','description']
