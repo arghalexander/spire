@@ -345,6 +345,7 @@ def member_profile_edit(request):
 
 			address.save()
 
+			
 			work = work_form.save(commit=False)
 			work.member = member
 			work.save()
