@@ -10,8 +10,6 @@ class ContactForm(forms.Form):
     message = forms.CharField(widget=forms.Textarea,label='Message')
 
 
-
-
 class JobForm(forms.ModelForm):
     class Meta:
         model = Job
