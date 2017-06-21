@@ -335,7 +335,7 @@ def member_profile_edit(request):
 			member_info = member_form.save(commit=False)
 			member_info.user = request.user
 			member_info.save()
-			member_info.save_m2m()
+			member_form.save_m2m()
 	
 			address = address_form.save(commit=False)
 			address.member = member
