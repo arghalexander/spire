@@ -329,15 +329,10 @@ def member_profile_edit(request):
 		education_formset = education_formset(request.POST)
 
 		if(address_form.is_valid() and user_form.is_valid() and member_form.is_valid() and education_formset.is_valid()) and work_form.is_valid():
-	
 
 			user_form.save()
 			member_info = member_form.save(commit=False)
 			member_info.user = request.user
-
-			print(request.FILES)
-
-			#member_info.image = 
 
 			member_info.save()
 			member_form.user = request.user
