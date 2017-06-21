@@ -144,12 +144,12 @@ class MemberProfesionalInformation(models.Model):
 	industry =							models.ForeignKey(MemberIndustry, related_name="member_industry", blank=True, null=True)		
 
 
-	address_line_one = 					models.CharField(max_length=255)
+	address_line_one = 					models.CharField(max_length=255, blank=True)
 	address_line_two = 					models.CharField(max_length=255, blank=True)
-	city = 								models.CharField(max_length=255)
-	state = 							models.CharField(max_length=255)
-	zip_code =							models.CharField(max_length=255)
-	country = 							models.CharField(max_length=255)
+	city = 								models.CharField(max_length=255, blank=True)
+	state = 							models.CharField(max_length=255, blank=True)
+	zip_code =							models.CharField(max_length=255, blank=True)
+	country = 							models.CharField(max_length=255, blank=True)
 
 	assistant_name = 					models.CharField(max_length=255, blank=True)
 	assistant_email = 					models.EmailField(max_length=255,blank=True)
