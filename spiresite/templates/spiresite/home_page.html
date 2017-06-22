@@ -93,19 +93,20 @@
 
 				<div class="featured-event__content">
 					<h3 class="red-line">Featured Event</h3>
+					<a href="{% url 'events:event-detail' page.featured_event.slug %}">
+						<div class="featured_image">
 
-					<div class="featured_image">
-						{% image page.featured_event.image fill-600x300 %}
-						<div class="event-block__date">
-							<div class="month">
-								{{page.featured_event.start|date:'M'}}
-							</div>
-							<div class="date">
-								{{page.featured_event.start|date:'d'}}
+							{% image page.featured_event.image fill-600x300 %}
+							<div class="event-block__date">
+								<div class="month">
+									{{page.featured_event.start|date:'M'}}
+								</div>
+								<div class="date">
+									{{page.featured_event.start|date:'d'}}
+								</div>
 							</div>
 						</div>
-					</div>
-
+					</a>
 					<div class="featured-event__text">
 						{{page.featured_event.start|date:'M d, Y'}}
 						<h4 class="bold" style="padding-top: 10px;">{{page.featured_event.title}}</h4>
@@ -115,7 +116,7 @@
 					<hr>
 
 
-					<a class="button button-red button-purchase expanded" href="{{featured_event.0.slug}}">Purchase Tickets</a>
+					<a class="button button-red button-purchase expanded" href="{% url 'events:event-detail' page.featured_event.slug %}">Purchase Tickets</a>
 				</div>
 
 			
