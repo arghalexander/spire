@@ -28,7 +28,6 @@ def index(request):
     return render(request, 'events/event_detail.html', {'events': events})
 
 
-@login_required
 def event_detail(request,slug):
     
     try:
@@ -36,18 +35,21 @@ def event_detail(request,slug):
     except Event.DoesNotExist:
         raise Http404("Event does not exist")
     
-    try:
-        member = Member.objects.get(user=request.user)
-    except Member.DoesNotExist:
-        messages.error(request, 'Membership not found')
-        logout(request)
+    #dont get pricing if user is not logged in
+    if request.user.is_authenticated():
+        try:
+            member = Member.objects.get(user=request.user)
+        except Member.DoesNotExist:
+            messages.error(request, 'Membership not found')
+            logout(request)
 
 
-    membership_level = member.membership_level
-    #make sure it only returns 1 object
-    event_price = EventPricing.objects.filter(event=event,level=membership_level).order_by('event_price').first()
+        membership_level = member.membership_level
+        #make sure it only returns 1 object
+        event_price = EventPricing.objects.filter(event=event,level=membership_level).order_by('event_price').first()
 
-    return render(request, 'events/event_detail.html', {'event': event, 'price': event_price})
+        return render(request, 'events/event_detail.html', {'event': event, 'price': event_price})
+    return render(request, 'events/event_detail.html', {'event': event})
 
 
 def event_register(request,slug):

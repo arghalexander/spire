@@ -54,9 +54,15 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>You do not have access to register for this event, Please upgrade your membership if you would like to attend</td>
-								<td width="250"></td>
-								<td width=250><a href="/members-directory/membership/" class="button button-red expanded">Upgrade Membership</a></td>
+								{% if user.is_authenticated %}
+									<td>You do not have access to register for this event, Please upgrade your membership if you would like to attend</td>
+									<td width="250"></td>
+									<td width=250><a href="/members-directory/membership/" class="button button-red expanded">Upgrade Membership</a></td>
+								{% else %}
+									<td>Please login to view pricing and register for this event</td>
+									<td width="250"></td>
+									<td width=250><a href="{% url 'login'%}" class="button button-red expanded">Login</a></td>
+								{% endif %}
 							</tr>
 					{% endif %}
 				</tbody>
