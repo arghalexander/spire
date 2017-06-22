@@ -13,7 +13,8 @@ from django.template.loader import render_to_string
 from registration import signals
 from registration.views import ActivationView as BaseActivationView
 from registration.views import RegistrationView as BaseRegistrationView
-
+from django.core.mail import EmailMultiAlternatives
+from django.utils.html import strip_tags
 
 REGISTRATION_SALT = getattr(settings, 'REGISTRATION_SALT', 'registration')
 
@@ -26,7 +27,7 @@ class RegistrationView(BaseRegistrationView):
     the activation key is simply the username, signed using Django's
     TimestampSigner, with HMAC verification on activation.
     """
-    email_body_template = 'registration/activation_email.txt'
+    email_body_template = 'registration/activation_email.html'
     email_subject_template = 'registration/activation_email_subject.txt'
 
     def register(self, form):
@@ -80,16 +81,20 @@ class RegistrationView(BaseRegistrationView):
         Send the activation email. The activation key is simply the
         username, signed using TimestampSigner.
         """
-        activation_key = self.get_activation_key(user)
-        context = self.get_email_context(activation_key)
-        context.update({
-            'user': user
-        })
-        subject = render_to_string(self.email_subject_template,
-                                   context)
-        # Force subject to a single line to avoid header-injection
-        # issues.
+       
+        subject = render_to_string(self.email_subject_template)
         subject = ''.join(subject.splitlines())
-        message = render_to_string(self.email_body_template,
-                                   context)
-        user.email_user(subject, message, settings.DEFAULT_FROM_EMAIL)
+        
+        message = render_to_string(self.email_body_template,{'site': get_current_site(self.request), 'activation_key': self.get_activation_key(user)})
+
+        subject, from_email, to = subject, settings.DEFAULT_FROM_EMAIL, user.email
+        
+
+        html_content = message
+        text_content = strip_tags(message)
+        
+        msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+
+        #user.email_user(subject, message, settings.DEFAULT_FROM_EMAIL)
