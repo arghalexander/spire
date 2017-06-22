@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect,render_to_response
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
@@ -140,7 +140,15 @@ def event_add_to_cart(request):
 		messages.add_message(request, messages.ERROR, "Event does not exist")
 		
 
-	member = Member.objects.get(user=request.user)
+	try:
+		member = Member.objects.get(user=request.user)
+	except Member.DoesNotExist:
+		redirect('login')
+
+	if EventAttendance.objects.filter(member=member, event=event).count() > 0:
+		messages.warning(request,'You Are already registered for this event')
+		return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 
 	event_price = EventPricing.objects.get(event=event, level=member.membership_level)
 

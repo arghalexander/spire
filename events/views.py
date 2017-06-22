@@ -44,11 +44,18 @@ def event_detail(request,slug):
             logout(request)
 
 
+        #if already registered
+        if EventAttendance.objects.filter(member=member, event=event).count() > 0:
+            registered = True
+        else:
+            registered = False
+
         membership_level = member.membership_level
         #make sure it only returns 1 object
         event_price = EventPricing.objects.filter(event=event,level=membership_level).order_by('event_price').first()
 
-        return render(request, 'events/event_detail.html', {'event': event, 'price': event_price})
+        return render(request, 'events/event_detail.html', {'event': event, 'price': event_price, 'registered': registered})
+
     return render(request, 'events/event_detail.html', {'event': event})
 
 

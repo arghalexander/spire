@@ -49,6 +49,16 @@
         {% endblock %}
 
       
+        {% if messages %}
+        <div class="row">
+            <div class="small-12 columns">
+                {% for message in messages %}
+                <p {% if message.tags %} class="callout {{ message.tags }}"{% endif %}>{{ message }}</p>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
 
 
         <!--[if lt IE 8]>
