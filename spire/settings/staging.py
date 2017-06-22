@@ -1,3 +1,27 @@
 from __future__ import absolute_import, unicode_literals
 
 from .base import *
+
+
+
+SOCIAL_AUTH_FACEBOOK_KEY = '705930582941910'
+SOCIAL_AUTH_FACEBOOK_SECRET = '594ee0dbd5353a8984639fa8bb05503c'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_API_VERSION = '2.9'
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+  'locale': 'ru_RU',
+  'fields': 'id, name, email'
+}
+
+
+SOCIAL_AUTH_LINKEDIN_KEY = '81dxu2x8vfn5ql'
+SOCIAL_AUTH_LINKEDIN_SECRET = 'TVQukKkIMprtrsot'
+
+
+STRIPE_API_KEY = "pk_test_flWrZUy1TeB0z9msSMz67lPY"
+STRIPE_SECRET_KEY = "sk_test_es7mrA52AFoENwUyFzOP8SAI"
+
+
+GOOGLE_MAPS_V3_APIKEY = "AIzaSyAuAQVs-4VRFdR1-9s94H_CxmMr2QLiYpM"
+GEO_WIDGET_DEFAULT_LOCATION = { 'lat': '37.4554996','lng': '-122.1996202,11.96' }
+
