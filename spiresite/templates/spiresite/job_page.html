@@ -22,8 +22,23 @@
 
 <section class="body-content">
 	<div class="row">
-		<div class="small-12 columns">
-			{{job.description|richtext}}
+		<div class="small-12 medium-6 columns">
+			<div class="callout">
+				<p><b>Title:</b> {{job.title}}</p>
+				<p><b>Job Type:</b> {{job.job_type}}</p>
+				<p><b>Location:</b> {{job.location}}</p>
+				<p><b>Website:</b> {{job.website}}</p>
+				<p><b>Organization:</b> {{job.organization}}</p>
+				<p><b>Start Date:</b> {{job.start_date}}</p>
+				<p><b>Expiration Date:</b> {{job.expiration_date}}</p>
+			</div>
+		</div>
+
+		<div class="small-12 medium-6 columns">
+			<div class="callout">
+				<h5>Job Description</h5>
+				{{job.description}}
+			</div>
 		</div>
 	</div>
 </section>

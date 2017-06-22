@@ -25,7 +25,16 @@
 		<div class="small-12 medium-10 medium-offset-1 columns">
 			<form method="post"> 
 				{% csrf_token%}
-				{{form.as_p}}
+				{{form}}
+
+				<div class="row">
+					<div class="small-12 medium-6 columns">
+
+
+					</div>
+				</div>
+
+
 				<input type="submit" class="button button-red expanded" value="post">
 			</form>
 		</div>

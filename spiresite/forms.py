@@ -2,6 +2,11 @@ from django import forms
 from .models import Job
 
 
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
 class ContactForm(forms.Form):
     first_name = forms.CharField(label='First Name', max_length=255)
     last_name = forms.CharField(label='Last Name', max_length=255)
@@ -13,4 +18,8 @@ class ContactForm(forms.Form):
 class JobForm(forms.ModelForm):
     class Meta:
         model = Job
-        fields = ['title', 'job_type','location','organization','description']
+        fields = ['title', 'job_type','start_date','expiration_date','website','location','organization','description']
+        widgets = {
+            'start_date': DateInput(),
+            'expiration_date': DateInput(),
+        }
