@@ -1,12 +1,12 @@
 from rest_framework import viewsets
 import django_filters.rest_framework
-
+from django.shortcuts import render, redirect
 from .serializers import UserSerializer
 
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.views import login
 
 class UserViewSet(viewsets.ModelViewSet):
 	queryset = User.objects.all()
@@ -14,3 +14,10 @@ class UserViewSet(viewsets.ModelViewSet):
 	filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
 	filter_fields = ('id', 'first_name','last_name','groups')
 
+
+
+def check_login(request):
+    if request.user.is_authenticated():
+        return redirect('/')
+    else:
+        return login(request)

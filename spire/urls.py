@@ -31,7 +31,7 @@ from spire.registration.views import RegistrationView
 from members.views import MemberViewSet, MembershipLevelViewSet, MemberAddressViewSet, MemberNoteViewSet, MemberRegionViewSet, MemberIndustryViewSet, member_profile
 from events.views import EventViewSet, EventAttendanceViewSet
 
-from .views import UserViewSet
+from .views import UserViewSet, check_login
 
 
 from rest_framework import routers
@@ -66,7 +66,7 @@ urlpatterns = [
     url(r'^events/', include('events.urls', namespace='events')),
     
     url(r'^accounts/register/$',  RegistrationView.as_view(form_class=MemberRegistrationForm), name='registration_register'),
-    
+    url(r'^accounts/login/$', check_login),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
 

@@ -85,11 +85,11 @@ class RegistrationView(BaseRegistrationView):
         subject = render_to_string(self.email_subject_template)
         subject = ''.join(subject.splitlines())
         
-        message = render_to_string(self.email_body_template,{'site': get_current_site(self.request), 'activation_key': self.get_activation_key(user)})
+        message = render_to_string(self.email_body_template,{'site': get_current_site(self.request),'activation_key': self.get_activation_key(user)})
+
 
         subject, from_email, to = subject, settings.DEFAULT_FROM_EMAIL, user.email
         
-
         html_content = message
         text_content = strip_tags(message)
         

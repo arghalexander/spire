@@ -6,6 +6,8 @@ from django.http import HttpResponse,Http404
 from rest_framework.decorators import detail_route, list_route
 from django.contrib import messages
 
+from django.contrib.auth.decorators import login_required
+
 from .models import Event, EventAttendance,EventPricing
 from .serializers import *
 from members.serializers import MemberSerializer  
@@ -26,7 +28,9 @@ def index(request):
     return render(request, 'events/event_detail.html', {'events': events})
 
 
+@login_required
 def event_detail(request,slug):
+    
     try:
         event = Event.objects.get(slug=slug)
     except Event.DoesNotExist:
