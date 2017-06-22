@@ -9,6 +9,8 @@ from django.contrib import messages
 from cart.cart import Cart
 import stripe
 
+import datetime 
+
 from products.models import MembershipProduct, EventProduct
 from events.models import EventPricing, Event, EventAttendance
 from members.models import Member
@@ -69,6 +71,7 @@ def membership_checkout(request):
 	
 
 	for item in cart:
+		selected_membership = item.product
 		description = item.product.name
 
 
@@ -90,7 +93,12 @@ def membership_checkout(request):
 				 )
 
 				cart.clear()
-				
+
+				member = Member.objects.get(user=request.user)
+				member.membership_level = selected_membership.membership_level
+				member.membership_expiration = datetime.datetime.now() + datetime.timedelta(days=selected_membership.membership_length*365)
+				member.save()
+
 	
 			  	return redirect('checkout:membership-success')
 
@@ -155,6 +163,7 @@ def event_cart(request):
 	return render(request, 'checkout/event_cart.html', dict(cart=Cart(request)))
 
 
+@login_required
 def event_checkout(request):
 
 	#get cart total
@@ -190,8 +199,12 @@ def event_checkout(request):
 		  )
 		  cart.clear()
 
+
 		  member = Member.objects.get(user=request.user)
+		
 		  attendance = EventAttendance.objects.create(member=member, event=event)
+
+
 
 		  return redirect('checkout:event-success')
 		except stripe.error.CardError as e:
