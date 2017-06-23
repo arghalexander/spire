@@ -338,6 +338,12 @@ footer {
   footer .founding {
     padding-top: 30px;
     padding-bottom: 30px; }
+  footer #footer-sponsors ul {
+    margin: 0px;
+    columns: 3; }
+    footer #footer-sponsors ul li {
+      text-align: center;
+      list-style-type: none; }
 
 .srec-menu {
   border-bottom: 1px solid #EFEFEF;

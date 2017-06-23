@@ -19,4 +19,16 @@ footer{
 		padding-top: 30px;
 		padding-bottom: 30px;
 	}
+
+	#footer-sponsors{
+		ul{
+			margin: 0px;
+			columns: 3;
+			li{
+				text-align: center;
+				list-style-type: none;
+
+			}
+		}
+	}
 }
