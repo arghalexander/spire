@@ -835,6 +835,10 @@ form .errorlist {
   line-height: 1;
   color: #1779ba; }
 
+.template-member-profile #profile-image {
+  max-height: 400px;
+  object-fit: cover; }
+
 .template-leadership-standard {
   background-color: #891B0D; }
   .template-leadership-standard .rich-text ul {

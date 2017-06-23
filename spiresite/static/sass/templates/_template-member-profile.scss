@@ -7,4 +7,9 @@
 	    line-height: 1;
 	    color: #1779ba;
 	}	
+
+	#profile-image{
+		max-height: 400px;
+		object-fit: cover;
+	}
 }
