@@ -30,7 +30,13 @@
 		<div class="small-4 columns">
 			<div class="full-member product-block">
 				<div class="product__title">
-					<h5 class="bold">Full Membership</h5>
+					<h5 class="bold">Full Membership
+					{% if user.member.membership_level == page.full_membership_yearly.membership_level %}
+						(Current)
+					{% elif user.member.membership_level == page.full_membership_5_years.membership_level %}
+						(Current)
+					{% endif %}
+					</h5>
 				</div>
 				<div class="product__content">
 					<div class="text">
@@ -53,7 +59,10 @@
 		<div class="small-4 columns">
 			<div class="full-member product-block">
 				<div class="product__title">
-					<h5 class="bold">Full Young Alumni Membership</h5>
+					<h5 class="bold">Full Young Alumni Membership {% if user.member.membership_level == page.full_young_yearly.membership_level %}
+						(Current)
+					{% endif %}
+					</h5>
 				</div>
 				<div class="product__content">
 					<div class="text">
@@ -73,7 +82,9 @@
 		<div class="small-4 columns">
 			<div class="full-member product-block">
 				<div class="product__title">
-					<h5 class="bold">Full Friends of SPIRE Membership</h5>
+					<h5 class="bold">Full Friends of SPIRE Membership {% if user.member.membership_level == page.full_friends_yearly.membership_level %}
+						(Current)
+					{% endif %}</h5>
 				</div>
 				<div class="product__content">
 					<div class="text">

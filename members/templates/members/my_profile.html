@@ -28,6 +28,9 @@
 	<div class="row">
 		<div class="small-12 columns">
 
+			
+
+
 			<ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge="500" data-tabs id="deeplinked-tabs">
 			  <li class="tabs-title is-active"><a href="#contact" aria-selected="true">Contact Information</a></li>
 			  <li class="tabs-title"><a href="#employment">Employment Info</a></li>
@@ -47,6 +50,10 @@
 						<div class="small-12 medium-6 columns">
 							<div class="callout">
 								<img src="{{member.image.url}}" alt="Member Image"> 
+							</div>
+							<div class="callout small">
+							  <h5>Current Membership Level: {{user.member.membership_level}}</h5>
+							 
 							</div>
 						</div>
 						<div class="small-12 medium-6 columns">
