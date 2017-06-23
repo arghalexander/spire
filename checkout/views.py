@@ -11,7 +11,7 @@ import stripe
 
 import datetime 
 
-from products.models import MembershipProduct, EventProduct
+from products.models import MembershipProduct, EventProduct, MembershipLevel
 from events.models import EventPricing, Event, EventAttendance
 from members.models import Member
 
@@ -235,3 +235,115 @@ def event_success(request):
 	cart.clear()
 	return render(request, 'checkout/event_checkout_success.html')
 
+
+
+@login_required
+def combo_add_to_cart(request):
+	"""
+	Add a event pricing object to cart
+	"""
+	event_id = request.GET.get('event', '')
+	#membership = request.GET.get('membership', '')
+
+	try:
+		event = Event.objects.get(id=event_id)
+	except Event.DoesNotExist:
+		messages.add_message(request, messages.ERROR, "Event does not exist")
+		
+	try:
+		member = Member.objects.get(user=request.user)
+	except Member.DoesNotExist:
+		redirect('login')
+
+	if EventAttendance.objects.filter(member=member, event=event).count() > 0:
+		messages.warning(request,'You Are already registered for this event')
+		return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+	
+	membership = MembershipProduct.objects.get(id=5)
+	
+	cart = Cart(request)
+	cart.clear()
+	cart.add(event, membership.price , 1)
+
+	return redirect('checkout:combo-cart')
+
+
+
+
+@login_required
+def combo_cart(request):
+	"""
+	Add a event membership combo pricing object to cart
+	"""
+	cart = Cart(request)
+
+	if cart.count() == 0:
+		messages.warning(request, 'Cart is Empy') 
+
+	return render(request, 'checkout/combo_cart.html', dict(cart=Cart(request)))
+
+
+
+
+@login_required
+def combo_checkout(request):
+
+	#get cart total
+	cart = Cart(request)
+	
+
+	if cart.count() == 0:
+		return redirect('checkout:combo-cart')
+
+	total = cart.summary()
+	
+
+	for item in cart:
+		#description = item.product.title + ' ' + formats.date_format(item.product.start, "SHORT_DATETIME_FORMAT") 
+		event = get_object_or_404(Event,id=item.product.id)
+	
+
+	if request.method == 'POST':
+		
+		stripe.api_key = settings.STRIPE_SECRET_KEY
+
+		# Get the credit card details submitted by the form
+		token = request.POST['stripeToken']
+
+		# Create a charge: this will charge the user's card
+		try:
+		  charge = stripe.Charge.create(
+			  amount=int(total*100),
+			  currency="usd",
+			  source=token,
+			  description="Membership + Event Combo"
+		  )
+		  cart.clear()
+
+
+		  member = Member.objects.get(user=request.user)
+		
+		  
+		  attendance = EventAttendance.objects.create(member=member, event=event)
+
+		  membership_level = get_object_or_404(MembershipLevel,slug="full")
+		  member.membership_level = membership_level
+		  member.save()
+
+		  return redirect('checkout:combo-success')
+		except stripe.error.CardError as e:
+			return render(request, 'checkout/combo_checkout.html', {'error': e})
+		except Member.DoesNotExist:
+			messages.error(request, 'Membership Not Found, Please login or register') 
+			return redirect('login')
+
+
+	return render(request, 'checkout/combo_checkout.html',{'settings': settings, 'cart': Cart(request)})
+
+@login_required
+def combo_success(request):
+	#empty cart
+	cart = Cart(request)
+	cart.clear()
+	return render(request, 'checkout/combo_checkout_success.html')

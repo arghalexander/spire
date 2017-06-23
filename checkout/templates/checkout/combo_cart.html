@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load nav_tags static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+
+{% block title %}Membership + Event{% endblock %}
+
+
+{% block body_class %}template-membership-cart{% endblock %}
+
+
+{% block content %}
+
+<section class="page-header">
+	<div class="row">
+		<div class="small-12 medium-10 medium-offset-1 columns">
+			<h2 class="red-line bold">Membership &amp; Event Combo</h2>
+		</div>
+	</div>
+
+</section>
+
+
+
+<section class="cart">
+
+	<div class="row">
+		<div class="small-10 medium-10 medium-offset-1 columns">
+
+		<table class="table">
+			{% for item in cart %}
+	        <tr>
+	            <td>Membership + Event Combo</td>
+	            <td class="text-right">{{ item.total_price }}</td>
+	        </tr>
+	        {% endfor %}
+	     </table>
+
+		</div>
+	</div>
+	{% if cart.count > 0 %}
+	<div class="row">
+		<div class="small-12 medium-10 medium-offset-1 columns">
+			<a href="{% url 'checkout:combo-checkout'  %}" class="button button-red button-standard float-right">Continue</a>
+		</div>
+	</div>
+	{% endif %}
+	
+</section>
+
+
+{% endblock %}

@@ -12,4 +12,10 @@ urlpatterns = [
     url(r'event/cart/$', views.event_cart, name='event-cart'),
     url(r'event/order/$', views.event_checkout, name='event-checkout'),  
     url(r'event/success/$', views.event_success, name='event-success'),
+    
+
+    url(r'membership-combo/add/$', views.combo_add_to_cart, name='combo-add'),
+    url(r'membership-combo/order/$', views.combo_checkout, name='combo-checkout'),
+    url(r'membership-combo/cart/$', views.combo_cart, name='combo-cart'),
+        url(r'membership-combo/success/$', views.combo_success, name='combo-success'),
 ]
