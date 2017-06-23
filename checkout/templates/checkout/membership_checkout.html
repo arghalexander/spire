@@ -15,8 +15,8 @@
 
 <section class="page-header">
 	<div class="row">
-		<div class="small-12 columns">
-			<h2 class="red-line">Checkout</h2>
+		<div class="small-12 medium-6 medium-offset-3 columns">
+			<h2 class="red-line">Membership upgrade &amp; renewal</h2>
 		</div>
 	</div>
 
@@ -27,7 +27,7 @@
 <section class="cart">
 
 	<div class="row">
-		<div class="small-5 small-offset-1 columns">
+		<div class="small-12 medium-6 medium-offset-3  columns">
 
 			<form id="payment-form" class="form" action="{% url 'checkout:membership-checkout' %}" method="POST">
 				{% csrf_token %}
@@ -65,19 +65,6 @@
 
 			</form>
 
-		</div>
-		<div class="small-5 columns">
-			<div class="order-details">
-				<table class="table">
-					{% for item in cart %}
-			        <tr>
-			        	<td>{{ item.quantity }}</td>
-			            <td>{{ item.product.name }}</td>
-			            <td>{{ item.total_price }}</td>
-			        </tr>
-			        {% endfor %}
-			     </table>
-			</div>
 		</div>
 	</div>
 

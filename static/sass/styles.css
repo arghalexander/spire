@@ -274,6 +274,9 @@ h4 {
   .top-bar .is-dropdown-submenu .white {
     color: #FFF !important; }
 
+.button-standard {
+  min-width: 250px; }
+
 .button-white {
   background-color: #FFF;
   color: #891B0D;

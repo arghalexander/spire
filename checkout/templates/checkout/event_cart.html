@@ -15,8 +15,8 @@
 
 <section class="page-header">
 	<div class="row">
-		<div class="small-12 columns">
-			<h2 class="red-line">Event Registration</h2>
+		<div class="small-12 medium-10 medium-offset-1 columns">
+			<h2 class="red-line bold">Event Registration</h2>
 		</div>
 	</div>
 
@@ -27,15 +27,14 @@
 <section class="cart">
 
 	<div class="row">
-		<div class="small-10 small-offset-1 columns">
+		<div class="small-12 medium-10 medium-offset-1 columns">
 
 
 		<table class="table">
 			{% for item in cart %}
 	        <tr>
-	        	<td>{{ item.quantity }}</td>
 	            <td>{{ item.product.title}}</td>
-	            <td>${{ item.total_price }}</td>
+	            <td class="text-right">${{ item.total_price }}</td>
 	        </tr>
 	        {% endfor %}
 	     </table>
@@ -44,8 +43,8 @@
 	</div>
 	{% if cart.count > 0 %}
 	<div class="row">
-		<div class="small-10 small-offset-1 columns">
-			<a href="{% url 'checkout:event-checkout'  %}" class="button button-primary">Proceed</a>
+		<div class="small-12 medium-10 medium-offset-1 columns">
+			<a href="{% url 'checkout:event-checkout'  %}" class="button button-red button-standard float-right">Continue</a>
 		</div>
 	</div>
 	{% endif %}

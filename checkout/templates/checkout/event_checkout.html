@@ -15,8 +15,8 @@
 
 <section class="page-header">
 	<div class="row">
-		<div class="small-12 medium-10 medium-offset-1 columns">
-			<h2 class="red-line">Checkout</h2>
+		<div class="small-12 medium-6 medium-offset-3 columns">
+			<h2 class="red-line bold">Checkout</h2>
 		</div>
 	</div>
 
@@ -29,7 +29,7 @@
 	{{error}}
 
 	<div class="row">
-		<div class="small-6 medium-6 medium-offset-1 columns">
+		<div class="small-12 medium-6 medium-offset-3 columns">
 
 			<form id="payment-form" class="form" action="{% url 'checkout:event-checkout' %}" method="POST">
 				{% csrf_token %}
@@ -53,12 +53,12 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="small-12 medium-6 columns">
+					<div class="small-12 medium-12 columns">
 					  <label>
 					  <span>Card</span>
 					  </label>
 					    <div id="card-element" class="field is-empty"></div>
-					  <button class="button button-primary expanded" type="submit">Checkout</button>
+					  <button class="button button-red expanded" type="submit">Checkout</button>
 					  <div class="outcome">
 					    <div class="error" role="alert"></div>
 					   </div>	 
@@ -67,19 +67,6 @@
 
 			</form>
 
-		</div>
-		<div class="small-5 columns">
-			<div class="order-details">
-				<table class="table">
-					{% for item in cart %}
-			        <tr>
-			        	<td>{{ item.quantity }}</td>
-			            <td>{{ item.product.name }}</td>
-			            <td>{{ item.total_price }}</td>
-			        </tr>
-			        {% endfor %}
-			     </table>
-			</div>
 		</div>
 	</div>
 
