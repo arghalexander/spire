@@ -30,7 +30,7 @@
             {% if request.user.is_authenticated %}
               <ul class="dropdown menu" data-dropdown-menu>
                 <li class="nav-item">
-                  <a class="bold" href="#">{% if request.user.first_name %}{{ request.user.first_name }}{% else %}{{request.user.username}}{% endif %}<span class="fa fa-chevron-down" style="padding-left:10px;"></span></a>
+                  <a class="bold" href="#">{% if request.user.first_name %}{{ request.user.first_name }}{% else %}{{request.user.username|truncatechars:8}}{% endif %}<span class="fa fa-chevron-down" style="padding-left:10px;"></span></a>
                   <ul class="menu">
                     <li><a class="white" href="{% url 'members:member-profile' %}">Profile</a>
                     <li><a class="white" href="/accounts/logout/">Logout</a></li>
