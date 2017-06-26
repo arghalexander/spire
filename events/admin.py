@@ -8,6 +8,12 @@ from .models import Event, EventAttendance
 #	extra = 0
 
 
+class EventEventAttendanceInline(admin.TabularInline):
+	model = EventAttendance
+	extra = 0
+
+
+
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'slug': ('title',), }
@@ -16,6 +22,7 @@ class EventAdmin(admin.ModelAdmin):
 	}
 	inlines = [
 		#EventPricingInline
+		EventEventAttendanceInline
 	]
 
 
