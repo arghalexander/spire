@@ -58,7 +58,7 @@ def membership_cart(request):
 
 
 def record_purchase(member, item, price):
-	history = MemberPurchaseHistory(memebr=member,item=item,price=price)
+	history = MemberPurchaseHistory(member=member,item=item,purchase_price=price)
 	history.save()
 
 
