@@ -104,8 +104,6 @@ class Event(index.Indexed,ClusterableModel):
 
 
 	def save(self, *args, **kwargs):
-		
-
 		super(Event, self).save()
 
 # method for updating
@@ -116,7 +114,7 @@ def update_stock(sender, instance, created, **kwargs):
 
 	if created:
 		for level in MembershipLevel.objects.all():
-			pricing_level = EventPricing(event=instance,price=0.00,level=level)
+			pricing_level = EventPricing(event=instance,event_price=0.00,level=level)
 			pricing_level.save()
 
 
