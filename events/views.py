@@ -41,7 +41,7 @@ def event_detail(request,slug):
             member = Member.objects.get(user=request.user)
         except Member.DoesNotExist:
             messages.error(request, 'Membership not found')
-            logout(request)
+            redirect('/accounts/logout')
 
 
         #if already registered
