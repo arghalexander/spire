@@ -185,7 +185,7 @@ class MemberPurchaseHistory(models.Model):
 	purchase_date = 					models.DateTimeField(auto_now=True)
 	purchase_price = 					models.DecimalField(max_digits=8, decimal_places=2)
 	note = 								models.TextField(blank=True)
-	cc_num_redacted = 					models.CharField(max_length=32,validators=[validate_redacted])
+	#cc_num_redacted = 					models.CharField(max_length=32,validators=[validate_redacted])
 
 	def __str__(self):       
 		return self.member.user.email
