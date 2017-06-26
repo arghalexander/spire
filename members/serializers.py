@@ -62,6 +62,8 @@ class MemberIndustrySerializer(serializers.ModelSerializer):
 
 class MemberProfesionalInformationSerializer(serializers.ModelSerializer):
     industry = serializers.CharField(source='industry.industry', read_only=True, allow_blank=True)
+    industry_associations = serializers.CharField(source='MemberIndustryAssociation.name', read_only=True, allow_blank=True)
+
 
     class Meta:
         model = MemberProfesionalInformation
@@ -76,8 +78,7 @@ class MemberSerializer(serializers.ModelSerializer):
     membership_level = serializers.CharField(source='membership_level.level', read_only=True, allow_blank=True)
     #industry = serializers.CharField(source='industry.industry', read_only=True, allow_blank=True)
     professional_information = MemberProfesionalInformationSerializer(many=False)
-    industry_associations = serializers.CharField(source='MemberIndustryAssociations.name', read_only=True, allow_blank=True)
-
+  
     address = MemberAddressSerializer(many=False)
     education = MemberEducationSerializer(many=True)
     #industry = MemberIndustrySerializer(many=False)
@@ -85,7 +86,7 @@ class MemberSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Member
-        fields = ('id','email','full_name','preferred_name','first_name','last_name','region','image','date_joined','membership_level','mobile_phone', 'work_phone','degree_string','professional_information', 'address', 'education', 'bio', 'industry_associations')
+        fields = ('id','email','full_name','preferred_name','first_name','last_name','region','image','date_joined','membership_level','mobile_phone', 'work_phone','degree_string','professional_information', 'address', 'education', 'bio')
 
 
 
