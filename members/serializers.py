@@ -76,6 +76,7 @@ class MemberSerializer(serializers.ModelSerializer):
     membership_level = serializers.CharField(source='membership_level.level', read_only=True, allow_blank=True)
     #industry = serializers.CharField(source='industry.industry', read_only=True, allow_blank=True)
     professional_information = MemberProfesionalInformationSerializer(many=False)
+    industry_associations = serializers.CharField(source='MemberIndustryAssociations.name', read_only=True, allow_blank=True)
 
     address = MemberAddressSerializer(many=False)
     education = MemberEducationSerializer(many=True)
