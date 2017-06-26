@@ -7,7 +7,7 @@ from rest_framework.decorators import detail_route, list_route
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-
+from django.shortcuts import render, redirect,render_to_response
 from .models import Event, EventAttendance,EventPricing
 from .serializers import *
 from members.serializers import MemberSerializer  
