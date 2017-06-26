@@ -106,7 +106,7 @@ def membership_checkout(request):
 				member.save()
 
 				#record purchase
-				record_purchase(member,description,int(total*100))
+				record_purchase(member,description,total)
 	
 			  	return redirect('checkout:membership-success')
 
@@ -221,7 +221,7 @@ def event_checkout(request):
 			attendance = EventAttendance.objects.create(member=member, event=event)
 
 			#record purchase
-			record_purchase(member,description,int(total*100))
+			record_purchase(member,description,total)
 
 			return redirect('checkout:event-success')
 		
@@ -342,7 +342,7 @@ def combo_checkout(request):
 		  member.save()
 
 		  #record purchase
-		  record_purchase(member,"Membership + Event Combo",int(total*100))
+		  record_purchase(member,"Membership + Event Combo",total)
 
 		  return redirect('checkout:combo-success')
 		except stripe.error.CardError as e:
