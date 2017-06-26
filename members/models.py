@@ -68,7 +68,7 @@ class Member(models.Model):
 
 	region = 							models.ManyToManyField(MemberRegion,related_name="member_regions")
 
-	linkedIn = 							models.CharField(max_length=254, blank=True)
+	linkedin = 							models.CharField(max_length=254, blank=True)
 	facebook = 							models.CharField(max_length=254, blank=True)
 	twitter = 							models.CharField(max_length=254, blank=True)
 	
