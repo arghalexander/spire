@@ -48,7 +48,7 @@ class HomePage(Page):
 	featured_event = 				models.ForeignKey(
 										'events.Event',
 										null=True,
-										blank=True,
+										blank=False,
 										on_delete=models.SET_NULL,
 										related_name='featured_event'
 									)

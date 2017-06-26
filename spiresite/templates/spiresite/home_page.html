@@ -91,6 +91,7 @@
 		<div class="small-5 columns column-block"  >
 			<div class="featured-event" >
 
+				{% if page.featured_event %}
 				<div class="featured-event__content">
 					<h3 class="red-line">Featured Event</h3>
 					<a href="{% url 'events:event-detail' page.featured_event.slug %}">
@@ -118,8 +119,8 @@
 
 					<a class="button button-red button-purchase expanded" href="{% url 'events:event-detail' page.featured_event.slug %}">Purchase Tickets</a>
 				</div>
-
-			
+				{% endif %}
+				
 			</div>
 		</div>
 		<div class="small-12 columns">
