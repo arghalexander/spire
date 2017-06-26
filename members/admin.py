@@ -53,6 +53,11 @@ class MemberIndustryAdmin(admin.ModelAdmin):
 	pass
 
 
+@admin.register(MemberIndustryAssociation)
+class MemberIndustryAssiociationAdmin(admin.ModelAdmin):
+	pass
+
+
 @admin.register(MemberRegion)
 class MemberRegionAdmin(admin.ModelAdmin):
 	pass
