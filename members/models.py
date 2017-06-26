@@ -190,9 +190,19 @@ class MemberPurchaseHistory(models.Model):
 	def __str__(self):       
 		return self.member.user.email
 
+
+
+class MemberMembershipHistory(models.Model):
+	member = 							models.ForeignKey(Member)
+	new_level =					  		models.ForeignKey(MembershipLevel, related_name="new_level", null=True,blank=True)
+	previous_level = 					models.ForeignKey(MembershipLevel, related_name="previous_level", null=True,blank=True)
+	date = 								models.DateField(auto_now=True)
 	
 
+	def __str__(self):       
+		return self.member.user.email
 
+	
 
 class MemberStatusHistory(models.Model):
 	member = 							models.ForeignKey(Member)

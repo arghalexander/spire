@@ -17,5 +17,5 @@ urlpatterns = [
     url(r'membership-combo/add/$', views.combo_add_to_cart, name='combo-add'),
     url(r'membership-combo/order/$', views.combo_checkout, name='combo-checkout'),
     url(r'membership-combo/cart/$', views.combo_cart, name='combo-cart'),
-        url(r'membership-combo/success/$', views.combo_success, name='combo-success'),
+    url(r'membership-combo/success/$', views.combo_success, name='combo-success'),
 ]

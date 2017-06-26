@@ -160,6 +160,18 @@ class MemberViewSet(viewsets.ModelViewSet):
 		return Response(serializer.data)
 
 
+	@detail_route(methods=['get'])
+	def get_membership_history(self, request, pk):
+		try:
+			member = Member.objects.get(pk=pk)
+		except Member.DoesNotExist:
+			return Response(status=status.HTTP_404_NOT_FOUND)
+			
+		purchases = MemberMembershipHistory.objects.filter(member=member)
+		serializer = MemberMembershipHistorySerializer(purchases, many=True)
+		return Response(serializer.data)
+
+
 @api_view(['GET'])
 def member_event_attendance(request, pk):
 	try:

@@ -57,6 +57,10 @@ class MemberIndustryAdmin(admin.ModelAdmin):
 class MemberIndustryAssiociationAdmin(admin.ModelAdmin):
 	pass
 
+@admin.register(MemberMembershipHistory)
+class MemberMembershipHistoryAdmin(admin.ModelAdmin):
+	list_display = ['member','new_level', 'previous_level', 'date']
+
 
 @admin.register(MemberRegion)
 class MemberRegionAdmin(admin.ModelAdmin):

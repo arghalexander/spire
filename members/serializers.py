@@ -40,6 +40,13 @@ class MemberPurchaseHistorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class MemberMembershipHistorySerializer(serializers.ModelSerializer):
+   
+    class Meta:
+        model = MemberMembershipHistory
+        fields = '__all__'
+
+
 class MemberNoteSerializer(serializers.ModelSerializer):
     user = serializers.CharField(source='user.username', read_only=True, allow_blank=True)
     member = serializers.CharField(read_only=True, allow_blank=True)

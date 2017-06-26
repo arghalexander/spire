@@ -14,7 +14,7 @@ import datetime
 
 from products.models import MembershipProduct, EventProduct, MembershipLevel
 from events.models import EventPricing, Event, EventAttendance
-from members.models import Member, MemberPurchaseHistory
+from members.models import Member, MemberPurchaseHistory, MemberMembershipHistory
 
 from .forms import PaymentForm
 from django.utils import formats
@@ -23,6 +23,18 @@ from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
+
+
+
+
+def record_purchase(member, item, price):
+	history = MemberPurchaseHistory(member=member,item=item,purchase_price=price)
+	history.save()
+
+
+def record_membership_change(member,new_level, previous_level):
+	history = MemberMembershipHistory(member=member,new_level=new_level, previous_level=previous_level)
+	history.save()
 
 
 
@@ -55,11 +67,6 @@ def membership_cart(request):
 		messages.warning(request, 'Cart is Empy') 
 
 	return render(request, 'checkout/membership_cart.html', dict(cart=Cart(request)))
-
-
-def record_purchase(member, item, price):
-	history = MemberPurchaseHistory(member=member,item=item,purchase_price=price)
-	history.save()
 
 
 
@@ -100,7 +107,12 @@ def membership_checkout(request):
 
 				cart.clear()
 
+				
+
 				member = Member.objects.get(user=request.user)
+
+				previous_level = member.membership_level
+
 				member.membership_level = selected_membership.membership_level
 				member.membership_expiration = datetime.datetime.now() + datetime.timedelta(days=selected_membership.membership_length*365)
 				member.save()
@@ -108,6 +120,9 @@ def membership_checkout(request):
 				#record purchase
 				record_purchase(member,description,total)
 	
+				#record membership change
+				record_membership_change(member,member.membership_level, previous_level)
+
 			  	return redirect('checkout:membership-success')
 
 			except stripe.error.CardError as e:
