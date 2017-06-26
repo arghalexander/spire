@@ -11,9 +11,10 @@ import stripe
 
 import datetime 
 
+
 from products.models import MembershipProduct, EventProduct, MembershipLevel
 from events.models import EventPricing, Event, EventAttendance
-from members.models import Member
+from members.models import Member, MemberPurchaseHistory
 
 from .forms import PaymentForm
 from django.utils import formats
@@ -54,6 +55,11 @@ def membership_cart(request):
 		messages.warning(request, 'Cart is Empy') 
 
 	return render(request, 'checkout/membership_cart.html', dict(cart=Cart(request)))
+
+
+def record_purchase(member, item, price):
+	history = MemberPurchaseHistory(memebr=member,item=item,price=price)
+	history.save()
 
 
 
@@ -99,6 +105,8 @@ def membership_checkout(request):
 				member.membership_expiration = datetime.datetime.now() + datetime.timedelta(days=selected_membership.membership_length*365)
 				member.save()
 
+				#record purchase
+				record_purchase(member,description,int(total*100))
 	
 			  	return redirect('checkout:membership-success')
 
@@ -199,22 +207,24 @@ def event_checkout(request):
 
 		# Create a charge: this will charge the user's card
 		try:
-		  charge = stripe.Charge.create(
-			  amount=int(total*100),
-			  currency="usd",
-			  source=token,
-			  description=description
-		  )
-		  cart.clear()
+			charge = stripe.Charge.create(
+				  amount=int(total*100),
+				  currency="usd",
+				  source=token,
+				  description=description
+			)
+		 	cart.clear()
 
 
-		  member = Member.objects.get(user=request.user)
+			member = Member.objects.get(user=request.user)
+			
+			attendance = EventAttendance.objects.create(member=member, event=event)
+
+			#record purchase
+			record_purchase(member,description,int(total*100))
+
+			return redirect('checkout:event-success')
 		
-		  attendance = EventAttendance.objects.create(member=member, event=event)
-
-
-
-		  return redirect('checkout:event-success')
 		except stripe.error.CardError as e:
 			return render(request, 'checkout/event_checkout.html', {'error': e})
 		except Member.DoesNotExist:
@@ -330,6 +340,9 @@ def combo_checkout(request):
 		  membership_level = get_object_or_404(MembershipLevel,slug="full")
 		  member.membership_level = membership_level
 		  member.save()
+
+		  #record purchase
+		  record_purchase(member,"Membership + Event Combo",int(total*100))
 
 		  return redirect('checkout:combo-success')
 		except stripe.error.CardError as e:
