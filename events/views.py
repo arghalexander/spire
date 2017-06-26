@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse,Http404
 from rest_framework.decorators import detail_route, list_route
 from django.contrib import messages
-
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
 from .models import Event, EventAttendance,EventPricing
