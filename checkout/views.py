@@ -260,7 +260,7 @@ def combo_add_to_cart(request):
 		return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 	
-	membership = MembershipProduct.objects.get(id=5)
+	membership = MembershipProduct.objects.get(id=3)
 	
 	cart = Cart(request)
 	cart.clear()

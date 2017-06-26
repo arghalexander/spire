@@ -54,7 +54,7 @@
         <div class="row">
             <div class="small-12 columns">
                 {% for message in messages %}
-                <p {% if message.tags %} class="callout {{ message.tags }}"{% endif %}>{{ message }}</p>
+                <p {% if message.tags %} class="callout {{ message.tags }} alert "{% endif %}>{{ message }}</p>
                 {% endfor %}
             </div>
         </div>
