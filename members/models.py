@@ -169,11 +169,21 @@ class MemberProfesionalInformation(models.Model):
 
 
 
+
+
+class MemberTag(models.Model):
+	tag = 								models.CharField(max_length=255)
+	description = 						models.TextField(blank=False, help_text="Short description of what this tag is for")
+
+
+
+
 class MemberNote(models.Model):
 	member = 							models.ForeignKey(Member)
 	user = 								models.ForeignKey(User)
 	note = 								models.TextField(blank=False)
 	date =  							models.DateTimeField(auto_now=True)
+	tag = 								models.ForeignKey(MemberTag, null=True, blank=True)
 
 	def __str__(self):       
 		return self.member.user.email

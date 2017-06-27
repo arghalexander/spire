@@ -122,6 +122,7 @@ def update_stock(sender, instance, created, **kwargs):
 class EventAttendance(models.Model):
 	event = 								models.ForeignKey(Event, related_name="event_instance")
 	member = 								models.ForeignKey('members.Member', related_name="member_attendance")
+	attended = 								models.BooleanField(default=False)
 
 
 class EventPricing(models.Model):

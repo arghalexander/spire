@@ -1,6 +1,7 @@
 import pytz
 from dal import autocomplete
 
+from rest_framework import status
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -88,9 +89,9 @@ class EventViewSet(viewsets.ModelViewSet):
             return Response(status=status.HTTP_404_NOT_FOUND)
         
         #members = Members.objects.filter()
-        members = Member.objects.filter(member_attendance__event=event)
+        members = EventAttendance.objects.filter(event=event)
         
-        serializer = MemberSerializer(members, many=True)
+        serializer = EventAttendanceSerializer(members, many=True)
         return Response(serializer.data)
 
     
@@ -107,8 +108,32 @@ class EventViewSet(viewsets.ModelViewSet):
 
     @list_route()
     def get_upcoming(self, request):
+
+        time_frame = request.GET.get('days', '')
         current_date = datetime.datetime.now()
-        events = Event.objects.filter(start__lte=current_date+datetime.timedelta(days=30))
+
+        if(time_frame != ''):
+            events = Event.objects.filter(start__lte=current_date+datetime.timedelta(days=int(time_frame)), start__gte=current_date)
+        else:
+            events = Event.objects.filter(start__gte=current_date)
+
+        
+        
+        serializer = EventSerializer(events, many=True)
+        return Response(serializer.data)
+
+    @list_route()
+    def get_past(self, request):
+
+        time_frame = request.GET.get('days', '')
+        current_date = datetime.datetime.now()
+
+        if(time_frame != ''):
+            events = Event.objects.filter(start__gte=current_date-datetime.timedelta(days=int(time_frame)), start__lte=current_date)
+        else:
+            events = Event.objects.filter(start__lte=current_date)
+
+        
         serializer = EventSerializer(events, many=True)
         return Response(serializer.data)
 
@@ -120,6 +145,7 @@ class EventAttendanceViewSet(viewsets.ModelViewSet):
     """
     queryset = EventAttendance.objects.all()
     serializer_class = EventAttendanceSerializer
+
 
 
 
