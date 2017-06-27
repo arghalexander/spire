@@ -44,11 +44,12 @@ from spire.decorators import member_access
 
 
 def is_full_member(request):
-	member = Member.objects.get(user=request.user)
-	access_level = member.membership_level.access_level
-	if access_level < 1:
+	if request.user.is_authenticated():
+		member = Member.objects.get(user=request.user)
+		access_level = member.membership_level.access_level
+		if access_level > 0:
+			return True
 		return False
-	return True
 
 
 class HomePage(Page):
