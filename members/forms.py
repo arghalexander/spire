@@ -42,7 +42,7 @@ class MemberForm(ModelForm):
 			'bio': forms.Textarea(attrs={'rows': 20})
 		}
 		labels = {
-        	"region": _("Regional Affiliation")
+        	"region": "Regional Affiliation"
     	}
 
 
