@@ -361,7 +361,7 @@ class MemberDirectoryPage(Page):
 			messages.warning(request, 'You do not have permission to view that page, please upgrade your membership to access.')
 			return redirect('/members-directory/membership/')
 
-		return super(MemberDirectory, self).serve(request)
+		return super(MemberDirectoryPage, self).serve(request)
 
 
 
