@@ -147,7 +147,6 @@ class MemberViewSet(viewsets.ModelViewSet):
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
 	@detail_route(methods=['get'])
 	def get_purchase_history(self, request, pk):
 		try:
@@ -172,7 +171,7 @@ class MemberViewSet(viewsets.ModelViewSet):
 		return Response(serializer.data)
 
 
-	@detail_route(methods=['get'])
+	@list_route(methods=['get'])
 	def get_expiring_members(self, request):
 		current_date = datetime.datetime.now()
 		members = Member.objects.filter(membership_expiration__lte=current_date+datetime.timedelta(days=30))
