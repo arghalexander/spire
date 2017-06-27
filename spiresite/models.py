@@ -11,6 +11,7 @@ from events.models import Event, EventPricing
 from members.models import Member 
 from products.models import MembershipProduct
 from wagtail.wagtailcore.models import Page
+from django.contrib import messages
 
 # Create your models here.
 from wagtail.wagtailcore.models import Page
@@ -41,6 +42,13 @@ from django.conf import settings
 from spire.decorators import member_access
 
 
+
+def is_full_member(request):
+	member = Member.objects.get(user=request.user)
+	access_level = member.membership_level.access_level
+	if access_level < 1:
+		return False
+	return True
 
 
 class HomePage(Page):
@@ -334,7 +342,6 @@ class MembershipPage(Page):
 
 
 
-@member_access(level=1)
 class MemberDirectoryPage(Page):
 	
 	heading = 						models.CharField(blank=True, max_length=255)
@@ -348,12 +355,41 @@ class MemberDirectoryPage(Page):
 
 	#limit access to full members
 	def serve(self,request):
-		member = Member.objects.get(user=request.user)
-		access_level = member.membership_level.access_level
-		if access_level < 1:
-			return redirect('logout')
+
+		if not is_full_member(request):
+			messages.warning(request, 'You do not have permission to view that page, please upgrade your membership to access.')
+			return redirect('/members-directory/membership/')
 
 		return super(MemberDirectory, self).serve(request)
+
+
+
+class ResumeBookPage(Page):
+	heading = 						models.CharField(blank=True, max_length=255)
+
+	body =							 StreamField([
+										('text', blocks.RichTextBlock()),
+										('button', ButtonBlock()),
+										('people_list', blocks.ListBlock(PersonBlock(), template='spiresite/blocks/people_list.html', icon="group"))
+									])
+
+	content_panels = Page.content_panels + [
+		FieldPanel('heading'),
+		StreamFieldPanel('body')
+	]
+
+
+	template = 'standard_page.html'
+
+
+	#limit access to full members
+	def serve(self,request):
+
+		if not is_full_member(request):
+			messages.warning(request, 'You do not have permission to view that page, please upgrade your membership to access.')
+			return redirect('/members-directory/membership/')
+
+		return super(ResumeBookPage, self).serve(request)
 
 
 
