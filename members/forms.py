@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from .models import Member, MemberAddress, MemberEducation,MemberProfesionalInformation
 from django.contrib.auth.models import User
 from dal import autocomplete
-
+from django.utils.translation import ugettext_lazy as _
 
 
 class MemberUserForm(ModelForm):
@@ -42,7 +42,7 @@ class MemberForm(ModelForm):
 			'bio': forms.Textarea(attrs={'rows': 20})
 		}
 		labels = {
-        	"region": "Regional Affiliation"
+        	"region": _("Regional Affiliation")
     	}
 
 
