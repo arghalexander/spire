@@ -27,6 +27,9 @@ class MemberCreateForm(ModelForm):
 		widgets = {
 			'region': forms.CheckboxSelectMultiple(),
 		}
+		labels = {
+        	"region": _('Regional Affiliation'),
+    	}
 
 
 class MemberForm(ModelForm):
@@ -42,7 +45,7 @@ class MemberForm(ModelForm):
 			'bio': forms.Textarea(attrs={'rows': 20})
 		}
 		labels = {
-        	"region": _("Regional Affiliation")
+        	"region": _('Regional Affiliation'),
     	}
 
 
