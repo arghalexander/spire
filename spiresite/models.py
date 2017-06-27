@@ -346,9 +346,14 @@ class MemberDirectoryPage(Page):
 	]
 
 
-	def serve:
+	#limit access to full members
+	def serve(self,request):
+		member = Member.objects.get(user=request.user)
+		access_level = member.membership_level.access_level
+		if access_level < 1:
+			return redirect('logout')
 
-
+		return super(MemberDirectory, self).serve(request)
 
 
 
@@ -654,15 +659,15 @@ class JobPage(Page):
 		FieldPanel('heading'),
 
 		MultiFieldPanel(
-        [
-        	FieldPanel('date'),
-            FieldPanel('job_type'),
-            FieldPanel('location'),
-            FieldPanel('organization'),
-        ],
-        heading="Job Info",
-        classname="collapsible"
-    	),
+		[
+			FieldPanel('date'),
+			FieldPanel('job_type'),
+			FieldPanel('location'),
+			FieldPanel('organization'),
+		],
+		heading="Job Info",
+		classname="collapsible"
+		),
 
 		FieldPanel('page_content'),
 	]
@@ -679,12 +684,12 @@ class JobPage(Page):
 
 class LinkPage(Page):
 	page =				 			models.ForeignKey(
-							        'wagtailcore.Page',
-							        null=True,
-							        blank=True,
-							        on_delete=models.SET_NULL,
-							        related_name='link_page_link',
-							    )
+									'wagtailcore.Page',
+									null=True,
+									blank=True,
+									on_delete=models.SET_NULL,
+									related_name='link_page_link',
+								)
 
 	content_panels = Page.content_panels + [
 		PageChooserPanel('page'),
