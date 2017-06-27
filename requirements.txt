@@ -9,6 +9,7 @@ diff-match-patch==20121119
 Django==1.11.1
 django-anymail==0.9
 django-appconf==1.0.2
+django-autocomplete-light==3.2.9
 django-cart==1.0.4
 django-carton==1.2.1
 django-compressor==2.1.1
@@ -17,6 +18,7 @@ django-csvimport==2.5
 django-extensions==1.7.8
 django-filter==1.0.2
 django-filters==0.2.1
+django-grappelli==2.10.1
 django-import-export==0.5.1
 django-modelcluster==3.1
 django-registration==2.2
