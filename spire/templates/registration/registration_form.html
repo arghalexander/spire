@@ -11,7 +11,7 @@
 		<form action="{% url 'registration_register' %}" method="post">
 		    {% csrf_token %}
 		    {{ form }}
-		    <input type="submit" class="button button-" value="Submit" />
+		    <input type="submit" class="button button-red expanded" value="Submit" />
 		</form>
 
         <a class="button button-linkedin" href="{% url "social:begin" "linkedin-oauth2" %}">Sign up with LinkedIn</a>
