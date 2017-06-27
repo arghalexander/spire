@@ -15,7 +15,7 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
 }
 
 
-SOCIAL_AUTH_LINKEDIN_SCOPE = ['r_basicprofile', 'r_emailaddress', ...]
+SOCIAL_AUTH_LINKEDIN_SCOPE = ['r_basicprofile', 'r_emailaddress']
 SOCIAL_AUTH_LINKEDIN_FIELD_SELECTORS = ['email-address', 'headline', 'industry']
 SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = '860sj3h07r7oyz'
 SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'w5Werpj0EiyLh0OQ'
