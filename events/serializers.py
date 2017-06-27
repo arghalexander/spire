@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Event, EventAttendance
+from .models import Event, EventAttendance, EventPricing
 
 
 
@@ -8,8 +8,15 @@ class AggregateSerilizer(serializers.Serializer):
     name = serializers.CharField(max_length=255)
 
 
+class EventPricingSerializer(serializers.Serializer):
+     class Meta:
+        model = EventPricing
+        fields = '__all__'
+
+
 class EventSerializer(serializers.ModelSerializer):
-  
+    event_pricings = EventPricingSerializer(many=True)
+
     class Meta:
         model = Event
         fields = '__all__'
