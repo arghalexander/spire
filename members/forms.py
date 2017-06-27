@@ -2,6 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from .models import Member, MemberAddress, MemberEducation,MemberProfesionalInformation
 from django.contrib.auth.models import User
+from dal import autocomplete
 
 
 

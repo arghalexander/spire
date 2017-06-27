@@ -1,4 +1,7 @@
 import pytz
+from dal import autocomplete
+
+from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework.response import Response
 from django.shortcuts import render
@@ -119,3 +122,16 @@ class EventAttendanceViewSet(viewsets.ModelViewSet):
     serializer_class = EventAttendanceSerializer
 
 
+
+
+class EventAttendanceAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        if not self.request.user.is_authenticated():
+            return Member.objects.none()
+
+        qs = Member.objects.all()
+
+        if self.q:
+            qs = qs.filter(user__username__icontains=self.q)
+
+        return qs
