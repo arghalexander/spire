@@ -23,8 +23,8 @@ class MembershipLevel(models.Model):
 	access_level = 						models.IntegerField(default=0, help_text="0: guest ( No Access to member areas), Above a 0 is considered a full member")
 
 	panels = [
-        FieldPanel('level'),
-    ]
+		FieldPanel('level'),
+	]
 
 	def __str__(self):            
 		return self.level
@@ -72,6 +72,10 @@ class Member(models.Model):
 	facebook = 							models.CharField(max_length=254, blank=True)
 	twitter = 							models.CharField(max_length=254, blank=True)
 	
+
+	#@staticmethod
+	#def autocomplete_search_fields():
+	#	return ("user_username__istartswith", "user__username__icontains",)
 
 
 	def __str__(self):             

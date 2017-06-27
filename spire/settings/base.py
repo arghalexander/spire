@@ -43,7 +43,7 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     'dal',
     'dal_select2',
-
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -296,7 +296,8 @@ MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    #os.path.join(BASE_DIR, 'spire/static'),
+    os.path.join(BASE_DIR, 'spire/static'),
+
 )
 
 # Registration
@@ -310,6 +311,9 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 # WAGTAIL CMS
 WAGTAIL_SITE_NAME = 'SPIRE'
 WAGTAIL_FRONTEND_LOGIN_URL = '/accounts/login/'
+
+
+GRAPPELLI_ADMIN_TITLE = "SPIRE ADMIN"
 
 """
 WAGTAILADMIN_RICH_TEXT_EDITORS = {

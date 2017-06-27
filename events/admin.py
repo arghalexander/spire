@@ -14,8 +14,12 @@ from dal import autocomplete
 
 class EventAttendanceInline(admin.TabularInline):
 	model = EventAttendance
-	form = EventAttendanceAutocompleteForm
+	#form = EventAttendanceAutocompleteForm
 	extra = 0
+	raw_id_fields = ("member",)
+	autocomplete_lookup_fields = {
+        'fk': ['member'],
+    }
 
 
 class EventPricingInline(admin.TabularInline):

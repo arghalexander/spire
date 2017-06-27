@@ -59,7 +59,7 @@ urlpatterns = [
     url(r'^404/$', page_not_found, kwargs={'exception': Exception("Page not Found")}),
     url(r'^500/$', server_error),
 
-    url(r'^admin/', admin.site.urls),
+
 
     url(r'^checkout/', include('checkout.urls', namespace='checkout')),
     url(r'^members/', include('members.urls', namespace='members')),
@@ -81,7 +81,9 @@ urlpatterns = [
     url(r'^cms/', include(wagtailadmin_urls)),
 
     url(r'^documents/', include(wagtaildocs_urls)),
-    
+    url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
+    url(r'^admin/', admin.site.urls),
+
     url(r'', include(wagtail_urls)),
 
 
