@@ -13,6 +13,8 @@ def member_access(level=1):
 	    	member = Member.objects.get(user=request.user)
 	    	access_level = member.membership_level.access_level
 
+	    	print('access level ' + access_level)
+
 	    	if access_level >= level:
 	    		return view(request, *args, **kwargs)
 	    	else:

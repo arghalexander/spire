@@ -38,7 +38,7 @@ from theme_settings import *
 from .model_admin import *
 
 from django.conf import settings
-
+from spire.decorators import member_access
 
 
 
@@ -187,7 +187,7 @@ class SrecMembersPage(Page):
 	def get_context(self, request):
 		context = super(SrecMembersPage, self).get_context(request)
 
-		context['srec_members'] = Member.objects.filter(membership_level__slug="srec").order_by('user.first_name')
+		context['srec_members'] = Member.objects.filter(membership_level__slug="srec").order_by('user__first_name')
 		return context
 
 
@@ -334,7 +334,7 @@ class MembershipPage(Page):
 
 
 
-
+@member_access(level=1)
 class MemberDirectoryPage(Page):
 	
 	heading = 						models.CharField(blank=True, max_length=255)
@@ -344,6 +344,9 @@ class MemberDirectoryPage(Page):
 	content_panels = Page.content_panels + [
 		FieldPanel('heading'),
 	]
+
+
+	def serve:
 
 
 
