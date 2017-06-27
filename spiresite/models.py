@@ -187,7 +187,7 @@ class SrecMembersPage(Page):
 	def get_context(self, request):
 		context = super(SrecMembersPage, self).get_context(request)
 
-		context['srec_members'] = Member.objects.filter(membership_level__slug="srec")
+		context['srec_members'] = Member.objects.filter(membership_level__slug="srec").order_by('user.first_name')
 		return context
 
 
