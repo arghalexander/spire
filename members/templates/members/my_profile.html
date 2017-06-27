@@ -39,7 +39,7 @@
 			</ul>
 
 
-			<form id="profile-form">
+			<form id="profile-view- form">
 			
 			<div class="tabs-content" data-tabs-content="deeplinked-tabs">
 			  
@@ -96,20 +96,21 @@
 									{% endfor %}
 									</ul>
 								</div>
+
 								<div class="small-6 columns">
-									<label>City</label>
+									<label for="city">City</label>
 									<input readonly  type="text" name="city" value="{{member.address.city}}">
 								</div>
 								<div class="small-6 columns">
-									<label>State</label>
+									<label for=state>State</label>
 									<input readonly  type="text" name="state" value="{{member.address.state}}">
 								</div>
 								<div class="small-6 columns">
-									<label>zip</label>
-									<input readonly  type="text" name="state" value="{{member.address.zip_code}}">
+									<label for="zip">zip</label>
+									<input readonly  type="text" name="zip" value="{{member.address.zip_code}}">
 								</div>
 								<div class="small-6 columns">
-									<label>Country</label>
+									<label for="country">Country</label>
 									<input readonly  type="text" name="state" value="{{member.address.country}}">
 								</div>
 							</div>

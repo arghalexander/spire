@@ -100,6 +100,15 @@ class EventViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
+    @list_route()
+    def get_upcoming(self, request):
+        current_date = datetime.datetime.now()
+        events = EventAttendance.objects.filter(start__lte=current_date+datetime.timedelta(days=30))
+        serializer = EventSerilizer(members, many=True)
+        return Response(serializer.data)
+
+
+
 class EventAttendanceViewSet(viewsets.ModelViewSet):
     """
         Event Attendance Viewset for api

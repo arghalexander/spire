@@ -46,6 +46,17 @@ $(document).ready(function(){
       },
     });
 
+    $('#profile-view-form').addressfield({
+      json: '/static/data/addressfield.json',
+      fields: {
+        country: '#country',
+        locality: '#locality-fields',
+        localityname: '#city',
+        administrativearea: '#state',
+        postalcode: '#zip'
+      },
+    });
+
 
 
    
@@ -71,7 +82,7 @@ $(document).ready(function(){
     }
 
 
-    $("form#profile-form:input").change(function(){
+    $("form#profile-create-form:input").change(function(){
        console.log('changed')
     });
 
