@@ -88,6 +88,14 @@
 									<label class="sr-only">Address 2</label>
 									<input readonly  type="text" name="address_line_two" value="{{member.address.address_line_two}}">
 								</div>
+								<div class="small-12 columns">
+									<label>Region</label>
+									<uL>
+									{%for region in member.region.all %}
+										<li>{{region}}</li>
+									{% endfor %}
+									</ul>
+								</div>
 								<div class="small-6 columns">
 									<label>City</label>
 									<input readonly  type="text" name="city" value="{{member.address.city}}">
