@@ -15,7 +15,7 @@ class EventPricingSerializer(serializers.Serializer):
 
 
 class EventSerializer(serializers.ModelSerializer):
-    event_pricings = EventPricingSerializer(many=True)
+    event_pricings = EventPricingSerializer()
 
     class Meta:
         model = Event
