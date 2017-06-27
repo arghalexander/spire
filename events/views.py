@@ -106,7 +106,7 @@ class EventViewSet(viewsets.ModelViewSet):
     def get_upcoming(self, request):
         current_date = datetime.datetime.now()
         events = Event.objects.filter(start__lte=current_date+datetime.timedelta(days=30))
-        serializer = EventSerilizer(members, many=True)
+        serializer = EventSerializer(events, many=True)
         return Response(serializer.data)
 
 
