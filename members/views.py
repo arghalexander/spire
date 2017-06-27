@@ -172,6 +172,15 @@ class MemberViewSet(viewsets.ModelViewSet):
 		return Response(serializer.data)
 
 
+	@detail_route(methods=['get'])
+	def get_expiring_members(self, request):
+		current_date = datetime.datetime.now()
+		members = Member.objects.filter(membership_expiration__lte=current_date+datetime.timedelta(days=30))
+		serializer = MemberSerializer(members, many=True)
+		
+		return Response(serializer.data)
+
+
 @api_view(['GET'])
 def member_event_attendance(request, pk):
 	try:
