@@ -31,37 +31,52 @@
         {{address_form.address_line_two}}
 
 
-        {{address_form.city.errors}}
-        <label for="{{address_form.city.label}}">City</label>
-        {{address_form.city}}
+        
 
 
-        <div class="row">
+        <div class="row" style="padding-bottom: 20px;">
             <div class="small-12 medium-12 columns">
+                <div class="field-wrapper">
                 {{address_form.country.errors}}
                 <label for="{{address_form.country.label}}">Country</label>
                 <select name="country" id="id_country" required>
                 </select>
+                </div>
             </div>
         </div>
 
-
-        <div class="row">
-          <div class="small-12 medium-6 columns">
-              {{address_form.state.errors}}
-              <label for="{{address_form.state.label}}">State</label>
-              {{address_form.state}}
-          </div>
-          <div class="small-12 medium-6 columns">
-              {{address_form.zip_code.errors}}
-              <label for="{{address_form.zip_code.label}}">ZIP Code</label>
-              {{address_form.zip_code}}
-          </div>
+        <div class="row" id="locality-fields">
+            <div class="small-12 columns">
+                <div class="small-12 medium-4 columns">
+               
+                        {{address_form.city.errors}}
+                        <label for="id_city">City</label>
+                        {{address_form.city}}
+               
+                </div>
+                <div class="small-12 medium-4 columns">
+                    
+                          {{address_form.state.errors}}
+                          <label for="id_state">State</label>
+                          {{address_form.state}}
+                   
+                </div>
+                <div class="small-12 medium-4 columns">
+                       
+                          {{address_form.zip_code.errors}}
+                          <label for="id_zip_code">ZIP Code</label>
+                          {{address_form.zip_code}}
+                  
+                </div>
+            </div>
         </div>
 
+        <div class="callout">
+
+        <h4>Education</h4>
 
 		{{ education_formset.management_form }}
-      {% for form in education_formset %}
+         {% for form in education_formset %}
 
         {% for hidden in  form.hidden_fields %}
             {{ hidden }}
@@ -84,6 +99,8 @@
           </div>
         </div>
       {% endfor %}
+
+      </div>
       
       <script type="text/javascript">
         $(function() {

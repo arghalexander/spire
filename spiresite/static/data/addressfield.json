@@ -2,6 +2,237 @@
   "label": "Country",
   "options": [
     {
+      "label": "United States",
+      "iso": "US",
+      "fields": [
+        {
+          "thoroughfare": {
+            "label": "Address 1"
+          }
+        },
+        {
+          "premise": {
+            "label": "Address 2"
+          }
+        },
+        {
+          "locality": [
+            {
+              "localityname": {
+                "label": "City"
+              }
+            },
+            {
+              "administrativearea": {
+                "label": "State",
+                "options": [
+                  {
+                    "": "--"
+                  },
+                  {
+                    "AL": "Alabama"
+                  },
+                  {
+                    "AK": "Alaska"
+                  },
+                  {
+                    "AZ": "Arizona"
+                  },
+                  {
+                    "AR": "Arkansas"
+                  },
+                  {
+                    "CA": "California"
+                  },
+                  {
+                    "CO": "Colorado"
+                  },
+                  {
+                    "CT": "Connecticut"
+                  },
+                  {
+                    "DE": "Delaware"
+                  },
+                  {
+                    "DC": "District Of Columbia"
+                  },
+                  {
+                    "FL": "Florida"
+                  },
+                  {
+                    "GA": "Georgia"
+                  },
+                  {
+                    "HI": "Hawaii"
+                  },
+                  {
+                    "ID": "Idaho"
+                  },
+                  {
+                    "IL": "Illinois"
+                  },
+                  {
+                    "IN": "Indiana"
+                  },
+                  {
+                    "IA": "Iowa"
+                  },
+                  {
+                    "KS": "Kansas"
+                  },
+                  {
+                    "KY": "Kentucky"
+                  },
+                  {
+                    "LA": "Louisiana"
+                  },
+                  {
+                    "ME": "Maine"
+                  },
+                  {
+                    "MD": "Maryland"
+                  },
+                  {
+                    "MA": "Massachusetts"
+                  },
+                  {
+                    "MI": "Michigan"
+                  },
+                  {
+                    "MN": "Minnesota"
+                  },
+                  {
+                    "MS": "Mississippi"
+                  },
+                  {
+                    "MO": "Missouri"
+                  },
+                  {
+                    "MT": "Montana"
+                  },
+                  {
+                    "NE": "Nebraska"
+                  },
+                  {
+                    "NV": "Nevada"
+                  },
+                  {
+                    "NH": "New Hampshire"
+                  },
+                  {
+                    "NJ": "New Jersey"
+                  },
+                  {
+                    "NM": "New Mexico"
+                  },
+                  {
+                    "NY": "New York"
+                  },
+                  {
+                    "NC": "North Carolina"
+                  },
+                  {
+                    "ND": "North Dakota"
+                  },
+                  {
+                    "OH": "Ohio"
+                  },
+                  {
+                    "OK": "Oklahoma"
+                  },
+                  {
+                    "OR": "Oregon"
+                  },
+                  {
+                    "PA": "Pennsylvania"
+                  },
+                  {
+                    "RI": "Rhode Island"
+                  },
+                  {
+                    "SC": "South Carolina"
+                  },
+                  {
+                    "SD": "South Dakota"
+                  },
+                  {
+                    "TN": "Tennessee"
+                  },
+                  {
+                    "TX": "Texas"
+                  },
+                  {
+                    "UT": "Utah"
+                  },
+                  {
+                    "VT": "Vermont"
+                  },
+                  {
+                    "VA": "Virginia"
+                  },
+                  {
+                    "WA": "Washington"
+                  },
+                  {
+                    "WV": "West Virginia"
+                  },
+                  {
+                    "WI": "Wisconsin"
+                  },
+                  {
+                    "WY": "Wyoming"
+                  },
+                  {
+                    "": "--"
+                  },
+                  {
+                    "AA": "Armed Forces (Americas)"
+                  },
+                  {
+                    "AE": "Armed Forces (Europe, Canada, Middle East, Africa)"
+                  },
+                  {
+                    "AP": "Armed Forces (Pacific)"
+                  },
+                  {
+                    "AS": "American Samoa"
+                  },
+                  {
+                    "FM": "Federated States of Micronesia"
+                  },
+                  {
+                    "GU": "Guam"
+                  },
+                  {
+                    "MH": "Marshall Islands"
+                  },
+                  {
+                    "MP": "Northern Mariana Islands"
+                  },
+                  {
+                    "PW": "Palau"
+                  },
+                  {
+                    "PR": "Puerto Rico"
+                  },
+                  {
+                    "VI": "Virgin Islands"
+                  }
+                ]
+              }
+            },
+            {
+              "postalcode": {
+                "label": "ZIP code",
+                "format": "^\\d{5}(?:[-\\s]\\d{4})?$",
+                "eg": "98103"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
       "label": "Afghanistan",
       "iso": "AF",
       "fields": [
@@ -9747,237 +9978,6 @@
                 "label": "Postcode",
                 "format": "^GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4}$",
                 "eg": "SE1 0SU"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "label": "United States",
-      "iso": "US",
-      "fields": [
-        {
-          "thoroughfare": {
-            "label": "Address 1"
-          }
-        },
-        {
-          "premise": {
-            "label": "Address 2"
-          }
-        },
-        {
-          "locality": [
-            {
-              "localityname": {
-                "label": "City"
-              }
-            },
-            {
-              "administrativearea": {
-                "label": "State",
-                "options": [
-                  {
-                    "": "--"
-                  },
-                  {
-                    "AL": "Alabama"
-                  },
-                  {
-                    "AK": "Alaska"
-                  },
-                  {
-                    "AZ": "Arizona"
-                  },
-                  {
-                    "AR": "Arkansas"
-                  },
-                  {
-                    "CA": "California"
-                  },
-                  {
-                    "CO": "Colorado"
-                  },
-                  {
-                    "CT": "Connecticut"
-                  },
-                  {
-                    "DE": "Delaware"
-                  },
-                  {
-                    "DC": "District Of Columbia"
-                  },
-                  {
-                    "FL": "Florida"
-                  },
-                  {
-                    "GA": "Georgia"
-                  },
-                  {
-                    "HI": "Hawaii"
-                  },
-                  {
-                    "ID": "Idaho"
-                  },
-                  {
-                    "IL": "Illinois"
-                  },
-                  {
-                    "IN": "Indiana"
-                  },
-                  {
-                    "IA": "Iowa"
-                  },
-                  {
-                    "KS": "Kansas"
-                  },
-                  {
-                    "KY": "Kentucky"
-                  },
-                  {
-                    "LA": "Louisiana"
-                  },
-                  {
-                    "ME": "Maine"
-                  },
-                  {
-                    "MD": "Maryland"
-                  },
-                  {
-                    "MA": "Massachusetts"
-                  },
-                  {
-                    "MI": "Michigan"
-                  },
-                  {
-                    "MN": "Minnesota"
-                  },
-                  {
-                    "MS": "Mississippi"
-                  },
-                  {
-                    "MO": "Missouri"
-                  },
-                  {
-                    "MT": "Montana"
-                  },
-                  {
-                    "NE": "Nebraska"
-                  },
-                  {
-                    "NV": "Nevada"
-                  },
-                  {
-                    "NH": "New Hampshire"
-                  },
-                  {
-                    "NJ": "New Jersey"
-                  },
-                  {
-                    "NM": "New Mexico"
-                  },
-                  {
-                    "NY": "New York"
-                  },
-                  {
-                    "NC": "North Carolina"
-                  },
-                  {
-                    "ND": "North Dakota"
-                  },
-                  {
-                    "OH": "Ohio"
-                  },
-                  {
-                    "OK": "Oklahoma"
-                  },
-                  {
-                    "OR": "Oregon"
-                  },
-                  {
-                    "PA": "Pennsylvania"
-                  },
-                  {
-                    "RI": "Rhode Island"
-                  },
-                  {
-                    "SC": "South Carolina"
-                  },
-                  {
-                    "SD": "South Dakota"
-                  },
-                  {
-                    "TN": "Tennessee"
-                  },
-                  {
-                    "TX": "Texas"
-                  },
-                  {
-                    "UT": "Utah"
-                  },
-                  {
-                    "VT": "Vermont"
-                  },
-                  {
-                    "VA": "Virginia"
-                  },
-                  {
-                    "WA": "Washington"
-                  },
-                  {
-                    "WV": "West Virginia"
-                  },
-                  {
-                    "WI": "Wisconsin"
-                  },
-                  {
-                    "WY": "Wyoming"
-                  },
-                  {
-                    "": "--"
-                  },
-                  {
-                    "AA": "Armed Forces (Americas)"
-                  },
-                  {
-                    "AE": "Armed Forces (Europe, Canada, Middle East, Africa)"
-                  },
-                  {
-                    "AP": "Armed Forces (Pacific)"
-                  },
-                  {
-                    "AS": "American Samoa"
-                  },
-                  {
-                    "FM": "Federated States of Micronesia"
-                  },
-                  {
-                    "GU": "Guam"
-                  },
-                  {
-                    "MH": "Marshall Islands"
-                  },
-                  {
-                    "MP": "Northern Mariana Islands"
-                  },
-                  {
-                    "PW": "Palau"
-                  },
-                  {
-                    "PR": "Puerto Rico"
-                  },
-                  {
-                    "VI": "Virgin Islands"
-                  }
-                ]
-              }
-            },
-            {
-              "postalcode": {
-                "label": "ZIP code",
-                "format": "^\\d{5}(?:[-\\s]\\d{4})?$",
-                "eg": "98103"
               }
             }
           ]

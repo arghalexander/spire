@@ -39,7 +39,9 @@ $(document).ready(function(){
       json: '/static/data/addressfield.json',
       fields: {
         country: '#id_country',
-        administrativearea: '#state',
+        locality: '#locality-fields',
+        localityname: '#id_city',
+        administrativearea: '#id_state',
         postalcode: '#id_zip_code'
       },
     });
