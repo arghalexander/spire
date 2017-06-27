@@ -105,7 +105,7 @@ class EventViewSet(viewsets.ModelViewSet):
     @list_route()
     def get_upcoming(self, request):
         current_date = datetime.datetime.now()
-        events = EventAttendance.objects.filter(start__lte=current_date+datetime.timedelta(days=30))
+        events = Event.objects.filter(start__lte=current_date+datetime.timedelta(days=30))
         serializer = EventSerilizer(members, many=True)
         return Response(serializer.data)
 
