@@ -35,6 +35,16 @@ $(document).ready(function(){
     });
 
 
+    $('#profile-create-form').addressfield({
+      json: '/static/data/addressfield.json',
+      fields: {
+        country: '#id_country',
+        administrativearea: '#state',
+        postalcode: '#id_zip_code'
+      },
+    });
+
+
 
    
      $('#add_more').click(function() {
