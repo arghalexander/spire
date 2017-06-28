@@ -42,6 +42,7 @@ class Event(index.Indexed,ClusterableModel):
 	all_day = 								models.BooleanField()
 	start = 								models.DateTimeField()
 	end =									models.DateTimeField()
+	capacity = 								models.IntegerField(blank=True,null=True)
 	address = 								models.CharField(max_length=250, blank=True, null=True)
 	location = 								models.CharField(max_length=255, blank=True, null=True)
 	description = 							RichTextField()
