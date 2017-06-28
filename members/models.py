@@ -173,7 +173,7 @@ class MemberProfesionalInformation(models.Model):
 
 
 class MemberTag(models.Model):
-	tag = 								models.CharField(max_length=255)
+	tag = 								models.SlugField(max_length=255)
 	description = 						models.TextField(blank=False, help_text="Short description of what this tag is for")
 
 	def __str__(self):       
