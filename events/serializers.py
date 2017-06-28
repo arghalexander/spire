@@ -46,4 +46,4 @@ class EventAttendanceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = EventAttendance
-        fields = ('id','event_title','event_date','email','first_name','last_name','degree_string','company', 'attended') 
+        fields = ('id','event_title','event_date','email','first_name','last_name','degree_string','company','membership_level', 'attended') 
