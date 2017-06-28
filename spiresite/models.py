@@ -127,7 +127,7 @@ class HomePage(Page):
 		context = super(HomePage, self).get_context(request)
 
 		# Add extra variables and return the updated context
-		context['upcoming_events'] = Event.objects.filter(start__gte=datetime.datetime.now())
+		context['upcoming_events'] = Event.objects.filter(start__gte=datetime.datetime.now(), status="PUBLISHED")
 		#context['featured_event'] = Event.objects.filter(featured=True)[0:1] #get first in list
 		return context
 
@@ -622,7 +622,7 @@ class EventsPage(Page):
 	def get_context(self, request):
 		context = super(EventsPage, self).get_context(request)
 
-		context['upcoming_events'] = Event.objects.filter(start__gte=datetime.datetime.now())
+		context['upcoming_events'] = Event.objects.filter(start__gte=datetime.datetime.now(),status="PUBLISHED")
 		return context
 
 
