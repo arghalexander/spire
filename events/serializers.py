@@ -42,6 +42,7 @@ class EventAttendanceSerializer(serializers.ModelSerializer):
     last_name = serializers.CharField(source='member.user.last_name',read_only=True, allow_blank=True)
     degree_string = serializers.CharField(source='member.degree_string',read_only=True, allow_blank=True)
     company = serializers.CharField(source='member.professional_information.company',read_only=True, allow_blank=True)
+    membership_level = serializers.CharField(source='member.membership_level',read_only=True, allow_blank=True)
 
     class Meta:
         model = EventAttendance
