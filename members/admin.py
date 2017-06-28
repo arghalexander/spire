@@ -43,6 +43,12 @@ class MembershipLevelAdmin(admin.ModelAdmin):
 
 
 
+@admin.register(MemberTags)
+class MemberTagsAdmin(admin.ModelAdmin):
+	pass
+
+
+
 @admin.register(MemberAddress)
 class MemberAddressAdmin(admin.ModelAdmin):
 	pass

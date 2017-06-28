@@ -166,7 +166,8 @@ class MemberProfesionalInformation(models.Model):
 	assistant_email = 					models.EmailField(max_length=255,blank=True)
 	assistant_phone = 					models.CharField(max_length=255, blank=True)
 
-
+	def __str__(self):       
+		return self.member.user.email
 
 
 
@@ -175,7 +176,8 @@ class MemberTag(models.Model):
 	tag = 								models.CharField(max_length=255)
 	description = 						models.TextField(blank=False, help_text="Short description of what this tag is for")
 
-
+	def __str__(self):       
+		return self.tag
 
 
 class MemberNote(models.Model):
