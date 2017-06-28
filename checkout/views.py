@@ -114,7 +114,12 @@ def membership_checkout(request):
 				previous_level = member.membership_level
 
 				member.membership_level = selected_membership.membership_level
-				member.membership_expiration = datetime.datetime.now() + datetime.timedelta(days=selected_membership.membership_length*365)
+					
+				#if there is already a membership expiration set, add time to current  
+				if member.membership_expiration:
+					member.membership_expiration = member.membership_expiration + datetime.timedelta(days=selected_membership.membership_length*365)
+				else:
+					member.membership_expiration = datetime.datetime.now() + datetime.timedelta(days=selected_membership.membership_length*365)
 				member.save()
 
 				#record purchase

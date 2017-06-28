@@ -78,7 +78,7 @@ class MemberProfesionalInformationSerializer(serializers.ModelSerializer):
 
 
 class MemberSerializer(serializers.ModelSerializer):
-    email = serializers.CharField(source='user.username', read_only=True, allow_blank=True)
+    email = serializers.CharField(source='user.email', read_only=True, allow_blank=True)
     first_name = serializers.CharField(source='user.first_name', read_only=True, allow_blank=True)
     last_name = serializers.CharField(source='user.last_name', read_only=True, allow_blank=True)
     date_joined = serializers.CharField(source='user.date_joined', read_only=True, allow_blank=True)
