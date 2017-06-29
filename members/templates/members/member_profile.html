@@ -6,7 +6,7 @@
 
 {% block body_class %}template-member-profile{% endblock %}
 
-{% block title %}{% endblock %}
+{% block title %}{{member.user.first_name}}{% endblock %}
 
 {% block content %}
 
@@ -14,31 +14,209 @@
 <section class="page-header">
 	<div class="row">
 		<div class="small-10 columns">
-			<h2 class="red-line"></h2>
-		</div>
-		<div class="small-2 columns">
-			<a class="button button-red" href="{% url 'members:create-member' %}">Edit</a>
+			<h2 class="red-line bold">{{member.full_name}}  {{member.degree_string}}</h2>
 		</div>
 	</div>
 </section>
 
-<section class="pricing">
+
+<section class="member-info">
+
 	<div class="row">
 		<div class="small-12 columns">
-		
-		</div>
-	</div>
-	<div class="row">
-		<div class="small-12 columns">
-			<table class="table">
-					
-				</tbody>
-			</table>
+
 			
-		</div>
+
+
+			<ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge="500" data-tabs id="deeplinked-tabs">
+			  <li class="tabs-title is-active"><a href="#contact" aria-selected="true">Contact Information</a></li>
+			  <li class="tabs-title"><a href="#employment">Employment Info</a></li>
+			  <li class="tabs-title"><a href="#education">Education</a></li>
+			  <li class="tabs-title"><a href="#bio">Bio</a></li>
+			</ul>
+
+
+			<form id="profile-view- form">
+			
+			<div class="tabs-content" data-tabs-content="deeplinked-tabs">
+			  
+				<!-- Contact Info -->
+			  <div class="tabs-panel is-active" id="contact">
+			  	
+					<div class="row">
+						<div class="small-12 medium-6 columns">
+							<div class="callout">
+								{% if member.image %}
+									<img id="profile-image" src="{{member.image.url}}" height="400" alt="Member Image" > 
+								{% endif %}
+							</div>
+							<div class="callout small">
+							  <p>Current Membership Level: {{user.member.membership_level}}</p>
+							 
+							</div>
+						</div>
+						<div class="small-12 medium-6 columns">
+	
+							
+							<div class="row">
+								<div class="small-6 columns">
+									<label>First Name</label>
+									<input readonly type="text" name="first_name" value="{{member.user.first_name}}">
+								</div>
+								<div class="small-6 columns">
+									<label>Last Name</label>
+									<input readonly type="text" name="last_name" value="{{member.user.last_name}}">
+								</div>
+								<div class="small-12 columns">
+									<label>Email</label>
+									<input readonly  type="email" name="email" value="{{member.user.email}}">
+								</div>
+								<div class="small-12 medium-6 columns">
+									<label>Mobile Phone</label>
+									<input readonly  type="tel" name="mobile_phone" value="{{member.mobile_phone}}">
+								</div>
+								<div class="small-12 medium-6 columns">
+									<label>Work Phone</label>
+									<input readonly  type="tel" name="work_phone" value="{{member.work_phone}}">
+								</div>
+								<div class="small-12 medium-12 columns">
+									<label>Address</label>
+									<input readonly  type="text" name="address_line_one" value="{{member.address.address_line_one}}">
+								</div>
+								<div class="small-12 medium-12 columns">
+									<label class="sr-only">Address 2</label>
+									<input readonly  type="text" name="address_line_two" value="{{member.address.address_line_two}}">
+								</div>
+								<div class="small-12 columns">
+									<label>Region</label>
+									<uL>
+									{%for region in member.region.all %}
+										<li>{{region}}</li>
+									{% endfor %}
+									</ul>
+								</div>
+
+								<div class="small-6 columns">
+									<label for="city">City</label>
+									<input readonly  type="text" name="city" value="{{member.address.city}}">
+								</div>
+								<div class="small-6 columns">
+									<label for=state>State</label>
+									<input readonly  type="text" name="state" value="{{member.address.state}}">
+								</div>
+								<div class="small-6 columns">
+									<label for="zip">zip</label>
+									<input readonly  type="text" name="zip" value="{{member.address.zip_code}}">
+								</div>
+								<div class="small-6 columns">
+									<label for="country">Country</label>
+									<input readonly  type="text" name="state" value="{{member.address.country}}">
+								</div>
+							</div>
+
+							
+
+						</div>
+					</div>
+
+			  </div>
+			  <!-- / Contact Info -->
+
+
+
+				<!-- Employment Info -->
+			  <div class="tabs-panel" id="employment">
+			  
+
+					<div class="row">
+						<div class="small-12 medium-4 columns">
+							<label>Title</label>
+							<input readonly  type="text" name="pi_title" value="{{member.professional_information.title}}">
+						</div>
+						<div class="small-12 medium-4 columns">
+							<label>Company</label>
+							<input readonly  type="text" name="pi_company" value="{{member.professional_information.company}}">
+						</div>
+						<div class="small-12 medium-4 columns">
+							<label>Industry</label>
+							<input readonly  type="text" name="pi_industry"value="{{member.professional_information.industry}}">
+						</div>
+						<div class="small-6 columns">
+							<label>Address</label>
+							<input readonly  type="text" name="city" value="{{member.professional_information.address_ling_one}}">
+						</div>
+						<div class="small-6 columns">
+							<label>Address Line 2</label>
+							<input readonly  type="text" name="state" value="{{member.professional_information.address_line_two}}">
+						</div>
+						<div class="small-6 columns">
+							<label>City</label>
+							<input readonly  type="text" name="state" value="{{member.professional_information.city}}">
+						</div>
+						<div class="small-6 columns">
+							<label>State</label>
+							<input readonly  type="text" name="state" value="{{member.professional_information.state}}">
+						</div>
+						<div class="small-6 columns">
+							<label>Zip Code</label>
+							<input readonly  type="text" name="state" value="{{member.professional_information.zip_code}}">
+						</div>
+						<div class="small-6 columns">
+							<label>Country</label>
+							<input readonly  type="text" name="state" value="{{member.professional_information.country}}">
+						</div>
+					</div>
+
+
+			  </div>
+			  <!-- / Employment Info -->
+
+
+				<!-- Education -->
+			  <div class="tabs-panel" id="education">
+			  
+
+			  	<div class="row">
+			  	{% for education in member.education.all %}
+			  		<div class="small-4 medium-4 columns">
+			  			<input readonly  type="text" value="{{education.degree}}">
+			  		</div>
+			  		<div class="small-4 medium-4 columns">
+			  			<input readonly  type="text" value="{{education.program}}">
+			  		</div>
+			  		<div class="small-4 medium-4 columns">
+			  			<input readonly  type="text" value="{{education.grad_year}}">
+			  		</div>
+			  	{% endfor %}
+			  	</div>
+
+			  </div>
+			  <!-- / Education Info -->
+
+				<!-- Bio -->
+			  <div class="tabs-panel" id="bio">
+			  
+			  	<textarea readonly rows="20" >{{member.bio}}</textarea>
+
+			  </div>
+			  <!-- / Bio Info -->
+
+			   <div class="tabs-panel">
+				  <div class="row">
+				  	<div class="small-12">
+				  	<input readonly type="submit" class="button button-red expanded">
+				  	</div>
+				  </div>
+			  </div>
+
+			</form>
+
+	  	</div>
 	</div>
+
 </section> 
 
 
 {% endblock %}
+
 

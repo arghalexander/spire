@@ -4,7 +4,7 @@ from .models import Member, MemberAddress, MemberEducation,MemberProfesionalInfo
 from django.contrib.auth.models import User
 from dal import autocomplete
 from django.utils.translation import ugettext_lazy as _
-
+from datetime import date
 
 class MemberUserForm(ModelForm):
 	first_name = forms.CharField(max_length=200,required=True)
@@ -64,6 +64,8 @@ class MemberAddressForm(ModelForm):
 		]
 
 class MemberEducationForm(ModelForm):
+	grad_year = forms.ChoiceField(choices=[(x, x) for x in reversed(range(1935, date.today().year))])
+
 	class Meta:
 		model = MemberEducation
 		fields = [
@@ -71,6 +73,7 @@ class MemberEducationForm(ModelForm):
 			'program',
 			'grad_year',
 		]
+
 
 
 class MemberProfesionalInformationForm(ModelForm):
