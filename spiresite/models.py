@@ -258,13 +258,13 @@ class MembershipPage(Page):
 
 
 	guest_membership = 				models.TextField(blank=True)
-	guest_yearly = 					models.ForeignKey(
-										'products.MembershipProduct',
-										null=True,
-										blank=True,
-										on_delete=models.SET_NULL,
-										related_name='product_guest'
-									)
+	#guest_yearly = 					models.ForeignKey(
+	#									'products.MembershipProduct',
+	#									null=True,
+	#									blank=True,
+	#									on_delete=models.SET_NULL,
+	#									related_name='product_guest'
+	#								)
 	student_membership = 			models.TextField(blank=True)
 	student_yearly = 				models.ForeignKey(
 										'products.MembershipProduct',
@@ -318,7 +318,7 @@ class MembershipPage(Page):
 		MultiFieldPanel([
 
 			FieldPanel('guest_membership'),
-			SnippetChooserPanel('guest_yearly'),
+			#SnippetChooserPanel('guest_yearly'),
 		],
 		heading="Guest Membership",
 		classname="collapsible"
