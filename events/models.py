@@ -54,6 +54,7 @@ class Event(index.Indexed,ClusterableModel):
 	panels = [
 		
 		FieldPanel('status', classname='fn'),
+		FieldPanel('capacity', classname='fn'),
 
 		MultiFieldPanel([
 			FieldPanel('title', classname='fn'),

@@ -42,7 +42,8 @@ class MemberForm(ModelForm):
 			]
 		widgets = {
 			'region': forms.CheckboxSelectMultiple(),
-			'bio': forms.Textarea(attrs={'rows': 20})
+			'bio': forms.Textarea(attrs={'rows': 20}),
+			'image' : forms.FileInput()
 		}
 		labels = {
         	"region": _('Regional Affiliation'),
