@@ -445,7 +445,8 @@ class StandardLeadershipPage(Page):
 	body =							 StreamField([
 										('text', blocks.RichTextBlock()),
 										('table', TableBlock()),
-										('three_columnn_block', ThreeColumnBlock())
+										('three_columnn_block', ThreeColumnBlock()),
+
 									])
 
 	content_panels = Page.content_panels + [
@@ -461,7 +462,8 @@ class StandardPage(Page):
 	body =							 StreamField([
 										('text', blocks.RichTextBlock()),
 										('button', ButtonBlock()),
-										('people_list', blocks.ListBlock(PersonBlock(), template='spiresite/blocks/people_list.html', icon="group"))
+										('people_list', blocks.ListBlock(PersonBlock(), template='spiresite/blocks/people_list.html', icon="group")),
+										('redirect', RedirectBlock())
 									])
 
 	content_panels = Page.content_panels + [

@@ -343,10 +343,13 @@ footer {
     padding-bottom: 30px; }
   footer #footer-sponsors ul {
     margin: 0px;
-    columns: 3; }
+    columns: 4; }
     footer #footer-sponsors ul li {
       text-align: center;
       list-style-type: none; }
+      footer #footer-sponsors ul li img {
+        height: 100px;
+        width: auto; }
 
 .srec-menu {
   border-bottom: 1px solid #EFEFEF;

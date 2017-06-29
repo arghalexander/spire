@@ -109,3 +109,11 @@ class TwoImageBlock(blocks.StructBlock):
 		template = 'spiresite/blocks/2_images.html'
 		icon = 'image'
 
+
+
+class RedirectBlock(blocks.StructBlock):
+	page = blocks.PageChooserBlock()
+
+	class Meta:
+		template = 'spiresite/blocks/redirect.html'
+		icon = 'link'
