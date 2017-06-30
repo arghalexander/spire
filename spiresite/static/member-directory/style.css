@@ -3263,6 +3263,10 @@ body {
   border: none;
 }
 
+#app tbody tr {
+  cursor: pointer;
+}
+
 .redBg {
   background-color: red;
   border-radius: 51px;
