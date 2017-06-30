@@ -8,12 +8,13 @@
 
 {% block content %}
 
+
 <section class="home-header">
 	<div class="row-fluid">
 		<div class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit>
 		  <ul class="orbit-container">
-		    
-		    
+
+
 		    {% for panel in page.home_gallery.all %}
 		    <li class="is-active orbit-slide">
 		      {% image panel.background original class="orbit-image" %}
@@ -28,20 +29,20 @@
 				     </div>
 
 		    	</figcaption>
-		    </li>  
+		    </li>
 			{% endfor %}
-		    
+
 		  </ul>
 		  <nav class="orbit-bullets">
 
 		  	{% for panel in page.home_gallery.all %}
-		    	
+
 		  		{% if forloop.counter0 == 0 %}
 		  			<button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span><span class="show-for-sr">Current Slide</span></button>
 		  		{% else %}
 		  			<button data-slide="{{forloop.counter0}}"><span class="show-for-sr">Second slide details.</span></button>
 		  		{% endif %}
-			    
+
 
 			{% endfor %}
 
@@ -120,7 +121,7 @@
 					<a class="button button-red button-purchase expanded" href="{% url 'events:event-detail' page.featured_event.slug %}">Purchase Tickets</a>
 				</div>
 				{% endif %}
-				
+
 			</div>
 		</div>
 		<div class="small-12 columns">
@@ -174,7 +175,7 @@
 				<a href="{{page.join_link}}" class="button button-red-outline">Join SPIRE</a>
 			</div>
 		</div>
-		
+
 
 	</div>
 </section>
@@ -191,12 +192,12 @@
 				<a href="{{page.contact_link}}" class="button button-red-outline">Contact Us</a>
 			</div>
 		</div>
-		
+
 
 	</div>
 </section>
 
 
-	
+
 
 {% endblock %}
