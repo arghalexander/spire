@@ -11,6 +11,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User, Group
 
 from django.conf import settings
@@ -45,7 +46,7 @@ class MemberViewSet(viewsets.ModelViewSet):
 	filter_backends = (filters.SearchFilter,DjangoFilterBackend,filters.OrderingFilter)
 	filter_class = MemberFilter
 	search_fields = ('user__username', 'user__first_name', 'user__last_name', 'professional_information__company')
-	ordering_fields = ('user__email','user__first_name','user__last_name', 'membership_expiration')
+	ordering_fields = ('user__email','user__first_name','user__last_name', 'membership_expiration', 'date_joined')
 
 	@detail_route(methods=['get'])
 	def get_event_attendance(self, request, pk):
@@ -297,13 +298,14 @@ def member_create(request):
 
 
 @login_required
-def member_profile(request):
+def member_profile(request, member_id):
+	
+	member = get_object_or_404(Member, id=member_id)
 
-	return render(request, 'members/member_profile.html')
+	return render(request, 'members/member_profile.html', {
+		'member' : member
+		})
 
-
-def member_profile_edit(request):
-	return render(request, 'members/member_profile_edit.html')
 
 
 
@@ -329,7 +331,7 @@ def my_profile(request):
 
 
 @login_required
-def member_profile_edit(request):
+def my_profile_edit(request):
 	try:
 		member = Member.objects.get(user=request.user)
 		address = MemberAddress.objects.get(member=member)
