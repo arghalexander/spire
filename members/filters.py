@@ -57,6 +57,8 @@ class MemberFilter(filters.FilterSet):
     grad_year__gte = django_filters.NumberFilter(name='education__grad_year', lookup_expr='gte')
     grad_year__lte = django_filters.NumberFilter(name='education__grad_year', lookup_expr='lte')
 
+    grad_year = django_filters.NumberFilter(name='education__grad_year', lookup_expr='eq')
+
     class Meta:
         model = Member
         fields = {}
