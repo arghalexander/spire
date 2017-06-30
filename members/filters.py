@@ -1,7 +1,7 @@
 import django_filters
 from rest_framework import viewsets
 import rest_framework_filters as filters
-from .models import Member, MemberIndustry, MemberRegion, MembershipLevel, MemberProfesionalInformation
+from .models import *
 
 from django.contrib.auth.models import User
 
@@ -15,6 +15,16 @@ class MemberRegionFilter(filters.FilterSet):
     class Meta:
         model = MemberRegion
         fields = {'region': ['exact', 'in',]}
+
+
+class MemberAddressFilter(filters.FilterSet):
+    class Meta:
+        model = MemberAddress
+        fields = {
+            'country': ['exact', 'in',],
+            'state': ['exact', 'in',],
+            'city': ['exact', 'in',]
+        }
 
 
 class MembershipLevelFilter(filters.FilterSet):
@@ -36,10 +46,10 @@ class MemberFilter(filters.FilterSet):
     membership_level = filters.RelatedFilter(MembershipLevelFilter, name='membership_level', queryset=MembershipLevel.objects.all())
     
     
-
     user = filters.RelatedFilter('spire.filters.UserFilter', name='user', queryset=User.objects.all())    
     industry = django_filters.CharFilter(name='professional_information__industry__industry', lookup_expr='exact')
 
+    address = filters.RelatedFilter(MemberAddressFilter, name='address', queryset=MemberAddress.objects.all())
 
     date_joined__gte = django_filters.DateTimeFilter(name='user__date_joined', lookup_expr='gte')
     date_joined__lte = django_filters.DateTimeFilter(name='user__date_joined', lookup_expr='lte')
