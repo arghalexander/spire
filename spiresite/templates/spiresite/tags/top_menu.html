@@ -3,10 +3,39 @@
 {% load static %}
 
 <div data-sticky-container>
-  <div class="top-bar" data-sticky data-options="marginTop:0;" style="width:100%">
+
+  <div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
+    <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
+    <div class="title-bar-title">
+      <a class="navbar-brand" href="{% pageurl site_root %}">
+          <img src="{% static 'images/logo.png' %}" width="170">
+      </a>
+    </div>
+  </div>
+
+
+  <div class="top-bar show-for-small-only" data-sticky data-options="marginTop:0;" style="width:100%" id="responsive-menu">
+     <ul class="vertical menu" data-dropdown-menu data-closing-time="0">
+          {% for menuitem in menuitems %}
+              <li class="nav-item {% if menuitem.show_dropdown %}{% endif %}{% if menuitem.active %} active{% endif %}">
+                  {% if menuitem.show_dropdown %}
+                     
+                      {% top_menu_children parent=menuitem %}
+
+                  {% else %}
+                      <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+                  {% endif %}
+              </li>
+          {% endfor %}
+      </ul>
+  </div>
+
+
+  <div class="top-bar hide-for-small-only" data-sticky data-options="marginTop:0;" style="width:100%" >
     <div class="row">
       <div class="small-12 columns">
         <div class="top-bar-left">
+          
           <ul class="dropdown menu expanded" data-dropdown-menu data-closing-time="0">
             <li class="menu-text">
                   <a class="navbar-brand" href="{% pageurl site_root %}">

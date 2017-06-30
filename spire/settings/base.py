@@ -323,6 +323,9 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
 }
 """
 
+
+
+
 # Social Authentication
 
 SOCIAL_AUTH_PIPELINE = (
