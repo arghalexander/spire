@@ -45,7 +45,6 @@ class MemberFilter(filters.FilterSet):
     region__in = django_filters.filters.BaseInFilter(name='region__region',distinct=True)
     membership_level = filters.RelatedFilter(MembershipLevelFilter, name='membership_level', queryset=MembershipLevel.objects.all())
     
-    
     user = filters.RelatedFilter('spire.filters.UserFilter', name='user', queryset=User.objects.all())    
     industry = django_filters.CharFilter(name='professional_information__industry__industry', lookup_expr='exact')
 
