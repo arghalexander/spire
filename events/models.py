@@ -26,6 +26,8 @@ from django.dispatch import receiver
 
 
 
+
+
 @register_snippet
 class Event(index.Indexed,ClusterableModel):
 	title =							 		models.CharField(max_length=254)

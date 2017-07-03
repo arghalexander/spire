@@ -1,0 +1,16 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+<section class="page-content">
+	<div class="row">
+		<div class="small-7 columns">
+			{{value.text|richtext}}
+		</div>
+		<div class="small-5 columns upcoming-event">
+			<div class="upcoming-event__content">
+				<h3 class="white-line">Upcoming Event</h3>
+				{{value.event|richtext}}
+				<a href="/about/contact-us/" class="button button-white expanded">Contact Us</a>
+			</div>	
+		</div>
+	</div>
+</section>

@@ -117,3 +117,14 @@ class RedirectBlock(blocks.StructBlock):
 	class Meta:
 		template = 'spiresite/blocks/redirect.html'
 		icon = 'link'
+
+
+
+
+class REALPageBlock(blocks.StructBlock):
+	text = blocks.RichTextBlock()
+	event = blocks.RichTextBlock()
+
+	class Meta:
+		template = 'spiresite/blocks/real_block.html'
+		icon = 'plus'

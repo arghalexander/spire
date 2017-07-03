@@ -463,7 +463,8 @@ class StandardPage(Page):
 										('text', blocks.RichTextBlock()),
 										('button', ButtonBlock()),
 										('people_list', blocks.ListBlock(PersonBlock(), template='spiresite/blocks/people_list.html', icon="group")),
-										('redirect', RedirectBlock())
+										('redirect', RedirectBlock()),
+										('REAL_page', REALPageBlock()),
 									])
 
 	content_panels = Page.content_panels + [
