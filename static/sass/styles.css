@@ -502,6 +502,16 @@ form .errorlist {
   #payment-form .field input {
     padding-top: 4px; }
 
+.upcoming-event {
+  background-color: #434750;
+  color: #FFF; }
+  .upcoming-event .upcoming-event__content {
+    padding: 70px 30px 30px 30px; }
+  .upcoming-event p {
+    color: #FFF; }
+  .upcoming-event .button-white {
+    color: #333333; }
+
 .event-block {
   position: relative;
   background-color: #FFF; }
