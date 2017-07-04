@@ -57,7 +57,7 @@ class MemberMembershipHistorySerializer(serializers.ModelSerializer):
 class MemberNoteSerializer(serializers.ModelSerializer):
     user = serializers.CharField(source='user.username', read_only=True, allow_blank=True)
     member = serializers.CharField(read_only=True, allow_blank=True)
-    tags = MemberTagSerializer(many=True)
+    tag = MemberTagSerializer(many=True)
 
     class Meta:
         model = MemberNote
