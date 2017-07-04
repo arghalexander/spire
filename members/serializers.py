@@ -26,6 +26,13 @@ class MemberEducationSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class MemberTagSerializer(serializers.ModelSerializer):
+   
+    class Meta:
+        model = MemberTag
+        fields = '__all__'
+
+
 class MemberAddressSerializer(serializers.ModelSerializer):
    
     class Meta:

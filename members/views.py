@@ -221,6 +221,9 @@ class MemberAddressViewSet(viewsets.ModelViewSet):
 	serializer_class = MemberAddressSerializer
 
 
+class MemberTagViewSet(viewsets.ModelViewSet):
+	queryset = MemberTag.objects.all()
+	serializer_class = MemberTagSerializer
 
 
 def index(request):

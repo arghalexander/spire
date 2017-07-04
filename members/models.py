@@ -185,7 +185,7 @@ class MemberNote(models.Model):
 	user = 								models.ForeignKey(User)
 	note = 								models.TextField(blank=False)
 	date =  							models.DateTimeField(auto_now=True)
-	tag = 								models.ForeignKey(MemberTag, null=True, blank=True)
+	tag = 								models.ManyToManyField(MemberTag,blank=True, related_name="tags")
 
 	def __str__(self):       
 		return self.member.user.email
