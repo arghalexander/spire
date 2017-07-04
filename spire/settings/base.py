@@ -93,7 +93,7 @@ INSTALLED_APPS = [
 
     'anymail',
 
-    'csvimport.app.CSVImportConf',
+    #'csvimport.app.CSVImportConf',
     'import_export',
 
     #Social Auth
