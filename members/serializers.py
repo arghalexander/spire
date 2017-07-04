@@ -49,6 +49,10 @@ class MemberMembershipHistorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class TagSerializer(TaggitSerializer):
+    tag = serializers.CharField(read_only=True)
+
+
 class MemberNoteSerializer(TaggitSerializer,serializers.ModelSerializer):
     user = serializers.CharField(source='user.username', read_only=True, allow_blank=True)
     member = serializers.CharField(read_only=True, allow_blank=True)
