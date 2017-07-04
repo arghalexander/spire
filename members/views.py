@@ -38,6 +38,8 @@ from events.models import EventAttendance
 from events.serializers import EventAttendanceSerializer
 from django.forms import formset_factory,modelformset_factory
 
+from taggit.models import Tag
+
 
 class MemberViewSet(viewsets.ModelViewSet):
 	queryset = Member.objects.all()

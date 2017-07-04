@@ -39,7 +39,7 @@ class MemberAdmin(ImportExportModelAdmin):
 
 @admin.register(MemberNote)
 class MembersNoteAdmin(admin.ModelAdmin):
-	pass
+	list_display = ['member', 'date', 'note', 'tags']
 
 
 @admin.register(MembershipLevel)
