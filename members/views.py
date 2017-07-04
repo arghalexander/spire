@@ -159,7 +159,7 @@ class MemberViewSet(viewsets.ModelViewSet):
 	@list_route()
 	def available_tags(self,request):
 		tags = Tag.objects.all()
-		serializer = TaggitSerializer(tags, many=True)
+		serializer = TaggitSerializer(tags)
 		return Response(serializer.data)
 
 
