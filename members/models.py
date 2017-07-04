@@ -173,11 +173,11 @@ class MemberProfesionalInformation(models.Model):
 
 
 class MemberTag(models.Model):
-	tag = 								models.SlugField(max_length=255)
-	description = 						models.TextField(blank=False, help_text="Short description of what this tag is for")
+	value = 							models.SlugField(max_length=255)
+	label = 							models.CharField(blank=False, help_text="Tag Label", max_length=100)
 
 	def __str__(self):       
-		return self.tag
+		return self.value
 
 
 class MemberNote(models.Model):
