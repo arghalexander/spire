@@ -160,7 +160,7 @@ class MemberViewSet(viewsets.ModelViewSet):
 	def available_tags(self,request):
 		tags = Tag.objects.all()
 		print(tags)
-		serializer = TaggitSerializer(data=tags, many=True)
+		serializer = TaggitSerializer(tags, many=True)
 		return Response(serializer.data)
 
 
