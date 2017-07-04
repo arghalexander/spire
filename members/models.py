@@ -180,6 +180,7 @@ class MemberTag(models.Model):
 		return self.value
 
 
+
 class MemberNote(models.Model):
 	member = 							models.ForeignKey(Member)
 	user = 								models.ForeignKey(User)
@@ -189,8 +190,6 @@ class MemberNote(models.Model):
 
 	def __str__(self):       
 		return self.member.user.email
-
-
 
 
 
