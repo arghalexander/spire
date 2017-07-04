@@ -41,6 +41,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    
     'dal',
     'dal_select2',
     'grappelli',
@@ -50,6 +51,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+
+    #front end
+    'spiresite',
+
 
     #wagtail CMS 
     'wagtail.wagtailforms',
@@ -100,8 +106,7 @@ INSTALLED_APPS = [
     'products',
     'checkout',
 
-    #front end
-    'spiresite',
+    
     #'wagtailtinymce',
 
     'cart'
@@ -140,7 +145,7 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
+        #'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ),
