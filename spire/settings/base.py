@@ -78,13 +78,15 @@ INSTALLED_APPS = [
     'django_extensions',
     'sass_processor',
 
-    
-
     'modelcluster',
     'taggit',
+    'taggit_helpers',
+    'taggit_serializer',
+    'taggit_labels',
 
     'rest_framework',
     'rest_framework.authtoken',
+    
 
     'corsheaders',
     'django_filters',

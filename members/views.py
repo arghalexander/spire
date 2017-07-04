@@ -144,10 +144,12 @@ class MemberViewSet(viewsets.ModelViewSet):
 
 		elif request.method == 'POST':
 			serializer = MemberNoteSerializer(data=request.data)
+			
+
 			if serializer.is_valid():
 
-				#TODO change user back to request user, set to this becuase anonymous users are not allowed
-				serializer.save(member=member, user_id=1)
+				
+				serializer.save(member=member, user_id=request.user.id)
 
 				return Response(serializer.data, status=status.HTTP_201_CREATED)
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -212,18 +214,15 @@ class MemberIndustryViewSet(viewsets.ModelViewSet):
 	serializer_class = MemberIndustrySerializer
 
 
+
 class MemberNoteViewSet(viewsets.ModelViewSet):
 	queryset = MemberNote.objects.all()
 	serializer_class = MemberNoteSerializer
 
+
 class MemberAddressViewSet(viewsets.ModelViewSet):
 	queryset = MemberAddress.objects.all()
 	serializer_class = MemberAddressSerializer
-
-
-class MemberTagViewSet(viewsets.ModelViewSet):
-	queryset = MemberTag.objects.all()
-	serializer_class = MemberTagSerializer
 
 
 def index(request):

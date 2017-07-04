@@ -13,6 +13,7 @@ from wagtail.wagtailsnippets.models import register_snippet
 
 from events.models import Event
 
+from taggit.managers import TaggableManager
 
 @register_snippet
 @python_2_unicode_compatible
@@ -172,25 +173,16 @@ class MemberProfesionalInformation(models.Model):
 
 
 
-class MemberTag(models.Model):
-	value = 							models.SlugField(max_length=255)
-	label = 							models.CharField(blank=False, help_text="Tag Label", max_length=100)
-
-	def __str__(self):       
-		return self.value
-
-
-
 class MemberNote(models.Model):
 	member = 							models.ForeignKey(Member)
 	user = 								models.ForeignKey(User)
 	note = 								models.TextField(blank=False)
 	date =  							models.DateTimeField(auto_now=True)
-	tag = 								models.ManyToManyField(MemberTag,blank=True, related_name="tags")
+	tags = 								TaggableManager()
+
 
 	def __str__(self):       
 		return self.member.user.email
-
 
 
 

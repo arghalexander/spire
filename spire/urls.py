@@ -28,7 +28,7 @@ from django.views.defaults import server_error, page_not_found, permission_denie
 from spire.registration.forms import MemberRegistrationForm
 from spire.registration.views import RegistrationView
 
-from members.views import MemberViewSet, MembershipLevelViewSet, MemberAddressViewSet, MemberNoteViewSet, MemberRegionViewSet, MemberIndustryViewSet, member_profile, MemberTagViewSet
+from members.views import MemberViewSet, MembershipLevelViewSet, MemberAddressViewSet, MemberNoteViewSet, MemberRegionViewSet, MemberIndustryViewSet, member_profile
 from events.views import EventViewSet, EventAttendanceViewSet
 
 from .views import UserViewSet, check_login
@@ -45,8 +45,6 @@ router.register(r'membership-levels', MembershipLevelViewSet)
 router.register(r'member-notes', MemberNoteViewSet)
 router.register(r'member-regions', MemberRegionViewSet)
 router.register(r'member-industry', MemberIndustryViewSet)
-router.register(r'member-tags', MemberTagViewSet)
-
 #Event endpoints
 router.register(r'events', EventViewSet)
 router.register(r'event-attendance', EventAttendanceViewSet)

@@ -1,7 +1,8 @@
 from rest_framework import serializers
 from .models import *
 from spire.serializers import UserSerializer
-
+from taggit_serializer.serializers import (TagListSerializerField,
+                                           TaggitSerializer)
 
 class MemberSignupsByMonthSerilizer(serializers.Serializer):
     value = serializers.IntegerField()
@@ -26,12 +27,6 @@ class MemberEducationSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class MemberTagSerializer(serializers.ModelSerializer):
-   
-    class Meta:
-        model = MemberTag
-        fields = '__all__'
-
 
 class MemberAddressSerializer(serializers.ModelSerializer):
    
@@ -54,12 +49,10 @@ class MemberMembershipHistorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class MemberNoteSerializer(serializers.ModelSerializer):
+class MemberNoteSerializer(TaggitSerializer,serializers.ModelSerializer):
     user = serializers.CharField(source='user.username', read_only=True, allow_blank=True)
     member = serializers.CharField(read_only=True, allow_blank=True)
-    tag = MemberTagSerializer(many=True, read_only=True)
-
-    #tag = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    tags = TagListSerializerField()
 
     class Meta:
         model = MemberNote
@@ -79,7 +72,6 @@ class MemberIndustrySerializer(serializers.ModelSerializer):
 
 class MemberProfesionalInformationSerializer(serializers.ModelSerializer):
     industry = serializers.CharField(source='industry.industry', read_only=True, allow_blank=True)
-    #industry_associations = serializers.CharField(source='MemberIndustryAssociation.name', read_only=True, allow_blank=True)
     industry_associations = serializers.CharField(source='industry_associations.name', read_only=True, allow_blank=True)
 
     class Meta:
@@ -93,7 +85,6 @@ class MemberSerializer(serializers.ModelSerializer):
     last_name = serializers.CharField(source='user.last_name', read_only=True, allow_blank=True)
     date_joined = serializers.CharField(source='user.date_joined', read_only=True, allow_blank=True)
     membership_level = serializers.CharField(source='membership_level.level', read_only=True, allow_blank=True)
-    #industry = serializers.CharField(source='industry.industry', read_only=True, allow_blank=True)
     professional_information = MemberProfesionalInformationSerializer(many=False)
   
     address = MemberAddressSerializer(many=False)

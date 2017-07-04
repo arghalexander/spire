@@ -37,14 +37,13 @@ class MemberAdmin(ImportExportModelAdmin):
 	]
 
 
-@admin.register(MembershipLevel)
-class MembershipLevelAdmin(admin.ModelAdmin):
+@admin.register(MemberNote)
+class MembersNoteAdmin(admin.ModelAdmin):
 	pass
 
 
-
-@admin.register(MemberTag)
-class MemberTagsAdmin(admin.ModelAdmin):
+@admin.register(MembershipLevel)
+class MembershipLevelAdmin(admin.ModelAdmin):
 	pass
 
 
