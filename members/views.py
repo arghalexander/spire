@@ -39,6 +39,8 @@ from events.serializers import EventAttendanceSerializer
 from django.forms import formset_factory,modelformset_factory
 
 from taggit.models import Tag
+from taggit_serializer.serializers import (TagListSerializerField,
+                                           TaggitSerializer)
 
 
 class MemberViewSet(viewsets.ModelViewSet):
@@ -147,14 +149,18 @@ class MemberViewSet(viewsets.ModelViewSet):
 		elif request.method == 'POST':
 			serializer = MemberNoteSerializer(data=request.data)
 			
-
 			if serializer.is_valid():
-
-				
 				serializer.save(member=member, user_id=request.user.id)
 
 				return Response(serializer.data, status=status.HTTP_201_CREATED)
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+	@list_route()
+	def available_tags(self,request):
+		tags = Tag.objects.all()
+		serializer = TaggitSerializer(tags, many=True)
+		return Response(serializer.data)
 
 
 	@detail_route(methods=['get'])
