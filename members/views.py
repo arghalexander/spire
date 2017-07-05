@@ -272,10 +272,12 @@ def member_create(request):
 			member = member_form.save(commit=False)
 			member.user = request.user
 			member.save()
+			member_form.save_m2m()
 
 			address = address_form.save(commit=False)
 			address.member = member
 			address.save()
+
 
 			#get other industry if there is one
 			other_industry = request.POST.get('other-industry', '')
@@ -283,7 +285,7 @@ def member_create(request):
 			work = work_form.save(commit=False)
 			
 			if(other_industry):
-				industry = MemberIndustry(industry=other_industry, user=request.user)
+				industry = MemberIndustry(industry=other_industry, entered_by=request.user)
 				industry.save()
 				work.industry = industry
 
@@ -401,9 +403,16 @@ def my_profile_edit(request):
 
 			address.save()
 
+			#get other industry if there is one
+			other_industry = request.POST.get('other-industry', '')
 
-			
 			work = work_form.save(commit=False)
+			
+			if(other_industry):
+				industry = MemberIndustry(industry=other_industry, entered_by=request.user)
+				industry.save()
+				work.industry = industry
+
 			work.member = member
 			work.save()
 

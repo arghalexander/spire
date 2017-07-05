@@ -95,6 +95,18 @@ $(document).ready(function(){
 
 
 
+    $("form#profile-form #id_professional-industry").change(function(){
+       //console.log('changed')
+
+       var selected = $( "#id_professional-industry option:selected" ).text();
+
+       if(selected == 'Other'){
+          $("form#profile-form #other-fieldset").show();
+       }
+    });
+
+
+
     /** Member profile edit */
     $( "#edit-profile" ).click(function(e) {
 

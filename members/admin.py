@@ -55,7 +55,7 @@ class MemberAddressAdmin(admin.ModelAdmin):
 
 @admin.register(MemberIndustry)
 class MemberIndustryAdmin(admin.ModelAdmin):
-	pass
+	list_display = ['industry','entered_by']
 
 
 @admin.register(MemberIndustryAssociation)
