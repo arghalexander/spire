@@ -151,7 +151,7 @@ class MemberViewSet(viewsets.ModelViewSet):
 			serializer = MemberNoteSerializer(data=request.data)
 			
 			if serializer.is_valid():
-				serializer.save(member=member, user_id=request.user.id)
+				serializer.save(member=member, user=request.user)
 
 				return Response(serializer.data, status=status.HTTP_201_CREATED)
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
