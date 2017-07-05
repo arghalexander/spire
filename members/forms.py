@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from dal import autocomplete
 from django.utils.translation import ugettext_lazy as _
 from datetime import date
+from .fields import ListTextWidget
+
 
 class MemberUserForm(ModelForm):
 	first_name = forms.CharField(max_length=200,required=True)
@@ -28,8 +30,8 @@ class MemberCreateForm(ModelForm):
 			'region': forms.CheckboxSelectMultiple(),
 		}
 		labels = {
-        	"region": _('Regional Affiliation'),
-    	}
+			"region": _('Regional Affiliation'),
+		}
 
 
 class MemberForm(ModelForm):
@@ -46,8 +48,8 @@ class MemberForm(ModelForm):
 			'image' : forms.FileInput()
 		}
 		labels = {
-        	"region": _('Regional Affiliation'),
-    	}
+			"region": _('Regional Affiliation'),
+		}
 
 
 class MemberAddressForm(ModelForm):
@@ -77,6 +79,7 @@ class MemberEducationForm(ModelForm):
 
 
 class MemberProfesionalInformationForm(ModelForm):
+
 	class Meta:
 		model = MemberProfesionalInformation
 		fields = [

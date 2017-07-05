@@ -261,12 +261,12 @@ def member_create(request):
 
 		member_form = MemberCreateForm(request.POST)
 		address_form = MemberAddressForm(request.POST)
-
+		
+		work_form = MemberProfesionalInformationForm(request.POST,prefix="professional")
+		
 		education_formset = education_formset(request.POST)
 
-
-		if(address_form.is_valid() and user_form.is_valid() and member_form.is_valid() and education_formset.is_valid()):
-			#redirect('members:member-profile')
+		if(address_form.is_valid() and user_form.is_valid() and member_form.is_valid() and education_formset.is_valid() and work_form.is_valid()):
 
 			user_form.save()
 			member = member_form.save(commit=False)
@@ -277,12 +277,24 @@ def member_create(request):
 			address.member = member
 			address.save()
 
+			#get other industry if there is one
+			other_industry = request.POST.get('other-industry', '')
+
+			work = work_form.save(commit=False)
+			if(other_industry):
+				industry = MemberIndustry(industry=other_industry)
+				industry.save()
+				work.industry = industry
+
+			work.member = member
+			work.save()
 		 
 			for form in education_formset:
-				print(form)
+
 				form = form.save(commit=False)
 				form.member = member
 				form.save()
+
 		
 			return redirect('members:member-profile')
 
@@ -299,14 +311,18 @@ def member_create(request):
 		address_form =  MemberAddressForm()
 		user_form = MemberUserForm()
 		member_form = MemberCreateForm()
-		address_form = MemberAddressForm()
+
+		industry_list = MemberIndustry.objects.all()
+
+		work_form = MemberProfesionalInformationForm(prefix="professional")
 
 
 	return render(request, 'members/member_create.html', {
 		'user_form': user_form,
 		'member_form': member_form,
 		'address_form': address_form,
-		'education_formset': education_formset
+		'education_formset': education_formset,
+		'work_form': work_form
 		})
 
 
@@ -420,6 +436,8 @@ def my_profile_edit(request):
 		user_form = MemberUserForm(instance=request.user)
 		member_form = MemberForm(instance=member)
 		address_form = MemberAddressForm(prefix="personal", instance=address)
+
+		#industry_list = MemmberIndustry.objects.all()
 
 		work_form = MemberProfesionalInformationForm(prefix="professional", instance=work_info)
 

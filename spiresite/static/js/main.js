@@ -82,8 +82,16 @@ $(document).ready(function(){
     }
 
 
-    $("form#profile-create-form:input").change(function(){
-       console.log('changed')
+
+    $("form#profile-create-form #id_professional-industry").change(function(){
+       //console.log('changed')
+
+       var selected = $( "#id_professional-industry option:selected" ).text();
+
+       console.log(selected)
+       if(selected == 'Other'){
+          $("form#profile-create-form #other-fieldset").show();
+       }
     });
 
 
