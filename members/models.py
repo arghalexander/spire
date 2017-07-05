@@ -33,6 +33,7 @@ class MembershipLevel(models.Model):
 
 class MemberIndustry(models.Model):
 	industry = 							models.CharField(max_length=254) 
+	entered_by = 						models.ForeignKey(User, null=True, blank=True) 
 
 	def __str__(self):            
 		return self.industry
@@ -153,7 +154,7 @@ class MemberProfesionalInformation(models.Model):
 	title = 							models.CharField(max_length=254, blank=True)
 	company = 							models.CharField(max_length=254, blank=True)
 	industry =							models.ForeignKey(MemberIndustry, related_name="member_industry", blank=True, null=True)		
-
+	
 	industry_associations = 			models.ForeignKey(MemberIndustryAssociation, related_name="member_industry_associations", blank=True, null=True)		
 
 	address_line_one = 					models.CharField(max_length=255, blank=True)

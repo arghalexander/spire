@@ -281,8 +281,9 @@ def member_create(request):
 			other_industry = request.POST.get('other-industry', '')
 
 			work = work_form.save(commit=False)
+			
 			if(other_industry):
-				industry = MemberIndustry(industry=other_industry)
+				industry = MemberIndustry(industry=other_industry, user=request.user)
 				industry.save()
 				work.industry = industry
 
@@ -294,7 +295,6 @@ def member_create(request):
 				form = form.save(commit=False)
 				form.member = member
 				form.save()
-
 		
 			return redirect('members:member-profile')
 
