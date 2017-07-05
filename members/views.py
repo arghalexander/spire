@@ -42,6 +42,7 @@ from taggit.models import Tag
 from taggit_serializer.serializers import (TagListSerializerField,
                                            TaggitSerializer)
 
+from django.views.decorators.csrf import csrf_exempt
 
 
 class MemberViewSet(viewsets.ModelViewSet):
@@ -134,6 +135,7 @@ class MemberViewSet(viewsets.ModelViewSet):
 		serializer = MemberEducationSerializer(events, many=True)
 		return Response(serializer.data)
 
+	@csrf_exempt
 	@detail_route(methods=['get', 'post'])
 	def member_notes(self, request, pk):
 		try:
