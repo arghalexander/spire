@@ -88,7 +88,6 @@ $(document).ready(function(){
 
        var selected = $( "#id_professional-industry option:selected" ).text();
 
-       console.log(selected)
        if(selected == 'Other'){
           $("form#profile-create-form #other-fieldset").show();
        }
