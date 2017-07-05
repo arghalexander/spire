@@ -49,8 +49,9 @@ class MemberMembershipHistorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class TagSerializer(TaggitSerializer):
-    tag = serializers.CharField(read_only=True)
+class TagSerializer(serializers.Serializer):
+    name = serializers.CharField(read_only=True)
+    slug = serializers.SlugField(read_only=True)
 
 
 class MemberNoteSerializer(TaggitSerializer,serializers.ModelSerializer):

@@ -41,7 +41,7 @@ from django.forms import formset_factory,modelformset_factory
 from taggit.models import Tag
 from taggit_serializer.serializers import (TagListSerializerField,
                                            TaggitSerializer)
-from django.core import serializers
+
 
 
 class MemberViewSet(viewsets.ModelViewSet):
@@ -159,8 +159,9 @@ class MemberViewSet(viewsets.ModelViewSet):
 
 	@list_route()
 	def available_tags(self,request):
-		data = serializers.serialize("json", Tag.objects.all())
-		return Response(data)
+		tags = Tag.objects.all()
+		serializer = TagSerializer(tags, many=True)
+		return Response(serializer.data)
 
 
 	@detail_route(methods=['get'])
