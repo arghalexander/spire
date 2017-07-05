@@ -97,9 +97,10 @@ class MemberSerializer(serializers.ModelSerializer):
     #industry = MemberIndustrySerializer(many=False)
     region = MemberRegionSerializer(many=True)
 
+
     class Meta:
         model = Member
-        fields = ('id','email','full_name','preferred_name','first_name','last_name','membership_level','membership_expiration','region','image','date_joined','mobile_phone', 'work_phone','degree_string','professional_information', 'address', 'education', 'bio','facebook','linkedin','twitter')
+        fields = ('id','email','full_name','preferred_name','first_name','last_name','membership_level','membership_expiration','region','image','date_joined','mobile_phone', 'work_phone','degree_string','professional_information', 'address', 'education', 'bio','facebook','linkedin','twitter',)
 
 
 
