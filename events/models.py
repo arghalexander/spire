@@ -53,6 +53,9 @@ class Event(index.Indexed,ClusterableModel):
 	def __str__(self):
 		return self.title
 
+	def __unicode__(self):
+		return u'%s' % self.title
+
 	panels = [
 		
 		FieldPanel('status', classname='fn'),
