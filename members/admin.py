@@ -31,7 +31,7 @@ class MemberAdmin(ImportExportModelAdmin):
 	search_fields = ['user__username']
 	list_display = ['user', 'get_first_name', 'get_last_name', 'membership_level', 'membership_expiration']
 	
-	list_filter = ('membership_level')
+	list_filter = ('membership_level',)
 
 	inlines = [
 		MemberEducationInline,
