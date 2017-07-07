@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     
     'dal',
     'dal_select2',
-    'grappelli',
+    #'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -93,7 +93,7 @@ INSTALLED_APPS = [
 
     'anymail',
 
-    #'csvimport.app.CSVImportConf',
+    'csvimport.app.CSVImportConf',
     'import_export',
 
     #Social Auth

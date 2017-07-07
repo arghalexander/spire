@@ -79,7 +79,6 @@ class MemberEventPurchaseAdmin(admin.ModelAdmin):
 
 
 
-"""
 class myUserAdmin(ImportExportMixin, UserAdmin):
 	resource_class = UserResource
 
@@ -88,4 +87,3 @@ class myUserAdmin(ImportExportMixin, UserAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User, myUserAdmin)
-"""
