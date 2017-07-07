@@ -84,7 +84,7 @@ class Member(models.Model):
 		return self.user.email
 
 	def __unicode__(self):
-    return u'%s' % self.user.email
+		return u'%s' % self.user.email
 
 	@property
 	def full_name(self):
