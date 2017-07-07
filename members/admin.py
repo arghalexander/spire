@@ -29,6 +29,7 @@ class NoteInline(admin.TabularInline):
 class MemberAdmin(ImportExportModelAdmin):
 	resource_class = MemberResource
 	search_fields = ['user__username']
+	list_display = ['user__username', 'user__first_name', 'user__last_name', 'region','membership_level', 'membership_expiration']
 	inlines = [
 		MemberEducationInline,
 		AddressInline,
