@@ -109,7 +109,7 @@ class Member(models.Model):
 			else:
 				degree_string.append(str(degree.degree) + ' \'' + str(degree.grad_year)[-2:])
 
-		return '(' + ' , '.join(degree_string) + ')'
+		return u'(' + ' , '.join(degree_string) + ')'
 
 
 
