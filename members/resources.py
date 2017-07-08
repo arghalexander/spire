@@ -9,7 +9,7 @@ from .models import Member, MembershipLevel, MemberRegion
 class MemberResource(resources.ModelResource):
     user = fields.Field( column_name='user',attribute='user',widget=ForeignKeyWidget(User, 'username'))
     membership_level = fields.Field( column_name='membership_level',attribute='membership_level',widget=ForeignKeyWidget(MembershipLevel, 'level'))
-    region = fields.Field(widget=ManyToManyWidget(MemberRegion,field="region"))
+    region = fields.Field(column_name='region',widget=ManyToManyWidget(MemberRegion,field="region"))
 
     class Meta:
         model = Member    
