@@ -18,7 +18,6 @@ from taggit.managers import TaggableManager
 @register_snippet
 @python_2_unicode_compatible
 class MembershipLevel(models.Model):
-	id = 								models.IntegerField()
 	level = 							models.CharField(max_length=254, primary_key=True) 
 	slug = 								models.SlugField(verbose_name="Lookup field", blank=True)
 	#anything above a 0 considered a memebr, for future use if want to seperate the membership levels more
