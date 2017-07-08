@@ -12,6 +12,5 @@ class MemberResource(resources.ModelResource):
     region = fields.Field(widget=ManyToManyWidget(MemberRegion))
 
     class Meta:
-        model = Member
-		import_field =         
+        model = Member    
         fields = ('id','user','work_phone','mobile_phone', 'membership_level', 'membership_expiration')
