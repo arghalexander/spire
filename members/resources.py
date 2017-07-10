@@ -13,7 +13,7 @@ class MemberResource(resources.ModelResource):
 
 	class Meta:
 		model = Member    
-		fields = ('id','user','work_phone','mobile_phone', 'membership_level', 'membership_expiration', 'member_regions')
+		fields = ('id','user','work_phone','mobile_phone', 'membership_level', 'membership_expiration', 'region')
 
 
 	#def dehydrate_region(self, obj):
