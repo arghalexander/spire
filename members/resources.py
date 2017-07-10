@@ -15,5 +15,10 @@ class MemberResource(resources.ModelResource):
 		model = Member    
 		fields = ('id','user','work_phone','mobile_phone', 'membership_level', 'membership_expiration')
 
+
+	def dehydrate_region(self, obj):
+		if obj.id:
+			return obj.str_choices()
+
 	#def dehydrate_tags(self, book):
 	#	return ','.join([tag.name for tag in MemberRegion.objects.all()])
