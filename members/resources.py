@@ -12,7 +12,8 @@ class MemberResource(resources.ModelResource):
 	#member_regions = fields.Field(column_name='member_regions',attribute='member_regions',widget=ManyToManyWidget(MemberRegion,'region'))
 
 	class Meta:
-		model = Member    
+		model = Member
+		import_id_fields = ('user',)    
 		fields = ('id','user','work_phone','mobile_phone', 'membership_level', 'membership_expiration', 'region')
 
 
