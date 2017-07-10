@@ -18,7 +18,7 @@ class MemberResource(resources.ModelResource):
 
 	def dehydrate_region(self, obj):
 		if obj.id:
-			return obj.str_choices()
+			return obj.region()
 
 	#def dehydrate_tags(self, book):
 	#	return ','.join([tag.name for tag in MemberRegion.objects.all()])
