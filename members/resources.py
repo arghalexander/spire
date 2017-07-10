@@ -9,11 +9,11 @@ from .models import Member, MembershipLevel, MemberRegion
 class MemberResource(resources.ModelResource):
 	user = fields.Field( column_name='user',attribute='user',widget=ForeignKeyWidget(User, 'username'))
 	membership_level = fields.Field( column_name='membership_level',attribute='membership_level',widget=ForeignKeyWidget(MembershipLevel, 'level'))
-	region = fields.Field(column_name='region',attribute='region',widget=ManyToManyWidget(MemberRegion,'region'))
+	member_regions = fields.Field(column_name='member_regions',attribute='member_regions',widget=ManyToManyWidget(MemberRegion,'region'))
 
 	class Meta:
 		model = Member    
-		fields = ('id','user','work_phone','mobile_phone', 'membership_level', 'membership_expiration', 'region')
+		fields = ('id','user','work_phone','mobile_phone', 'membership_level', 'membership_expiration', 'member_regions')
 
 
 	#def dehydrate_region(self, obj):
