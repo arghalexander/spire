@@ -7,10 +7,13 @@ from django.contrib.auth.models import User
 from .models import Member, MembershipLevel, MemberRegion
 
 class MemberResource(resources.ModelResource):
-    user = fields.Field( column_name='user',attribute='user',widget=ForeignKeyWidget(User, 'username'))
-    membership_level = fields.Field( column_name='membership_level',attribute='membership_level',widget=ForeignKeyWidget(MembershipLevel, 'level'))
-    region = fields.Field(column_name='region',widget=ManyToManyWidget(MemberRegion,field="region"))
+	user = fields.Field( column_name='user',attribute='user',widget=ForeignKeyWidget(User, 'username'))
+	membership_level = fields.Field( column_name='membership_level',attribute='membership_level',widget=ForeignKeyWidget(MembershipLevel, 'level'))
+	region = fields.Field(column_name='region',widget=ManyToManyWidget(MemberRegion,'region'))
 
-    class Meta:
-        model = Member    
-        fields = ('id','user','work_phone','mobile_phone', 'membership_level', 'membership_expiration')
+	class Meta:
+		model = Member    
+		fields = ('id','user','work_phone','mobile_phone', 'membership_level', 'membership_expiration')
+
+	#def dehydrate_tags(self, book):
+	#	return ','.join([tag.name for tag in MemberRegion.objects.all()])
