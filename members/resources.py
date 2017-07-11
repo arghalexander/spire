@@ -17,9 +17,15 @@ class MemberResource(resources.ModelResource):
 		fields = ('id','user','work_phone','mobile_phone', 'membership_level', 'membership_expiration', 'region')
 
 
+class UserForeignKeyWidget(ForeignKeyWidget):
+    def get_queryset(self, value, row):
+        return self.model.objects.filter(
+            user_username__iexact=row["member"],
+        )
+
 
 class MemberAddressResource(resources.ModelResource):
-	member = fields.Field( column_name='member',attribute='member',widget=ForeignKeyWidget(Member, 'user__username'))
+	member = fields.Field( column_name='member',attribute='member',widget=UserForeignKeyWidget(Member, 'user__username'))
 
 	class Meta:
 		model = MemberAddress
