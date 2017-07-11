@@ -19,7 +19,7 @@ class MemberResource(resources.ModelResource):
 
 
 class MemberAddressResource(resources.ModelResource):
-	member = fields.Field( column_name='member',attribute='member',widget=ForeignKeyWidget(Member, 'user'))
+	member = fields.Field( column_name='member',attribute='member',widget=ForeignKeyWidget(Member, 'user__user_username'))
 
 	class Meta:
 		model = MemberAddress
