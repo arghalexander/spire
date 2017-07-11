@@ -19,9 +19,9 @@ class MemberResource(resources.ModelResource):
 
 
 class MemberAddressResource(resources.ModelResource):
-	#member = fields.Field( column_name='member',attribute='member',widget=ForeignKeyWidget(Member, 'user_username'))
+	member = fields.Field( column_name='member',attribute='member',widget=ForeignKeyWidget(Member, 'user_username'))
 
 	class Meta:
 		model = MemberAddress
-		import_id_fields = ('user',)
+		import_id_fields = ('member',)
 		fields = ('members','address_line_one', 'address_line_two', 'city', 'state', 'zip_code', 'country')
