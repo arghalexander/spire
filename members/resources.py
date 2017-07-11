@@ -31,3 +31,13 @@ class MemberAddressResource(resources.ModelResource):
 		model = MemberAddress
 		import_id_fields = ('member',)
 		fields = ('member','address_line_one', 'address_line_two', 'city', 'state', 'zip_code', 'country')
+
+
+
+class MemberProfesionalInformationResource(resources.ModelResource):
+	member = fields.Field( column_name='member',attribute='member',widget=ForeignKeyWidget(Member, 'id'))
+
+	class Meta:
+		model = MemberAddress
+		import_id_fields = ('member',)
+		fields = ('member','title', 'company')
