@@ -24,4 +24,4 @@ class MemberAddressResource(resources.ModelResource):
 	class Meta:
 		model = Member
 		import_id_fields = ('user',)
-		fields = ('id','members','address_line_one', 'address_line_two', 'city', 'state', 'zip_code', 'country')
+		fields = ('members','address_line_one', 'address_line_two', 'city', 'state', 'zip_code', 'country')
