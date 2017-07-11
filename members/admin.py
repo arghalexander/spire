@@ -65,7 +65,7 @@ class MembershipLevelAdmin(admin.ModelAdmin):
 
 @admin.register(MemberAddress)
 class MemberAddressAdmin(ImportExportModelAdmin):
-	resource_class = MemberResource
+	resource_class = MemberAddressResource
 
 
 @admin.register(MemberIndustry)
