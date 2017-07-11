@@ -25,7 +25,7 @@ class UserForeignKeyWidget(ForeignKeyWidget):
 
 
 class MemberAddressResource(resources.ModelResource):
-	member = fields.Field( column_name='member',attribute='member',widget=UserForeignKeyWidget(Member, 'user__username'))
+	member = fields.Field( column_name='member',attribute='member',widget=UserForeignKeyWidget(Member, 'user'))
 
 	class Meta:
 		model = MemberAddress
