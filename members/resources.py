@@ -13,13 +13,15 @@ class MemberResource(resources.ModelResource):
 
 	class Meta:
 		model = Member
-		import_id_fields = ('user',)    
+		import_id_fields = ('user',)
 		fields = ('id','user','work_phone','mobile_phone', 'membership_level', 'membership_expiration', 'region')
 
 
-	#def dehydrate_region(self, obj):
-	#	if obj.id:
-	#		return obj.region()
 
-	#def dehydrate_tags(self, book):
-	#	return ','.join([tag.name for tag in MemberRegion.objects.all()])
+class MemberAddressResource(resources.ModelResource):
+	member = fields.Field( column_name='member',attribute='member',widget=ForeignKeyWidget(Member, 'user_username'))
+
+	class Meta:
+		model = Member
+		import_id_fields = ('member',)
+		fields = ('id','members','address_line_one', 'address_line_two', 'city', 'state', 'zip_code', 'country')

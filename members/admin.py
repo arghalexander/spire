@@ -30,7 +30,7 @@ class MemberAdmin(ImportExportModelAdmin):
 	resource_class = MemberResource
 	search_fields = ['user__username']
 	list_display = ['user', 'get_first_name', 'get_last_name', 'membership_level', 'membership_expiration']
-	
+
 	list_filter = ('membership_level',)
 
 	inlines = [
@@ -64,8 +64,8 @@ class MembershipLevelAdmin(admin.ModelAdmin):
 
 
 @admin.register(MemberAddress)
-class MemberAddressAdmin(admin.ModelAdmin):
-	pass
+class MemberAddressAdmin(ImportExportModelAdmin):
+	resource_class = MemberResource
 
 
 @admin.register(MemberIndustry)
@@ -97,7 +97,7 @@ class MemberEventPurchaseAdmin(admin.ModelAdmin):
 class myUserAdmin(ImportExportMixin, UserAdmin):
 	resource_class = UserResource
 
-	
+
 
 
 admin.site.unregister(User)
