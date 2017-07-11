@@ -1,7 +1,7 @@
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from django.contrib import admin
 from .models import *
-from resources import MemberResource
+from resources import MemberResource, MemberAddressResource
 
 from spire.resources import UserResource
 from django.contrib.auth.models import User
