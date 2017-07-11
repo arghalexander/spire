@@ -20,7 +20,7 @@ class MemberResource(resources.ModelResource):
 class UserForeignKeyWidget(ForeignKeyWidget):
     def get_queryset(self, value, row):
         return self.model.objects.filter(
-            user_username__iexact=row["member"],
+            user__username__iexact=row["member"],
         )
 
 
