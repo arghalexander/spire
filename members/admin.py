@@ -1,7 +1,7 @@
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from django.contrib import admin
 from .models import *
-from resources import MemberResource, MemberAddressResource, MemberProfesionalInformationResource
+from resources import MemberResource, MemberAddressResource, MemberProfesionalInformationResource, MemberEducationResource
 
 from spire.resources import UserResource
 from django.contrib.auth.models import User
@@ -70,6 +70,11 @@ class MemberAddressAdmin(ImportExportModelAdmin):
 @admin.register(MemberProfesionalInformation)
 class MemberProfesionalInformationAdmin(ImportExportModelAdmin):
 	resource_class = MemberProfesionalInformationResource
+
+
+@admin.register(MemberEducation)
+class MemberEducationAdmin(ImportExportModelAdmin):
+	resource_class = MemberEducationResource
 
 
 @admin.register(MemberIndustry)
