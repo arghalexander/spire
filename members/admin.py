@@ -75,6 +75,7 @@ class MemberProfesionalInformationAdmin(ImportExportModelAdmin):
 @admin.register(MemberEducation)
 class MemberEducationAdmin(ImportExportModelAdmin):
 	resource_class = MemberEducationResource
+	list_display = ['member', 'degree', 'grad_year']
 
 
 @admin.register(MemberIndustry)
