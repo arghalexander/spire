@@ -6,17 +6,17 @@
 
 {% block body_class %}template-member-profile{% endblock %}
 
-{% block title %}{{member.user.first_name}}{% endblock %}
+{% block title %}{{member.full_name}}{% endblock %}
 
 {% block content %}
 
 
 <section class="page-header">
 	<div class="row">
-		<div class="small-10 columns">
+		<div class="small-8 medium-10 columns">
 			<h2 class="red-line bold">{{member.full_name}}  {{member.degree_string}}</h2>
 		</div>
-		<div class="small-2 columns">
+		<div class="small-4 medium-2 columns">
 			<a class="button button-red expanded" href="{% url 'members:member-profile-edit' %}">Edit</a>
 		</div>
 	</div>
@@ -28,7 +28,7 @@
 	<div class="row">
 		<div class="small-12 columns">
 
-			
+
 
 
 			<ul class="tabs" data-deep-link="true" data-update-history="true" data-deep-link-smudge="true" data-deep-link-smudge="500" data-tabs id="deeplinked-tabs">
@@ -40,27 +40,27 @@
 
 
 			<form id="profile-view- form">
-			
+
 			<div class="tabs-content" data-tabs-content="deeplinked-tabs">
-			  
+
 				<!-- Contact Info -->
 			  <div class="tabs-panel is-active" id="contact">
-			  	
+
 					<div class="row">
 						<div class="small-12 medium-6 columns">
 							<div class="callout">
 								{% if member.image %}
-									<img id="profile-image" src="{{member.image.url}}" height="400" alt="Member Image" > 
+									<img id="profile-image" src="{{member.image.url}}" height="400" alt="Member Image" >
 								{% endif %}
 							</div>
 							<div class="callout small">
 							  <p>Current Membership Level: {{user.member.membership_level}}</p>
-							 
+
 							</div>
 						</div>
 						<div class="small-12 medium-6 columns">
-	
-							
+
+
 							<div class="row">
 								<div class="small-6 columns">
 									<label>First Name</label>
@@ -117,7 +117,7 @@
 								</div>
 							</div>
 
-							
+
 
 						</div>
 					</div>
@@ -129,7 +129,7 @@
 
 				<!-- Employment Info -->
 			  <div class="tabs-panel" id="employment">
-			  
+
 
 					<div class="row">
 						<div class="small-12 medium-4 columns">
@@ -177,7 +177,7 @@
 
 				<!-- Education -->
 			  <div class="tabs-panel" id="education">
-			  
+
 
 			  	<div class="row">
 			  	{% for education in member.education.all %}
@@ -198,7 +198,7 @@
 
 				<!-- Bio -->
 			  <div class="tabs-panel" id="bio">
-			  
+
 			  	<textarea readonly rows="20" >{{member.bio}}</textarea>
 
 			  </div>
@@ -217,8 +217,7 @@
 	  	</div>
 	</div>
 
-</section> 
+</section>
 
 
 {% endblock %}
-

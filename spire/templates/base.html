@@ -67,7 +67,7 @@
 
 
         {% if messages %}
-        <div class="row">
+        <div class="row notifications">
             <div class="small-12 columns">
                 {% for message in messages %}
                 <p {% if message.tags %} class="callout {{ message.tags }} alert "{% endif %}>{{ message }}</p>

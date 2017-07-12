@@ -16,21 +16,21 @@
 	</div>
 	<div class="row">
 		<div class="small-12 columns">
-				
+
 
 			{% sub_page_nav parent=self calling_page=self %}
 
 		</div>
 	</div>
 </section>
-	
+
 
 <section class="page-content">
 	<div class="row">
-		<div class="small-7 columns">
+		<div class="small-12 medium-7 columns">
 			{{page.page_content|richtext}}
 		</div>
-		<div class="small-5 columns ">
+		<div class="small-12 medium-5 columns ">
 			<div class="event-side-block">
 				<div class="event-side-block__content">
 					<h3 class="white-line bold">{{page.event_heading}}</h3>
@@ -40,7 +40,7 @@
 					<hr>
 					<a href="/events/{{page.event.slug}}" class="button button-white expanded">Buy Tickets</a>
 				</div>
-			</div>	
+			</div>
 		</div>
 	</div>
 </section>
@@ -85,7 +85,7 @@
 			<h3 class="red-line bold black title">{{page.sponsors_caption}}</h3>
 		</div>
 	</div>
-	<div class="row small-up-6">		
+	<div class="row small-up-6">
 
 		 {% for slide in page.fame_sponsors.all %}
 
@@ -102,6 +102,6 @@
 		</div>
 	</div>
 </section>
-	
+
 
 {% endblock %}

@@ -181,11 +181,13 @@ h4 {
   .srec-members #members-row {
     background-color: #434750; }
   .srec-members .column-block {
-    margin-top: -50px; }
+    margin-top: -50px;
+    padding-top: 25px;
+    padding-bottom: 25px; }
   .srec-members .member {
     text-align: center;
     background-color: #FFF;
-    padding-bottom: 10px; }
+    padding-bottom: 15px; }
     .srec-members .member .member__info {
       padding: 20px; }
       .srec-members .member .member__info p {
@@ -320,11 +322,16 @@ h4 {
       position: absolute;
       left: 0;
       width: 100%; }
+      .top-bar .top-bar-left .menu {
+        height: auto;
+        background-color: #891B0D; }
       .top-bar .top-bar-left .nav-item {
         background-color: #891B0D; }
         .top-bar .top-bar-left .nav-item a {
           color: #FFF; }
-      .top-bar .top-bar-left a, .top-bar .top-bar-left li, .top-bar .top-bar-left ul {
+      .top-bar .top-bar-left a,
+      .top-bar .top-bar-left li,
+      .top-bar .top-bar-left ul {
         transition: opacity 1s ease-out; }
     .top-bar .menu.submenu {
       position: relative; }
@@ -855,6 +862,10 @@ form .errorlist {
   color: #FFF; }
   .template-hall-of-fame .event-side-block .button {
     color: #891B0D; }
+
+@media (max-width: 39.9375em) {
+  .template-hall-of-fame section.gallery {
+    margin-top: 30px; } }
 
 .template-contact section.map-section {
   padding-bottom: 200px;

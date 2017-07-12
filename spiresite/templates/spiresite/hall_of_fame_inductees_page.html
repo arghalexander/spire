@@ -16,13 +16,13 @@
 	</div>
 	<div class="row">
 		<div class="small-12 columns">
-		
+
 			{% sub_page_nav parent=self.get_parent calling_page=self %}
 
 		</div>
 	</div>
 </section>
-	
+
 
 <section class="current-inductees">
 	<div class="background"></div>
@@ -34,10 +34,10 @@
 	<div class="row">
 
 		{% for inductee in page.current_inductees.all %}
-		<div class="small-6 columns">
+		<div class="small-12 medium-6 columns">
 			<div class="image-text-block body-content">
 				<div class="image-text-block__image">
-					{% image inductee.image fill-500x400 %}
+					{% image inductee.image fill-700x600 %}
 				</div>
 				<div class="image-text-block__text">
 					{{inductee.text|richtext}}
@@ -56,16 +56,16 @@
 		</div>
 	</div>
 	<div class="background"></div>
-	
-	<div  class="row small-up-4 medium-up-4" >
+
+	<div  class="row small-up-2 medium-up-4" data-equalizer>
 		 {% for member in  page.previous_inductees.all %}
 			  <div class="column column-block">
 			  	<a data-open="member-{{forloop.counter}}">
 			     <div class="gallery-item">
 			     	<div class="item__image">
-			     		{% image member.image width-350 %}
+			     		{% image member.image width-600 %}
 			     	</div>
-			     	<div class="item__info">
+			     	<div class="item__info" data-equalizer-watch>
 			     		<p class="red bold">{{member.name}}</p>
 			     		<p>{{member.title}}</p>
 			     		<p>{{member.company}}</p>
@@ -98,9 +98,9 @@
 
 
 
-	
 
 
-	
+
+
 
 {% endblock %}

@@ -29,8 +29,8 @@
 
             {% if request.user.is_authenticated %}
 
-            <li class="divider"><a class="white" href="{% url 'members:member-profile' %}">Profile</a>
-            <li><a class="white" href="/accounts/logout/">Logout</a></li>
+            <li class="nav-item divider" ><a class="white" href="{% url 'members:member-profile' %}">Profile</a>
+            <li class="nav-item"><a class="white" href="/accounts/logout/">Logout</a></li>
 
 
             {% else %}
