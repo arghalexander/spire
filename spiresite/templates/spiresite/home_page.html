@@ -60,9 +60,9 @@
 	</div>
 
 	<div class="row"  >
-		<div class="small-7 columns" >
+		<div class="small-12 medium-7 columns" >
 
-			<div class="row small-up-2">
+			<div class="row small-up-2 medium-up-2">
 
 				{% for event in upcoming_events.all %}
 					<div class=" column column-block">
@@ -89,7 +89,7 @@
 			  	{% endfor %}
 			</div>
 		</div>
-		<div class="small-5 columns column-block"  >
+		<div class="small-12 medium-12 large-5 columns column-block"  >
 			<div class="featured-event" >
 
 				{% if page.featured_event %}
@@ -139,19 +139,19 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="small-4 columns full-height border-right" >
+		<div class="small-12 medium-12 large-4 columns full-height border-right" >
 			<div class="sponsor" data-aos="fade-down">
 				{{page.sponsor_one|richtext}}
 				<a href="{{page.sponsor_one_link}}" class="button button-white-outline expanded">Learn More</a>
 			</div>
 		</div>
-		<div class="small-4 full-height columns">
+		<div class="small-12  medium-12 large-4 full-height columns">
 			<div class="sponsor" data-aos="fade-down" data-aos-delay="250">
 				{{page.sponsor_two|richtext}}
 				<a href="{{page.sponsor_two_link}}" class="button button-white-outline expanded">Learn More</a>
 			</div>
 		</div>
-		<div class="small-4 full-height columns border-left">
+		<div class="small-12  medium-12 large-4 full-height columns border-left">
 			<div class="sponsor" data-aos="fade-down" data-aos-delay="500">
 				{{page.sponsor_three|richtext}}
 				<a href="{{page.sponsor_three_link}}" class="button button-white-outline expanded">Learn More</a>
@@ -166,10 +166,10 @@
 		<div class="small-12 columns">
 			<h3 class="red-line header-title bold">Join SPIRE Standford</h3>
 		</div>
-		<div class="small-6 columns" data-aos="fade-down">
+		<div class="small-12 columns" data-aos="fade-down">
 			{% image page.join_image height-420 %}
 		</div>
-		<div class="small-6 columns">
+		<div class="small-12 columns">
 			<div class="join-spire__content">
 				{{page.join_content|richtext}}
 				<a href="{{page.join_link}}" class="button button-red-outline">Join SPIRE</a>
@@ -183,10 +183,10 @@
 
 <section class="contact-us">
 	<div class="row">
-		<div class="small-6 columns">
+		<div class="small-12 medium-6 columns">
 			<h3 class="red-line header-title bold">Contact Us</h3>
 		</div>
-		<div class="small-6 columns">
+		<div class="small-12 medium-6 columns">
 			<div class="join-spire__content">
 				{{page.contact_content|richtext}}
 				<a href="{{page.contact_link}}" class="button button-red-outline">Contact Us</a>

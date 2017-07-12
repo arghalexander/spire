@@ -37,7 +37,7 @@ def top_menu(context, calling_page=None):
         # if the variable passed as calling_page does not exist.
         menuitem.active = (calling_page.url.startswith(menuitem.url)
                            if calling_page else False)
-        
+
     return {
         'calling_page': calling_page,
         'menuitems': menuitems,
@@ -50,12 +50,12 @@ def top_menu(context, calling_page=None):
 @register.inclusion_tag('spiresite/tags/srec_menu.html', takes_context=True)
 def srec_menu(context, parent, calling_page=None):
     menuitems = parent.get_children().live()
-    
+
 
     for menuitem in menuitems:
         menuitem.active = (calling_page.url.startswith(menuitem.url)
                            if calling_page else False)
- 
+
     return {
         'calling_page': calling_page,
         'menuitems': menuitems,
@@ -72,7 +72,7 @@ def sub_page_nav(context, parent, calling_page=None, overview_name="Overview"):
     for menuitem in menuitems:
         menuitem.active = (calling_page.url.startswith(menuitem.url)
                            if calling_page else False)
-  
+
 
     parent.active = (calling_page.url == parent.url if calling_page else False)
     parent.title = overview_name
@@ -89,10 +89,10 @@ def sub_page_nav(context, parent, calling_page=None, overview_name="Overview"):
 def leadership_menu(context, parent, calling_page=None):
     menuitems = parent.get_children().live().in_menu()
     for menuitem in menuitems:
-        menuitem.show_dropdown = has_menu_children(menuitem)    
+        menuitem.show_dropdown = has_menu_children(menuitem)
         menuitem.active = (calling_page.url.startswith(menuitem.url)
                            if calling_page else False)
-  
+
     return {
         'calling_page': calling_page,
         'menuitems': menuitems,
@@ -114,10 +114,22 @@ def top_menu_children(context, parent):
     }
 
 
+# Retrieves the children of the top menu items for the drop downs
+@register.inclusion_tag('spiresite/tags/top_menu_children_mobile.html', takes_context=True)
+def top_menu_children_mobile(context, parent):
+    menuitems_children = parent.get_children()
+    menuitems_children = menuitems_children.live().in_menu()
+    return {
+        'parent': parent,
+        'menuitems_children': menuitems_children,
+        # required by the pageurl tag that we want to use within this template
+        'request': context['request'],
+    }
+
+
 
 
 
 @register.inclusion_tag('spiresite/tags/footer.html', takes_context=True)
 def footer_menu(context):
     pass
-

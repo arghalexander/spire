@@ -17,7 +17,7 @@
 		</div>
 	</div>
 </section>
-	
+
 
 <section class="map-section">
 <div id="map"></div>
@@ -210,7 +210,7 @@
 	</script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuAQVs-4VRFdR1-9s94H_CxmMr2QLiYpM&callback=initMap">
     </script>
-	<div class="row"> 
+	<div class="row">
 		<div class="medium-5 medium-offset-1 columns">
 			<div class="contact-us-box">
 				{{page.contact_box|richtext}}
@@ -227,16 +227,16 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="small-4 columns">
+		<div class="small-12 medium-4 columns">
 			{{page.questions|richtext}}
 		</div>
-		<div class="small-8 columns">
+		<div class="small-12 medium-8 columns">
 
 			{% if form %}
 			<form action="{{page.url}}" method="post">
 				{% csrf_token %}
 				<div class="row">
-					<div class="small-6 medium-6 columns">
+					<div class="small-12 medium-6 columns">
 
 						<label class="sr-only">First Name</label>
 						<input type="text" id="first_name" name="first_name" required placeholder="First Name">

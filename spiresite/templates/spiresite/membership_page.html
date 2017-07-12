@@ -27,7 +27,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="small-4 columns">
+		<div class="small-12 medium-4 columns">
 			<div class="full-member product-block">
 				<div class="product__title">
 					<h5 class="bold">Full Membership
@@ -42,8 +42,8 @@
 					<div class="text">
 						<p>{{page.full_membership}}</p>
 
-						
-					
+
+
 					</div>
 					<div class="membership-pricing">
 						<h3><sup>$</sup>75<sup class="sub">/ year</sup></h3>
@@ -56,7 +56,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="small-4 columns">
+		<div class="small-12 medium-4 columns">
 			<div class="full-member product-block">
 				<div class="product__title">
 					<h5 class="bold">Full Young Alumni Membership {% if user.member.membership_level == page.full_young_yearly.membership_level %}
@@ -68,7 +68,7 @@
 					<div class="text">
 						<p>{{page.full_young_membership}}</p>
 
-						
+
 					</div>
 
 					<div class="membership-pricing">
@@ -79,7 +79,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="small-4 columns">
+		<div class="small-12 medium-4 columns">
 			<div class="full-member product-block">
 				<div class="product__title">
 					<h5 class="bold">Full Friends of SPIRE Membership {% if user.member.membership_level == page.full_friends_yearly.membership_level %}
@@ -89,7 +89,7 @@
 				<div class="product__content">
 					<div class="text">
 						<p>{{page.full_friends_membership}}</p>
-						
+
 					</div>
 					<div class="membership-pricing">
 							<h3><sup>$</sup>95<sup class="sub">/ year</sup></h3>
@@ -101,12 +101,12 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="small-6 columns">
+		<div class="small-12 medium-6 columns">
 			<h3 class="red-line bold title">Not ready to join as a Full Member? Become a Guest member</h3>
 		</div>
 	</div>
 	<div class="row">
-		<div class="small-6 columns">
+		<div class="small-12 medium-4 columns">
 			<div class="full-member product-block">
 				<div class="product__title">
 					<h5 class="bold">Guest Membership</h5>
@@ -122,7 +122,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="small-6 columns">
+		<div class="small-12 medium-4 columns">
 			<div class="full-member product-block">
 				<div class="product__title">
 					<h5 class="bold">Student Membership</h5>
@@ -150,12 +150,12 @@
 	<div class="row">
 
 		{% for benefit in page.membership_benefits.all %}
-			<div class="small-6 columns benefit">
+			<div class="small-12 mediumn-6 columns benefit">
 				<h4 class="icon"><span class="fa {{benefit.icon_class}}"></span></h4>
-				<h4 class="text bold">{{benefit.text}}</h4>			
+				<h4 class="text bold">{{benefit.text}}</h4>
 			</div>
 		{% endfor %}
-	
+
 	</div>
 </section>
 
@@ -172,19 +172,19 @@
 		</div>
 	</div>
 	<div class="row ">
-		<div class="small-6 columns">
+		<div class="small-12 columns">
 			{{page.people_review_one|richtext}}
 		</div>
-		<div class="small-6 columns">
+		<div class="small-12 columns">
 			{{page.people_review_two|richtext}}
 		</div>
 	</div>
 	<div class="row">
-		<div class="small-10 small-offset-1 columns closing">
+		<div class="small-12 medium-10 medium-offset-1 columns closing">
 			{{ page.member_closing|richtext }}
 		</div>
 	</div>
 </section>
-	
+
 
 {% endblock %}

@@ -10,22 +10,22 @@
 
 <section class="srec-header">
 	<div class="row">
-		<div class="small-1 columns">
+		<div class="small-12 medium-1 columns">
 			<img src="{% static 'images/logos/SREC-LOGO.png' %}">
 		</div>
-		<div class="small-11 columns">
+		<div class="small-12 medium-11 columns">
 			<h2 id="page-heading" class="bold red-line">{{page.heading}}</h2>
 		</div>
 	</div>
 	<div class="row">
 		<div class="small-12 columns">
-			
+
 			{% sub_page_nav parent=self.get_parent calling_page=self %}
 
 		</div>
 	</div>
 </section>
-	
+
 
 <section class="body-content">
 	<div class="row">

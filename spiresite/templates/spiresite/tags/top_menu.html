@@ -5,24 +5,46 @@
 
 <div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
   <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
-  <div class="title-bar-title">Menu</div>
+  <div class="title-bar-title">
+    <a class="navbar-brand" href="{% pageurl site_root %}">
+        <img src="{% static 'images/logo.png' %}" width="170">
+    </a></div>
 </div>
 
 
-<div class="top-bar show-for-small-only" id="responsive-menu">
+<div class="top-bar show-for-small-only" id="responsive-menu" style="display:none">
   <div class="top-bar-left">
    <ul class="vertical menu" data-dropdown-menu data-closing-time="0">
         {% for menuitem in menuitems %}
             <li class="nav-item {% if menuitem.show_dropdown %}{% endif %}{% if menuitem.active %} active{% endif %}">
                 {% if menuitem.show_dropdown %}
 
-                    {% top_menu_children parent=menuitem %}
+                    {% top_menu_children_mobile parent=menuitem %}
 
                 {% else %}
                     <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
                 {% endif %}
             </li>
         {% endfor %}
+
+            {% if request.user.is_authenticated %}
+
+            <li class="divider"><a class="white" href="{% url 'members:member-profile' %}">Profile</a>
+            <li><a class="white" href="/accounts/logout/">Logout</a></li>
+
+
+            {% else %}
+
+              <li class="nav-item divider">
+                <a href="/accounts/login/">Login</a>
+              </li>
+              <li class="nav-item join">
+                <a href="/accounts/register/">Join</a>
+            </li>
+
+          {% endif %}
+
+
     </ul>
   </div>
 </div>

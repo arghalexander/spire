@@ -1,7 +1,7 @@
 {% load nav_tags wagtailcore_tags %}
 {% load static %}
 
-<ul class="menu expanded sub-page-nav">
+<ul class="menu expanded sub-page-nav" data-responsive-menu="drilldown medium-accordion" >
 	<li class="nav-item{% if parent.active %} active{% endif %}">
         <a href="{% pageurl parent %}">{{parent.title}}</a>
     </li>

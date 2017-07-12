@@ -10,29 +10,29 @@
 
 <section class="srec-header">
 	<div class="row">
-		<div class="small-1 columns">
+		<div class="small-12 medium-1 columns">
 			<img src="{% static 'images/logos/SREC-LOGO.png' %}">
 		</div>
-		<div class="small-11 columns">
+		<div class="small-12 medium-10 columns">
 			<h2 id="page-heading" class="bold red-line">{{page.heading}}</h2>
 		</div>
 	</div>
 	<div class="row">
 		<div class="small-12 columns">
-			
+
 			{% sub_page_nav parent=self calling_page=self %}
 
 		</div>
 	</div>
 </section>
-	
+
 
 <section class="page-content">
 	<div class="row">
-		<div class="small-7 columns">
+		<div class="small-12 medium-7 columns">
 			{{page.page_content|richtext}}
 		</div>
-		<div class="small-5 columns upcoming-event">
+		<div class="small-12 medium-5 columns upcoming-event">
 			<div class="upcoming-event__content">
 				<h3 class="white-line">SREC Upcoming Event</h3>
 				<h6 style="padding-top: 25px;">{{page.event.start|date:'D d M Y g:i a'}}</h6>
@@ -40,7 +40,7 @@
 				<p>{{page.event.description|truncatewords:30|richtext}}</p>
 				<hr>
 				<a href="/about/contact-us/" class="button button-white expanded">Contact Us</a>
-			</div>	
+			</div>
 		</div>
 	</div>
 </section>
@@ -76,6 +76,6 @@
 	</div>
 </section>
 
-	
+
 
 {% endblock %}

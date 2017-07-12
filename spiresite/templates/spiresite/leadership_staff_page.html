@@ -11,15 +11,15 @@
 
 <section class="srec-header">
 	<div class="row">
-		<div class="small-10 small-offset-1  columns">
+		<div class="small-12 medium-10 medium-offset-1  columns">
 			<h2 id="page-heading" class="bold red-line">Leadership</h2>
 		</div>
 	</div>
 	<div class="row">
 		<div class="small-12 columns">
-			
+
 			{% sub_page_nav parent=self.get_parent calling_page=self %}
-						
+
 		</div>
 	</div>
 </section>
@@ -52,7 +52,7 @@
 			    </div>
 			    </a>
 		    </div>
-		    
+
 			    <div class="large reveal" id="member-{{forloop.counter}}" data-reveal>
 				    <button class="close-button" data-close aria-label="Close modal" type="button">
 					    <span aria-hidden="true">&times;</span>
@@ -64,7 +64,7 @@
 					    <div class="small-6 columns">
 					    	<h3 class="red-line bold">{{member.name}}</h3>
 				     		<p class="bold">{{member.title}}</p>
-				     
+
 				     		<div class="bio">
 				     		{{member.description|richtext}}
 				     		</div>
@@ -76,6 +76,6 @@
 	</div>
 </section>
 
-	
+
 
 {% endblock %}

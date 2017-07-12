@@ -24,6 +24,9 @@ footer{
 		ul{
 			margin: 0px;
 			columns: 4;
+			@media (max-width: $small) {
+				columns: 1;
+			}
 			li{
 				text-align: center;
 				list-style-type: none;

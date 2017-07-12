@@ -1,12 +1,66 @@
-@media (max-width: 768px) {
+@media (max-width: $small) {
+  .title-bar{
+    background-color: $white;
+    border-bottom: 1px solid $red;
+    .menu-icon{
+      float: right;
+      margin-top: 14px;
+    }
+    .title-bar-title{
+      img{
+        width: 60px;
+      }
+    }
+    .menu-icon::after {
+    position: absolute;
+    top:0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: $red;
+    box-shadow: 0 7px 0 $red, 0 14px 0 $red;
+    content: '';
+}
+  }
 
   .top-bar{
+    .divider{
+      border-top: 1px solid $white;
+    }
+    background-color: $red;
+    position: relative;
+    z-index: 99999;
     .top-bar-left{
-          width: 100%;
+      position: absolute;
+      left: 0;
+      width: 100%;
+
+
+      .nav-item{
+        background-color: $red;
+        a{
+          color: $white;
+        }
+      }
+
+    a,li,ul{
+      transition: opacity 1s ease-out;
+    }
+
+    }
+    .menu.submenu{
+      position: relative;;
+      li{
+        padding-top: 1px;
+        padding-bottom: 1px;
+        a{
+          text-align: center;
+          font-size: 14px;
+        }
+      }
+
     }
   }
-}
 
-#responsive-menu{
-    background: yellow;
 }
