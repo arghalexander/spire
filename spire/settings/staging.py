@@ -14,6 +14,7 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
   'fields': 'id,name,email'
 }
 
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 
 SOCIAL_AUTH_LINKEDIN_SCOPE = ['r_basicprofile', 'r_emailaddress']
 SOCIAL_AUTH_LINKEDIN_FIELD_SELECTORS = ['email-address', 'headline', 'industry']
@@ -27,4 +28,3 @@ STRIPE_SECRET_KEY = "sk_test_es7mrA52AFoENwUyFzOP8SAI"
 
 GOOGLE_MAPS_V3_APIKEY = "AIzaSyAuAQVs-4VRFdR1-9s94H_CxmMr2QLiYpM"
 GEO_WIDGET_DEFAULT_LOCATION = { 'lat': '37.4554996','lng': '-122.1996202,11.96' }
-
