@@ -40,7 +40,7 @@
 
 <section class="srec-members">
 	<div id="members-row">
-		<div  class="row small-up-2 medium-up-3 large-4-up" >
+		<div  class="row small-up-2 medium-up-3 large-4-up" data-equalizer>
 			 {% for member in srec_members.all %}
 			  <div class="column column-block">
 			  	<a data-open="member-{{forloop.counter}}">
@@ -48,7 +48,7 @@
 			     	<div class="member__image">
 			     		<img src="{{member.image.url}}" width=350 >
 			     	</div>
-			     	<div class="member__info">
+			     	<div class="member__info" data-equalizer-watch>
 			     		<p class="red bold">{{member.full_name}} {{member.degree_string}}</p>
 			     		<p>{{member.professional_information.title}}</p>
 			     		<p>{{member.professional_information.company}}</p>
