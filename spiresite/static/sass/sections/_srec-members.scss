@@ -1,21 +1,24 @@
 .srec-members{
 	height: 100%;
 	margin-top: 100px;
-	
+
 	#members-row{
 		background-color: $dark-gray;
 	}
-	
+
 	.column-block{
 		margin-top: -50px;
+		padding-top: 25px;
+		padding-bottom: 25px;
 	}
-	
+
 	.member{
 		text-align: center;
 		background-color: $white;
-		padding-bottom: 10px;
+		padding-bottom: 15px;
+		//padding-top: 25px;
 		.member__image{
-			
+
 		}
 
 		.member__info{
