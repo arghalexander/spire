@@ -18,7 +18,7 @@ from taggit.managers import TaggableManager
 @register_snippet
 @python_2_unicode_compatible
 class MembershipLevel(models.Model):
-	level = 							models.CharField(max_length=254, primary_key=True) 
+	level = 							models.CharField(max_length=254, primary_key=True)
 	slug = 								models.SlugField(verbose_name="Lookup field", blank=True)
 	#anything above a 0 considered a memebr, for future use if want to seperate the membership levels more
 	access_level = 						models.IntegerField(default=0, help_text="0: guest ( No Access to member areas), Above a 0 is considered a full member")
@@ -28,29 +28,29 @@ class MembershipLevel(models.Model):
 		FieldPanel('level'),
 	]
 
-	def __str__(self):            
+	def __str__(self):
 		return self.level
 
 
 class MemberIndustry(models.Model):
-	industry = 							models.CharField(max_length=254) 
-	entered_by = 						models.ForeignKey(User, null=True, blank=True) 
+	industry = 							models.CharField(max_length=254)
+	entered_by = 						models.ForeignKey(User, null=True, blank=True)
 
-	def __str__(self):            
+	def __str__(self):
 		return self.industry
 
 
 class MemberIndustryAssociation(models.Model):
-	name = 							models.CharField(max_length=254) 
+	name = 							models.CharField(max_length=254)
 
-	def __str__(self):            
+	def __str__(self):
 		return self.name
 
 
 class MemberRegion(models.Model):
-	region =	 						models.CharField(max_length=254) 
+	region =	 						models.CharField(max_length=254)
 
-	def __str__(self):            
+	def __str__(self):
 		return self.region
 
 
@@ -60,9 +60,9 @@ class Member(models.Model):
 
 	membership_level =					models.ForeignKey(MembershipLevel, related_name="membership_levels", blank=True, default="Guest")
 	membership_expiration =				models.DateTimeField(blank=True, null=True)
-	
-	image =								models.ImageField(upload_to='members', default='defaults/headshot.png', null=True, blank=True)	
-	
+
+	image =								models.ImageField(upload_to='members', default='defaults/headshot.png', null=True, blank=True)
+
 	mobile_phone =						models.CharField(max_length=254, blank=True)
 	work_phone = 						models.CharField(max_length=254, blank=True)
 
@@ -74,14 +74,14 @@ class Member(models.Model):
 	linkedin = 							models.CharField(max_length=254, blank=True)
 	facebook = 							models.CharField(max_length=254, blank=True)
 	twitter = 							models.CharField(max_length=254, blank=True)
-	
+
 
 	#@staticmethod
 	#def autocomplete_search_fields():
 	#	return ("user_username__istartswith", "user__username__icontains",)
 
 
-	def __str__(self):             
+	def __str__(self):
 		return self.user.email
 
 	def __unicode__(self):
@@ -101,9 +101,9 @@ class Member(models.Model):
 
 	@property
 	def degree_string(self):
-		
+
 		degrees = MemberEducation.objects.filter(member=self)
-		
+
 		degree_string = []
 
 		# loop over degress, if undergrade insert into first item
@@ -112,6 +112,9 @@ class Member(models.Model):
 				degree_string.insert(0, '\'' + str(degree.grad_year)[-2:])
 			else:
 				degree_string.append(str(degree.degree) + ' \'' + str(degree.grad_year)[-2:])
+
+		if len(degree_string) == 0:
+			return u''
 
 		return u'(' + ' , '.join(degree_string) + ')'
 
@@ -127,7 +130,7 @@ class MemberAddress(models.Model):
 	zip_code =							models.CharField(max_length=255)
 	country = 							models.CharField(max_length=255)
 
-	def __str__(self):       
+	def __str__(self):
 		return self.member.user.email
 
 
@@ -147,19 +150,19 @@ class MemberEducation(models.Model):
 	program = 							models.CharField(max_length=255, blank=True)
 	grad_year = 						models.IntegerField()
 
-	def __str__(self):       
+	def __str__(self):
 		return self.member.user.email
 
 
 class MemberProfesionalInformation(models.Model):
 	member = 							models.OneToOneField(Member, related_name="professional_information")
-	
+
 
 	title = 							models.CharField(max_length=254, blank=True)
 	company = 							models.CharField(max_length=254, blank=True)
-	industry =							models.ForeignKey(MemberIndustry, related_name="member_industry", blank=True, null=True)		
-	
-	industry_associations = 			models.ForeignKey(MemberIndustryAssociation, related_name="member_industry_associations", blank=True, null=True)		
+	industry =							models.ForeignKey(MemberIndustry, related_name="member_industry", blank=True, null=True)
+
+	industry_associations = 			models.ForeignKey(MemberIndustryAssociation, related_name="member_industry_associations", blank=True, null=True)
 
 	address_line_one = 					models.CharField(max_length=255, blank=True)
 	address_line_two = 					models.CharField(max_length=255, blank=True)
@@ -172,7 +175,7 @@ class MemberProfesionalInformation(models.Model):
 	assistant_email = 					models.EmailField(max_length=255,blank=True)
 	assistant_phone = 					models.CharField(max_length=255, blank=True)
 
-	def __str__(self):       
+	def __str__(self):
 		return self.member.user.email
 
 
@@ -186,7 +189,7 @@ class MemberNote(models.Model):
 	tags = 								TaggableManager()
 
 
-	def __str__(self):       
+	def __str__(self):
 		return self.member.user.email
 
 
@@ -199,7 +202,7 @@ class MemberPurchaseHistory(models.Model):
 	note = 								models.TextField(blank=True)
 	#cc_num_redacted = 					models.CharField(max_length=32,validators=[validate_redacted])
 
-	def __str__(self):       
+	def __str__(self):
 		return self.member.user.email
 
 
@@ -209,16 +212,16 @@ class MemberMembershipHistory(models.Model):
 	new_level =					  		models.ForeignKey(MembershipLevel, related_name="new_level", null=True,blank=True)
 	previous_level = 					models.ForeignKey(MembershipLevel, related_name="previous_level", null=True,blank=True)
 	date = 								models.DateField(auto_now=True)
-	
 
-	def __str__(self):       
+
+	def __str__(self):
 		return self.member.user.email
 
-	
+
 
 class MemberStatusHistory(models.Model):
 	member = 							models.ForeignKey(Member)
-	
+
 	ACTIONS = (
 		('UPGRADE', 'Upgrade'),
 		('DOWNGRADE', 'Downgrade'),
@@ -226,7 +229,5 @@ class MemberStatusHistory(models.Model):
 	action = 							models.CharField(max_length=50,choices=ACTIONS)
 	date = 								models.DateTimeField(auto_now=True)
 
-	def __str__(self):       
+	def __str__(self):
 		return self.member.user.email
-
-
