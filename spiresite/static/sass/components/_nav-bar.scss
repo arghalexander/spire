@@ -1,119 +1,148 @@
 .top-bar {
-    height: 88px;
-    padding-top: 0px;
-    padding-bottom: 0px;
+  height: 88px;
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: $white;
+  z-index: 99999;
+
+  .top-bar-left,
+  .top-bar-right,
+  ul {
     background-color: $white;
-    z-index: 99999;
-    .top-bar-left, .top-bar-right, ul {
-        background-color: $white;
+  }
+
+  .top-bar-left {
+    .menu-text {
+      padding: 0;
     }
-    .top-bar-left {
-        .menu-text {
-            padding: 0px;
-        }
-        .navbar-brand {
-            padding-left: 0px;
-            padding-right: 0px;
-            padding-top: 6px;
-            padding-bottom: 0px;
-            width: 120px;
-            height: 88px;
-        }
+
+    .navbar-brand {
+      padding: 6px 0 0;
+      width: 120px;
+      height: 88px;
     }
-    .top-bar-left {
-        width: 80%;
-        height: 100%;
-        .menu {
-            height: 100%;
-        }
-        .nav-item {
-            //padding-top: 24px;
-        }
+  }
+
+  .top-bar-left {
+    width: 100%;
+    height: 100%;
+
+    .menu {
+      height: 100%;
     }
-    .top-bar-right {
-        width: 20%;
-        height: 88px;
-        .nav-item {
-            padding-top: 24px;
-            float: right;
-            &:hover {
-                background-color: transparent;
-                a {
-                    color: $dark-red;
-                    text-decoration: none;
-                }
-            }
-            &.join{
-                background-color: $red;
-                padding-bottom: 26px;
-                a{
-                    color: $white;
-                }
-            }
-        }
-    }
+
     .nav-item {
+      //padding-top: 24px;
+    }
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  .top-bar-right {
+    width: 20%;
+    height: 88px;
+
+    .nav-item {
+      padding-top: 24px;
+      float: right;
+
+      &:hover {
+        background-color: transparent;
+
         a {
-            font-weight: bold;
-            font-size: 16px;
-            color: $red;
+          color: $dark-red;
+          text-decoration: none;
         }
-        &:hover {
-            background-color: $red;
-            a {
-                color: $white;
-            }
-        }
-    }
-    .menu li {
-        text-align: center;
-    }
-    .menu .active>a, .menu .active {
-        background: $red;
-        color: $white;
-    }
-    .dropdown.menu>li.is-dropdown-submenu-parent>a::after {
-        display: none;
-    }
-    .menu.submenu {
+      }
+
+      &.join {
         background-color: $red;
-        border: none;
-        height: auto;
+        padding-bottom: 26px;
 
-        ul {
-            border: none;
+        a {
+          color: $white;
         }
-        li {
-            color: $white;
-            padding-top: 10px;
-             padding-bottom: 10px;
-             text-align: left;
-            a {
-                font-weight: normal;
-                font-size: 16px;
-                color: $white;
-                padding-left: 20px;
-                padding-right: 20px;
+      }
+    }
+  }
 
-            }
-            &:hover {
-                background-color: $dark-red;
-            }
-        }
+  .nav-item {
+    a {
+      font-weight: bold;
+      font-size: 16px;
+      color: $red;
     }
-    .dropdown.menu>li.opens-right>.is-dropdown-submenu {
-        width: 300px;
-    
+
+    &:hover {
+      background-color: $red;
+
+      a {
+        color: $white;
+      }
     }
-    .is-dropdown-submenu{
-        a{
-            color: $white; 
-        }
-        .white{
-            color: $white !important;
-        }
+  }
+
+  .menu li {
+    text-align: center;
+  }
+
+  .menu .active,
+  .menu .active > a {
+    background: $red;
+    color: $white;
+  }
+
+  .dropdown.menu > li.is-dropdown-submenu-parent > a::after {
+    display: none;
+  }
+
+  .menu.submenu {
+    background-color: $red;
+    border: none;
+    height: auto;
+
+    ul {
+      border: none;
     }
+
+    li {
+      color: $white;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      text-align: left;
+
+      a {
+        font-weight: normal;
+        font-size: 16px;
+        color: $white;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      &:hover {
+        background-color: $dark-red;
+      }
+    }
+  }
+
+  .dropdown.menu > li.opens-right > .is-dropdown-submenu {
+    width: 300px;
+  }
+
+  .is-dropdown-submenu {
+    a {
+      color: $white;
+    }
+
+    .white {
+      color: $white !important;
+    }
+  }
 }
 
-
-
+#responsive-menu{
+  .top-bar-left{
+    width: 100%;
+  }
+}

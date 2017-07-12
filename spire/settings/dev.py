@@ -2,6 +2,8 @@ from __future__ import absolute_import, unicode_literals
 
 from .base import *
 
+DEBUG = True
+
 
 SOCIAL_AUTH_FACEBOOK_KEY = '705930582941910'
 SOCIAL_AUTH_FACEBOOK_SECRET = '594ee0dbd5353a8984639fa8bb05503c'

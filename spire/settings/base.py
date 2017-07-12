@@ -24,8 +24,6 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 SECRET_KEY = 'x(y!ov&%thr^*^b(@upoc8@t$p4qapf^h#)lw6+n*@%_9qh7rg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 
 ALLOWED_HOSTS = [
     "localhost:3000",
@@ -41,7 +39,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    
+
     'dal',
     'dal_select2',
     #'grappelli',
@@ -57,7 +55,7 @@ INSTALLED_APPS = [
     'spiresite',
 
 
-    #wagtail CMS 
+    #wagtail CMS
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',
     'wagtail.wagtailembeds',
@@ -86,7 +84,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
-    
+
 
     'corsheaders',
     'django_filters',
@@ -108,7 +106,7 @@ INSTALLED_APPS = [
     'products',
     'checkout',
 
-    
+
     #'wagtailtinymce',
 
     'cart'
@@ -127,7 +125,7 @@ MIDDLEWARE = [
 
     'spire.middleware.CreateMembershipMiddleware',
 
-    #wagtail CMS    
+    #wagtail CMS
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 ]
@@ -136,11 +134,12 @@ ROOT_URLCONF = 'spire.urls'
 
 ANYMAIL = {
     "MAILGUN_API_KEY": "key-348c125a94567968ca34a1d933e2ac04",
-    "MAILGUN_SENDER_DOMAIN": 'mg.spirestanford.org',  
+    "MAILGUN_SENDER_DOMAIN": 'mg.spirestanford.org',
 }
 
-EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend" 
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 DEFAULT_FROM_EMAIL = "no-reply@mg.spirestanford.org"
+
 
 
 REST_FRAMEWORK = {
@@ -208,7 +207,7 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
-                
+
                 'wagtail.contrib.settings.context_processors.settings',
 
                 #social auth
@@ -347,4 +346,3 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.user.user_details',
     'social_core.pipeline.social_auth.associate_by_email',
 )
-

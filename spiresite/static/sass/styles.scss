@@ -1,10 +1,10 @@
 
 //Globals
-@import './global/fonts.scss';
+@import './global/fonts';
 @import './global/grid';
-@import './global/colors.scss';
-@import './global/general.scss';
-@import './global/typography.scss';
+@import './global/colors';
+@import './global/general';
+@import './global/typography';
 @import './global/body-content';
 
 //Sections
@@ -57,6 +57,3 @@
 
 @import './templates/template-404';
 @import './templates/template-500';
-
-
-

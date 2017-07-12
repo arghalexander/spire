@@ -63,11 +63,12 @@ urlpatterns = [
     url(r'^checkout/', include('checkout.urls', namespace='checkout')),
     url(r'^members/', include('members.urls', namespace='members')),
     url(r'^events/', include('events.urls', namespace='events')),
-    
+
     url(r'^accounts/register/$',  RegistrationView.as_view(form_class=MemberRegistrationForm), name='registration_register'),
     url(r'^accounts/login/$', check_login),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
+    url('^', include('django.contrib.auth.urls')),
 
     url(r'^tinymce/', include('tinymce.urls')),
     url('', include('social_django.urls', namespace='social')),
@@ -76,7 +77,7 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     url(r'^spire/', include('spiresite.urls', namespace='spiresite')),
-    
+
     url(r'^cms/', include(wagtailadmin_urls)),
 
     url(r'^documents/', include(wagtaildocs_urls)),
