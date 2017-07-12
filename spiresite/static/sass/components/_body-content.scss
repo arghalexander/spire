@@ -30,11 +30,17 @@
 		    width: 80%;
 		    position: relative;
 		    margin: -100px auto 100px auto;
+
+				@media (max-width: $small) {
+					width: 100%;
+					padding: 50px 10px;
+				}
+
+
 		}
 
 	}
 
-	
+
 
 }
-
