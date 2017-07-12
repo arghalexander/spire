@@ -216,9 +216,6 @@ h4 {
     height: 100%; }
     .top-bar .top-bar-left .menu {
       height: 100%; }
-    @media (max-width: 768px) {
-      .top-bar .top-bar-left {
-        width: 100%; } }
   .top-bar .top-bar-right {
     width: 20%;
     height: 88px; }
@@ -279,6 +276,13 @@ h4 {
 
 #responsive-menu .top-bar-left {
   width: 100%; }
+
+@media (max-width: 768px) {
+  .top-bar .top-bar-left {
+    width: 100%; } }
+
+#responsive-menu {
+  background: yellow; }
 
 .button-standard {
   min-width: 250px; }
