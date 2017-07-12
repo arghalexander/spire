@@ -2,7 +2,7 @@
 	background-color: $lighter-brown;
 	text-align: center;
 	.product__title{
-		
+
 		background-color: $black;
 		color: $white;
 		padding-top: 17px;
@@ -14,7 +14,10 @@
 	.product__content{
 		padding: 50px 30px 50px 30px;
 
+		.short-text{
+			padding-bottom: 20px;
+		}
 	}
 
-	
+
 }

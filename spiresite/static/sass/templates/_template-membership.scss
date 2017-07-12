@@ -2,22 +2,22 @@
 
 	.title{
 		padding-top: 50px;
-		margin-bottom: 70px;		
+		margin-bottom: 70px;
 	}
 	.product-block{
 		.membership-pricing{
 			margin-bottom: 35px;
-			padding-top: 20px; 
+			padding-top: 20px;
 			h3{
 				display: inline;
-				
+
 				&:first-of-type{
 					padding-right: 10px;
 				}
 
 				&:last-of-type{
 					padding-left: 10px;
-					
+
 				}
 			}
 		}
@@ -30,7 +30,7 @@
 
 			.short-text{
 
-				height: 150px;
+				height: auto;
 			}
 		}
 		.divider{
@@ -40,7 +40,7 @@
 
 	.member-benefits{
 		padding-top: 60px;
-		
+
 		.benefit{
 			color: $black;
 			display: table-row;
@@ -54,12 +54,12 @@
 				height: 100%;
 			}
 			.text{
-				
+
 			}
 		}
 	}
 	.member-people{
-		padding-top: 50px; 
+		padding-top: 50px;
 		.title{
 			padding-top: 40px;
 			margin-bottom: 40px;
