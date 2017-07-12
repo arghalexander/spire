@@ -38,8 +38,7 @@ class MemberEducationResource(resources.ModelResource):
 
 	class Meta:
 		model = MemberEducation
-		import_id_fields = ('member',)
-		fields = ('member','degree', 'program', 'grad_year')
+		fields = ('id','member','degree', 'program', 'grad_year')
 
 
 
