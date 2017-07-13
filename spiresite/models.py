@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
 from events.models import Event, EventPricing
-from members.models import Member 
+from members.models import Member
 from products.models import MembershipProduct
 from wagtail.wagtailcore.models import Page
 from django.contrib import messages
@@ -84,7 +84,7 @@ class HomePage(Page):
 	contact_link = 					models.URLField(blank=True)
 
 
-	
+
 	content_panels = Page.content_panels + [
 		InlinePanel('home_gallery', label="Gallery"),
 		SnippetChooserPanel('featured_event'),
@@ -101,7 +101,7 @@ class HomePage(Page):
 				FieldPanel('sponsor_three'),
 				FieldPanel('sponsor_three_link'),
 			]),
-			
+
 		],
 		heading="Sponsors",
 		classname="collapsible"
@@ -133,15 +133,15 @@ class HomePage(Page):
 
 
 class AboutPage(Page):
-	
+
 	heading = 						models.CharField(blank=True, max_length=255)
-	
+
 	pillar_one =				 	RichTextField(blank=True)
 	pillar_two = 					RichTextField(blank=True)
 	pillar_three = 					RichTextField(blank=True)
-	
+
 	page_content = 					RichTextField(blank=True)
-	
+
 
 	content_panels = Page.content_panels + [
 		FieldPanel('heading'),
@@ -179,7 +179,7 @@ class SRECPage(Page):
 		FieldPanel('page_content'),
 		FieldPanel('gallery_caption'),
 		InlinePanel('srec_gallery', label="Gallery"),
-		
+
 	]
 
 
@@ -190,7 +190,7 @@ class SrecMembersPage(Page):
 	content_panels = Page.content_panels + [
 		FieldPanel('heading'),
 		FieldPanel('page_content'),
-		
+
 	]
 
 	def get_context(self, request):
@@ -219,9 +219,9 @@ class SrecConferencePage(Page):
 class MembershipPage(Page):
 	heading = 						models.CharField(blank=True, max_length=255)
 	description = 					models.TextField(blank=True)
-	
+
 	full_membership = 				models.TextField(blank=True)
-	
+
 	full_membership_yearly =    	models.ForeignKey(
 										'products.MembershipProduct',
 										null=True,
@@ -236,7 +236,7 @@ class MembershipPage(Page):
 										on_delete=models.SET_NULL,
 										related_name='product_full_5_years'
 									)
-	
+
 	full_young_membership = 		models.TextField(blank=True)
 	full_young_yearly = 			models.ForeignKey(
 										'products.MembershipProduct',
@@ -272,7 +272,7 @@ class MembershipPage(Page):
 										blank=True,
 										on_delete=models.SET_NULL,
 										related_name='product_student'
-									)			
+									)
 
 	people_image = 					models.ForeignKey(
 										'wagtailimages.Image',
@@ -338,16 +338,16 @@ class MembershipPage(Page):
 		FieldPanel('people_review_two'),
 		FieldPanel('member_closing'),
 	]
-	
+
 
 
 
 
 class MemberDirectoryPage(Page):
-	
+
 	heading = 						models.CharField(blank=True, max_length=255)
-	
-	
+
+
 
 	content_panels = Page.content_panels + [
 		FieldPanel('heading'),
@@ -397,7 +397,7 @@ class ResumeBookPage(Page):
 
 
 class LeadershipOverviewPage(Page):
-	
+
 	heading = 						models.CharField(blank=True, max_length=255)
 	body = 							RichTextField(blank=True)
 
@@ -517,7 +517,7 @@ class HallOfFameOverviewPage(Page):
 	page_content =				 	RichTextField(blank=True)
 	gallery_caption = 				models.CharField(blank=True, max_length=255)
 	sponsors_caption = 				models.CharField(blank=True, max_length=255)
-	
+
 
 	content_panels = Page.content_panels + [
 		FieldPanel('heading'),
@@ -533,7 +533,7 @@ class HallOfFameOverviewPage(Page):
 
 class HallOfFameInducteesPage(Page):
 	heading = 						models.CharField(blank=True, max_length=255)
-	
+
 
 	content_panels = Page.content_panels + [
 		FieldPanel('heading'),
@@ -544,7 +544,7 @@ class HallOfFameInducteesPage(Page):
 
 class HallOfFameBanquetsPage(Page):
 	heading = 						models.CharField(blank=True, max_length=255)
-	
+
 	body =							 StreamField([
 										('text', blocks.RichTextBlock()),
 										('image_block',TwoImageBlock()),
@@ -576,9 +576,9 @@ class ContactPage(Page):
 		from .forms import ContactForm
 		if request.method == 'POST':
 			form = ContactForm(request.POST)
-			
+
 			if form.is_valid():
-			
+
 				print(request.site)
 				theme_settings = ThemeSettings.for_site(request.site)
 
@@ -601,9 +601,9 @@ class ContactPage(Page):
 					'page': self,
 					'form': form
 				})
-				
+
 		form = ContactForm()
-	
+
 		return render(request, self.template, {
 			'page': self,
 			'form': form
@@ -619,7 +619,7 @@ class EventsPage(Page):
 	content_panels = Page.content_panels + [
 		FieldPanel('heading'),
 		FieldPanel('page_content'),
-		
+
 	]
 
 	def get_context(self, request):
@@ -637,13 +637,13 @@ class PastEventsPage(Page):
 	content_panels = Page.content_panels + [
 		FieldPanel('heading'),
 		FieldPanel('page_content'),
-		
+
 	]
 
 	def get_context(self, request):
 		context = super(PastEventsPage, self).get_context(request)
 
-		context['past_events'] = Event.objects.filter(start__lt=datetime.datetime.now())[:50]
+		context['past_events'] = Event.objects.filter(start__lt=datetime.datetime.now()).order_by('-start')[:50]
 		return context
 
 
@@ -734,7 +734,3 @@ class LinkPage(Page):
 	content_panels = Page.content_panels + [
 		PageChooserPanel('page'),
 	]
-
-
-
-

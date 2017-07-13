@@ -676,6 +676,8 @@ form .errorlist {
       margin-bottom: 0px; }
   .product-block .product__content {
     padding: 50px 30px 50px 30px; }
+    .product-block .product__content .text {
+      padding-bottom: 20px; }
     .product-block .product__content .short-text {
       padding-bottom: 20px; }
 
@@ -827,7 +829,7 @@ form .errorlist {
   background-color: transparent; }
 
 .template-membership .title {
-  padding-top: 50px;
+  padding-top: 10px;
   margin-bottom: 70px; }
 
 .template-membership .product-block .membership-pricing {
