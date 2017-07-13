@@ -540,6 +540,10 @@ footer {
     height: 100%;
     width: 100%;
     z-index: -1; }
+  .gallery-list .column-block {
+    text-align: center; }
+  .gallery-list .member__image {
+    padding-bottom: 10px; }
   .gallery-list .gallery-item {
     text-align: center;
     background-color: #FFF;
@@ -964,7 +968,8 @@ form .errorlist {
   object-fit: cover; }
 
 .template-leadership-standard .rich-text ul {
-  columns: 3; }
+  columns: 1;
+  list-style-type: none; }
 
 .template-member-profile-edit .delete-row {
   color: #891B0D;

@@ -64,8 +64,10 @@ urlpatterns = [
     url(r'^members/', include('members.urls', namespace='members')),
     url(r'^events/', include('events.urls', namespace='events')),
 
+
     url(r'^accounts/register/$',  RegistrationView.as_view(form_class=MemberRegistrationForm), name='registration_register'),
     url(r'^accounts/login/$', check_login),
+    #url(r'^password_reset/$', auth_views.password_reset, name='password_reset', html_email_template_name='registration/password_reset_email.html'),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
 

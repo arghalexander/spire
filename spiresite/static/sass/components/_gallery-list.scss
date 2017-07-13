@@ -5,7 +5,7 @@
 	#gallery-row{
 		background-color: $light-gray;
 	}
-	
+
 	.background{
 		position: absolute;
 		background-color: $lighter-brown;
@@ -15,17 +15,24 @@
 		width: 100%;
 		z-index: -1;
 	}
+	.column-block{
+		text-align: center;
+	}
+	.member__image{
+		padding-bottom:10px;
+	}
 	.gallery-item{
 		text-align: center;
 		background-color: $white;
 		padding-bottom: 10px;
 		.item__image{
-			
+
 		}
+
 
 		.item__info{
 			padding: 20px;
-			
+
 			p{
 				margin-bottom: 0px;
 			}
