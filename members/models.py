@@ -67,7 +67,7 @@ class Member(models.Model):
 	work_phone = 						models.CharField(max_length=254, blank=True)
 
 	bio = 								models.TextField(blank=True)
-	skills_specialties = 				models.TextField(blank=True)
+	#skills_specialties = 				models.TextField(blank=True)
 
 	region = 							models.ManyToManyField(MemberRegion,related_name="member_regions")
 
