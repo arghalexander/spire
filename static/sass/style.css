@@ -849,6 +849,10 @@ form .errorlist {
   padding-top: 10px;
   margin-bottom: 35px; }
 
+.template-membership .page-header {
+  padding-top: 0px;
+  padding-top: 45px; }
+
 .template-membership .product-block .membership-pricing {
   margin-bottom: 35px;
   padding-top: 20px; }
@@ -868,18 +872,16 @@ form .errorlist {
 .template-membership .product-block .divider {
   border-left: 1px solid #979797; }
 
-.template-membership .member-benefits {
-  padding-top: 60px; }
-  .template-membership .member-benefits .benefit {
-    color: #333333;
-    display: table-row;
-    margin-bottom: 25px;
-    margin-top: 30px; }
-    .template-membership .member-benefits .benefit .icon, .template-membership .member-benefits .benefit .text {
-      display: table-cell; }
-    .template-membership .member-benefits .benefit .icon {
-      width: 75px;
-      height: 100%; }
+.template-membership .member-benefits .benefit {
+  color: #333333;
+  display: table-row;
+  margin-bottom: 25px;
+  margin-top: 30px; }
+  .template-membership .member-benefits .benefit .icon, .template-membership .member-benefits .benefit .text {
+    display: table-cell; }
+  .template-membership .member-benefits .benefit .icon {
+    width: 75px;
+    height: 100%; }
 
 .template-membership .member-people {
   padding-top: 50px; }
