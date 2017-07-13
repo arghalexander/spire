@@ -40,7 +40,7 @@ class Event(index.Indexed,ClusterableModel):
 												on_delete=models.SET_NULL,
 												related_name='event_image'
 											)
-	status =								models.CharField(max_length=254, choices=[('PUBLISHED','Published'),('DRAFT','Draft')], default="DRAFT")								
+	status =								models.CharField(max_length=254, choices=[('PUBLISHED','Published'),('DRAFT','Draft')], default="DRAFT")
 	all_day = 								models.BooleanField()
 	start = 								models.DateTimeField()
 	end =									models.DateTimeField()
@@ -57,7 +57,7 @@ class Event(index.Indexed,ClusterableModel):
 		return u'%s' % self.title
 
 	panels = [
-		
+
 		FieldPanel('status', classname='fn'),
 		FieldPanel('capacity', classname='fn'),
 
@@ -69,7 +69,7 @@ class Event(index.Indexed,ClusterableModel):
 		heading="Event",),
 
 		ImageChooserPanel('image'),
-		
+
 
 
 		MultiFieldPanel([
@@ -83,7 +83,7 @@ class Event(index.Indexed,ClusterableModel):
 		classname="",
 		heading="Date",
 		),
-		
+
 		MultiFieldPanel([
 			FieldPanel('address'),
 			GeoPanel('location', address_field='address'),
@@ -113,6 +113,7 @@ class Event(index.Indexed,ClusterableModel):
 	def save(self, *args, **kwargs):
 		super(Event, self).save()
 
+"""
 # method for updating
 @receiver(post_save, sender=Event)
 def update_stock(sender, instance, created, **kwargs):
@@ -123,7 +124,7 @@ def update_stock(sender, instance, created, **kwargs):
 		for level in MembershipLevel.objects.all():
 			pricing_level = EventPricing(event=instance,event_price=0.00,level=level)
 			pricing_level.save()
-
+"""
 
 
 class EventAttendance(models.Model):
@@ -134,7 +135,6 @@ class EventAttendance(models.Model):
 
 class EventPricing(models.Model):
 	event = 						ParentalKey(Event, related_name="event_pricings")
-	level = 						models.ForeignKey('members.MembershipLevel', related_name="membership_level") #avoid circular dependency	
+	level = 						models.ForeignKey('members.MembershipLevel', related_name="membership_level") #avoid circular dependency
 	can_attend = 					models.BooleanField(default=False)
 	event_price = 					models.DecimalField(max_digits=8, decimal_places=2)
-
