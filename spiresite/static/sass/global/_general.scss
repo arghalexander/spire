@@ -21,6 +21,9 @@ h3{
     color: $red;
 }
 
+.tabs-title > a:focus, .tabs-title > a[aria-selected='true'] {
+    color: $red;
+}
 
 /* text */
 p{
