@@ -14,4 +14,21 @@
 		}
 	}
 
+	.pagination{
+
+		.active.page-item{
+			a{
+				background-color: $red;
+				color: $white;
+			}
+		}
+		.page-item{
+			a{
+				background-color: $white;
+				color: $red;
+			}
+		}
+
+	}
+
 }
