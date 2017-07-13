@@ -17,7 +17,7 @@
 
 		    {% for panel in page.home_gallery.all %}
 		    <li class="is-active orbit-slide">
-		      {% image panel.background original class="orbit-image" %}
+		      {% image panel.background original class="orbit-image cover" %}
 		     	<figcaption class="orbit-caption" >
 				     <div class="content">
 				    	 <h5 class="white-line bold">{{panel.title}}</h5>
