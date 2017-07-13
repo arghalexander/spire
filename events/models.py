@@ -3,6 +3,8 @@ from wagtail.wagtailcore.fields import RichTextField
 from tinymce.models import HTMLField
 from django.db import models
 
+import datetime
+
 from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailsearch import index
 
@@ -21,10 +23,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 #from spiresite.orderables import EventPricing
-
-
-
-
 
 
 
@@ -48,6 +46,12 @@ class Event(index.Indexed,ClusterableModel):
 	address = 								models.CharField(max_length=250, blank=True, null=True)
 	location = 								models.CharField(max_length=255, blank=True, null=True)
 	description = 							RichTextField()
+
+	@property
+	def is_past(self):
+		if self.start < datetime.datetime.now():
+			return True
+		return False
 
 
 	def __str__(self):

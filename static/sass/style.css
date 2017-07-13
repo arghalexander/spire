@@ -105,6 +105,10 @@ table a {
 .notifications {
   margin-top: 20px; }
 
+.cover {
+  object-fit: cover;
+  font-family: 'object-fit: cover;'; }
+
 h4 {
   line-height: 30px; }
 
@@ -675,7 +679,8 @@ form .errorlist {
     .product-block .product__title h5 {
       margin-bottom: 0px; }
   .product-block .product__content {
-    padding: 50px 30px 50px 30px; }
+    padding: 50px 30px 50px 30px;
+    margin-bottom: 30px; }
     .product-block .product__content .text {
       padding-bottom: 20px; }
     .product-block .product__content .short-text {

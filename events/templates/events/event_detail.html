@@ -20,7 +20,7 @@
 
 </section>
 
-
+{% if not event.is_past %}
 <section class="pricing">
 	<div class="row">
 		<div class="small-12 columns">
@@ -82,7 +82,7 @@
 		</div>
 	</div>
 </section>
-
+{% endif %}
 
 <section class="event-details">
 	<div class="background"></div>
