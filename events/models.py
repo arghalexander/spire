@@ -48,8 +48,8 @@ class Event(index.Indexed,ClusterableModel):
 	description = 							RichTextField()
 
 	@property
-	def is_past(self):
-		if self.start < datetime.datetime.now():
+	def registration_open(self):
+		if self.start >= datetime.datetime.now():
 			return True
 		return False
 
