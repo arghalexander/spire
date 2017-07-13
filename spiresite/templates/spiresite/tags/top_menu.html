@@ -29,17 +29,17 @@
 
             {% if request.user.is_authenticated %}
 
-            <li class="nav-item divider" ><a class="white" href="{% url 'members:member-profile' %}">Profile</a>
-            <li class="nav-item"><a class="white" href="/accounts/logout/">Logout</a></li>
+            <li class="nav-item divider" ><a class="white text-right" href="{% url 'members:member-profile' %}">Profile</a>
+            <li class="nav-item"><a class="white text-right" href="/accounts/logout/">Logout</a></li>
 
 
             {% else %}
 
               <li class="nav-item divider">
-                <a href="/accounts/login/">Login</a>
+                <a class="white text-right" href="/accounts/login/">Login</a>
               </li>
               <li class="nav-item join">
-                <a href="/accounts/register/">Join</a>
+                <a class="white text-right" href="/accounts/register/">Join</a>
             </li>
 
           {% endif %}
