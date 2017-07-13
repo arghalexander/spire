@@ -16,25 +16,26 @@
   </div>
 
 	<div class="small-6 columns text-centered">
-  
+
   		<form action="{% url 'auth_login'  %}?next={{next}}" method="post">
   		    {% csrf_token %}
-  		    
-         
+
+
 
   		    <label for="id_username" >Email</label>
   		    <input type="text" name="username" autofocus="" required="" id="id_username" maxlength="254">
-  		    
+
   		    <label for="id_password">Password</label>
   		    <input type="password" name="password" required="" id="id_password" autocomplete="off">
   		     {{ form.non_field_errors }}
           <input class="button button-red" type="submit" value="Submit" />
+          <a href="{% url 'password_reset' %}" class="red pull-right">Forgot password?</a>
 
   		</form>
 	</div>
 
 	<div class="small-6 columns text-centered" style="padding-top: 25px;">
-	
+
 		    <a class="button button-linkedin expanded" href="{% url "social:begin" "linkedin-oauth2" %}">Sign in with LinkedIn</a>
 
         <a class="button button-facebook expanded" href="{% url "social:begin" "facebook" %}">Sign in with Facebook</a>
@@ -56,7 +57,7 @@
       xfbml      : true,
       version    : 'v2.8'
     });
-    FB.AppEvents.logPageView();   
+    FB.AppEvents.logPageView();
   };
 
   (function(d, s, id){

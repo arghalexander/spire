@@ -85,6 +85,7 @@
                   <a class="bold" href="#">{% if request.user.first_name %}{{ request.user.first_name }}{% else %}{{request.user.username|truncatechars:12}}{% endif %}<span class="fa fa-chevron-down" style="padding-left:10px;"></span></a>
                   <ul class="menu">
                     <li><a class="white" href="{% url 'members:member-profile' %}">Profile</a>
+                      <li><a class="white" href="{% url 'password_change' %}">Change Password</a>
                     <li><a class="white" href="/accounts/logout/">Logout</a></li>
                   </ul>
                 </li>

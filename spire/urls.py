@@ -68,7 +68,6 @@ urlpatterns = [
     url(r'^accounts/login/$', check_login),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
-    url('^', include('django.contrib.auth.urls')),
 
     url(r'^tinymce/', include('tinymce.urls')),
     url('', include('social_django.urls', namespace='social')),
