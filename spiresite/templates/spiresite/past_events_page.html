@@ -44,7 +44,7 @@
 				{% for event in past_events.all %}
 					<div class=" column column-block">
 						<div class="event-block" data-aos="zoom-in-up">
-							<a href="{% url 'events:event' event.slug %}">
+							<a href="{% url 'events:event-detail' event.slug %}">
 							<div class="event-block__date">
 								<div class="month">
 									{{event.start|date:'M'}}
