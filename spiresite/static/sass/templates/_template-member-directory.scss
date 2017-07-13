@@ -1,10 +1,16 @@
 .template-member-directory{
-	
+
 
 	section.members-directory{
 		padding-top: 50px;
 		.page-link{
 			background-color: $red;
+		}
+	}
+
+	.iso-bootstrap{
+		.btn.default{
+			border: 1px solid #ccc;
 		}
 	}
 
