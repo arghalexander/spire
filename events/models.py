@@ -4,6 +4,7 @@ from tinymce.models import HTMLField
 from django.db import models
 
 import datetime
+from django.utils import timezone
 
 from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailsearch import index
@@ -49,7 +50,7 @@ class Event(index.Indexed,ClusterableModel):
 
 	@property
 	def registration_open(self):
-		if self.start >= datetime.datetime.now():
+		if self.start >= timezone.now():
 			return True
 		return False
 
