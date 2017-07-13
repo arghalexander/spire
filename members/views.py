@@ -1,5 +1,5 @@
 import django_filters
-import datetime 
+import datetime
 
 from dal import autocomplete
 
@@ -40,7 +40,7 @@ from django.forms import formset_factory,modelformset_factory
 
 from taggit.models import Tag
 from taggit_serializer.serializers import (TagListSerializerField,
-                                           TaggitSerializer)
+										   TaggitSerializer)
 
 from django.views.decorators.csrf import csrf_exempt
 
@@ -71,11 +71,11 @@ class MemberViewSet(viewsets.ModelViewSet):
 			.annotate(name=TruncMonth('user__date_joined')) \
 			.values('name')  \
 			.annotate(value=Count('id'))  \
-			.values('name', 'value') 
+			.values('name', 'value')
 
 		serializer = MemberSignupsByMonthSerilizer(members, many=True)
 		return Response(serializer.data)
-	
+
 	@list_route()
 	def get_signups_by_range_3months_count(self, request):
 		last_year = datetime.datetime.now() - datetime.timedelta(days=1*90)
@@ -83,7 +83,7 @@ class MemberViewSet(viewsets.ModelViewSet):
 			.annotate(name=TruncMonth('user__date_joined')) \
 			.values('name')  \
 			.annotate(value=Count('id'))  \
-			.values('name', 'value') 
+			.values('name', 'value')
 
 		serializer = MemberSignupsByMonthSerilizer(members, many=True)
 		return Response(serializer.data)
@@ -96,7 +96,7 @@ class MemberViewSet(viewsets.ModelViewSet):
 			.annotate(name=TruncMonth('user__date_joined')) \
 			.values('name')  \
 			.annotate(value=Count('id'))  \
-			.values('name', 'value') 
+			.values('name', 'value')
 
 		serializer = MemberSignupsByMonthSerilizer(members, many=True)
 		return Response(serializer.data)
@@ -108,7 +108,7 @@ class MemberViewSet(viewsets.ModelViewSet):
 			.annotate(name=TruncMonth('user__date_joined')) \
 			.values('name')  \
 			.annotate(value=Count('id'))  \
-			.values('name', 'value') 
+			.values('name', 'value')
 
 		serializer = MemberSignupsByMonthSerilizer(members, many=True)
 		return Response(serializer.data)
@@ -118,7 +118,7 @@ class MemberViewSet(viewsets.ModelViewSet):
 		members = Member.objects.annotate(name=F('membership_level__level')) \
 			.values('name')  \
 			.annotate(value=Count('id'))  \
-			.values('name', 'value') 
+			.values('name', 'value')
 
 
 		serializer = MemberTypesCountSerilizer(members, many=True)
@@ -151,7 +151,7 @@ class MemberViewSet(viewsets.ModelViewSet):
 
 		elif request.method == 'POST':
 			serializer = MemberNoteSerializer(data=request.data)
-			
+
 			if serializer.is_valid():
 				serializer.save(member=member, user=request.user)
 
@@ -172,7 +172,7 @@ class MemberViewSet(viewsets.ModelViewSet):
 			member = Member.objects.get(pk=pk)
 		except Member.DoesNotExist:
 			return Response(status=status.HTTP_404_NOT_FOUND)
-			
+
 		purchases = MemberPurchaseHistory.objects.filter(member=member)
 		serializer = MemberPurchaseHistorySerializer(purchases, many=True)
 		return Response(serializer.data)
@@ -184,7 +184,7 @@ class MemberViewSet(viewsets.ModelViewSet):
 			member = Member.objects.get(pk=pk)
 		except Member.DoesNotExist:
 			return Response(status=status.HTTP_404_NOT_FOUND)
-			
+
 		purchases = MemberMembershipHistory.objects.filter(member=member)
 		serializer = MemberMembershipHistorySerializer(purchases, many=True)
 		return Response(serializer.data)
@@ -195,7 +195,7 @@ class MemberViewSet(viewsets.ModelViewSet):
 		current_date = datetime.datetime.now()
 		members = Member.objects.filter(membership_expiration__lte=current_date+datetime.timedelta(days=30))
 		serializer = MemberSerializer(members, many=True)
-		
+
 		return Response(serializer.data)
 
 
@@ -205,7 +205,7 @@ def member_event_attendance(request, pk):
 		member = Memebrs.objects.get(pk=pk)
 	except Member.DoesNotExist:
 		return Response(status=status.HTTP_404_NOT_FOUND)
-	
+
 	events = Events.objects.filter(member=member)
 	serializer = EventAttendanceSerializer(events)
 
@@ -256,14 +256,14 @@ def member_create(request):
 	education_formset = formset_factory(MemberEducationForm)
 
 	if request.method == 'POST':
-	  
+
 		user_form = MemberUserForm(request.POST, instance=request.user)
 
 		member_form = MemberCreateForm(request.POST)
 		address_form = MemberAddressForm(request.POST)
-		
+
 		work_form = MemberProfesionalInformationForm(request.POST,prefix="professional")
-		
+
 		education_formset = education_formset(request.POST)
 
 		if(address_form.is_valid() and user_form.is_valid() and member_form.is_valid() and education_formset.is_valid() and work_form.is_valid()):
@@ -283,7 +283,7 @@ def member_create(request):
 			other_industry = request.POST.get('other-industry', '')
 
 			work = work_form.save(commit=False)
-			
+
 			if(other_industry):
 				industry = MemberIndustry(industry=other_industry, entered_by=request.user)
 				industry.save()
@@ -291,13 +291,12 @@ def member_create(request):
 
 			work.member = member
 			work.save()
-		 
-			for form in education_formset:
 
+			for form in education_formset:
 				form = form.save(commit=False)
 				form.member = member
 				form.save()
-		
+
 			return redirect('members:member-profile')
 
 		else:
@@ -306,7 +305,7 @@ def member_create(request):
 				'member_form': member_form,
 				'address_form': address_form,
 				'education_formset': education_formset
-				})  
+				})
 
 	else:
 
@@ -330,7 +329,7 @@ def member_create(request):
 
 @login_required
 def member_profile(request, member_id):
-	
+
 	member = get_object_or_404(Member, id=member_id)
 
 	return render(request, 'members/member_profile.html', {
@@ -367,7 +366,7 @@ def my_profile_edit(request):
 		member = Member.objects.get(user=request.user)
 		address = MemberAddress.objects.get(member=member)
 		work_info, created = MemberProfesionalInformation.objects.get_or_create(member=member)
-	
+
 	except Member.DoesNotExist:
 		return redirect('members:member-create')
 	except MemberAddress.DoesNotExist:
@@ -378,12 +377,12 @@ def my_profile_edit(request):
 	education_formset = modelformset_factory(MemberEducation,fields=('degree', 'program','grad_year'))
 
 	if request.method == 'POST':
-	  
+
 		user_form = MemberUserForm(request.POST, instance=request.user)
 		member_form = MemberForm(request.POST,request.FILES or None, instance=member)
 		address_form = MemberAddressForm(request.POST, instance=address, prefix="personal",)
 		work_form = MemberProfesionalInformationForm(request.POST, prefix="professional", instance=work_info)
-		
+
 		education_formset = education_formset(request.POST)
 
 		if(address_form.is_valid() and user_form.is_valid() and member_form.is_valid() and education_formset.is_valid()) and work_form.is_valid():
@@ -395,9 +394,9 @@ def my_profile_edit(request):
 			member_info.save()
 			member_form.user = request.user
 
-			member_form.save() 
+			member_form.save()
 			member_form.save_m2m()
-	
+
 			address = address_form.save(commit=False)
 			address.member = member
 
@@ -407,7 +406,7 @@ def my_profile_edit(request):
 			other_industry = request.POST.get('other-industry', '')
 
 			work = work_form.save(commit=False)
-			
+
 			if(other_industry):
 				industry = MemberIndustry(industry=other_industry, entered_by=request.user)
 				industry.save()
@@ -416,13 +415,11 @@ def my_profile_edit(request):
 			work.member = member
 			work.save()
 
-
 			for form in education_formset:
-				if form.is_valid() and not form.empty_permitted:
+				if form.is_valid():
 					form = form.save(commit=False)
 					form.member = member
 					form.save()
-		
 
 			return redirect('members:member-profile')
 
@@ -435,11 +432,11 @@ def my_profile_edit(request):
 				'education_formset': education_formset,
 				'work_form': work_form,
 				'member': member
-				})  
+				})
 
 	else:
 
-		
+
 		education_formset = education_formset(queryset=MemberEducation.objects.filter(member=member))
 
 		user_form = MemberUserForm(instance=request.user)
@@ -459,6 +456,3 @@ def my_profile_edit(request):
 		'work_form': work_form,
 		'education_formset': education_formset,
 		})
-
-
-
