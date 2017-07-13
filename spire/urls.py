@@ -17,6 +17,7 @@ from django.conf import settings
 from django.conf.urls import include,url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 
 from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
@@ -67,7 +68,10 @@ urlpatterns = [
 
     url(r'^accounts/register/$',  RegistrationView.as_view(form_class=MemberRegistrationForm), name='registration_register'),
     url(r'^accounts/login/$', check_login),
-    #url(r'^password_reset/$', auth_views.password_reset, name='password_reset', html_email_template_name='registration/password_reset_email.html'),
+
+    #url(r'^password_reset/$', auth_views.password_reset.as_view(),  html_email_template_name='registration/password_reset_email.html', email_template_name='registration/password_reset_email.txt',name='password_reset'),
+    url(r'^accounts/reset_password/$',auth_views.password_reset, {'html_email_template_name': 'registration/password_reset_email.html','email_template_name': 'registration/password_reset_email.txt'}),
+
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
 

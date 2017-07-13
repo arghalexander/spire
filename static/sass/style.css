@@ -11,6 +11,12 @@ h3 {
 #main {
   padding-top: 50px; }
 
+.tabs-title > a {
+  color: #891B0D; }
+
+.tabs-title > a:focus, .tabs-title > a[aria-selected='true'] {
+  color: #891B0D; }
+
 /* text */
 p {
   color: #333333; }
@@ -247,6 +253,8 @@ h4 {
     .top-bar .top-bar-right .nav-item {
       padding-top: 24px;
       float: right; }
+      .top-bar .top-bar-right .nav-item a {
+        line-height: 1.25; }
       .top-bar .top-bar-right .nav-item:hover {
         background-color: transparent; }
         .top-bar .top-bar-right .nav-item:hover a {
@@ -260,7 +268,8 @@ h4 {
   .top-bar .nav-item a {
     font-weight: bold;
     font-size: 16px;
-    color: #891B0D; }
+    color: #891B0D;
+    line-height: 1.2; }
   .top-bar .nav-item:hover {
     background-color: #891B0D; }
     .top-bar .nav-item:hover a {
@@ -289,7 +298,8 @@ h4 {
         font-size: 16px;
         color: #FFF;
         padding-left: 20px;
-        padding-right: 20px; }
+        padding-right: 20px;
+        line-height: 1.25; }
       .top-bar .menu.submenu li:hover {
         background-color: #571511; }
   .top-bar .dropdown.menu > li.opens-right > .is-dropdown-submenu {
@@ -614,7 +624,10 @@ form .errorlist {
   .event-block a {
     color: #333333; }
   .event-block .event-block__text {
-    padding: 20px; }
+    padding: 20px;
+    padding-bottom: 5px; }
+    .event-block .event-block__text h4 {
+      padding-bottom: 10px; }
   .event-block .event-block__date {
     position: absolute;
     top: 0px;
@@ -737,8 +750,7 @@ form .errorlist {
     .template-homepage section.home-header .orbit, .template-homepage section.home-header .orbit-container {
       min-height: 500px;
       max-height: 500px;
-      width: 100%;
-      z-index: -1; }
+      width: 100%; }
       .template-homepage section.home-header .orbit img, .template-homepage section.home-header .orbit-container img {
         height: 500px;
         object-fit: cover; }
@@ -762,12 +774,12 @@ form .errorlist {
         height: 100%; }
         .template-homepage section.home-header .orbit-caption .content p {
           color: #FFFFFF;
-          font-size: 16px;
+          font-size: 14px;
           line-height: 24px; }
         .template-homepage section.home-header .orbit-caption .content .learn-more {
           position: absolute;
           bottom: 0px;
-          width: 340px; }
+          width: 87%; }
       @media (max-width: 39.9375em) {
         .template-homepage section.home-header .orbit-caption {
           height: 500px;
@@ -835,7 +847,7 @@ form .errorlist {
 
 .template-membership .title {
   padding-top: 10px;
-  margin-bottom: 70px; }
+  margin-bottom: 35px; }
 
 .template-membership .product-block .membership-pricing {
   margin-bottom: 35px;
@@ -886,6 +898,17 @@ form .errorlist {
   padding-top: 50px; }
   .template-member-directory section.members-directory .page-link {
     background-color: #891B0D; }
+
+.template-member-directory .iso-bootstrap .btn.default {
+  border: 1px solid #ccc; }
+
+.template-member-directory .pagination .active.page-item a {
+  background-color: #891B0D;
+  color: #FFF; }
+
+.template-member-directory .pagination .page-item a {
+  background-color: #FFF;
+  color: #891B0D; }
 
 .template-hall-of-fame .event-side-block {
   background-color: #891B0D;

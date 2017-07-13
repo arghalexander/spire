@@ -219,6 +219,14 @@ class SrecConferencePage(Page):
 class MembershipPage(Page):
 	heading = 						models.CharField(blank=True, max_length=255)
 	description = 					models.TextField(blank=True)
+	member_header_image	=			models.ForeignKey(
+										'wagtailimages.Image',
+										null=True,
+										blank=True,
+										on_delete=models.SET_NULL,
+										related_name='member_header_image'
+									)
+
 
 	full_membership = 				models.TextField(blank=True)
 
@@ -291,6 +299,7 @@ class MembershipPage(Page):
 	content_panels = Page.content_panels + [
 		FieldPanel('heading'),
 		FieldPanel('description'),
+		ImageChooserPanel('member_header_image'),
 		MultiFieldPanel([
 			FieldPanel('full_membership'),
 			SnippetChooserPanel('full_membership_yearly'),
