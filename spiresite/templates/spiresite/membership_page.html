@@ -89,11 +89,11 @@
 				<div class="product__content" >
 					<div class="text" data-equalizer-watch>
 						<p>{{page.full_friends_membership}}</p>
-
+						<div class="membership-pricing">
+								<h3><sup>$</sup>95<sup class="sub">/ year</sup></h3>
+							</div>
 					</div>
-					<div class="membership-pricing">
-							<h3><sup>$</sup>95<sup class="sub">/ year</sup></h3>
-						</div>
+
 					<a class="button button-green expanded"  href="{% url 'checkout:membership-add' %}?product_id={{page.full_friends_yearly.id}}">Choose this membership</a>
 
 				</div>
