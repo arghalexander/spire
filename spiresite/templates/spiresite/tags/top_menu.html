@@ -29,17 +29,17 @@
 
             {% if request.user.is_authenticated %}
 
-            <li class="nav-item divider" ><a class="white text-right" href="{% url 'members:member-profile' %}">Profile</a>
-            <li class="nav-item"><a class="white text-right" href="/accounts/logout/">Logout</a></li>
+            <li class="nav-item divider" ><a class="white" href="{% url 'members:member-profile' %}">Profile</a>
+            <li class="nav-item"><a class="white" href="/accounts/logout/">Logout</a></li>
 
 
             {% else %}
 
               <li class="nav-item divider">
-                <a class="white text-right" href="/accounts/login/">Login</a>
+                <a href="/accounts/login/">Login</a>
               </li>
               <li class="nav-item join">
-                <a class="white text-right" href="/accounts/register/">Join</a>
+                <a href="/accounts/register/">Join</a>
             </li>
 
           {% endif %}
@@ -84,19 +84,19 @@
                 <li class="nav-item">
                   <a class="bold" href="#">{% if request.user.first_name %}{{ request.user.first_name }}{% else %}{{request.user.username|truncatechars:12}}{% endif %}<span class="fa fa-chevron-down" style="padding-left:10px;"></span></a>
                   <ul class="menu">
-                    <li><a class="white" href="{% url 'members:member-profile' %}">Profile</a>
-                      <li><a class="white" href="{% url 'password_change' %}">Change Password</a>
-                    <li><a class="white" href="/accounts/logout/">Logout</a></li>
+                    <li><a class="white text-right" href="{% url 'members:member-profile' %}">Profile</a>
+                      <li><a class="white text-right" href="{% url 'password_change' %}">Change Password</a>
+                    <li><a class="white text-right" href="/accounts/logout/">Logout</a></li>
                   </ul>
                 </li>
               </ul>
             {% else %}
               <ul class="menu">
                 <li class="nav-item">
-                  <a href="/accounts/login/">Login</a>
+                  <a class="text-right" href="/accounts/login/">Login</a>
                 </li>
                 <li class="nav-item join">
-                  <a href="/accounts/register/">Join</a>
+                  <a class="text-right" href="/accounts/register/">Join</a>
               </li>
                </ul>
           {% endif %}
