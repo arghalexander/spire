@@ -2,13 +2,16 @@
 	background-color: $dark-gray;
 	color: $white;
 	.event-side-block__content{
-		padding: 70px 30px 30px 30px; 
+		padding: 70px 30px 30px 30px;
 	}
 	p{
 		color: $white;
 	}
+	a{
+		color: $dark-red;
+	}
 	.button-white{
 		color: $black;
 	}
-	
+
 }
