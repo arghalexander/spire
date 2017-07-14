@@ -30,7 +30,8 @@ def login_view(request):
 	print(username)
 	try:
 		user = User.objects.get(username=username)
-		print(user)
+		print(user.password)
+
 	except User.DoesNotExist:
 		return login(request)
 
