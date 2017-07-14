@@ -30,6 +30,11 @@ def login_view(request):
 	try:
 		user = User.objects.get(username=username)
 		if user.password == '':
+
+			password = User.objects.make_random_password()
+			user.set_password(password)
+			user.save()
+
 			messages.info(request, 'For security reasons we need you to reset your password')
 			return redirect('password_reset')
 	except User.DoesNotExist:
