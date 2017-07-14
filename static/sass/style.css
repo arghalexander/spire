@@ -70,7 +70,7 @@ sup {
   height: 100%; }
 
 .header-title {
-  margin-bottom: 90px; }
+  margin-bottom: 45px; }
 
 /** text helpers */
 .bold {
@@ -84,7 +84,7 @@ sup {
   color: #333333; }
 
 .title {
-  margin-bottom: 75px; }
+  margin-bottom: 45px; }
 
 .red-backround {
   background-color: #891B0D; }
@@ -262,7 +262,7 @@ h4 {
           text-decoration: none; }
       .top-bar .top-bar-right .nav-item.join {
         background-color: #891B0D;
-        padding-bottom: 26px; }
+        padding-bottom: 23px; }
         .top-bar .top-bar-right .nav-item.join a {
           color: #FFF; }
   .top-bar .nav-item a {
@@ -423,7 +423,7 @@ footer {
     font-size: 22px;
     color: #891B0D; }
   footer .founding {
-    padding-top: 30px;
+    padding-top: 0px;
     padding-bottom: 30px; }
   footer #footer-sponsors ul {
     margin: 0px;
@@ -838,8 +838,6 @@ form .errorlist {
 
 .template-srec-overview .gallery {
   padding-top: 100px; }
-  .template-srec-overview .gallery .title {
-    margin-bottom: 70px; }
 
 .template-srec-overview #srec-slider {
   margin-bottom: 50px;
@@ -850,7 +848,7 @@ form .errorlist {
   margin-bottom: 35px; }
 
 .template-membership .page-header {
-  padding-top: 0px;
+  padding-bottom: 0px;
   padding-top: 45px; }
 
 .template-membership .product-block .membership-pricing {
