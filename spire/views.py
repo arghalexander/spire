@@ -2,7 +2,7 @@ from rest_framework import viewsets
 import django_filters.rest_framework
 from django.shortcuts import render, redirect
 from .serializers import UserSerializer
-
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -30,6 +30,7 @@ def login_view(request):
 	try:
 		user = User.objects.get(username=username)
 		if user.password == '':
+			messages.info(request, 'For security reasons we need you to reset your password')
 			return redirect('password_reset')
 	except User.DoesNotExist:
 		return login(request)
