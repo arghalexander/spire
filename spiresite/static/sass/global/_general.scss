@@ -23,6 +23,10 @@ h3{
     color: $red;
 }
 
+.dropdown.menu > li.opens-right > .is-dropdown-submenu{
+  top: 0px !important;
+}
+
 .tabs-title > a:focus, .tabs-title > a[aria-selected='true'] {
     color: $red;
 }
