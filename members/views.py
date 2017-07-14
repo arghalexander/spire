@@ -194,7 +194,7 @@ class MemberViewSet(viewsets.ModelViewSet):
 	@list_route(methods=['get'])
 	def get_expiring_members(self, request):
 		current_date = datetime.datetime.now()
-		members = Member.objects.filter(membership_expiration__lte=current_date+datetime.timedelta(days=30))
+		members = Member.objects.filter(membership_expiration__lte=current_date+datetime.timedelta(days=30),membership_expiration__gte=current_date)
 		serializer = MemberSerializer(members, many=True)
 
 		return Response(serializer.data)
