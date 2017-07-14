@@ -38,7 +38,7 @@
 					<h6 class="bold">{{page.event.title}}</h6>
 					<p>{{page.event.description|truncatewords:30|richtext}}</p>
 					<hr>
-					<a href="/events/{{page.event.slug}}" class="button button-white expanded">Buy Tickets</a>
+					<a href="{% url 'events:event-detail' page.event.slug %}" class="button button-white expanded">Buy Tickets</a>
 				</div>
 			</div>
 		</div>
