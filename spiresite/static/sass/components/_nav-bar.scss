@@ -144,3 +144,11 @@
     }
   }
 }
+
+
+<![endif]-->
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .top-bar .menu.submenu {
+       margin-top: 50px;
+  }
+}
