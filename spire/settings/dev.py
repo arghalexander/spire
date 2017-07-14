@@ -21,6 +21,13 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 SOCIAL_AUTH_LINKEDIN_KEY = '81dxu2x8vfn5ql'
 SOCIAL_AUTH_LINKEDIN_SECRET = 'TVQukKkIMprtrsot'
 
+SOCIAL_AUTH_LINKEDIN_SCOPE = ['r_basicprofile', 'r_emailaddress']
+SOCIAL_AUTH_LINKEDIN_FIELD_SELECTORS = ['email-address', 'headline', 'industry']
+SOCIAL_AUTH_LINKEDIN_EXTRA_DATA = [('id', 'id'),
+                                   ('firstName', 'first_name'),
+                                   ('lastName', 'last_name'),
+                                   ('emailAddress', 'email_address')]
+
 
 STRIPE_API_KEY = "pk_test_flWrZUy1TeB0z9msSMz67lPY"
 STRIPE_SECRET_KEY = "sk_test_es7mrA52AFoENwUyFzOP8SAI"

@@ -18,6 +18,10 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 
 SOCIAL_AUTH_LINKEDIN_SCOPE = ['r_basicprofile', 'r_emailaddress']
 SOCIAL_AUTH_LINKEDIN_FIELD_SELECTORS = ['email-address', 'headline', 'industry']
+SOCIAL_AUTH_LINKEDIN_EXTRA_DATA = [('id', 'id'),
+                                   ('firstName', 'first_name'),
+                                   ('lastName', 'last_name'),
+                                   ('emailAddress', 'email_address')]
 SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = '860sj3h07r7oyz'
 SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'w5Werpj0EiyLh0OQ'
 
