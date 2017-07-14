@@ -29,7 +29,7 @@ def login_view(request):
 	username = request.POST.get('username', '')
 	try:
 		user = User.objects.get(username=username)
-		if user.password == None:
+		if user.password == '':
 			return redirect('password_reset')
 	except User.DoesNotExist:
 		return login(request)
