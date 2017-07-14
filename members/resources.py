@@ -4,7 +4,7 @@ from import_export import fields
 
 from django.contrib.auth.models import User
 
-from .models import Member, MembershipLevel, MemberRegion, MemberAddress, MemberProfesionalInformation, MemberEducation
+from .models import Member, MembershipLevel, MemberRegion, MemberAddress, MemberProfesionalInformation, MemberEducation, MemberIndustry
 
 class MemberResource(resources.ModelResource):
 	user = fields.Field( column_name='user',attribute='user',widget=ForeignKeyWidget(User, 'username'))
@@ -45,8 +45,9 @@ class MemberEducationResource(resources.ModelResource):
 
 class MemberProfesionalInformationResource(resources.ModelResource):
 	member = fields.Field( column_name='member',attribute='member',widget=ForeignKeyWidget(Member, 'id'))
+	industry = fields.Field( column_name='industry',attribute='industry',widget=ForeignKeyWidget(MemberIndustry, 'industry'))
 
 	class Meta:
 		model = MemberProfesionalInformation
 		import_id_fields = ('member',)
-		fields = ('member','title', 'company')
+		fields = ('member','title', 'company', 'industry')
