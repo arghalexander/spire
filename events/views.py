@@ -49,7 +49,6 @@ def event_detail(request,slug):
             messages.error(request, 'Membership not found')
             return redirect('/accounts/logout')
 
-
         #if already registered
         if EventAttendance.objects.filter(member=member, event=event).count() > 0:
             registered = True
