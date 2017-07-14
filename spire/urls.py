@@ -32,7 +32,7 @@ from spire.registration.views import RegistrationView
 from members.views import MemberViewSet, MembershipLevelViewSet, MemberAddressViewSet, MemberNoteViewSet, MemberRegionViewSet, MemberIndustryViewSet, member_profile
 from events.views import EventViewSet, EventAttendanceViewSet
 
-from .views import UserViewSet, check_login
+from .views import UserViewSet, check_login, login_view
 
 
 from rest_framework import routers
@@ -67,7 +67,7 @@ urlpatterns = [
 
 
     url(r'^accounts/register/$',  RegistrationView.as_view(form_class=MemberRegistrationForm), name='registration_register'),
-    url(r'^accounts/login/$', check_login),
+    url(r'^accounts/login/$', login_view),
 
     #url(r'^password_reset/$', auth_views.password_reset.as_view(),  html_email_template_name='registration/password_reset_email.html', email_template_name='registration/password_reset_email.txt',name='password_reset'),
     url(r'^accounts/password_reset/$',auth_views.password_reset, {'html_email_template_name': 'registration/password_reset_email.html','email_template_name': 'registration/password_reset_email.txt'}),

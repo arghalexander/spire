@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import login
+from django.contrib import auth
 
 from .admin import *
 
@@ -19,7 +20,18 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 def check_login(request):
-    if request.user.is_authenticated():
-        return redirect('/')
-    else:
-        return login(request)
+	if request.user.is_authenticated():
+		return redirect('/')
+	else:
+		return login(request)
+
+def login_view(request):
+	username = request.POST.get('username', '')
+	print(username)
+	try:
+		user = User.objects.get(username=username)
+		print(user)
+	except User.DoesNotExist:
+		return login(request)
+
+	return login(request)
