@@ -123,23 +123,24 @@
 
 	<div class="row">
 
+		<div class="small-12 medium-3 columns">
+
+			<div class="event-details__location">
+
+				<div class="text">
+					<h5 class="bold">Location</h5>
+					<p>{{event.address}}</p>
+					<h5 class="bold">Date and Time</h5>
+					<p>{{event.start|date:'l, F j Y - f A'}}</p>
+				</div>
+			</div>
+		</div>
+
+
 		<div class="small-12 medium-9 columns">
 			<div class="event-details__text">
 				<h3 class="red-line bold">Event Details</h3>
 				{{event.description|richtext}}
-			</div>
-		</div>
-	</div>
-	<div class="small-12 medium-3 columns">
-
-
-		<div class="event-details__location">
-
-			<div class="text">
-				<h5 class="bold">Location</h5>
-				<p>{{event.address}}</p>
-				<h5 class="bold">Date and Time</h5>
-				<p>{{event.start|date:'l, F j Y - f A'}}</p>
 			</div>
 		</div>
 	</div>
