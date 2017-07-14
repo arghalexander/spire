@@ -5,6 +5,13 @@
   background-color: $white;
   z-index: 99999;
 
+
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .top-bar .menu.submenu {
+         margin-top: 50px;
+    }
+  }
+
   .top-bar-left,
   .top-bar-right,
   ul {
