@@ -14,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect,render_to_response
 from .models import Event, EventAttendance,EventPricing
 from .serializers import *
-from members.serializers import MemberSerializer  
+from members.serializers import MemberSerializer
 from members.models import Member
 
 import datetime
@@ -35,12 +35,12 @@ def index(request):
 
 
 def event_detail(request,slug):
-    
+
     try:
         event = Event.objects.get(slug=slug)
     except Event.DoesNotExist:
         raise Http404("Event does not exist")
-    
+
     #dont get pricing if user is not logged in
     if request.user.is_authenticated():
         try:
@@ -87,21 +87,21 @@ class EventViewSet(viewsets.ModelViewSet):
             event = Event.objects.get(pk=pk)
         except Event.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
-        
+
         #members = Members.objects.filter()
         members = EventAttendance.objects.filter(event=event)
-        
+
         serializer = EventAttendanceSerializer(members, many=True)
         return Response(serializer.data)
 
-    
+
     @list_route()
     def get_attendance_by_month_count(self, request):
         members = EventAttendance.objects.annotate(name=TruncMonth('event__start')) \
             .values('name')  \
             .annotate(value=Count('member__id'))  \
-            .values('name', 'value') 
-            
+            .values('name', 'value')
+
         serializer = AggregateSerilizer(members, many=True)
         return Response(serializer.data)
 
@@ -117,8 +117,8 @@ class EventViewSet(viewsets.ModelViewSet):
         else:
             events = Event.objects.filter(start__gte=current_date)
 
-        
-        
+
+
         serializer = EventSerializer(events, many=True)
         return Response(serializer.data)
 
@@ -133,7 +133,7 @@ class EventViewSet(viewsets.ModelViewSet):
         else:
             events = Event.objects.filter(start__lte=current_date)
 
-        
+
         serializer = EventSerializer(events, many=True)
         return Response(serializer.data)
 
