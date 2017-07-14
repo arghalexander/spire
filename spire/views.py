@@ -27,11 +27,10 @@ def check_login(request):
 
 def login_view(request):
 	username = request.POST.get('username', '')
-	print(username)
 	try:
 		user = User.objects.get(username=username)
-		print(user.password)
-
+		if user.password == None:
+			return redirect('password_reset')
 	except User.DoesNotExist:
 		return login(request)
 
