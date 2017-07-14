@@ -96,7 +96,9 @@
 
 
 			<div class="event-details__location">
+				{% if not event.registration_open %}
 				<div id="map"></div>
+				{% endif %}
 				<div class="text">
 					<h5 class="bold">Location</h5>
 					<p>{{event.address}}</p>
