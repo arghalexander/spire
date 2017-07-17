@@ -50,7 +50,7 @@ def cart_add(request):
 	cart = Cart(request)
 	cart.clear()
 
-	cart.add(product, product.price, 1)
+	cart.add(product.sku, product.price, 1)
 	return redirect('checkout:cart')
 
 
