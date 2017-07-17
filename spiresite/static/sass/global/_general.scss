@@ -23,6 +23,11 @@ h3{
     color: $red;
 }
 
+.callout.alert {
+    color: #0a0a0a;
+    border-color: $red
+}
+
 .dropdown.menu > li.opens-right > .is-dropdown-submenu{
   top: 100% !important;
 }

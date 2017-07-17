@@ -17,7 +17,7 @@
 		</div>
 	</div>
 </section>
-	
+
 
 
 <section class="body-content">
@@ -29,8 +29,8 @@
 				<p><b>Location:</b> {{job.location}}</p>
 				<p><b>Website:</b> {{job.website}}</p>
 				<p><b>Organization:</b> {{job.organization}}</p>
-				<p><b>Start Date:</b> {{job.start_date}}</p>
-				<p><b>Expiration Date:</b> {{job.expiration_date}}</p>
+				<p><b>Start Date:</b> {{job.start_date|date:'d/m/Y'}}</p>
+				<p><b>Expiration Date:</b> {{job.expiration_date|date:'d/m/Y'}}</p>
 			</div>
 		</div>
 

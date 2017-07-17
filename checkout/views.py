@@ -12,8 +12,8 @@ import stripe
 import datetime
 
 
-from products.models import MembershipProduct, EventProduct, MembershipLevel
-from events.models import EventPricing, Event, EventAttendance, EventProduct
+from products.models import MembershipProduct, MembershipLevel
+from events.models import EventPricing, Event, EventAttendance, Product
 from members.models import Member, MemberPurchaseHistory, MemberMembershipHistory
 
 from .forms import PaymentForm
@@ -23,7 +23,6 @@ from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
-
 
 
 
@@ -43,14 +42,14 @@ def cart_add(request):
 	product_id = request.GET.get('product', '')
 
 	try:
-		product = EventProduct.objects.get(sku=product_id)
-	except EventProduct.DoesNotExist:
+		product = Product.objects.get(sku=product_id)
+	except Product.DoesNotExist:
 		messages.add_message(request, messages.ERROR, "Product does not exist")
 
 	cart = Cart(request)
 	cart.clear()
 
-	cart.add(product.sku, product.price, 1)
+	cart.add(product, product.price, 1)
 	return redirect('checkout:cart')
 
 
@@ -107,7 +106,7 @@ def checkout(request):
 
 			except stripe.error.CardError as e:
 				print(e)
-				return render(request, 'checkoutcheckout.html', {'error': e})
+				return render(request, 'checkout/checkout.html', {'error': e})
 		except stripe.InvalidRequestError as e:
 			return render(request, 'checkout/checkout.html', {'error': e})
 

@@ -14,11 +14,22 @@
 {% block content %}
 
 <section class="page-header">
+
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="callout alert">
+        {{error}}
+      </div>
+    </div>
+  </div>
+
+
 	<div class="row">
 		<div class="small-12 medium-6 medium-offset-3 columns">
-			<h2 class="red-line">Checkoutl</h2>
+			<h2 class="red-line">Checkout</h2>
 		</div>
 	</div>
+
 
 </section>
 
@@ -30,6 +41,7 @@
 		<div class="small-12 medium-6 medium-offset-3  columns">
 
 			<form id="payment-form" class="form" action="{% url 'checkout:checkout' %}" method="POST">
+
 				{% csrf_token %}
 
 				<div class="row">

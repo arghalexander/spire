@@ -96,7 +96,7 @@ class Event(index.Indexed,ClusterableModel):
 
 		FieldPanel('description', classname='full'),
 		InlinePanel('event_pricings', label="Pricing"),
-		InlinePanel('event_products', label="Additional Products"),
+		InlinePanel('events_products', label="Additional Products"),
 	]
 
 	search_fields = [
@@ -146,9 +146,9 @@ class EventPricing(models.Model):
 	event_price = 					models.DecimalField(max_digits=8, decimal_places=2)
 
 
-class EventProduct(models.Model):
-	sku = models.SlugField(primary_key=True)
-	event = ParentalKey(Event, related_name="event_products")
+class Product(models.Model):
+	sku = models.SlugField(unique=True)
+	event = ParentalKey(Event, related_name="events_products")
 	name = models.CharField(max_length=255)
 	price = models.DecimalField(decimal_places=2, max_digits=8)
 

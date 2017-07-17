@@ -15,6 +15,13 @@
 
 <section class="page-header">
 	<div class="row">
+		<div class="small-12 columns">
+			<div class="callout alert">
+				{{error}}
+			</div>
+		</div>
+	</div>
+	<div class="row">
 		<div class="small-12 medium-6 medium-offset-3 columns">
 			<h2 class="red-line">Membership upgrade &amp; renewal</h2>
 		</div>
@@ -31,14 +38,14 @@
 
 			<form id="payment-form" class="form" action="{% url 'checkout:membership-checkout' %}" method="POST">
 				{% csrf_token %}
-				
+
 				<div class="row">
 					<div class="small-12 columns">
 						<label>
 							<span>Name</span>
 					  	</label>
 					    <input name="cardholder-name" type="text" class="" placeholder="Jane Doe" />
-					   
+
 				  </div>
 				</div>
 				<div class="row">
@@ -47,7 +54,7 @@
 							<span>Phone</span>
 					  	</label>
 					    <input class="is-empty" type="tel" placeholder="(123) 456-7890" />
-					  
+
 					</div>
 				</div>
 				<div class="row">
@@ -59,7 +66,7 @@
 					  <button class="button button-red expanded" type="submit">Checkout</button>
 					  <div class="outcome">
 					    <div class="error" role="alert"></div>
-					   </div>	 
+					   </div>
 					</div>
 				</div>
 

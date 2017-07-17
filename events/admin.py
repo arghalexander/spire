@@ -3,7 +3,7 @@ from tinymce.widgets import TinyMCE
 from tinymce.models import HTMLField
 
 
-from .models import Event, EventAttendance,EventPricing, EventProduct
+from .models import Event, EventAttendance,EventPricing, Product
 from .forms import EventAttendanceAutocompleteForm
 
 from dal import autocomplete
@@ -29,7 +29,7 @@ class EventPricingInline(admin.TabularInline):
 
 
 class EventProductInline(admin.TabularInline):
-	model = EventProduct
+	model = Product
 	extra = 0
 
 

@@ -17,6 +17,10 @@ h3 {
 .tabs-title > a {
   color: #891B0D; }
 
+.callout.alert {
+  color: #0a0a0a;
+  border-color: #891B0D; }
+
 .dropdown.menu > li.opens-right > .is-dropdown-submenu {
   top: 100% !important; }
 
@@ -996,6 +1000,9 @@ form .errorlist {
     margin-top: -150px;
     padding: 50px;
     background-color: #FFF; }
+
+.template-event-detail .table .button {
+  margin-bottom: 0px; }
 
 .template-member-profile .tabs-title > button {
   display: block;

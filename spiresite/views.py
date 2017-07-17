@@ -6,16 +6,15 @@ from .forms import JobForm
 
 # Create your views here.
 def job_detail(request, job_id):
-	
 	job = get_object_or_404(Job,pk=job_id)
 	return render(request, 'spiresite/job_page.html',{'job': job})
 
 
 @login_required
 def job_create(request):
-	
+
 	if request.method == 'POST':
-		
+
 		form = JobForm(request.POST)
 
 		if form.is_valid():
@@ -28,4 +27,3 @@ def job_create(request):
 		form = JobForm()
 
 	return render(request, 'spiresite/job_form.html', {'form': form})
-
