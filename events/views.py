@@ -12,7 +12,7 @@ from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect,render_to_response
-from .models import Event, EventAttendance,EventPricing
+from .models import Event, EventAttendance,EventPricing, EventProduct
 from .serializers import *
 from members.serializers import MemberSerializer
 from members.models import Member
@@ -59,7 +59,10 @@ def event_detail(request,slug):
         #make sure it only returns 1 object
         event_price = EventPricing.objects.filter(event=event,level=membership_level).order_by('event_price').first()
 
-        return render(request, 'events/event_detail.html', {'event': event, 'price': event_price, 'registered': registered})
+        #get addtional products for event
+        event_products = EventProduct.objects.filter(event=event)
+
+        return render(request, 'events/event_detail.html', {'event': event, 'price': event_price, 'registered': registered, 'products':event_products})
 
     return render(request, 'events/event_detail.html', {'event': event})
 

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% load nav_tags static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+
+{% block title %}Event Registration{% endblock %}
+
+
+{% block body_class %}template-event-cart{% endblock %}
+
+
+{% block content %}
+
+<section class="page-header">
+	<div class="row">
+		<div class="small-12 medium-10 medium-offset-1 columns">
+			<h2 class="red-line bold">Cart</h2>
+		</div>
+	</div>
+
+</section>
+
+
+
+<section class="cart">
+
+	<div class="row">
+		<div class="small-12 medium-10 medium-offset-1 columns">
+
+
+		<table class="table">
+			{% for item in cart %}
+	        <tr>
+	            <td>{{ item.product.name}}</td>
+	            <td class="text-right">${{ item.product.price }}</td>
+	        </tr>
+	        {% endfor %}
+	     </table>
+
+		</div>
+	</div>
+	{% if cart.count > 0 %}
+	<div class="row">
+		<div class="small-12 medium-10 medium-offset-1 columns">
+			<a href="{% url 'checkout:checkout'  %}" class="button button-red button-standard float-right">Continue</a>
+		</div>
+	</div>
+	{% endif %}
+
+</section>
+
+
+{% endblock %}

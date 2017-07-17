@@ -2,7 +2,8 @@ from django.contrib import admin
 from tinymce.widgets import TinyMCE
 from tinymce.models import HTMLField
 
-from .models import Event, EventAttendance,EventPricing
+
+from .models import Event, EventAttendance,EventPricing, EventProduct
 from .forms import EventAttendanceAutocompleteForm
 
 from dal import autocomplete
@@ -27,6 +28,10 @@ class EventPricingInline(admin.TabularInline):
 	extra = 0
 
 
+class EventProductInline(admin.TabularInline):
+	model = EventProduct
+	extra = 0
+
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
@@ -36,6 +41,7 @@ class EventAdmin(admin.ModelAdmin):
 	}
 	inlines = [
 		EventPricingInline,
+		EventProductInline,
 		EventAttendanceInline
 	]
 

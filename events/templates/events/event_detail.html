@@ -78,7 +78,22 @@
 					{% endif %}
 				</tbody>
 			</table>
-
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Sponsorships/gifts</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for product in products.all %}
+						<td>{{product.name}}</td>
+						<td width="250">${{product.price}}</td>
+						<td width=250><a href="{% url 'checkout:add'%}?product={{product.sku}}" class="button button-red expanded">Purchase</a></td>
+					{% endfor %}
+				<tbody>
+			</table>
 		</div>
 	</div>
 </section>

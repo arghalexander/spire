@@ -9,11 +9,11 @@ from django.contrib import messages
 from cart.cart import Cart
 import stripe
 
-import datetime 
+import datetime
 
 
 from products.models import MembershipProduct, EventProduct, MembershipLevel
-from events.models import EventPricing, Event, EventAttendance
+from events.models import EventPricing, Event, EventAttendance, EventProduct
 from members.models import Member, MemberPurchaseHistory, MemberMembershipHistory
 
 from .forms import PaymentForm
@@ -38,58 +38,50 @@ def record_membership_change(member,new_level, previous_level):
 
 
 
-def membership_add_to_cart(request):
-	"""
-	Add a membership level to cart, remove existing membership level if there is one in the cart
-	"""
 
-	product_id = request.GET.get('product_id', '')
+def cart_add(request):
+	product_id = request.GET.get('product', '')
 
 	try:
-		product = MembershipProduct.objects.get(id=product_id)
-	except MembershipProduct.DoesNotExist:
-		messages.add_message(request, messages.ERROR, "Product id does not exist")
-		
+		product = EventProduct.objects.get(sku=product_id)
+	except EventProduct.DoesNotExist:
+		messages.add_message(request, messages.ERROR, "Product does not exist")
+
 	cart = Cart(request)
 	cart.clear()
 
 	cart.add(product, product.price, 1)
+	return redirect('checkout:cart')
 
-	return redirect('checkout:membership-cart')
-	
 
 @login_required
-def membership_cart(request):
-
+def cart(request):
 	cart = Cart(request)
-
 	if cart.count() == 0:
-		messages.warning(request, 'Cart is Empy') 
+		messages.warning(request, 'Cart is Empy')
 
-	return render(request, 'checkout/membership_cart.html', dict(cart=Cart(request)))
+	return render(request, 'checkout/cart.html', dict(cart=Cart(request)))
 
 
 
 @login_required
-def membership_checkout(request):
-	
+def checkout(request):
+
 	#get cart total
 	cart = Cart(request)
-	
+
 
 	if cart.count() == 0:
-		return redirect('checkout:membership-cart')
+		return redirect('checkout:cart')
 
 	total = cart.summary()
-	
 
 	for item in cart:
 		selected_membership = item.product
 		description = item.product.name
 
-
 	if request.method == 'POST':
-		
+
 		try:
 			stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -107,15 +99,112 @@ def membership_checkout(request):
 
 				cart.clear()
 
-				
+				member = Member.objects.get(user=request.user)
+				#record purchase
+				record_purchase(member,description,total)
+
+			  	return redirect('checkout:success')
+
+			except stripe.error.CardError as e:
+				print(e)
+				return render(request, 'checkoutcheckout.html', {'error': e})
+		except stripe.InvalidRequestError as e:
+			return render(request, 'checkout/checkout.html', {'error': e})
+
+	return render(request, 'checkout/checkout.html',{'settings': settings, 'cart': Cart(request)})
+
+
+
+@login_required
+def cart_success(request):
+	#empty cart
+	cart = Cart(request)
+	cart.clear()
+	return render(request, 'checkout/checkout_success.html')
+
+
+
+
+
+
+def membership_add_to_cart(request):
+	"""
+	Add a membership level to cart, remove existing membership level if there is one in the cart
+	"""
+
+	product_id = request.GET.get('product_id', '')
+
+	try:
+		product = MembershipProduct.objects.get(id=product_id)
+	except MembershipProduct.DoesNotExist:
+		messages.add_message(request, messages.ERROR, "Product id does not exist")
+
+	cart = Cart(request)
+	cart.clear()
+
+	cart.add(product, product.price, 1)
+
+	return redirect('checkout:membership-cart')
+
+
+@login_required
+def membership_cart(request):
+
+	cart = Cart(request)
+
+	if cart.count() == 0:
+		messages.warning(request, 'Cart is Empy')
+
+	return render(request, 'checkout/membership_cart.html', dict(cart=Cart(request)))
+
+
+
+@login_required
+def membership_checkout(request):
+
+	#get cart total
+	cart = Cart(request)
+
+
+	if cart.count() == 0:
+		return redirect('checkout:membership-cart')
+
+	total = cart.summary()
+
+
+	for item in cart:
+		selected_membership = item.product
+		description = item.product.name
+
+
+	if request.method == 'POST':
+
+		try:
+			stripe.api_key = settings.STRIPE_SECRET_KEY
+
+			# Get the credit card details submitted by the form
+			token = request.POST['stripeToken']
+
+			# Create a charge: this will charge the user's card
+			try:
+				charge = stripe.Charge.create(
+					  amount=int(total*100),
+					  currency="usd",
+					  source=token,
+					  description=description
+				 )
+
+				cart.clear()
+
+
 
 				member = Member.objects.get(user=request.user)
 
 				previous_level = member.membership_level
 
 				member.membership_level = selected_membership.membership_level
-					
-				#if there is already a membership expiration set, add time to current  
+
+				#if there is already a membership expiration set, add time to current
 				if member.membership_expiration:
 					member.membership_expiration = member.membership_expiration + datetime.timedelta(days=selected_membership.membership_length*365)
 				else:
@@ -124,7 +213,7 @@ def membership_checkout(request):
 
 				#record purchase
 				record_purchase(member,description,total)
-	
+
 				#record membership change
 				record_membership_change(member,member.membership_level, previous_level)
 
@@ -166,7 +255,7 @@ def event_add_to_cart(request):
 		event = Event.objects.get(id=event_id)
 	except Event.DoesNotExist:
 		messages.add_message(request, messages.ERROR, "Event does not exist")
-		
+
 
 	try:
 		member = Member.objects.get(user=request.user)
@@ -194,7 +283,7 @@ def event_cart(request):
 	cart = Cart(request)
 
 	if cart.count() == 0:
-		messages.warning(request, 'Cart is Empy') 
+		messages.warning(request, 'Cart is Empy')
 
 	return render(request, 'checkout/event_cart.html', dict(cart=Cart(request)))
 
@@ -204,22 +293,22 @@ def event_checkout(request):
 
 	#get cart total
 	cart = Cart(request)
-	
+
 
 	if cart.count() == 0:
 		return redirect('checkout:event-cart')
 
 	total = cart.summary()
-	
+
 
 	for item in cart:
-		description = item.product.title + ' ' + formats.date_format(item.product.start, "SHORT_DATETIME_FORMAT") 
+		description = item.product.title + ' ' + formats.date_format(item.product.start, "SHORT_DATETIME_FORMAT")
 		event = item.product.id
-	
+
 	event = get_object_or_404(Event,id=event)
 
 	if request.method == 'POST':
-		
+
 		stripe.api_key = settings.STRIPE_SECRET_KEY
 
 		# Get the credit card details submitted by the form
@@ -237,18 +326,18 @@ def event_checkout(request):
 
 
 			member = Member.objects.get(user=request.user)
-			
+
 			attendance = EventAttendance.objects.create(member=member, event=event)
 
 			#record purchase
 			record_purchase(member,description,total)
 
 			return redirect('checkout:event-success')
-		
+
 		except stripe.error.CardError as e:
 			return render(request, 'checkout/event_checkout.html', {'error': e})
 		except Member.DoesNotExist:
-			messages.error(request, 'Membership Not Found, Please login or register') 
+			messages.error(request, 'Membership Not Found, Please login or register')
 			return redirect('/accounts/login/')
 
 
@@ -279,7 +368,7 @@ def combo_add_to_cart(request):
 		event = Event.objects.get(id=event_id)
 	except Event.DoesNotExist:
 		messages.add_message(request, messages.ERROR, "Event does not exist")
-		
+
 	try:
 		member = Member.objects.get(user=request.user)
 	except Member.DoesNotExist:
@@ -289,9 +378,9 @@ def combo_add_to_cart(request):
 		messages.warning(request,'You Are already registered for this event')
 		return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-	
+
 	membership = MembershipProduct.objects.get(id=3)
-	
+
 	cart = Cart(request)
 	cart.clear()
 	cart.add(event, membership.price , 1)
@@ -309,7 +398,7 @@ def combo_cart(request):
 	cart = Cart(request)
 
 	if cart.count() == 0:
-		messages.warning(request, 'Cart is Empy') 
+		messages.warning(request, 'Cart is Empy')
 
 	return render(request, 'checkout/combo_cart.html', dict(cart=Cart(request)))
 
@@ -321,21 +410,21 @@ def combo_checkout(request):
 
 	#get cart total
 	cart = Cart(request)
-	
+
 
 	if cart.count() == 0:
 		return redirect('checkout:combo-cart')
 
 	total = cart.summary()
-	
+
 
 	for item in cart:
-		#description = item.product.title + ' ' + formats.date_format(item.product.start, "SHORT_DATETIME_FORMAT") 
+		#description = item.product.title + ' ' + formats.date_format(item.product.start, "SHORT_DATETIME_FORMAT")
 		event = get_object_or_404(Event,id=item.product.id)
-	
+
 
 	if request.method == 'POST':
-		
+
 		stripe.api_key = settings.STRIPE_SECRET_KEY
 
 		# Get the credit card details submitted by the form
@@ -353,8 +442,8 @@ def combo_checkout(request):
 
 
 		  member = Member.objects.get(user=request.user)
-		
-		  
+
+
 		  attendance = EventAttendance.objects.create(member=member, event=event)
 
 		  membership_level = get_object_or_404(MembershipLevel,slug="full")
@@ -368,7 +457,7 @@ def combo_checkout(request):
 		except stripe.error.CardError as e:
 			return render(request, 'checkout/combo_checkout.html', {'error': e})
 		except Member.DoesNotExist:
-			messages.error(request, 'Membership Not Found, Please login or register') 
+			messages.error(request, 'Membership Not Found, Please login or register')
 			return redirect('login')
 
 
