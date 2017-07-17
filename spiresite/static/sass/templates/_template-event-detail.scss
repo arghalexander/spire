@@ -23,7 +23,7 @@
 		}
 		.event-details__location{
 			background-color: $black;
-			
+
 			margin-top: 30px;
 			color: $white;
 			.text{
@@ -32,13 +32,18 @@
 					color: $white;
 				}
 			}
-			
+
 		}
 		.event-details__text{
 			margin-top: -150px;
 			padding: 50px;
 			background-color: $white;
-	
+
+		}
+	}
+	.table{
+		.button{
+			margin-bottom: 0px;
 		}
 	}
 
