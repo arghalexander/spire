@@ -14,13 +14,18 @@
 {% block content %}
 
 <section class="page-header">
-	<div class="row">
-		<div class="small-12 columns">
-			<div class="callout alert">
-				{{error}}
-			</div>
-		</div>
-	</div>
+
+	{% if error %}
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="callout alert">
+        {{error}}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+
 	<div class="row">
 		<div class="small-12 medium-6 medium-offset-3 columns">
 			<h2 class="red-line bold">Checkout</h2>
