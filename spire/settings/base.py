@@ -31,13 +31,12 @@ ALLOWED_HOSTS = [
     "localhost",
     "spire.ideahack.com",
     ".spire.ideahack.com",
-    "127.0.0.1"
+    "127.0.0.1",
+    "107.170.204.149"
     ]
 
 
-
 # Application definition
-
 INSTALLED_APPS = [
 
     'dal',
