@@ -18,7 +18,7 @@ class Job(models.Model):
 	job_type = 						models.CharField(blank=False, max_length=255)
 	location = 						models.CharField(blank=False, max_length=255)
 	organization =					models.CharField(blank=False, max_length=255)
-	description =				 	models.TextField(blank=False)
+	description =				 	RichTextField(blank=False)
 	website =                       models.URLField(max_length=200)
 	start_date =					models.DateField(blank=True, null=True)
 	expiration_date =               models.DateField(blank=True, null=True)
