@@ -205,6 +205,8 @@ class MemberPurchaseHistory(models.Model):
 	def __str__(self):
 		return self.member.user.email
 
+	class Meta:
+		verbose_name_plural = "Member Purchases"
 
 
 class MemberMembershipHistory(models.Model):

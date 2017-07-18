@@ -36,8 +36,8 @@ class MemberAdmin(ImportExportModelAdmin):
 	inlines = [
 		MemberEducationInline,
 		AddressInline,
-		NoteInline,
-		ProfesionalInfoInline
+		ProfesionalInfoInline,
+		NoteInline
 	]
 
 	def get_first_name(self, obj):
@@ -52,9 +52,9 @@ class MemberAdmin(ImportExportModelAdmin):
 
 
 
-@admin.register(MemberNote)
-class MembersNoteAdmin(admin.ModelAdmin):
-	list_display = ['member', 'date', 'note']
+#@admin.register(MemberNote)
+#class MembersNoteAdmin(admin.ModelAdmin):
+	#list_display = ['member', 'date', 'note']
 
 
 @admin.register(MembershipLevel)
@@ -62,20 +62,19 @@ class MembershipLevelAdmin(admin.ModelAdmin):
 	pass
 
 
+#@admin.register(MemberAddress)
+#class MemberAddressAdmin(ImportExportModelAdmin):
+#	resource_class = MemberAddressResource
 
-@admin.register(MemberAddress)
-class MemberAddressAdmin(ImportExportModelAdmin):
-	resource_class = MemberAddressResource
-
-@admin.register(MemberProfesionalInformation)
-class MemberProfesionalInformationAdmin(ImportExportModelAdmin):
-	resource_class = MemberProfesionalInformationResource
+#@admin.register(MemberProfesionalInformation)
+#class MemberProfesionalInformationAdmin(ImportExportModelAdmin):
+#	resource_class = MemberProfesionalInformationResource
 
 
-@admin.register(MemberEducation)
-class MemberEducationAdmin(ImportExportModelAdmin):
-	resource_class = MemberEducationResource
-	list_display = ['member', 'degree', 'grad_year']
+#@admin.register(MemberEducation)
+#class MemberEducationAdmin(ImportExportModelAdmin):
+#	resource_class = MemberEducationResource
+#	list_display = ['member', 'degree', 'grad_year']
 
 
 @admin.register(MemberIndustry)
