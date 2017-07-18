@@ -140,7 +140,7 @@ ANYMAIL = {
 }
 
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
-DEFAULT_FROM_EMAIL = "no-reply@mg.spirestanford.org"
+DEFAULT_FROM_EMAIL = "SPIRE <no-reply@mg.spirestanford.org>"
 
 
 
