@@ -36,6 +36,7 @@ class EventProductInline(admin.TabularInline):
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'slug': ('title',), }
+	list_display = ['title', 'start', 'end','address']
 	formfield_overrides = {
 		HTMLField: {'widget': TinyMCE(attrs={'cols': 80, 'rows': 30})},
 	}
