@@ -178,7 +178,10 @@ class MemberProfesionalInformation(models.Model):
 	def __str__(self):
 		return self.member.user.email
 
+	class Meta:
+		verbose_name_plural = "Member Professional Information"
 
+	
 
 
 class MemberNote(models.Model):
