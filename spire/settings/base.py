@@ -129,6 +129,9 @@ MIDDLEWARE = [
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 ]
 
+MANAGERS = ['doug@ideahack.com',]
+
+
 ROOT_URLCONF = 'spire.urls'
 
 ANYMAIL = {

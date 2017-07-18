@@ -3,7 +3,7 @@ from base import *
 
 from .base import *
 
-DEBUG = True
+DEBUG = False
 
 
 SOCIAL_AUTH_FACEBOOK_KEY = '1880382195542856'
