@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from import_export.widgets import DateWidget
 
 class UserResource(resources.ModelResource):
-    date_joined = fields.Field(attribute='date_joined', column_name="date_joined", widget=DateWidget())
+    date_joined = fields.Field(attribute='date_joined', column_name="date_joined", widget=DateWidget(format="%m/%d/%Y"))
 
     class Meta:
         model = User
