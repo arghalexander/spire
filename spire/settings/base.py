@@ -32,7 +32,8 @@ ALLOWED_HOSTS = [
     "spire.ideahack.com",
     ".spire.ideahack.com",
     "127.0.0.1",
-    "107.170.204.149"
+    "107.170.204.149",
+    ".spirestanford.org"
     ]
 
 

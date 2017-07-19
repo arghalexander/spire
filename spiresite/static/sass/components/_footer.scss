@@ -2,7 +2,7 @@ footer{
 	color: $red;
 	text-align: center;
 	padding-top: 75px;
-	padding-bottom: 75px;
+	padding-bottom: 25px;
 
 	.icon{
 		padding-left: 20px;
@@ -37,5 +37,8 @@ footer{
 				}
 			}
 		}
+	}
+	.footer-terms{
+		padding-bottom: 25px;
 	}
 }

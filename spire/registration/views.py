@@ -95,6 +95,8 @@ class RegistrationView(BaseRegistrationView):
         
         msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
         msg.attach_alternative(html_content, "text/html")
+
+        
         msg.send()
 
         #user.email_user(subject, message, settings.DEFAULT_FROM_EMAIL)
