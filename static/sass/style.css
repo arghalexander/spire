@@ -587,7 +587,7 @@ footer {
     padding: 70px 30px 30px 30px; }
   .event-side-block p {
     color: #FFF; }
-  .event-side-block a {
+  .event-side-block .rich-text a {
     color: #FFF;
     text-decoration: underline; }
   .event-side-block .button-white {

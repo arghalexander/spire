@@ -146,7 +146,7 @@ class EventPricing(models.Model):
 	event_price = 					models.DecimalField(max_digits=8, decimal_places=2)
 
 
-class Product(models.Model):
+class Product(Orderable):
 	sku = models.SlugField(unique=True)
 	event = ParentalKey(Event, related_name="events_products")
 	name = models.CharField(max_length=255)
