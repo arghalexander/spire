@@ -5,12 +5,12 @@ from django.contrib.auth.models import User
 from import_export.widgets import DateWidget
 
 class UserResource(resources.ModelResource):
-    #date_joined = fields.Field(attribute='date_joined', column_name="date_joined", widget=DateWidget(format="%m/%d/%Y"))
+    date_joined = fields.Field(attribute='date_joined', column_name="date_joined", widget=DateTimeWidget())
 
     class Meta:
         model = User
         import_id_fields = ('username',)
-        fields = ('username','date_joined')
-        widgets = {
-            'date_joined': {'format': "%Y-%m-%d"},
-        }
+        fields = ('id','username','date_joined')
+        #widgets = {
+        #    'date_joined': {'format': "%Y-%m-%d"},
+        #}
