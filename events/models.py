@@ -44,8 +44,8 @@ class Event(index.Indexed,ClusterableModel):
 	start = 								models.DateTimeField()
 	end =									models.DateTimeField()
 	capacity = 								models.IntegerField(blank=True,null=True)
-	address = 								models.CharField(max_length=250, blank=True, null=True)
-	location = 								models.CharField(max_length=255, blank=True, null=True)
+	address = 								models.CharField(max_length=250)
+	location = 								models.CharField(max_length=255)
 	description = 							RichTextField()
 
 	@property
