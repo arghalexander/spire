@@ -57,7 +57,7 @@ def event_detail(request,slug):
 
         membership_level = member.membership_level
         #make sure it only returns 1 object
-        event_price = EventPricing.objects.filter(event=event,level=membership_level).order_by('event_price')[0:1]
+        event_price = EventPricing.objects.filter(event=event,level=membership_level).order_by('event_price').first()
 
         #get addtional products for event
         event_products = Product.objects.filter(event=event)
