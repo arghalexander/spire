@@ -2,7 +2,7 @@ from __future__ import absolute_import, unicode_literals
 
 from .base import *
 
-DEBUG = True
+DEBUG = False
 
 
 SOCIAL_AUTH_FACEBOOK_KEY = '1880382195542856'
@@ -33,3 +33,37 @@ STRIPE_SECRET_KEY = "sk_test_es7mrA52AFoENwUyFzOP8SAI"
 
 GOOGLE_MAPS_V3_APIKEY = "AIzaSyAuAQVs-4VRFdR1-9s94H_CxmMr2QLiYpM"
 GEO_WIDGET_DEFAULT_LOCATION = { 'lat': '37.4554996','lng': '-122.1996202,11.96' }
+
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'spire_staging',
+        'USER': 'spire',
+        'PASSWORD': 'v6Bh0%MJXuXd%G24',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
+"""
+
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/spire/debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
