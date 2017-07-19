@@ -53,7 +53,7 @@
 							</div>
 							<div class="event-block__text">
 								<h4 class="bold">{{event.title}}</h4>
-								{{event.description|truncatewords:20|richtext}}
+								{{event.description|striptags|truncatewords:20|richtext}}
 							</div>
 							</a>
 						</div>
