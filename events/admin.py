@@ -47,6 +47,6 @@ class EventAdmin(admin.ModelAdmin):
 	]
 
 
-@admin.register(EventAttendance)
-class EventAttendaceAdmin(admin.ModelAdmin):
-	list_display = ['event','member']
+#@admin.register(EventAttendance)
+#class EventAttendaceAdmin(admin.ModelAdmin):
+#	list_display = ['event','member']
