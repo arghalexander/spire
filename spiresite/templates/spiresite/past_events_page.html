@@ -38,7 +38,25 @@
 
 				{% for event in past_events.all %}
 					<div class=" column column-block">
-						test
+						<div class="event-block" data-aos="zoom-in-up">
+							<a href="{% url 'events:event-detail' event.slug %}">
+							<div class="event-block__date">
+								<div class="month">
+									{{event.start|date:'M'}}
+								</div>
+								<div class="date">
+									{{event.start|date:'d'}}
+								</div>
+							</div>
+							<div class="event-block__image">
+								{% image event.image fill-500x250 %}
+							</div>
+							<div class="event-block__text">
+								<h4 class="bold">{{event.title}}</h4>
+								{{event.description|truncatewords:20|richtext}}
+							</div>
+							</a>
+						</div>
 					</div>
 			  	{% endfor %}
 			</div>
