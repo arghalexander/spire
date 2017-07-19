@@ -11,6 +11,6 @@ class UserResource(resources.ModelResource):
         model = User
         import_id_fields = ('username',)
         fields = ('id','username','email','first_name','last_name','date_joined')
-        widgets = {
-            'date_joined': {'format': "%Y-%m-%d"},
-        }
+        #widgets = {
+        #    'date_joined': {'format': "%Y-%m-%d"},
+        #}
