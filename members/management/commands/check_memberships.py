@@ -17,7 +17,7 @@ class Command(BaseCommand):
 	def handle(self, *args, **options):
 
 		now = timezone.now()
-		members = Member.objects.filter(membership_expiration__gte=now, membership_expiration__lte=now + timezone.timedelta(days=30))
+		members = Member.objects.filter(membership_expiration__gte=now, membership_expiration__lte=now + timezone.timedelta(days=30), membership_level__expires=True)
 
 		for member in members:
 

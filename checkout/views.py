@@ -127,7 +127,6 @@ def cart_success(request):
 
 
 
-
 def membership_add_to_cart(request):
 	"""
 	Add a membership level to cart, remove existing membership level if there is one in the cart
@@ -136,10 +135,10 @@ def membership_add_to_cart(request):
 	product_id = request.GET.get('product_id', '')
 
 	try:
-		product = MembershipProduct.objects.get(id=product_id)
+		product = MembershipProduct.objects.get(id=int(product_id))
 	except MembershipProduct.DoesNotExist:
 		messages.add_message(request, messages.ERROR, "Product id does not exist")
-		return redirect('checkout:event-cart')
+		#return redirect('checkout:membership-cart')
 
 	cart = Cart(request)
 	cart.clear()

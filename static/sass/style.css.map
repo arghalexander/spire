@@ -1,8 +1,8 @@
 {
 	"version": 3,
-	"file": "../../home/douglas/dev/repos/spire/spire/spiresite/static/sass/styles.css",
+	"file": "../../home/douglas/dev/repos/spire/spire/spiresite/static/sass/style.css",
 	"sources": [
-		"../../home/douglas/dev/repos/spire/spire/spiresite/static/sass/styles.scss",
+		"../../home/douglas/dev/repos/spire/spire/spiresite/static/sass/style.scss",
 		"../../home/douglas/dev/repos/spire/spire/spiresite/static/sass/global/_fonts.scss",
 		"../../home/douglas/dev/repos/spire/spire/spiresite/static/sass/global/_grid.scss",
 		"../../home/douglas/dev/repos/spire/spire/spiresite/static/sass/global/_colors.scss",
