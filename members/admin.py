@@ -33,6 +33,7 @@ class MemberAdmin(ImportExportModelAdmin):
 	autocomplete_lookup_fields = {
         'fk': ['user'],
     }
+	raw_id_fields = ("user",)
 	list_filter = ('membership_level',)
 
 	inlines = [
