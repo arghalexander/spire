@@ -51,7 +51,7 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
     'root': {
-        'level': 'WARNING',
+        'level': 'INFO',
         'handlers': ['sentry'],
     },
     'formatters': {
