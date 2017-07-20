@@ -2,7 +2,7 @@ import django_filters
 import datetime
 
 from dal import autocomplete
-
+from django.contrib import messages
 from rest_framework import viewsets
 from rest_framework import filters
 from rest_framework.decorators import detail_route, list_route
@@ -375,7 +375,7 @@ def my_profile_edit(request):
 	except MemberProfesionalInformation:
 		return redirect('members:member-create')
 
-	education_formset = modelformset_factory(MemberEducation,fields=('degree', 'program','grad_year'))
+	education_formset = modelformset_factory(MemberEducation,fields=('degree', 'program','grad_year'), extra=0)
 
 	if request.method == 'POST':
 
@@ -386,7 +386,7 @@ def my_profile_edit(request):
 
 		education_formset = education_formset(request.POST)
 
-		if(address_form.is_valid() and user_form.is_valid() and member_form.is_valid() and education_formset.is_valid()) and work_form.is_valid():
+		if(address_form.is_valid() and user_form.is_valid() and member_form.is_valid() and education_formset.is_valid() and work_form.is_valid()):
 
 			user_form.save()
 			member_info = member_form.save(commit=False)
@@ -418,6 +418,7 @@ def my_profile_edit(request):
 
 			for form in education_formset:
 				if form.is_valid():
+					print('is valid')
 					form = form.save(commit=False)
 					form.member = member
 					form.save()
@@ -425,7 +426,7 @@ def my_profile_edit(request):
 			return redirect('members:member-profile')
 
 		else:
-
+			messages.add_message(request, messages.ERROR, "Could not save Profile, please correct errors below")
 			return render(request, 'members/my_profile_edit.html', {
 				'user_form': user_form,
 				'member_form': member_form,

@@ -60,7 +60,6 @@ urlpatterns = [
     url(r'^500/$', server_error),
 
 
-
     url(r'^checkout/', include('checkout.urls', namespace='checkout')),
     url(r'^members/', include('members.urls', namespace='members')),
     url(r'^events/', include('events.urls', namespace='events')),
