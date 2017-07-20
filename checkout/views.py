@@ -93,6 +93,7 @@ def checkout(request):
 
 				customer = stripe.Customer.create(
 					email= request.user.username,
+					source= request.user.username,
 				)
 
 				charge = stripe.Charge.create(
