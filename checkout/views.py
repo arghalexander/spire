@@ -92,14 +92,10 @@ def checkout(request):
 			try:
 
 		
-				customer = stripe.Customer.create(
-					email=request.user.email,
-					source=token,
-				)
 
 				charge = stripe.Charge.create(
 					  amount=int(total*100),
-					  customer=customer.id,
+					  receipt_email=request.user.email,
 					  currency="usd",
 					  source=token,
 					  description=description
@@ -330,6 +326,7 @@ def event_checkout(request):
 				  amount=int(total*100),
 				  currency="usd",
 				  source=token,
+				  receipt_email=request.user.email,
 				  description=description
 			)
 		 	cart.clear()
@@ -446,6 +443,7 @@ def combo_checkout(request):
 			  amount=int(total*100),
 			  currency="usd",
 			  source=token,
+			  receipt_email=request.user.email,
 			  description="Membership + Event Combo"
 		  )
 		  cart.clear()
