@@ -1,5 +1,5 @@
-from base import *
-
+from __future__ import absolute_import, unicode_literals
+import raven
 
 from .base import *
 
@@ -34,3 +34,11 @@ STRIPE_SECRET_KEY = "sk_live_KGL53AYVeEzrNhnTgSK4nar9"
 
 GOOGLE_MAPS_V3_APIKEY = "AIzaSyAuAQVs-4VRFdR1-9s94H_CxmMr2QLiYpM"
 GEO_WIDGET_DEFAULT_LOCATION = { 'lat': '37.4554996','lng': '-122.1996202,11.96' }
+
+
+RAVEN_CONFIG = {
+    'dsn': 'https://6255be8f3ff84af6a4c1d10f01d1f025:d51cbb84a7a04ed4ac0fde96e8c829a7@sentry.io/193628',
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
+}

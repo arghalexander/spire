@@ -54,6 +54,9 @@ INSTALLED_APPS = [
     #front end
     'spiresite',
 
+    #sentry
+    'raven.contrib.django.raven_compat',
+
 
     #wagtail CMS
     'wagtail.wagtailforms',
