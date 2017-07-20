@@ -588,10 +588,9 @@ class ContactPage(Page):
 
 			if form.is_valid():
 
-				print(request.site)
+				
 				theme_settings = ThemeSettings.for_site(request.site)
 
-				print(theme_settings)
 
 				msg = EmailMultiAlternatives(
 					subject="Contact Form Submission",
