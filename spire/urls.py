@@ -56,8 +56,8 @@ router.register(r'users', UserViewSet)
 
 urlpatterns = [
 
-    url(r'^404/$', page_not_found, kwargs={'exception': Exception("Page not Found")}),
-    url(r'^500/$', server_error),
+    #url(r'^404/$', page_not_found, kwargs={'exception': Exception("Page not Found")}),
+    #url(r'^500/$', server_error),
 
 
     url(r'^checkout/', include('checkout.urls', namespace='checkout')),
