@@ -5,7 +5,7 @@ from .base import *
 
 DEBUG = False
 
-CSRF_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_DOMAIN = '.spirestanford.org'
 CSRF_TRUSTED_ORIGINS =  ['.spirestanford.org',]
 
