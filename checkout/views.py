@@ -139,6 +139,7 @@ def membership_add_to_cart(request):
 		product = MembershipProduct.objects.get(id=product_id)
 	except MembershipProduct.DoesNotExist:
 		messages.add_message(request, messages.ERROR, "Product id does not exist")
+		return redirect('checkout:event-cart')
 
 	cart = Cart(request)
 	cart.clear()
@@ -155,6 +156,7 @@ def membership_cart(request):
 
 	if cart.count() == 0:
 		messages.warning(request, 'Cart is Empy')
+
 
 	return render(request, 'checkout/membership_cart.html', dict(cart=Cart(request)))
 
@@ -256,7 +258,7 @@ def event_add_to_cart(request):
 		event = Event.objects.get(id=event_id)
 	except Event.DoesNotExist:
 		messages.add_message(request, messages.ERROR, "Event does not exist")
-
+		return redirect('checkout:event-cart')
 
 	try:
 		member = Member.objects.get(user=request.user)
