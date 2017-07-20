@@ -71,7 +71,7 @@ class TwoColumnBlock(blocks.StructBlock):
 	two = blocks.RichTextBlock()
 
 	class Meta:
-		template = 'spiresite/blocks/two_columns.html'
+		template = 'spiresite/blocks/two_column_block.html'
 		icon = 'placeholder'
 
 
