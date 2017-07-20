@@ -30,7 +30,9 @@ class MemberAdmin(ImportExportModelAdmin):
 	resource_class = MemberResource
 	search_fields = ['user__username']
 	list_display = ['user', 'get_first_name', 'get_last_name', 'membership_level', 'membership_expiration']
-
+	autocomplete_lookup_fields = {
+        'fk': ['user'],
+    }
 	list_filter = ('membership_level',)
 
 	inlines = [
