@@ -223,7 +223,7 @@ class MemberMembershipHistory(models.Model):
 		return self.member.user.email
 
 	class Meta:
-		varbose_name = "Membership Level history"
+		verbose_name = "Membership Level history"
 		verbose_name_plural = "Membership Level history"
 
 

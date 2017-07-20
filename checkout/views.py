@@ -26,8 +26,8 @@ from django.template.response import TemplateResponse
 
 
 
-def record_purchase(member, item, price):
-	history = MemberPurchaseHistory(member=member,item=item,purchase_price=price)
+def record_purchase(member, item, price, stripe_id):
+	history = MemberPurchaseHistory(member=member,item=item,purchase_price=price, note=stripe_id)
 	history.save()
 
 
@@ -100,8 +100,9 @@ def checkout(request):
 				cart.clear()
 
 				member = Member.objects.get(user=request.user)
+
 				#record purchase
-				record_purchase(member,description,total)
+				record_purchase(member,description,total, charge.id)
 
 			  	return redirect('checkout:success')
 
@@ -212,7 +213,7 @@ def membership_checkout(request):
 				member.save()
 
 				#record purchase
-				record_purchase(member,description,total)
+				record_purchase(member,description,total, charge.id)
 
 				#record membership change
 				record_membership_change(member,member.membership_level, previous_level)
@@ -330,7 +331,7 @@ def event_checkout(request):
 			attendance = EventAttendance.objects.create(member=member, event=event)
 
 			#record purchase
-			record_purchase(member,description,total)
+			record_purchase(member,description,total, charge.id)
 
 			return redirect('checkout:event-success')
 
