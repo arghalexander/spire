@@ -10,7 +10,7 @@ class UserResource(resources.ModelResource):
     class Meta:
         model = User
         import_id_fields = ('username',)
-        fields = ('username','date_joined')
+        fields = ('first_name','last_name','username','email','date_joined')
         #widgets = {
         #    'date_joined': {'format': "%Y-%m-%d"},
         #}
