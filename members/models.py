@@ -222,6 +222,9 @@ class MemberMembershipHistory(models.Model):
 	def __str__(self):
 		return self.member.user.email
 
+	class Meta:
+		varbose_name = "Membership Level history"
+		verbose_name_plural = "Membership Level history"
 
 
 class MemberStatusHistory(models.Model):
