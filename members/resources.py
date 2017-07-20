@@ -14,7 +14,7 @@ class MemberResource(resources.ModelResource):
 	class Meta:
 		model = Member
 		#import_id_fields = ('user',)
-		fields = ('id','user','work_phone','mobile_phone', 'membership_level', 'membership_expiration', 'region')
+		fields = ('user','work_phone','mobile_phone', 'membership_level', 'membership_expiration', 'region')
 
 
 class UserForeignKeyWidget(ForeignKeyWidget):
