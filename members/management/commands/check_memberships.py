@@ -20,7 +20,7 @@ class Command(BaseCommand):
 		members = Member.objects.filter(membership_expiration__gte=now, membership_expiration__lte=now + timezone.timedelta(days=30), membership_level__expires=True)
 
 		for member in members:
-
+			print(member)
 			days_left = member.membership_expiration - now
 			days_left += timezone.timedelta(days=1)
 
@@ -43,7 +43,7 @@ class Command(BaseCommand):
 					if settings.DEBUG:
 						self.stdout.write(self.style.SUCCESS('DEBUG: Membership Expiration Email Sent to: "%s"' % member))
 					else:
-						msg.send()
+						#msg.send()
 						self.stdout.write(self.style.SUCCESS('Membership Expiration Email Sent to: "%s"' % member))
 				except Exception as e:
 					print(e)
