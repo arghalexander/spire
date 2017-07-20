@@ -13,7 +13,7 @@
 
 {% block content %}
 
-<section class="page-header">
+{% if error %}
 	<div class="row">
 		<div class="small-12 columns">
 			<div class="callout alert">
@@ -21,6 +21,9 @@
 			</div>
 		</div>
 	</div>
+	{% endif %}
+
+<section class="page-header">	
 	<div class="row">
 		<div class="small-12 medium-6 medium-offset-3 columns">
 			<h2 class="red-line">Membership upgrade &amp; renewal</h2>
