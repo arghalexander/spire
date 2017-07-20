@@ -45,6 +45,7 @@ def cart_add(request):
 		product = Product.objects.get(sku=product_id)
 	except Product.DoesNotExist:
 		messages.add_message(request, messages.ERROR, "Product does not exist")
+		return redirect('checkout:cart')
 
 	cart = Cart(request)
 	cart.clear()

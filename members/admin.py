@@ -99,7 +99,7 @@ class MemberRegionAdmin(admin.ModelAdmin):
 
 @admin.register(MemberPurchaseHistory)
 class MemberEventPurchaseAdmin(admin.ModelAdmin):
-	pass
+	list_display = ['member', 'item', 'purchase_date', 'purchase_price']
 
 
 
