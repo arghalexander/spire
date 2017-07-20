@@ -4,5 +4,4 @@ db.sqlite3
 media/
 *.pyc
 .DS_Store
-static
 config
