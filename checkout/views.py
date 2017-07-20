@@ -90,8 +90,14 @@ def checkout(request):
 
 			# Create a charge: this will charge the user's card
 			try:
+
+				customer = stripe.Customer.create(
+					email= request.user.username,
+				)
+
 				charge = stripe.Charge.create(
 					  amount=int(total*100),
+					  customer=customer,
 					  currency="usd",
 					  source=token,
 					  description=description
