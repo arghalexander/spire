@@ -3,7 +3,7 @@
 {% load nav_tags static %}
 {% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
-
+ {% load humanize %}
 {% block body_class %}template-event-detail{% endblock %}
 
 {% block title %}{{event.title}}{% endblock %}
@@ -93,7 +93,7 @@
 					{% for product in products.all %}
 						<tr>
 							<td>{{product.name}}</td>
-							<td width="250">${{product.price}}</td>
+							<td width="250">${{product.price|intcomma}}</td>
 							<td width=250><a href="{% url 'checkout:add'%}?product={{product.sku}}" class="button button-red expanded">Purchase</a></td>
 						</tr>
 					{% endfor %}
