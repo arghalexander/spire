@@ -70,7 +70,7 @@
 									<td width="250"></td>
 									<td width=250><a href="{% url 'checkout:combo-add'%}?event={{event.id}}" class="button button-red expanded">Event + Membership</a></td>
 								</tr>
-							{% else %}
+							{% elif user.is_authenticated == False %}
 								<tr>
 									<td>Please login to view pricing and registeration for this event</td>
 									<td width="250"></td>
