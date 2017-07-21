@@ -3,7 +3,9 @@
 {% load nav_tags static %}
 {% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
- {% load humanize %}
+{% load humanize %}
+
+
 {% block body_class %}template-event-detail{% endblock %}
 
 {% block title %}{{event.title}}{% endblock %}
@@ -57,7 +59,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							{% if user.is_authenticated and user.member.membership_level__level == 'Guest' %}
+							{% if user.is_authenticated or user.member.membership_level__level == 'Guest' %}
 								<tr>
 									<td>You do not have access to register for this event, Please upgrade your membership if you would like to attend</td>
 									<td width="250"></td>
