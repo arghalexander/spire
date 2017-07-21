@@ -544,6 +544,7 @@ class HallOfFameOverviewPage(Page):
 		classname=""
 		),
 
+
 		FieldPanel('page_content'),
 		FieldPanel('gallery_caption'),
 		InlinePanel('fame_gallery', label="Gallery"),
