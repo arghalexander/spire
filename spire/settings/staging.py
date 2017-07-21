@@ -36,6 +36,16 @@ STRIPE_API_KEY = "pk_test_flWrZUy1TeB0z9msSMz67lPY"
 STRIPE_SECRET_KEY = "sk_test_es7mrA52AFoENwUyFzOP8SAI"
 
 
+WAGTAILFRONTENDCACHE = {
+    'cloudflare': {
+        'BACKEND': 'wagtail.contrib.wagtailfrontendcache.backends.CloudflareBackend',
+        'EMAIL': 'anthony@spirestanford.org',
+        'TOKEN': '2b3f5f2bbd20a1030bc053729d4f02428bece',
+        'ZONEID': 'bd7f599c22d18495d9a4d5a3a7be0b3c',
+    },
+}
+
+
 GOOGLE_MAPS_V3_APIKEY = "AIzaSyCCT4uyy-Z3jbQZ7S6vd7LXz-TSMOtl0M8"
 GEO_WIDGET_DEFAULT_LOCATION = { 'lat': '37.4554996','lng': '-122.1996202,11.96' }
 

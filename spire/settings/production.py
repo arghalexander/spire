@@ -39,6 +39,16 @@ GOOGLE_MAPS_V3_APIKEY = "AIzaSyCCT4uyy-Z3jbQZ7S6vd7LXz-TSMOtl0M8"
 GEO_WIDGET_DEFAULT_LOCATION = { 'lat': '37.4554996','lng': '-122.1996202,11.96' }
 
 
+WAGTAILFRONTENDCACHE = {
+    'cloudflare': {
+        'BACKEND': 'wagtail.contrib.wagtailfrontendcache.backends.CloudflareBackend',
+        'EMAIL': 'anthony@spirestanford.org',
+        'TOKEN': '2b3f5f2bbd20a1030bc053729d4f02428bece',
+        'ZONEID': 'bd7f599c22d18495d9a4d5a3a7be0b3c',
+    },
+}
+
+
 RAVEN_CONFIG = {
     'dsn': 'https://6255be8f3ff84af6a4c1d10f01d1f025:d51cbb84a7a04ed4ac0fde96e8c829a7@sentry.io/193628',
     # If you are using git, you can also automatically configure the

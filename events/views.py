@@ -64,7 +64,11 @@ def event_detail(request,slug):
 
         return render(request, 'events/event_detail.html', {'event': event, 'price': event_price, 'registered': registered, 'products':event_products})
 
-    return render(request, 'events/event_detail.html', {'event': event})
+    else:
+        #get addtional products for event
+        event_products = Product.objects.filter(event=event)
+
+    return render(request, 'events/event_detail.html', {'event': event, 'products':event_products})
 
 
 def event_register(request,slug):

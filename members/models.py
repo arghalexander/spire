@@ -156,8 +156,6 @@ class MemberEducation(models.Model):
 
 class MemberProfesionalInformation(models.Model):
 	member = 							models.OneToOneField(Member, related_name="professional_information")
-
-
 	title = 							models.CharField(max_length=254, blank=True)
 	company = 							models.CharField(max_length=254, blank=True)
 	industry =							models.ForeignKey(MemberIndustry, related_name="member_industry", blank=True, null=True)
@@ -180,7 +178,6 @@ class MemberProfesionalInformation(models.Model):
 
 	class Meta:
 		verbose_name_plural = "Member Professional Information"
-
 	
 
 
@@ -190,7 +187,6 @@ class MemberNote(models.Model):
 	note = 								models.TextField(blank=False)
 	date =  							models.DateTimeField(auto_now=True)
 	tags = 								TaggableManager()
-
 
 	def __str__(self):
 		return self.member.user.email
@@ -217,7 +213,6 @@ class MemberMembershipHistory(models.Model):
 	new_level =					  		models.ForeignKey(MembershipLevel, related_name="new_level", null=True,blank=True)
 	previous_level = 					models.ForeignKey(MembershipLevel, related_name="previous_level", null=True,blank=True)
 	date = 								models.DateField(auto_now=True)
-
 
 	def __str__(self):
 		return self.member.user.email

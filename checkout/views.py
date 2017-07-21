@@ -53,8 +53,6 @@ def cart_add(request):
 	cart.add(product, product.price, 1)
 	return redirect('checkout:cart')
 
-
-@login_required
 def cart(request):
 	cart = Cart(request)
 	if cart.count() == 0:
@@ -64,7 +62,6 @@ def cart(request):
 
 
 
-@login_required
 def checkout(request):
 
 	#get cart total
@@ -88,14 +85,20 @@ def checkout(request):
 			# Get the credit card details submitted by the form
 			token = request.POST['stripeToken']
 
+
+			# allow for not logged in users
+			if request.user.is_authenticated():
+				email = request.user.email
+			else:
+				email = request.POST.get('email', '')
+
+
 			# Create a charge: this will charge the user's card
 			try:
 
-		
-
 				charge = stripe.Charge.create(
 					  amount=int(total*100),
-					  receipt_email=request.user.email,
+					  receipt_email=email,
 					  currency="usd",
 					  source=token,
 					  description=description
@@ -103,10 +106,10 @@ def checkout(request):
 
 				cart.clear()
 
-				member = Member.objects.get(user=request.user)
+				if request.user.is_authenticated():
+					member = Member.objects.get(user=request.user)
+					record_purchase(member,description,total, charge.id)
 
-				#record purchase
-				record_purchase(member,description,total, charge.id)
 
 			  	return redirect('checkout:success')
 
@@ -120,7 +123,6 @@ def checkout(request):
 
 
 
-@login_required
 def cart_success(request):
 	#empty cart
 	cart = Cart(request)

@@ -54,15 +54,17 @@
 
 				  </div>
 				</div>
+				{% if not user.is_authenticated %}
 				<div class="row">
 					<div class="small-12 columns">
 					  	<label>
-							<span>Phone</span>
+							<span>Email</span>
 					  	</label>
-					    <input class="is-empty" type="tel" placeholder="(123) 456-7890" />
+					    <input class="is-empty" type="email" name="email" placeholder="email" />
 
 					</div>
 				</div>
+				{% endif %}
 				<div class="row">
 					<div class="small-12 columns">
 					  <label>
