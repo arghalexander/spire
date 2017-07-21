@@ -516,13 +516,13 @@ class HallOfFameStandardPage(Page):
 class HallOfFameOverviewPage(Page):
 	heading = 						models.CharField(blank=True, max_length=255)
 	event_heading =					models.CharField(blank=True, max_length=255)
-	event = 						models.ForeignKey(
-										'events.Event',
-										null=True,
-										blank=True,
-										on_delete=models.SET_NULL,
-										related_name='fame_event'
-									)
+	
+	event_text =					RichTextField(blank=True)
+	button_one_url =				models.URLField(blank=True)
+	button_one_text = 				models.CharField(blank=True, max_length=255)
+	button_two_url =				models.URLField(blank=True)
+	button_two_text = 				models.CharField(blank=True, max_length=255)
+
 	page_content =				 	RichTextField(blank=True)
 	gallery_caption = 				models.CharField(blank=True, max_length=255)
 	sponsors_caption = 				models.CharField(blank=True, max_length=255)
@@ -531,7 +531,19 @@ class HallOfFameOverviewPage(Page):
 	content_panels = Page.content_panels + [
 		FieldPanel('heading'),
 		FieldPanel('event_heading'),
-		SnippetChooserPanel('event'),
+
+		MultiFieldPanel(
+		[
+			FieldPanel('event_text'),
+			FieldPanel('button_one_url'),
+			FieldPanel('button_one_text'),
+			FieldPanel('button_two_url'),
+			FieldPanel('button_two_text'),
+		],
+		heading="Event Box",
+		classname=""
+		),
+
 		FieldPanel('page_content'),
 		FieldPanel('gallery_caption'),
 		InlinePanel('fame_gallery', label="Gallery"),

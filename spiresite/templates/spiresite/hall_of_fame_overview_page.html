@@ -30,20 +30,16 @@
 		<div class="small-12 medium-7 columns">
 			{{page.page_content|richtext}}
 		</div>
-		{% if page.event %}
 		<div class="small-12 medium-5 columns ">
 			<div class="event-side-block">
 				<div class="event-side-block__content">
-					<h3 class="white-line bold">{{page.event_heading}}</h3>
-					<h6 style="padding-top: 25px;">{{page.event.start|date:'D d M Y g:i a'}}</h6>
-					<h6 class="bold">{{page.event.title}}</h6>
-					<p>{{page.event.description|truncatewords:30|richtext}}</p>
+					{{page.event_text|richtext}}
 					<hr>
-					<a href="{% url 'events:event-detail' page.event.slug %}" class="button button-white expanded">Buy Tickets</a>
+					<a href="{{page.button_one_url}}" class="button button-white expanded">{{page.button_one_text}}</a>
+					<a href="{{page.button_two_url}}" class="button button-white expanded">{{page.button_two_text}}</a>
 				</div>
 			</div>
 		</div>
-		{% endif %}
 	</div>
 </section>
 
