@@ -275,7 +275,7 @@ def event_add_to_cart(request):
 		return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-	event_price = EventPricing.objects.get(event=event, level=member.membership_level)
+	event_price = EventPricing.objects.filter(event=event, level=member.membership_level).first()
 
 	cart = Cart(request)
 
