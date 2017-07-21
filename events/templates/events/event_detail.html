@@ -51,14 +51,6 @@
 							<td width=250><a href="{% url 'checkout:event-add'%}?event={{event.id}}" class="button button-red expanded">Register for Event</a></td>
 						</tr>
 					{% else %}
-						<thead>
-							<tr>
-								<th>Event Registration</th>
-								<th></th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
 							{% if user.is_authenticated and user.member.membership_level.access_level == 0 %}
 								<tr>
 									<td>You do not have access to register for this event, Please upgrade your membership if you would like to attend</td>
