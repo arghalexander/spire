@@ -59,7 +59,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							{% if user.is_authenticated or user.member.membership_level__level == 'Guest' %}
+							{% if user.is_authenticated and user.member.membership_level.access_level == 0 %}
 								<tr>
 									<td>You do not have access to register for this event, Please upgrade your membership if you would like to attend</td>
 									<td width="250"></td>
@@ -74,7 +74,7 @@
 								<tr>
 									<td>Please login to view pricing and registeration for this event</td>
 									<td width="250"></td>
-									<td width=250><a href="{% url 'login'%}" class="button button-red expanded">Login</a></td>
+									<td width=250><a href="{% url 'login'%}?next={{ request.path }}" class="button button-red expanded">Login</a></td>
 								</tr>
 							{% endif %}
 
