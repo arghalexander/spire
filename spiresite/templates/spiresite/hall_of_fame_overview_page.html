@@ -30,6 +30,7 @@
 		<div class="small-12 medium-7 columns">
 			{{page.page_content|richtext}}
 		</div>
+		{% if page.event %}
 		<div class="small-12 medium-5 columns ">
 			<div class="event-side-block">
 				<div class="event-side-block__content">
@@ -42,6 +43,7 @@
 				</div>
 			</div>
 		</div>
+		{% endif %}
 	</div>
 </section>
 
