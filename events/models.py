@@ -150,6 +150,13 @@ class Product(Orderable):
 	sku = models.SlugField(unique=True)
 	event = ParentalKey(Event, related_name="events_products")
 	name = models.CharField(max_length=255)
+
+
+	CATEGORY = (
+		('GIFTS','Gifts/Students'),
+		('TRIBUTE','Tribute Ads'),
+	)
+	category = models.CharField(max_length=50,choices=CATEGORY, default="TRIBUTE")
 	price = models.DecimalField(decimal_places=2, max_digits=8)
 
 	def __str__(self):

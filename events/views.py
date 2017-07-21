@@ -60,9 +60,10 @@ def event_detail(request,slug):
         event_price = EventPricing.objects.filter(event=event,level=membership_level).order_by('event_price').first()
 
         #get addtional products for event
-        event_products = Product.objects.filter(event=event)
+        event_gifts = Product.objects.filter(event=event, category="GIFTS")
+        event_tribute = Product.objects.filter(event=event, category="TRIBUTE")
 
-        return render(request, 'events/event_detail.html', {'event': event, 'price': event_price, 'registered': registered, 'products':event_products})
+        return render(request, 'events/event_detail.html', {'event': event, 'price': event_price, 'registered': registered, 'gifts':event_gifts, 'tributes': event_tribute})
 
     else:
         #get addtional products for event
