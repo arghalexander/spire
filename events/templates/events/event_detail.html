@@ -75,6 +75,28 @@
 			</table>
 			{% endif %}
 
+			{% if sponsors %}
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Sponsorships</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for product in sponsors.all %}
+						<tr>
+							<td>{{product.name}}</td>
+							<td width="250">${{product.price|intcomma}}</td>
+							<td width=250><a href="{% url 'checkout:add'%}?product={{product.sku}}" class="button button-red expanded">Purchase</a></td>
+						</tr>
+					{% endfor %}
+				<tbody>
+			</table>
+			{% endif %}
+
+
 			{% if gifts %}
 			<table class="table">
 				<thead>

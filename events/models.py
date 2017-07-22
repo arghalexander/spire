@@ -153,6 +153,7 @@ class Product(Orderable):
 
 
 	CATEGORY = (
+		('SPONSORSHIP','Sponsorship'),
 		('GIFTS','Gifts/Students'),
 		('TRIBUTE','Tribute Ads'),
 	)

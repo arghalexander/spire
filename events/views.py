@@ -62,8 +62,9 @@ def event_detail(request,slug):
         #get addtional products for event
         event_gifts = Product.objects.filter(event=event, category="GIFTS")
         event_tribute = Product.objects.filter(event=event, category="TRIBUTE")
+        event_sponsors = Product.objects.filter(event=event, category="SPONSORSHIP")
 
-        return render(request, 'events/event_detail.html', {'event': event, 'price': event_price, 'registered': registered, 'gifts':event_gifts, 'tributes': event_tribute})
+        return render(request, 'events/event_detail.html', {'event': event, 'price': event_price, 'registered': registered, 'gifts':event_gifts, 'tributes': event_tribute, 'sponsors': event_sponsors})
 
     else:
         #get addtional products for event
