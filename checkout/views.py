@@ -198,6 +198,7 @@ def membership_checkout(request):
 				charge = stripe.Charge.create(
 					  amount=int(total*100),
 					  currency="usd",
+					  receipt_email=request.user.email,
 					  source=token,
 					  description=description
 				 )
