@@ -646,7 +646,7 @@ class EventsPage(Page):
 	def get_context(self, request):
 		context = super(EventsPage, self).get_context(request)
 
-		context['upcoming_events'] = Event.objects.filter(start__gte=datetime.datetime.now(),status="PUBLISHED")
+		context['upcoming_events'] = Event.objects.filter(start__gte=datetime.datetime.now(),status="PUBLISHED").order_by('-start')
 		return context
 
 
