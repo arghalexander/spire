@@ -279,6 +279,7 @@ def event_add_to_cart(request):
 	event_price = EventPricing.objects.filter(event=event, level=member.membership_level).first()
 
 	cart = Cart(request)
+	cart.clear()
 
 	cart.add(event, event_price.event_price, 1)
 
@@ -372,7 +373,6 @@ def combo_add_to_cart(request):
 	Add a event pricing object to cart
 	"""
 	event_id = request.GET.get('event', '')
-	#membership = request.GET.get('membership', '')
 
 	try:
 		event = Event.objects.get(id=event_id)
@@ -388,7 +388,6 @@ def combo_add_to_cart(request):
 		messages.warning(request,'You Are already registered for this event')
 		return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-
 	membership = MembershipProduct.objects.get(id=3)
 
 	cart = Cart(request)
@@ -396,7 +395,6 @@ def combo_add_to_cart(request):
 	cart.add(event, membership.price , 1)
 
 	return redirect('checkout:combo-cart')
-
 
 
 
