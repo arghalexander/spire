@@ -16,7 +16,11 @@ def CreateMembershipMiddleware(get_response):
 				except Member.DoesNotExist:
 					messages.warning(request, 'Please complete your member profile')
 					return redirect('members:member-create')
-		
+
+				if member.first_name == '' or member.first_name == None:
+					messages.warning(request, 'Please complete your member profile')
+					return redirect('members:member-create')
+
 		
 		response = get_response(request)
 
