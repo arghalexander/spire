@@ -28,7 +28,7 @@
 <section class="page-content">
 	<div class="row">
 		{% if page.event_text %}
-		<div class="small-12 medium-7 columns">
+		<div class="small-12 medium-7 columns body-content">
 			{{page.page_content|richtext}}
 		</div>
 		<div class="small-12 medium-5 columns ">
@@ -42,7 +42,7 @@
 			</div>
 		</div>
 		{% else %}
-			<div class="small-12 medium-12 columns">
+			<div class="small-12 medium-12 columns body-content">
 				{{page.page_content|richtext}}
 			</div>
 		{% endif %}
