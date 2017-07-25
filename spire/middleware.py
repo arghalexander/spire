@@ -17,7 +17,7 @@ def CreateMembershipMiddleware(get_response):
 					messages.warning(request, 'Please complete your member profile')
 					return redirect('members:member-create')
 
-				if member.first_name == '' or member.first_name == None:
+				if member.first_name == '':
 					messages.warning(request, 'Please complete your member profile')
 					return redirect('members:member-create')
 
