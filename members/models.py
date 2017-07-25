@@ -119,7 +119,7 @@ class Member(models.Model):
 		if len(degree_string) == 0:
 			return u''
 
-		if len(degree_string)>=1:
+		if len(degree_string)>1:
 			if degree_string[0] == degree_string[1]:
 				degree_string = degree_string[1:]
 	
