@@ -39,12 +39,13 @@ def login_view(request):
 		return login(request)
 
 
-
 	username = request.POST.get('username', '')
 	try:
 		user = User.objects.get(username=username)
+		print(user.password)
 		if user.password == '':
 
+			print('no password set')
 			password = User.objects.make_random_password()
 			user.set_password(password)
 			user.save()
