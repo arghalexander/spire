@@ -127,7 +127,7 @@ class HomePage(Page):
 		context = super(HomePage, self).get_context(request)
 
 		# Add extra variables and return the updated context
-		context['upcoming_events'] = Event.objects.filter(start__gte=datetime.datetime.now(), status="PUBLISHED")
+		context['upcoming_events'] = Event.objects.filter(start__gte=datetime.datetime.now(), status="PUBLISHED").ordy_by('start')
 		#context['featured_event'] = Event.objects.filter(featured=True)[0:1] #get first in list
 		return context
 

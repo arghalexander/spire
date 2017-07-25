@@ -18,7 +18,10 @@
 		padding-bottom: 15px;
 		//padding-top: 25px;
 		.member__image{
-
+			img{
+				height: 250px;
+    			object-fit: cover;
+			}
 		}
 
 		.member__info{
