@@ -356,15 +356,16 @@ def my_profile_edit(request):
 	try:
 		member, created = Member.objects.get_or_create(user=request.user)
 		address, created = MemberAddress.objects.get_or_create(member=member)
-
 		work_info, created = MemberProfesionalInformation.objects.get_or_create(member=member)
 
+	"""
 	except Member.DoesNotExist:
 		return redirect('members:member-create')
 	except MemberAddress.DoesNotExist:
 		return redirect('members:member-create')
 	except MemberProfesionalInformation:
 		return redirect('members:member-create')
+	"""
 
 	education_formset = modelformset_factory(MemberEducation,fields=('degree', 'program','grad_year'), extra=0)
 
