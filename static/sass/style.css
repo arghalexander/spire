@@ -223,6 +223,9 @@ h4 {
     text-align: center;
     background-color: #FFF;
     padding-bottom: 15px; }
+    .srec-members .member .member__image img {
+      height: 250px;
+      object-fit: cover; }
     .srec-members .member .member__info {
       padding: 20px; }
       .srec-members .member .member__info p {
@@ -810,7 +813,7 @@ form .errorlist {
           width: 87%; }
       @media (max-width: 39.9375em) {
         .template-homepage section.home-header .orbit-caption {
-          height: 500px;
+          height: auto;
           width: 350px;
           left: 5px; }
           .template-homepage section.home-header .orbit-caption .content {
