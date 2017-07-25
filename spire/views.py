@@ -44,7 +44,7 @@ def login_view(request):
 	try:
 		user = User.objects.get(username=username)
 		print(user.password)
-		if user.password == '':
+		if not user.password:
 
 			print('no password set')
 			password = User.objects.make_random_password()
