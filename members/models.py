@@ -120,7 +120,7 @@ class Member(models.Model):
 		if len(degree_string) == 0:
 			return u''
 
-		try
+		try:
 			if degree_string[0] == degree_string[1]:
 				degree_string[1:]
 		except IndexError:
