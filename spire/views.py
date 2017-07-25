@@ -44,9 +44,9 @@ def login_view(request):
 
 	try:
 		user = User.objects.get(username=username)
-		print(user.last_login)
-
-		if not user.password:
+	
+		if user.last_login == None:
+			print('not set')
 			password = User.objects.make_random_password()
 			user.set_password(password)
 			user.save()
