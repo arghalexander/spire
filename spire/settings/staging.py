@@ -3,7 +3,7 @@ import raven
 
 from .base import *
 
-DEBUG = False
+DEBUG = True
 
 #CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_DOMAIN = '.spirestanford.org'
