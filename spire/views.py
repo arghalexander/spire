@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import password_reset
 from django.contrib.auth.views import login
 from django.contrib import auth
 
@@ -32,16 +33,19 @@ def check_login(request):
 		return login(request)
 
 def login_view(request):
-	print('here')
+
 	#if user is already logged in take them to membership page
 	if request.user.is_authenticated():
 		return redirect('/members/profile/')
 	
 	
 	username = request.POST.get('username', '')
+
+
 	try:
 		user = User.objects.get(username=username)
-	
+		print(user.last_login)
+
 		if not user.password:
 			password = User.objects.make_random_password()
 			user.set_password(password)
