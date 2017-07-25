@@ -20,7 +20,7 @@ def CreateMembershipMiddleware(get_response):
 				#student memebrs might have empty profile, test address
 				try:
 					address = MemberAddress.objects.get(member=member)
-				except Member.DoesNotExist:
+				except MemberAddress.DoesNotExist:
 					messages.warning(request, 'Please complete your member profile')
 					return redirect('members:member-create')
 
