@@ -18,8 +18,7 @@ def CreateMembershipMiddleware(get_response):
 					return redirect('members:member-create')
 
 				#student memebrs might have empty profile, test region
-				print(member.address)
-				if member.address:
+				if request.user.first_name == '':
 					messages.warning(request, 'Please complete your member profile')
 					return redirect('members:member-create')
 
