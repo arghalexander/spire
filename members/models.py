@@ -120,7 +120,7 @@ class Member(models.Model):
 		if len(degree_string) == 0:
 			return u''
 
-		return u'(' + ' , '.join(degree_string) + ')'
+		return u'(' + ', '.join(degree_string) + ')'
 
 
 
