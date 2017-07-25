@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from .serializers import UserSerializer
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import password_reset
 from django.contrib.auth.views import login
