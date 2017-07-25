@@ -15,7 +15,7 @@
     <h3>Login or Signup</h3>
   </div>
 
-	<div class="small-6 columns text-centered">
+	<div class="small-12 medium-6 columns text-centered">
 
   		<form action="{% url 'auth_login'  %}?next={{next}}" method="post">
   		    {% csrf_token %}
@@ -33,7 +33,7 @@
   		</form>
 	</div>
 
-	<div class="small-6 columns text-centered" style="padding-top: 25px;">
+	<div class="small-12 medium-6 columns text-centered" style="padding-top: 25px;">
 
 		    <a class="button button-linkedin expanded" href="{% url "social:begin" "linkedin-oauth2" %}">Sign in with LinkedIn</a>
 

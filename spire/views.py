@@ -37,16 +37,13 @@ def login_view(request):
 	#if user is already logged in take them to membership page
 	if request.user.is_authenticated():
 		return redirect('/members/profile/')
-	
-	
+		
 	username = request.POST.get('username', '')
-
 
 	try:
 		user = User.objects.get(username=username)
-	
-		if user.last_login == None:
-			print('not set')
+
+		if not user.password:
 			password = User.objects.make_random_password()
 			user.set_password(password)
 			user.save()
