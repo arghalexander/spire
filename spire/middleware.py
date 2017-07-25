@@ -21,7 +21,7 @@ def CreateMembershipMiddleware(get_response):
 				print(member.address)
 				if member.address:
 					messages.warning(request, 'Please complete your member profile')
-					return redirect('members:member-profile-edit')
+					return redirect('members:member-create')
 
 		
 		response = get_response(request)
