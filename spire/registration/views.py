@@ -82,6 +82,10 @@ class RegistrationView(BaseRegistrationView):
         username, signed using TimestampSigner.
         """
        
+        student = self.request.GET.get('student', 'is not a student')
+
+        print(student)
+
         subject = render_to_string(self.email_subject_template)
         subject = ''.join(subject.splitlines())
         

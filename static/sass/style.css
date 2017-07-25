@@ -1054,16 +1054,16 @@ form .errorlist {
     font-weight: bold;
     margin-top: 25px; }
 
-.template-500 {
+.template-500, .template-403 {
   height: 100vh;
   background-color: #333333;
   background-image: url("../images/bg404.jpg");
   background-size: cover;
   color: #FFF;
   padding-top: 20% !important; }
-  .template-500 h3 {
+  .template-500 h3, .template-403 h3 {
     width: 50%; }
-  .template-500 .button-white {
+  .template-500 .button-white, .template-403 .button-white {
     width: 225px;
     font-weight: bold;
     margin-top: 25px; }
