@@ -12,17 +12,19 @@
 		padding-bottom: 25px;
 	}
 
-	.member{
-		text-align: center;
-		background-color: $white;
-		padding-bottom: 15px;
-		//padding-top: 25px;
-		.member__image{
+	.member__image{
 			img{
 				height: 250px;
     			object-fit: cover;
 			}
 		}
+
+	.member{
+		text-align: center;
+		background-color: $white;
+		padding-bottom: 15px;
+		//padding-top: 25px;
+		
 
 		.member__info{
 			padding: 20px;

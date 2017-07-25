@@ -219,13 +219,13 @@ h4 {
     margin-top: -50px;
     padding-top: 25px;
     padding-bottom: 25px; }
+  .srec-members .member__image img {
+    height: 250px;
+    object-fit: cover; }
   .srec-members .member {
     text-align: center;
     background-color: #FFF;
     padding-bottom: 15px; }
-    .srec-members .member .member__image img {
-      height: 250px;
-      object-fit: cover; }
     .srec-members .member .member__info {
       padding: 20px; }
       .srec-members .member .member__info p {
