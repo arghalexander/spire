@@ -43,6 +43,7 @@ def login_view(request):
 	username = request.POST.get('username', '')
 	try:
 		user = User.objects.get(username=username)
+		print(user)
 		print(user.password)
 		if not user.password:
 
