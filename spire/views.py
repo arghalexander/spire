@@ -36,11 +36,10 @@ def login_view(request):
 	#if user is already logged in take them to membership page
 	if request.user.is_authenticated():
 		return redirect('/members/profile/')
-	else:
-		return login(request)
-
-
+	
+	
 	username = request.POST.get('username', '')
+	print(username)
 	try:
 		user = User.objects.get(username=username)
 		print(user)
