@@ -9,7 +9,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.sites.shortcuts import get_current_site
 from django.core import signing
 from django.template.loader import render_to_string
-
+from members.models import Member, MembershipLevel
 from registration import signals
 from registration.views import ActivationView as BaseActivationView
 from registration.views import RegistrationView as BaseRegistrationView
@@ -31,7 +31,9 @@ class RegistrationView(BaseRegistrationView):
     email_subject_template = 'registration/activation_email_subject.txt'
 
     def register(self, form):
+
         new_user = self.create_inactive_user(form)
+        
         signals.user_registered.send(sender=self.__class__,
                                      user=new_user,
                                      request=self.request)
@@ -52,6 +54,13 @@ class RegistrationView(BaseRegistrationView):
         new_user.email = new_user.username
         
         new_user.save()
+
+        student = form.cleaned_data['student']
+        #create student memeber
+        if(student):
+            student_level = MembershipLevel.objects.get(slug='student')
+            member = Member(user=new_user,membership_level=student_level)
+            member.save()
 
         self.send_activation_email(new_user)
 
@@ -81,10 +90,6 @@ class RegistrationView(BaseRegistrationView):
         Send the activation email. The activation key is simply the
         username, signed using TimestampSigner.
         """
-       
-        student = self.request.GET.get('student', 'is not a student')
-
-        print(student)
 
         subject = render_to_string(self.email_subject_template)
         subject = ''.join(subject.splitlines())

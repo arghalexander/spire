@@ -30,8 +30,9 @@
 			if(student){
 				$('#id_username').attr("placeholder", "@stanford.edu");
 
+				$('#id_student').val('True');
 
-				$("#registration-form").attr("action", "{% url 'registration_register' %}?student=True");
+
 			}
 
 

@@ -237,18 +237,10 @@ class MemberAddressViewSet(viewsets.ModelViewSet):
 	serializer_class = MemberAddressSerializer
 
 
-def index(request):
-	try:
-		member = Member.objects.get(user=request.user)
-	except Member.DoesNotExist:
-		return redirect('members:create-member')
-
-	return render(request, 'members/index.html')
-
-
 @login_required
 def member_create(request):
 
+	
 
 	#if member already created go to member edit
 	if(Member.objects.filter(user=request.user).count() > 0):

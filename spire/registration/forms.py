@@ -12,6 +12,7 @@ User = get_user_model()
 class MemberRegistrationForm(RegistrationForm):
 	username = forms.EmailField(label="Email")
 	email = forms.EmailField(widget=forms.HiddenInput(),required=False)
+	student = forms.BooleanField(widget=forms.HiddenInput(), required=False)
 
 	class Meta:
 		model = User
@@ -21,6 +22,17 @@ class MemberRegistrationForm(RegistrationForm):
 	def clean(self):
 		super(MemberRegistrationForm, self).clean()
 		username = self.cleaned_data.get("username")
-		self.cleaned_data['email'] = username
-		print(self.cleaned_data)
+		check_student = self.cleaned_data['student']
+
+		if(check_student):
+			email = self.cleaned_data.get("username").split("@")
+			email_domain = email[1]
+			stanford_domain = "standford.edu"
+
+			if( email_domain !=  stanford_domain):
+				pass
+				#raise forms.ValidationError(
+                #    "The email provided is not a stanford email address"
+                #)
+
 		return self.cleaned_data
