@@ -243,8 +243,8 @@ def member_create(request):
 	
 
 	#if member already created go to member edit
-	if(Member.objects.filter(user=request.user).count() > 0):
-		return redirect('members:member-profile')
+	#if(Member.objects.filter(user=request.user).count() > 0):
+	#	return redirect('members:member-profile')
 
 	education_formset = formset_factory(MemberEducationForm)
 
