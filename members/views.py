@@ -353,10 +353,10 @@ def my_profile(request):
 
 @login_required
 def my_profile_edit(request):
-	try:
-		member, created = Member.objects.get_or_create(user=request.user)
-		address, created = MemberAddress.objects.get_or_create(member=member)
-		work_info, created = MemberProfesionalInformation.objects.get_or_create(member=member)
+	
+	member, created = Member.objects.get_or_create(user=request.user)
+	address, created = MemberAddress.objects.get_or_create(member=member)
+	work_info, created = MemberProfesionalInformation.objects.get_or_create(member=member)
 
 	"""
 	except Member.DoesNotExist:
