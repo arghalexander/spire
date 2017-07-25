@@ -17,7 +17,8 @@ def CreateMembershipMiddleware(get_response):
 					messages.warning(request, 'Please complete your member profile')
 					return redirect('members:member-create')
 
-				if member.first_name == '':
+				#student memebrs might have empty profile, test on mobile phone to see
+				if member.mobile_phone == '':
 					messages.warning(request, 'Please complete your member profile')
 					return redirect('members:member-create')
 
