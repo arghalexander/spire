@@ -113,7 +113,6 @@ class Member(models.Model):
 					#print(degree_string[0])
 					#if (degree_string[0] !=  '\'' + str(degree.grad_year)[-2:]):
 				degree_string.insert(0, '\'' + str(degree.grad_year)[-2:])
-				print(degree_string)
 			else:
 				degree_string.append(str(degree.degree) + ' \'' + str(degree.grad_year)[-2:])
 
@@ -122,7 +121,8 @@ class Member(models.Model):
 
 		try:
 			if degree_string[0] == degree_string[1]:
-				degree_string[1:]
+				print(degree_string[0] + ' : ' + degree_string[1])
+				degree_string = degree_string[1:]
 		except IndexError:
 			pass
 
