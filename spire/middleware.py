@@ -1,5 +1,5 @@
 from django.contrib import messages
-from members.models import Member
+from members.models import Member, MemberAddress
 from django.shortcuts import redirect
 from django.urls import resolve
 
@@ -17,8 +17,10 @@ def CreateMembershipMiddleware(get_response):
 					messages.warning(request, 'Please complete your member profile')
 					return redirect('members:member-create')
 
-				#student memebrs might have empty profile, test region
-				if not member.address:
+				#student memebrs might have empty profile, test address
+				try:
+					address = MemberAddress.objects.get(member=member)
+				except Member.DoesNotExist:
 					messages.warning(request, 'Please complete your member profile')
 					return redirect('members:member-create')
 
