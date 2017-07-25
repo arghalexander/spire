@@ -32,6 +32,7 @@ def check_login(request):
 		return login(request)
 
 def login_view(request):
+	print('here')
 	#if user is already logged in take them to membership page
 	if request.user.is_authenticated():
 		return redirect('/members/profile/')
