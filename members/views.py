@@ -240,11 +240,9 @@ class MemberAddressViewSet(viewsets.ModelViewSet):
 @login_required
 def member_create(request):
 
-	
-
 	#if member already created go to member edit
-	#if(Member.objects.filter(user=request.user).count() > 0):
-	#	return redirect('members:member-profile')
+	if(Member.objects.filter(user=request.user).count() > 0):
+		return redirect('members:member-profile')
 
 	education_formset = formset_factory(MemberEducationForm)
 
@@ -356,8 +354,9 @@ def my_profile(request):
 @login_required
 def my_profile_edit(request):
 	try:
-		member = Member.objects.get(user=request.user)
-		address = MemberAddress.objects.get(member=member)
+		member, created = Member.objects.get_or_create(user=request.user)
+		address, created = MemberAddress.objects.get_or_create(member=member)
+
 		work_info, created = MemberProfesionalInformation.objects.get_or_create(member=member)
 
 	except Member.DoesNotExist:

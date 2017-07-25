@@ -22,7 +22,7 @@ def CreateMembershipMiddleware(get_response):
 					address = MemberAddress.objects.get(member=member)
 				except MemberAddress.DoesNotExist:
 					messages.warning(request, 'Please complete your member profile')
-					return redirect('members:member-create')
+					return redirect('members:member-profile-edit')
 
 		
 		response = get_response(request)
