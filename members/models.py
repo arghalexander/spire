@@ -120,9 +120,11 @@ class Member(models.Model):
 		if len(degree_string) == 0:
 			return u''
 
-
-		if degree_string[0] == degree_string[1]:
-			degree_string[1:]
+		try
+			if degree_string[0] == degree_string[1]:
+				degree_string[1:]
+		except IndexError:
+			pass
 
 		return u'(' + ', '.join(degree_string) + ')'
 
