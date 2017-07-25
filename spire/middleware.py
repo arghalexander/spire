@@ -17,10 +17,10 @@ def CreateMembershipMiddleware(get_response):
 					messages.warning(request, 'Please complete your member profile')
 					return redirect('members:member-create')
 
-				#student memebrs might have empty profile, test on mobile phone to see
-				#if member.mobile_phone == '':
-				#	messages.warning(request, 'Please complete your member profile')
-				#	return redirect('members:member-create')
+				#student memebrs might have empty profile, test region
+				if member.region == None:
+					messages.warning(request, 'Please complete your member profile')
+					return redirect('members:member-create')
 
 		
 		response = get_response(request)
