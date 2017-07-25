@@ -9,6 +9,8 @@ DEBUG = False
 CSRF_COOKIE_DOMAIN = '.spirestanford.org'
 CSRF_TRUSTED_ORIGINS =  ['.spirestanford.org',]
 
+CSRF_FAILURE_VIEW = 'spire.views.csrf_failure'
+
 SOCIAL_AUTH_FACEBOOK_KEY = '1880382195542856'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'c203a4edaf5e3896d55ddeb7eab911cb'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']

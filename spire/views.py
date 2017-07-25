@@ -19,6 +19,12 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 
+def csrf_failure(request, reason=""):
+    ctx = {'message': 'CSRF Token Failure'}
+    return render_to_response('403.html', ctx)
+
+
+
 def check_login(request):
 	if request.user.is_authenticated():
 		return redirect('/')
