@@ -56,7 +56,7 @@ PyJWT==1.4.2
 pyparsing==2.2.0
 python-openid==2.2.5
 pytz==2017.2
-PyYAML==3.12
+PyYAML==5.1
 raven==6.1.0
 rcssmin==1.0.6
 requests==2.18.1
