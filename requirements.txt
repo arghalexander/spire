@@ -31,7 +31,7 @@ django-taggit-labels==0.4.1
 django-taggit-serializer==0.1.5
 django-tinymce==2.6.0
 django-treebeard==4.1.2
-djangorestframework==3.6.3
+djangorestframework==3.11.2
 djangorestframework-filters==0.10.0
 enum34==1.1.6
 et-xmlfile==1.0.1
